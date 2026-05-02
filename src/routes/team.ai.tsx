@@ -19,12 +19,12 @@ export const Route = createFileRoute("/team/ai")({
 type Member = { name: string; role: string; initials: string; bio: string; image?: string };
 
 const aiTeam: Member[] = [
-  { name: "Salman Anwar", role: "AI Engineer", initials: "SA", bio: "AI architect & visionary leading Erha's agentic AI roadmap.", image: ilyasAiImg },
-  { name: "Muzammil Shadab", role: "AI Engineer", initials: "MS", bio: "ML researcher, MLOps and large-model fine-tuning.", image: muzammilImg },
-  { name: "Abdul Rehman", role: "Game Developer", initials: "AR", bio: "Builds immersive 3D games and interactive experiences.", image: abdulRehmanImg },
+  { name: "Ilyas Shahid", role: "Founder & CEO", initials: "IS", bio: "Visionary leader driving the integration of AI and digital innovation at Erha.", image: ilyasAiImg },
+  { name: "Salman Anwar", role: "AI Engineer", initials: "SA", bio: "AI architect leading Erha's agentic AI roadmap.", image: ilyasAiImg },
+  { name: "Muzammil Shadab", role: "AI Researcher", initials: "MS", bio: "ML researcher specializing in large-model fine-tuning.", image: muzammilImg },
+  { name: "Abdul Rehman", role: "Unity Developer", initials: "AR", bio: "Builds immersive 3D games and interactive experiences.", image: abdulRehmanImg },
   { name: "Omar Sheikh", role: "Agentic AI Engineer", initials: "OS", bio: "Designs autonomous multi-agent workflows." },
-  { name: "Zain Abbas", role: "ML Infrastructure", initials: "ZA", bio: "GPU pipelines, vector DBs and inference scaling." },
-  { name: "Sana Malik", role: "AI Product Designer", initials: "SM", bio: "UX & motion design for AI-native interfaces." },
+  { name: "Zain Abbas", role: "ML Infrastructure", initials: "ZA", bio: "GPU pipelines and vector DB scaling." },
 ];
 
 function AiTeamPage() {

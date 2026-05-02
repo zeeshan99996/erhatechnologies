@@ -56,9 +56,9 @@ function HomePage() {
 
             <div className="grid grid-cols-3 gap-6 mt-12 max-w-md">
               {[
-                { v: "50+", l: "Projects" },
-                { v: "20+", l: "AI Models" },
-                { v: "100%", l: "Dedication" },
+                { v: "100+", l: "Projects" },
+                { v: "50+", l: "AI Solutions" },
+                { v: "15+", l: "Countries" },
               ].map((s) => (
                 <div key={s.l}>
                   <div className="font-display text-3xl text-gradient">{s.v}</div>
