@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Linkedin, Twitter, Github } from "lucide-react";
 import muzammilImg from "@/assets/team-muzammil.jpg";
-import ilyasAiImg from "@/assets/team-ilyas-ai.jpg";
 import abdulRehmanImg from "@/assets/team-abdul-rehman.png";
 
 export const Route = createFileRoute("/team/ai")({
@@ -19,8 +18,7 @@ export const Route = createFileRoute("/team/ai")({
 type Member = { name: string; role: string; initials: string; bio: string; image?: string };
 
 const aiTeam: Member[] = [
-  { name: "Ilyas Shahid", role: "Founder & CEO", initials: "IS", bio: "Visionary leader driving the integration of AI and digital innovation at Erha.", image: ilyasAiImg },
-  { name: "Salman Anwar", role: "AI Engineer", initials: "SA", bio: "AI architect leading Erha's agentic AI roadmap.", image: ilyasAiImg },
+  { name: "Salman Anwar", role: "AI Engineer", initials: "SA", bio: "AI architect leading Erha's agentic AI roadmap." },
   { name: "Muzammil Shadab", role: "AI Researcher", initials: "MS", bio: "ML researcher specializing in large-model fine-tuning.", image: muzammilImg },
   { name: "Abdul Rehman", role: "Unity Developer", initials: "AR", bio: "Builds immersive 3D games and interactive experiences.", image: abdulRehmanImg },
   { name: "Omar Sheikh", role: "Agentic AI Engineer", initials: "OS", bio: "Designs autonomous multi-agent workflows." },
