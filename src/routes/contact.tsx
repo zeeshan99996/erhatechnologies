@@ -17,19 +17,27 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", interest: "AI Development", message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
+      // Professional email structure with FormSubmit special fields
+      const formData = {
+        ...form,
+        "_subject": `New Inquiry from ${form.name} - Erha Technologies`,
+        "_template": "table", // Classic table structure for the email
+        "_honey": "", // Honeypot spam protection
+      };
+
       await fetch("https://formsubmit.co/ajax/muhammadzeeshan0477@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(formData),
       });
       setSent(true);
     } catch (error) {
@@ -88,6 +96,20 @@ function ContactPage() {
                   className="w-full px-4 py-3 rounded-lg glass border border-border focus:border-[var(--neon-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--neon-cyan)]/30 transition"
                   placeholder="you@example.com"
                 />
+              </div>
+              <div>
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">Interest</label>
+                <select
+                  value={form.interest}
+                  onChange={(e) => setForm({ ...form, interest: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg glass border border-border focus:border-[var(--neon-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--neon-cyan)]/30 transition bg-background"
+                >
+                  <option value="AI Development">AI Development</option>
+                  <option value="Web & App Development">Web & App Development</option>
+                  <option value="Research Writing">Research Writing</option>
+                  <option value="UI/UX Design">UI/UX Design</option>
+                  <option value="Consultation">Consultation</option>
+                </select>
               </div>
               <div>
                 <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">Message</label>
