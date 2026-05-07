@@ -23,12 +23,15 @@ function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // Professional email structure with FormSubmit special fields
+      // Optimized structure for a professional "Inbox" look in your Gmail
       const formData = {
-        ...form,
-        "_subject": `New Inquiry from ${form.name} - Erha Technologies`,
-        "_template": "table", // Classic table structure for the email
-        "_honey": "", // Honeypot spam protection
+        "Full Name": form.name,
+        "Email Address": form.email,
+        "Service Interest": form.interest,
+        "Message": form.message,
+        "_subject": `New Inquiry: ${form.name} is interested in ${form.interest}`,
+        "_template": "table", // Neatly organizes the fields in your inbox
+        "_honey": "",
       };
 
       await fetch("https://formsubmit.co/ajax/muhammadzeeshan0477@gmail.com", {
