@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin, Twitter, Github } from "lucide-react";
 import muzammilImg from "@/assets/team-muzammil.jpg";
 import abdulRehmanImg from "@/assets/team-abdul-rehman.png";
+import salmanImg from "@/assets/team-salman.jpg";
+import zeeshanImg from "@/assets/team-zeeshan.jpg";
 
 export const Route = createFileRoute("/team/ai")({
   head: () => ({
@@ -15,14 +16,13 @@ export const Route = createFileRoute("/team/ai")({
   component: AiTeamPage,
 });
 
-type Member = { name: string; role: string; initials: string; bio: string; image?: string };
+type Member = { name: string; role: string; initials: string; bio: string; image?: string; imagePosition?: string };
 
 const aiTeam: Member[] = [
-  { name: "Salman Anwar", role: "AI Engineer", initials: "SA", bio: "AI architect leading Erha's agentic AI roadmap." },
-  { name: "Muzammil Shadab", role: "AI Researcher", initials: "MS", bio: "ML researcher specializing in large-model fine-tuning.", image: muzammilImg },
-  { name: "Abdul Rehman", role: "Unity Developer", initials: "AR", bio: "Builds immersive 3D games and interactive experiences.", image: abdulRehmanImg },
-  { name: "Omar Sheikh", role: "Agentic AI Engineer", initials: "OS", bio: "Designs autonomous multi-agent workflows." },
-  { name: "Zain Abbas", role: "ML Infrastructure", initials: "ZA", bio: "GPU pipelines and vector DB scaling." },
+  { name: "Salman Anwar", role: "Agentic Ai Engineer", initials: "SA", bio: "Architects and develops autonomous, multi-agent AI systems to solve complex business challenges.", image: salmanImg },
+  { name: "Muzammil Shadab", role: "Ai Engineer", initials: "MS", bio: "Develops and deploys scalable AI models, specializing in LLM fine-tuning and intelligent integrations.", image: muzammilImg },
+  { name: "Abdul Rehman", role: "Junior Ai Engineer", initials: "AR", bio: "Assists in building intelligent AI pipelines, data processing, and developing machine learning solutions.", image: abdulRehmanImg },
+  { name: "Muhammad Zeeshan", role: "Full Stack Developer", initials: "MZ", bio: "Builds high-performance, AI-powered web applications and dynamic digital experiences.", image: zeeshanImg, imagePosition: "object-top" }
 ];
 
 function AiTeamPage() {
@@ -45,7 +45,7 @@ function TeamGrid({ members, accent }: { members: Member[]; accent: "cyan" | "pu
               style={{ background: "var(--card)" }}
             >
               {m.image ? (
-                <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
+                <img src={m.image} alt={m.name} className={`w-full h-full object-cover ${m.imagePosition || "object-center"}`} />
               ) : (
                 m.initials
               )}
@@ -58,13 +58,6 @@ function TeamGrid({ members, accent }: { members: Member[]; accent: "cyan" | "pu
           <h3 className="font-display text-xl">{m.name}</h3>
           <div className="text-xs uppercase tracking-wider mt-1" style={{ color: accentVar }}>{m.role}</div>
           <p className="text-sm text-muted-foreground mt-3">{m.bio}</p>
-          <div className="flex justify-center gap-2 mt-5">
-            {[Linkedin, Twitter, Github].map((Icon, i) => (
-              <a key={i} href="#" className="w-8 h-8 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
-                <Icon size={14} />
-              </a>
-            ))}
-          </div>
         </div>
       ))}
     </div>

@@ -16,7 +16,28 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await fetch("https://formsubmit.co/ajax/muhammadzeeshan0477@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      setSent(true);
+    } catch (error) {
+      console.error("Error submitting form", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="px-6 py-24 max-w-6xl mx-auto animate-fade-up">
@@ -44,7 +65,7 @@ function ContactPage() {
             </div>
           ) : (
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={handleSubmit}
               className="space-y-5"
             >
               <div>
@@ -79,8 +100,8 @@ function ContactPage() {
                   placeholder="Tell us about your project..."
                 />
               </div>
-              <button type="submit" className="btn-neon px-7 py-3 rounded-full inline-flex items-center gap-2">
-                Send message <Send size={16} />
+              <button type="submit" disabled={isSubmitting} className="btn-neon px-7 py-3 rounded-full inline-flex items-center gap-2 disabled:opacity-50">
+                {isSubmitting ? "Sending..." : "Send message"} <Send size={16} />
               </button>
             </form>
           )}

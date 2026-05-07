@@ -41,9 +41,9 @@ function TeamLayout() {
             <Link
               key={l.to}
               to={l.to}
-              className="px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all"
               activeProps={{
-                className: "px-5 py-2.5 rounded-full text-sm text-background font-medium",
+                className: "px-5 py-2.5 rounded-full text-sm text-white font-semibold drop-shadow-md",
                 style: { background: "var(--gradient-neon)", boxShadow: "0 0 20px var(--neon-cyan)" },
               }}
             >

@@ -3,6 +3,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { TechBackground } from "../components/TechBackground";
+import { AgenticChatbot } from "../components/AgenticChatbot";
 
 function NotFoundComponent() {
   return (
@@ -67,6 +68,7 @@ function RootComponent() {
         <Outlet />
       </main>
       <SiteFooter />
+      <AgenticChatbot />
     </>
   );
 }

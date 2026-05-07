@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Target, Eye, Rocket } from "lucide-react";
 import founderImg from "@/assets/founder-ilyas.jpeg";
+import coFounderImg from "@/assets/founder-faiz.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -36,18 +37,43 @@ function AboutPage() {
               style={{ background: "var(--gradient-neon)" }}>
               <img
                 src={founderImg}
-                alt="Ilyas Shahid — Founder & CEO of Erha Technologies"
-                className="w-full h-full object-cover rounded-xl"
+                alt="Ilyas Shahid — CEO & Founder of Erha Technologies"
+                className="w-full h-full object-cover rounded-xl object-top"
                 loading="lazy"
               />
             </div>
           </div>
           <div className="md:col-span-2">
-            <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-3">Founder</div>
+            <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-3">CEO & Founder</div>
             <h2 className="font-display text-4xl mb-4">Ilyas Shahid</h2>
             <p className="text-muted-foreground leading-relaxed">
               Founded by Ilyas Shahid, our company bridges the gap between complex technical challenges and intuitive, scalable solutions. Whether it's developing intelligent AI frameworks or delivering bespoke digital strategies, we focus on precision, innovation, and measurable results. At ERHA, we don't just build software; we engineer the future of your business.
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Co-Founder */}
+      <div className="glass-strong rounded-3xl p-10 md:p-14 mb-16 relative overflow-hidden">
+        <div className="orb" style={{ width: 400, height: 400, background: "var(--neon-cyan)", bottom: -100, right: -100 }} />
+        <div className="relative grid md:grid-cols-3 gap-10 items-center">
+          <div className="md:col-span-2 order-2 md:order-1">
+            <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-3">Co-Founder</div>
+            <h2 className="font-display text-4xl mb-4">Faiz Jillani</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              As Co-Founder, Faiz Jillani drives the strategic vision and operational excellence at Erha Technologies. With a deep focus on scaling advanced AI solutions and fostering global partnerships, Faiz ensures our technological innovations translate into tangible business growth and sustainable competitive advantages for our clients.
+            </p>
+          </div>
+          <div className="hover-orb order-1 md:order-2">
+            <div className="aspect-square rounded-2xl overflow-hidden relative p-1"
+              style={{ background: "var(--gradient-neon)" }}>
+              <img
+                src={coFounderImg}
+                alt="Faiz Jillani — Co-Founder of Erha Technologies"
+                className="w-full h-full object-cover rounded-xl object-top"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>
