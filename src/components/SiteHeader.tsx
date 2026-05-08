@@ -69,15 +69,18 @@ export function SiteHeader() {
 
       {/* MOBILE MENU */}
       <div className={`md:hidden fixed inset-0 z-50 transition-all duration-500 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-xl" onClick={() => setOpen(false)} />
-        <nav className={`absolute right-0 top-0 bottom-0 w-[280px] glass-strong border-l border-border p-8 pt-24 flex flex-col gap-4 transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"}`}>
+        <div className="absolute inset-0 bg-background/40 backdrop-blur-md" onClick={() => setOpen(false)} />
+        <nav className={`absolute right-0 top-0 bottom-0 w-[280px] bg-black/60 backdrop-blur-2xl border-l border-white/10 p-8 pt-24 flex flex-col gap-4 transition-transform duration-500 ease-out ${open ? "translate-x-0" : "translate-x-full"}`}>
+          <div className="absolute top-0 left-0 right-0 h-24 flex items-center px-8 border-b border-white/5">
+            <div className="font-display text-xl tracking-tighter">ERHA<span className="text-gradient">.tech</span></div>
+          </div>
           {links.map((l, i) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={() => setOpen(false)}
-              className="text-lg font-medium py-3 border-b border-border/50 text-muted-foreground hover:text-foreground transition-all"
-              activeProps={{ className: "text-lg font-bold py-3 border-b border-border text-foreground text-gradient" }}
+              className="text-lg font-medium py-3 border-b border-white/5 text-muted-foreground hover:text-white hover:pl-2 transition-all duration-300"
+              activeProps={{ className: "text-lg font-bold py-3 border-b border-white/10 text-white text-gradient pl-2" }}
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               {l.label}
@@ -86,7 +89,7 @@ export function SiteHeader() {
           <Link
             to="/contact"
             onClick={() => setOpen(false)}
-            className="mt-4 btn-neon px-6 py-4 rounded-xl text-center font-bold"
+            className="mt-6 btn-neon px-6 py-4 rounded-xl text-center font-bold text-sm tracking-widest uppercase"
           >
             Get Started
           </Link>
