@@ -1,8 +1,11 @@
 export function TechSphere({ size = 400 }: { size?: number }) {
   return (
     <div
-      className="relative mx-auto"
-      style={{ width: size, height: size, perspective: 1200 }}
+      className="relative mx-auto w-full aspect-square"
+      style={{ 
+        maxWidth: size,
+        perspective: 1200 
+      }}
     >
       {/* Glowing core */}
       <div
@@ -14,10 +17,8 @@ export function TechSphere({ size = 400 }: { size?: number }) {
         }}
       />
       <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full w-[35%] h-[35%]"
         style={{
-          width: size * 0.35,
-          height: size * 0.35,
           background:
             "radial-gradient(circle at 30% 30%, var(--neon-cyan), var(--neon-blue) 50%, oklch(0.15 0.05 265) 100%)",
           boxShadow:

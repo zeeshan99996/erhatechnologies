@@ -1,5 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { BotMessageSquare, X, Send, Mic, Paperclip, Image as ImageIcon, CheckCircle2 } from "lucide-react";
+import { BotMessageSquare, X, Send, Mic, Paperclip, Image as ImageIcon, CheckCircle2, Loader2 } from "lucide-react";
+
+// ─── n8n Webhook ────────────────────────────────────────────────────────────
+const N8N_WEBHOOK_URL =
+  "http://127.0.0.1:5678/webhook-test/98d3c1a2-0383-4b4c-b15d-083c9a41c1c7";
+// ────────────────────────────────────────────────────────────────────────────
 
 type Message = {
   id: string;
@@ -12,6 +17,7 @@ export function AgenticChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isRecording, setIsRecording] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -30,13 +36,15 @@ export function AgenticChatbot() {
     scrollToBottom();
   }, [messages, isOpen]);
 
-  const handleSend = (e?: React.FormEvent) => {
+  const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (!input.trim() && !isRecording) return;
+    if ((!input.trim() && !isRecording) || isLoading) return;
+
+    const userText = isRecording ? "🎤 Voice message (0:04)" : input;
 
     const newMessage: Message = {
       id: Date.now().toString(),
-      text: isRecording ? "🎤 Voice message (0:04)" : input,
+      text: userText,
       sender: "user",
       isVoice: isRecording,
     };
@@ -44,18 +52,59 @@ export function AgenticChatbot() {
     setMessages((prev) => [...prev, newMessage]);
     setInput("");
     setIsRecording(false);
+    setIsLoading(true);
 
-    // Mock bot response
-    setTimeout(() => {
+    try {
+      // ── Send message to n8n Agentic Workflow ──────────────────────────
+      const response = await fetch(N8N_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: userText,
+          sessionId: "erha-web-chat",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      let botText = "I've processed your request through the Erha AI workflow!";
+
+      if (response.ok) {
+        const data = await response.json().catch(() => null);
+        // Support common n8n response shapes
+        if (data) {
+          botText =
+            data?.output ??
+            data?.text ??
+            data?.message ??
+            data?.response ??
+            (typeof data === "string" ? data : botText);
+        }
+      } else {
+        botText = `⚠️ Agent returned status ${response.status}. Please try again.`;
+      }
+      // ─────────────────────────────────────────────────────────────────
+
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now().toString() + "bot",
-          text: "I've received your input! Once n8n is connected, I'll process this autonomously.",
+          text: botText,
           sender: "bot",
         },
       ]);
-    }, 1000);
+    } catch (err) {
+      console.error("[Erha AI] n8n webhook error:", err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString() + "err",
+          text: "⚠️ Could not reach the AI agent. Please make sure n8n is running and try again.",
+          sender: "bot",
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -87,8 +136,8 @@ export function AgenticChatbot() {
               <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
             </div>
             <div>
-              <h3 className="font-display text-sm">Erha AI Agent</h3>
-              <div className="text-[10px] text-muted-foreground uppercase tracking-widest flex items-center gap-1">
+              <h3 className="text-sm font-bold">Erha AI Agent</h3>
+              <div className="text-[9px] text-muted-foreground uppercase tracking-[0.15em] flex items-center gap-1 font-medium">
                 <CheckCircle2 size={10} className="text-[var(--neon-cyan)]" /> Online & Ready
               </div>
             </div>
@@ -113,6 +162,17 @@ export function AgenticChatbot() {
               </div>
             </div>
           ))}
+
+          {/* Typing / loading indicator */}
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="glass border border-white/5 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-2 text-muted-foreground text-sm">
+                <Loader2 size={14} className="animate-spin text-[var(--neon-cyan)]" />
+                Erha AI is thinking…
+              </div>
+            </div>
+          )}
+
           <div ref={messagesEndRef} />
         </div>
 
@@ -147,14 +207,18 @@ export function AgenticChatbot() {
             
             <button
               type="submit"
-              disabled={!input.trim() && !isRecording}
+              disabled={(!input.trim() && !isRecording) || isLoading}
               className="w-11 h-11 shrink-0 rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               style={{ background: "var(--gradient-neon)" }}
             >
-              <Send size={18} className="text-background" />
+              {isLoading ? (
+                <Loader2 size={18} className="text-background animate-spin" />
+              ) : (
+                <Send size={18} className="text-background" />
+              )}
             </button>
           </form>
-          <div className="text-[10px] text-center text-muted-foreground mt-3 uppercase tracking-widest opacity-50">
+          <div className="text-[9px] text-center text-muted-foreground mt-3 uppercase tracking-[0.2em] opacity-40 font-medium">
             Powered by n8n Agentic Workflow
           </div>
         </div>

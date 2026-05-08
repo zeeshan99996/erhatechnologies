@@ -24,13 +24,13 @@ const services = [
 
 function ServicesPage() {
   return (
-    <div className="px-6 py-24 max-w-7xl mx-auto animate-fade-up">
-      <div className="text-center mb-16">
+    <div className="px-6 py-20 md:py-24 max-w-7xl mx-auto animate-fade-up">
+      <div className="text-center mb-12 md:mb-16">
         <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-4">Our Services</div>
-        <h1 className="font-display text-5xl md:text-7xl mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6">
           Built for <span className="text-gradient">impact</span>
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           End-to-end AI and digital engineering services to power your next breakthrough.
         </p>
       </div>

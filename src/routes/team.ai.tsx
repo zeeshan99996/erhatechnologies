@@ -55,9 +55,9 @@ function TeamGrid({ members, accent }: { members: Member[]; accent: "cyan" | "pu
               style={{ boxShadow: `0 0 40px ${accentVar}` }}
             />
           </div>
-          <h3 className="font-display text-xl">{m.name}</h3>
-          <div className="text-xs uppercase tracking-wider mt-1" style={{ color: accentVar }}>{m.role}</div>
-          <p className="text-sm text-muted-foreground mt-3">{m.bio}</p>
+          <h3 className="text-xl md:text-2xl mb-1">{m.name}</h3>
+          <div className="text-[10px] uppercase tracking-[0.2em] mb-4 font-semibold" style={{ color: accentVar }}>{m.role}</div>
+          <p className="text-sm text-muted-foreground leading-relaxed transition-all duration-500">{m.bio}</p>
         </div>
       ))}
     </div>

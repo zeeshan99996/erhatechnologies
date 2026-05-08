@@ -29,23 +29,20 @@ function HomePage() {
       {/* HERO */}
       <section className="relative min-h-[90vh] flex items-center px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full py-20">
-          <div className="animate-fade-up">
+          <div className="animate-fade-up text-center lg:text-left flex flex-col items-center lg:items-start">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs mb-6">
               <span className="w-2 h-2 rounded-full bg-[var(--neon-cyan)] animate-pulse" />
               Building the next era of intelligence
             </div>
-            <h1
-              className="text-5xl md:text-7xl leading-[1.05] mb-6 tracking-tight font-bold"
-              style={{ fontFamily: '"Quicksand", "Space Grotesk", system-ui, sans-serif', letterSpacing: "-0.02em" }}
-            >
+            <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6">
               Innovating the<br />
-              <span className="text-gradient font-extrabold">Future with AI</span><br />
-              <span className="font-semibold">&amp; Digital Solutions</span>
+              <span className="text-gradient">Future with AI</span><br />
+              <span className="font-semibold text-muted-foreground">&amp; Digital Solutions</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mb-8">
               Erha Technologies designs and engineers AI systems, agentic workflows, and beautiful digital products that move your business forward.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
               <Link to="/services" className="btn-neon px-7 py-3 rounded-full inline-flex items-center gap-2">
                 Get Started <ArrowRight size={16} />
               </Link>
@@ -54,22 +51,24 @@ function HomePage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 mt-12 max-w-md">
+            <div className="grid grid-cols-3 gap-4 md:gap-8 mt-12 w-full max-w-md">
               {[
                 { v: "100+", l: "Projects" },
                 { v: "50+", l: "AI Solutions" },
                 { v: "15+", l: "Countries" },
               ].map((s) => (
-                <div key={s.l}>
-                  <div className="font-display text-3xl text-gradient">{s.v}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
+                <div key={s.l} className="text-center lg:text-left">
+                  <div className="font-display text-2xl md:text-3xl text-gradient">{s.v}</div>
+                  <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest mt-1">{s.l}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="relative animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            <TechSphere size={460} />
+          <div className="relative animate-fade-up flex justify-center" style={{ animationDelay: "0.2s" }}>
+            <div className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[460px]">
+              <TechSphere size={460} />
+            </div>
           </div>
         </div>
       </section>

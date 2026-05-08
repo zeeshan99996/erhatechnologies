@@ -34,7 +34,7 @@ function ContactPage() {
         "_honey": "",
       };
 
-      await fetch("https://formsubmit.co/ajax/muhammadzeeshan0477@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/erhatechnologiesofficial@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,13 +51,13 @@ function ContactPage() {
   };
 
   return (
-    <div className="px-6 py-24 max-w-6xl mx-auto animate-fade-up">
-      <div className="text-center mb-16">
+    <div className="px-6 py-20 md:py-24 max-w-6xl mx-auto animate-fade-up">
+      <div className="text-center mb-12 md:mb-16">
         <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-4">Contact</div>
-        <h1 className="font-display text-5xl md:text-7xl mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6">
           Let's <span className="text-gradient">connect</span>
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           Have a project in mind? Let's bring it to life.
         </p>
       </div>
@@ -135,7 +135,7 @@ function ContactPage() {
         {/* Info */}
         <div className="md:col-span-2 space-y-4">
           {[
-            { icon: Mail, label: "Email", value: "erhatechnlogies@gmail.com" },
+            { icon: Mail, label: "Email", value: "erhatechnologiesofficial@gmail.com" },
             { icon: Phone, label: "Phone", value: "0302 3333499" },
             { icon: MapPin, label: "Address", value: "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #76, Chungi #6, Multan, Pakistan" },
           ].map((c) => (

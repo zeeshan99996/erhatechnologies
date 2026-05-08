@@ -33,7 +33,7 @@ export function SiteFooter() {
           <h4 className="font-display text-sm mb-3 text-gradient">Connect</h4>
           <div className="flex gap-3">
             {[Github, Linkedin, Twitter, Mail].map((Icon, i) => (
-              <a key={i} href="#" className="w-9 h-9 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
+              <a key={i} href={Icon === Mail ? "mailto:erhatechnologiesofficial@gmail.com" : "#"} className="w-9 h-9 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
                 <Icon size={16} />
               </a>
             ))}

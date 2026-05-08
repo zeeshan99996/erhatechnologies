@@ -59,30 +59,39 @@ export function SiteHeader() {
         </Link>
 
         <button
-          className="md:hidden p-2 text-foreground"
+          className="md:hidden p-2 text-foreground relative z-[60]"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {open && (
-        <div className="md:hidden glass-strong border-t border-border animate-fade-in">
-          <nav className="flex flex-col p-4 gap-1">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                className="px-4 py-3 rounded-md text-sm hover:bg-secondary"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+      {/* MOBILE MENU */}
+      <div className={`md:hidden fixed inset-0 z-50 transition-all duration-500 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-xl" onClick={() => setOpen(false)} />
+        <nav className={`absolute right-0 top-0 bottom-0 w-[280px] glass-strong border-l border-border p-8 pt-24 flex flex-col gap-4 transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"}`}>
+          {links.map((l, i) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              onClick={() => setOpen(false)}
+              className="text-lg font-medium py-3 border-b border-border/50 text-muted-foreground hover:text-foreground transition-all"
+              activeProps={{ className: "text-lg font-bold py-3 border-b border-border text-foreground text-gradient" }}
+              style={{ transitionDelay: `${i * 50}ms` }}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            to="/contact"
+            onClick={() => setOpen(false)}
+            className="mt-4 btn-neon px-6 py-4 rounded-xl text-center font-bold"
+          >
+            Get Started
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

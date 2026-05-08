@@ -56,9 +56,9 @@ function ResearchTeamPage() {
               style={{ boxShadow: "0 0 40px var(--neon-purple)" }}
             />
           </div>
-          <h3 className="font-display text-xl">{m.name}</h3>
-          <div className="text-xs uppercase tracking-wider mt-1 text-[var(--neon-purple)]">{m.role}</div>
-          <p className="text-sm text-muted-foreground mt-3">{m.bio}</p>
+          <h3 className="text-xl md:text-2xl mb-1">{m.name}</h3>
+          <div className="text-[10px] uppercase tracking-[0.2em] mb-4 font-semibold text-[var(--neon-purple)]">{m.role}</div>
+          <p className="text-sm text-muted-foreground leading-relaxed transition-all duration-500">{m.bio}</p>
         </div>
       ))}
     </div>
