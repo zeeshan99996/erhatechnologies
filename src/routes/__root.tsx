@@ -38,6 +38,8 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "icon", type: "image/png", href: erhaLogo },
+      { rel: "apple-touch-icon", href: erhaLogo },
+      { rel: "shortcut icon", href: erhaLogo },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
