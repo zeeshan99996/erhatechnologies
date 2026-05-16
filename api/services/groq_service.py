@@ -252,7 +252,7 @@ def chat_with_groq(messages: list[dict], knowledge_context: str = "") -> tuple[s
 def chat_with_vision(messages: list[dict]) -> str:
     full_messages = [{"role": "system", "content": ERHA_SYSTEM_PROMPT}] + messages
     completion = client.chat.completions.create(
-        model="meta-llama/llama-4-scout-17b-16e-instruct",
+        model="llama-3.2-11b-vision-preview",
         messages=full_messages,
         temperature=0.7,
         max_tokens=1024,
