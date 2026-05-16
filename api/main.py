@@ -5,8 +5,8 @@ load_dotenv()
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers.chat import router as chat_router
-from routers.tts import router as tts_router
+from .routers.chat import router as chat_router
+from .routers.tts import router as tts_router
 
 app = FastAPI(title="Erha Technologies AI Backend", version="1.0.0")
 
