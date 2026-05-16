@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import { ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/projects")({
@@ -22,7 +23,24 @@ const projects = [
   { title: "Scholar AI", tag: "Research", desc: "AI research assistant for academic writing & citations.", color: "var(--neon-blue)" },
 ];
 
+const ALL_TAGS = ["all", "AI Platform", "Agentic AI", "Web App", "Mobile App", "Automation", "Research"] as const;
+type Tag = typeof ALL_TAGS[number];
+
 function ProjectsPage() {
+  const [activeTag, setActiveTag] = useState<Tag>("all");
+
+  // Listen for AI agent filter commands
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const tag = ((e as CustomEvent).detail as { tag: Tag }).tag;
+      setActiveTag(tag);
+    };
+    window.addEventListener("erha:filter-projects", handler);
+    return () => window.removeEventListener("erha:filter-projects", handler);
+  }, []);
+
+  const filtered = activeTag === "all" ? projects : projects.filter(p => p.tag === activeTag);
+
   return (
     <div className="px-6 py-20 md:py-24 max-w-7xl mx-auto animate-fade-up">
       <div className="text-center mb-12 md:mb-16">
@@ -35,8 +53,25 @@ function ProjectsPage() {
         </p>
       </div>
 
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap justify-center gap-2 mb-10">
+        {ALL_TAGS.map(tag => (
+          <button
+            key={tag}
+            onClick={() => setActiveTag(tag)}
+            className={`px-4 py-1.5 rounded-full text-xs capitalize transition-all border ${
+              activeTag === tag
+                ? "border-[var(--neon-cyan)] text-[var(--neon-cyan)] bg-[var(--neon-cyan)]/10"
+                : "border-border text-muted-foreground hover:border-[var(--neon-cyan)]/50"
+            }`}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((p) => (
+        {filtered.map((p) => (
           <div key={p.title} className="hover-orb group">
             <div className="glass card-3d rounded-2xl overflow-hidden h-full">
               {/* Mockup */}

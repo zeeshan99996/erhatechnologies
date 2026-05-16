@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -32,11 +32,12 @@ export function SiteFooter() {
         <div>
           <h4 className="font-display text-sm mb-3 text-gradient">Connect</h4>
           <div className="flex gap-3">
-            {[Github, Linkedin, Twitter, Mail].map((Icon, i) => (
-              <a key={i} href={Icon === Mail ? "mailto:erhatechnologiesofficial@gmail.com" : "#"} className="w-9 h-9 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
-                <Icon size={16} />
-              </a>
-            ))}
+            <a href="https://www.linkedin.com/company/erha-technologies/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
+              <Linkedin size={16} />
+            </a>
+            <a href="mailto:erhatechnologiesofficial@gmail.com" className="w-9 h-9 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
+              <Mail size={16} />
+            </a>
           </div>
         </div>
       </div>

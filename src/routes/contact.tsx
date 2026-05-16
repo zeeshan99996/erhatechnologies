@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Mail, MapPin, Phone, Send, Linkedin, Twitter, Github } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Mail, MapPin, Phone, Send, Linkedin } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -18,6 +18,23 @@ function ContactPage() {
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", interest: "AI Development", message: "" });
+
+  // Listen for AI agent fill commands
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as Record<string, string>;
+      setForm(prev => ({
+        name:     detail.name     !== undefined ? detail.name     : prev.name,
+        email:    detail.email    !== undefined ? detail.email    : prev.email,
+        interest: detail.interest !== undefined ? detail.interest : prev.interest,
+        message:  detail.message  !== undefined ? detail.message  : prev.message,
+      }));
+      // Scroll to form
+      document.querySelector("form")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+    window.addEventListener("erha:fill-contact", handler);
+    return () => window.removeEventListener("erha:fill-contact", handler);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -163,11 +180,9 @@ function ContactPage() {
           </div>
 
           <div className="flex gap-3 justify-center pt-2">
-            {[Linkedin, Twitter, Github].map((Icon, i) => (
-              <a key={i} href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
-                <Icon size={16} />
-              </a>
-            ))}
+            <a href="https://www.linkedin.com/company/erha-technologies/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
+              <Linkedin size={16} />
+            </a>
           </div>
         </div>
       </div>
