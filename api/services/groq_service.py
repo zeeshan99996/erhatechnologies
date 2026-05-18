@@ -199,34 +199,48 @@ def chat_with_groq(messages: list[dict], knowledge_context: str = "") -> tuple[s
 
     full_messages = [{"role": "system", "content": system_prompt}] + messages
 
-    try:
-        response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=full_messages,
-            tools=TOOLS,
-            tool_choice="auto",
-            temperature=0.7,
-            max_tokens=1024,
-        )
-    except Exception as e:
-        err_msg = str(e)
-        if "failed_generation" in err_msg:
-            # Rescue hallucinated tool calls
-            match = re.search(r"<function=([a-zA-Z0-9_]+)>?\s*(\{.*?\})", err_msg)
-            if match:
-                tool_name = match.group(1)
-                try:
-                    params = json.loads(match.group(2))
-                    if tool_name == "navigate_to_page" and "page" in params:
-                        page = params["page"].strip("/")
-                        params["page"] = "/" if page in ["", "home"] else f"/{page}"
-                    return TOOL_REPLIES.get(tool_name, "Done!"), {"tool": tool_name, "params": params}
-                except json.JSONDecodeError:
-                    pass
-        import traceback
-        err_msg = f"{str(e)}\nTraceback:\n{traceback.format_exc()}"
-        print(f"Groq API Error: {err_msg}")
-        return f"Groq API Error: {err_msg}", None
+    models_to_try = [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "mixtral-8x7b-32768"
+    ]
+    response = None
+    last_err = None
+
+    for model in models_to_try:
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=full_messages,
+                tools=TOOLS,
+                tool_choice="auto",
+                temperature=0.7,
+                max_tokens=1024,
+            )
+            print(f"Successfully generated response using model: {model}")
+            break
+        except Exception as e:
+            last_err = e
+            print(f"Model {model} failed with error: {str(e)}. Trying fallback...")
+            # Rescue hallucinated tool calls if possible
+            err_msg = str(e)
+            if "failed_generation" in err_msg:
+                match = re.search(r"<function=([a-zA-Z0-9_]+)>?\s*(\{.*?\})", err_msg)
+                if match:
+                    tool_name = match.group(1)
+                    try:
+                        params = json.loads(match.group(2))
+                        if tool_name == "navigate_to_page" and "page" in params:
+                            page = params["page"].strip("/")
+                            params["page"] = "/" if page in ["", "home"] else f"/{page}"
+                        return TOOL_REPLIES.get(tool_name, "Done!"), {"tool": tool_name, "params": params}
+                    except json.JSONDecodeError:
+                        pass
+            continue
+
+    if not response:
+        print(f"All Groq models failed. Last error: {str(last_err)}")
+        return "I'm sorry, I hit a slight snag processing that command. Can you try again?", None
 
     choice = response.choices[0]
     reply = choice.message.content or ""
