@@ -4,8 +4,12 @@ import os
 from fastapi import APIRouter, UploadFile, File
 from pydantic import BaseModel
 from typing import Any
-from ..services.groq_service import chat_with_groq, chat_with_vision
-from ..services.document_reader import read_docx_bytes
+try:
+    from api.services.groq_service import chat_with_groq, chat_with_vision
+    from api.services.document_reader import read_docx_bytes
+except ImportError:
+    from services.groq_service import chat_with_groq, chat_with_vision
+    from services.document_reader import read_docx_bytes
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 

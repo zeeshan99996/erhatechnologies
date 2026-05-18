@@ -94,12 +94,27 @@ fs.writeFileSync(
   JSON.stringify({ runtime: 'nodejs20.x', handler: 'index.js', maxDuration: 30 }, null, 2)
 )
 
+// 4b. Configure Python serverless function for API
+const apiFuncDir = path.join(vercelOutputDir, 'functions', 'api', 'index.func')
+const srcApiDir = path.join(rootDir, 'api')
+if (fs.existsSync(srcApiDir)) {
+  fs.mkdirSync(apiFuncDir, { recursive: true })
+  fs.cpSync(srcApiDir, apiFuncDir, { recursive: true })
+  fs.writeFileSync(
+    path.join(apiFuncDir, '.vc-config.json'),
+    JSON.stringify({ runtime: 'python3.12', handler: 'index.py', maxDuration: 30 }, null, 2)
+  )
+  console.log('✅ Configured Python Serverless Function')
+}
+
 // 5. Write .vercel/output/config.json (routing)
 const config = {
   version: 3,
   routes: [
     // Serve static assets directly, with caching
     { src: '^/assets/(.*)$', headers: { 'cache-control': 'public, max-age=31536000, immutable' }, continue: true },
+    // Rewrite all /api/* requests to /api/index (Python Serverless Function)
+    { src: '^/api/(.*)$', dest: '/api/index' },
     // Let Vercel serve static files it finds
     { handle: 'filesystem' },
     // Everything else → SSR function
