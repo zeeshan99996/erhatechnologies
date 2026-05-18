@@ -223,8 +223,10 @@ def chat_with_groq(messages: list[dict], knowledge_context: str = "") -> tuple[s
                     return TOOL_REPLIES.get(tool_name, "Done!"), {"tool": tool_name, "params": params}
                 except json.JSONDecodeError:
                     pass
+        import traceback
+        err_msg = f"{str(e)}\nTraceback:\n{traceback.format_exc()}"
         print(f"Groq API Error: {err_msg}")
-        return "I'm sorry, I hit a slight snag processing that command. Can you try again?", None
+        return f"Groq API Error: {err_msg}", None
 
     choice = response.choices[0]
     reply = choice.message.content or ""
