@@ -70,8 +70,12 @@ export function AgenticChatbot() {
       .replace(/[[\]()]/g, "").replace(/`/g, "").trim();
     if (!clean) return;
 
+    const isChinese = /[一-龥]/.test(clean);
     const utter = new SpeechSynthesisUtterance(clean);
-    const PRIORITY = ["Google हिन्दी", "Google Hindi", "hi-IN", "ur-PK", "en-IN", "en-GB"];
+    if (isChinese) utter.lang = "zh-CN";
+    const PRIORITY = isChinese
+      ? ["Google 普通话", "zh-CN", "zh-TW", "zh-HK", "Tingting", "Microsoft YaHei", "Chinese", "zh"]
+      : ["Google हिन्दी", "Google Hindi", "hi-IN", "ur-PK", "en-IN", "en-GB"];
 
     const doSpeak = () => {
       const voices = window.speechSynthesis.getVoices();
@@ -264,8 +268,11 @@ export function AgenticChatbot() {
     const recognition = new SR();
     recognition.continuous = true;
     recognition.interimResults = true;
-    // en-IN is much better at understanding Roman Urdu / Hinglish than en-PK
-    recognition.lang = "en-IN";
+    // Dynamically select language based on conversation context (Chinese vs English/Urdu)
+    const hasChineseInHistory = convHistory.some(m => 
+      typeof m.content === "string" && /[一-龥]/.test(m.content)
+    );
+    recognition.lang = hasChineseInHistory ? "zh-CN" : "en-IN";
 
     recognition.onresult = (event: any) => {
       let interim = "";
