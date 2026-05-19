@@ -428,15 +428,14 @@ export function AgenticChatbot() {
       {/* Chat Window */}
       <div
         className={`fixed z-[80] flex flex-col glass-strong
-          border-[var(--neon-cyan)]/30 overflow-hidden
-          shadow-[0_0_40px_rgba(0,255,255,0.1)] transition-all duration-300 sm:origin-bottom-right
-          top-0 left-0 w-full h-[100dvh] rounded-none border-0
-          sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-[390px] sm:h-[620px] 
-          sm:max-w-[calc(100vw-2rem)] sm:max-h-[calc(100vh-3rem)] sm:rounded-2xl sm:border
+          border border-[var(--neon-cyan)]/30 rounded-2xl overflow-hidden
+          shadow-[0_0_40px_rgba(0,255,255,0.1)] transition-all duration-300
+          left-1/2 -translate-x-1/2 bottom-4 w-[calc(100vw-2rem)] max-w-[380px] h-[75vh] max-h-[520px]
+          sm:left-auto sm:right-6 sm:bottom-6 sm:translate-x-0 sm:w-[390px] sm:h-[620px] sm:max-h-[calc(100vh-3rem)] sm:max-w-none
           ${
             isOpen
-              ? "translate-y-0 opacity-100 scale-100 pointer-events-auto"
-              : "translate-y-full opacity-0 pointer-events-none sm:translate-y-0 sm:scale-75"
+              ? "translate-y-0 scale-100 opacity-100 pointer-events-auto"
+              : "translate-y-10 scale-95 opacity-0 pointer-events-none sm:translate-y-0 sm:scale-75"
           }`}
       >
         {/* Header */}
