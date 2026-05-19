@@ -1,11 +1,25 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import {
-  BotMessageSquare, X, Send, Mic, MicOff, Volume2, VolumeX,
-  Paperclip, Loader2, CheckCircle2, ImageIcon, FileText,
+  BotMessageSquare,
+  X,
+  Send,
+  Mic,
+  MicOff,
+  Volume2,
+  VolumeX,
+  Paperclip,
+  Loader2,
+  CheckCircle2,
+  ImageIcon,
+  FileText,
 } from "lucide-react";
 
-const API_BASE = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "http://localhost:8000/api" : "/api";
+const API_BASE =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://localhost:8000/api"
+    : "/api";
 
 interface Message {
   id: string;
@@ -29,11 +43,13 @@ declare global {
 export function AgenticChatbot() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([{
-    id: "welcome",
-    sender: "bot",
-    text: "Salam! 👋 I'm the Erha AI Agent. Ask me anything about our services, projects, or team — or give me a command like \"Open contact page\" or \"Show AI projects\". You can type or speak!",
-  }]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: "welcome",
+      sender: "bot",
+      text: 'Salam! 👋 I\'m the Erha AI Agent. Ask me anything about our services, projects, or team — or give me a command like "Open contact page" or "Show AI projects". You can type or speak!',
+    },
+  ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
@@ -54,223 +70,264 @@ export function AgenticChatbot() {
   }, [messages]);
 
   // ── TTS ──────────────────────────────────────────────────────────
-  const speak = useCallback((text: string) => {
-    if (!ttsEnabled) {
-      if (continuousVoice) setTimeout(() => {
-        const btn = document.getElementById("hidden-mic-restart");
-        if (btn) btn.click();
-      }, 500);
-      return;
-    }
-    window.speechSynthesis.cancel();
-
-    const clean = text
-      .replace(/\*\*/g, "").replace(/\*/g, "").replace(/#{1,6}\s/g, "")
-      .replace(/https?:\/\/\S+/g, "link").replace(/\n+/g, ". ")
-      .replace(/[[\]()]/g, "").replace(/`/g, "").trim();
-    if (!clean) return;
-
-    const isChinese = /[一-龥]/.test(clean);
-    const utter = new SpeechSynthesisUtterance(clean);
-    if (isChinese) utter.lang = "zh-CN";
-    const PRIORITY = isChinese
-      ? ["Google 普通话", "zh-CN", "zh-TW", "zh-HK", "Tingting", "Microsoft YaHei", "Chinese", "zh"]
-      : ["Google हिन्दी", "Google Hindi", "hi-IN", "ur-PK", "en-IN", "en-GB"];
-
-    const doSpeak = () => {
-      const voices = window.speechSynthesis.getVoices();
-      let picked: SpeechSynthesisVoice | null = null;
-      for (const p of PRIORITY) {
-        picked = voices.find(v => v.name.includes(p) || v.lang === p) ?? null;
-        if (picked) break;
-      }
-      if (picked) {
-        utter.voice = picked;
-        const south = picked.lang.startsWith("ur") || picked.lang.startsWith("hi");
-        utter.rate = south ? 0.92 : 1.0;
-        utter.pitch = south ? 1.05 : 1.0;
-      } else if (voices.length > 0) {
-        utter.voice = voices[0];
-      }
-      utter.onend = () => {
-        if (continuousVoice) {
+  const speak = useCallback(
+    (text: string) => {
+      if (!ttsEnabled) {
+        if (continuousVoice)
           setTimeout(() => {
             const btn = document.getElementById("hidden-mic-restart");
             if (btn) btn.click();
-          }, 300);
+          }, 500);
+        return;
+      }
+      window.speechSynthesis.cancel();
+
+      const clean = text
+        .replace(/\*\*/g, "")
+        .replace(/\*/g, "")
+        .replace(/#{1,6}\s/g, "")
+        .replace(/https?:\/\/\S+/g, "link")
+        .replace(/\n+/g, ". ")
+        .replace(/[[\]()]/g, "")
+        .replace(/`/g, "")
+        .trim();
+      if (!clean) return;
+
+      const isChinese = /[一-龥]/.test(clean);
+      const utter = new SpeechSynthesisUtterance(clean);
+      if (isChinese) utter.lang = "zh-CN";
+      const PRIORITY = isChinese
+        ? [
+            "Google 普通话",
+            "zh-CN",
+            "zh-TW",
+            "zh-HK",
+            "Tingting",
+            "Microsoft YaHei",
+            "Chinese",
+            "zh",
+          ]
+        : ["Google हिन्दी", "Google Hindi", "hi-IN", "ur-PK", "en-IN", "en-GB"];
+
+      const doSpeak = () => {
+        const voices = window.speechSynthesis.getVoices();
+        let picked: SpeechSynthesisVoice | null = null;
+        for (const p of PRIORITY) {
+          picked = voices.find((v) => v.name.includes(p) || v.lang === p) ?? null;
+          if (picked) break;
         }
+        if (picked) {
+          utter.voice = picked;
+          const south = picked.lang.startsWith("ur") || picked.lang.startsWith("hi");
+          utter.rate = south ? 0.92 : 1.0;
+          utter.pitch = south ? 1.05 : 1.0;
+        } else if (voices.length > 0) {
+          utter.voice = voices[0];
+        }
+        utter.onend = () => {
+          if (continuousVoice) {
+            setTimeout(() => {
+              const btn = document.getElementById("hidden-mic-restart");
+              if (btn) btn.click();
+            }, 300);
+          }
+        };
+        window.speechSynthesis.speak(utter);
       };
-      window.speechSynthesis.speak(utter);
-    };
 
-    if (window.speechSynthesis.getVoices().length === 0) {
-      // Sometimes onvoiceschanged never fires on Windows if voices are delayed.
-      const fallbackTimer = setTimeout(() => {
-        doSpeak();
-        window.speechSynthesis.onvoiceschanged = null;
-      }, 1000);
+      if (window.speechSynthesis.getVoices().length === 0) {
+        // Sometimes onvoiceschanged never fires on Windows if voices are delayed.
+        const fallbackTimer = setTimeout(() => {
+          doSpeak();
+          window.speechSynthesis.onvoiceschanged = null;
+        }, 1000);
 
-      window.speechSynthesis.onvoiceschanged = () => {
-        clearTimeout(fallbackTimer);
+        window.speechSynthesis.onvoiceschanged = () => {
+          clearTimeout(fallbackTimer);
+          doSpeak();
+          window.speechSynthesis.onvoiceschanged = null;
+        };
+      } else {
         doSpeak();
-        window.speechSynthesis.onvoiceschanged = null;
-      };
-    } else {
-      doSpeak();
-    }
-  }, [ttsEnabled, continuousVoice, isRecording]);
+      }
+    },
+    [ttsEnabled, continuousVoice, isRecording],
+  );
 
   // ── Agent Action Handler ──────────────────────────────────────────
-  const handleAction = useCallback((action: { tool: string; params: Record<string, string> }) => {
-    switch (action.tool) {
-      case "navigate_to_page":
-        navigate({ to: action.params.page as "/" });
-        break;
+  const handleAction = useCallback(
+    (action: { tool: string; params: Record<string, string> }) => {
+      switch (action.tool) {
+        case "navigate_to_page":
+          navigate({ to: action.params.page as "/" });
+          break;
 
-      case "fill_contact_form": {
-        // Navigate to /contact then dispatch fill event
-        navigate({ to: "/contact" });
-        setTimeout(() => {
-          window.dispatchEvent(new CustomEvent("erha:fill-contact", { detail: action.params }));
-        }, 600);
-        break;
-      }
-
-      case "change_theme": {
-        const root = document.documentElement;
-        if (action.params.theme === "light") {
-          root.style.setProperty("--background", "255 255 255");
-          root.style.setProperty("--foreground", "10 10 10");
-          root.style.filter = "invert(0)";
-          // Simple invert trick for dark → light
-          document.body.style.background = "#f8f8f8";
-          document.body.style.color = "#111";
-        } else {
-          document.body.style.background = "";
-          document.body.style.color = "";
-          root.style.removeProperty("--background");
-          root.style.removeProperty("--foreground");
+        case "fill_contact_form": {
+          // Navigate to /contact then dispatch fill event
+          navigate({ to: "/contact" });
+          setTimeout(() => {
+            window.dispatchEvent(new CustomEvent("erha:fill-contact", { detail: action.params }));
+          }, 600);
+          break;
         }
-        break;
-      }
 
-      case "filter_projects": {
-        navigate({ to: "/projects" });
-        setTimeout(() => {
-          window.dispatchEvent(new CustomEvent("erha:filter-projects", { detail: { tag: action.params.tag } }));
-        }, 600);
-        break;
-      }
-
-      case "highlight_section": {
-        const el = document.getElementById(`section-${action.params.section}`)
-          || document.querySelector(`[data-section="${action.params.section}"]`);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "center" });
-          el.style.transition = "box-shadow 0.4s";
-          el.style.boxShadow = "0 0 0 3px var(--neon-cyan), 0 0 40px rgba(0,255,255,0.3)";
-          el.style.borderRadius = "16px";
-          setTimeout(() => { el.style.boxShadow = ""; el.style.borderRadius = ""; }, 2500);
+        case "change_theme": {
+          const root = document.documentElement;
+          if (action.params.theme === "light") {
+            root.style.setProperty("--background", "255 255 255");
+            root.style.setProperty("--foreground", "10 10 10");
+            root.style.filter = "invert(0)";
+            // Simple invert trick for dark → light
+            document.body.style.background = "#f8f8f8";
+            document.body.style.color = "#111";
+          } else {
+            document.body.style.background = "";
+            document.body.style.color = "";
+            root.style.removeProperty("--background");
+            root.style.removeProperty("--foreground");
+          }
+          break;
         }
-        break;
+
+        case "filter_projects": {
+          navigate({ to: "/projects" });
+          setTimeout(() => {
+            window.dispatchEvent(
+              new CustomEvent("erha:filter-projects", { detail: { tag: action.params.tag } }),
+            );
+          }, 600);
+          break;
+        }
+
+        case "highlight_section": {
+          const el =
+            document.getElementById(`section-${action.params.section}`) ||
+            document.querySelector(`[data-section="${action.params.section}"]`);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+            el.style.transition = "box-shadow 0.4s";
+            el.style.boxShadow = "0 0 0 3px var(--neon-cyan), 0 0 40px rgba(0,255,255,0.3)";
+            el.style.borderRadius = "16px";
+            setTimeout(() => {
+              el.style.boxShadow = "";
+              el.style.borderRadius = "";
+            }, 2500);
+          }
+          break;
+        }
       }
-    }
-  }, [navigate]);
+    },
+    [navigate],
+  );
 
   // ── Send Message ─────────────────────────────────────────────────
-  const handleSend = useCallback(async (overrideText?: string) => {
-    const text = (overrideText ?? input).trim();
-    if (!text && !attachment) return;
-    if (isLoading) return;
+  const handleSend = useCallback(
+    async (overrideText?: string) => {
+      const text = (overrideText ?? input).trim();
+      if (!text && !attachment) return;
+      if (isLoading) return;
 
-    // Stop any pending silence timer
-    if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
-    finalTranscriptRef.current = "";
+      // Stop any pending silence timer
+      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+      finalTranscriptRef.current = "";
 
-    const userMsg: Message = { id: Date.now().toString(), sender: "user", text: text || "📎 File attached" };
-    setMessages(prev => [...prev, userMsg]);
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      let userContent: ConvMessage["content"] = text;
-      let hasVision = false;
-
-      // Handle file attachment
-      if (attachment) {
-        const form = new FormData();
-        form.append("file", attachment);
-        const uploadRes = await fetch(`${API_BASE}/chat/upload`, { method: "POST", body: form });
-        const uploadData = await uploadRes.json();
-
-        if (uploadData.type === "docx") {
-          userContent = `${text}\n\n[Attached document content]:\n${uploadData.text}`;
-        } else if (uploadData.type === "image") {
-          hasVision = true;
-          userContent = [
-            { type: "text", text: text || "What do you see in this image?" },
-            { type: "image_url", image_url: { url: `data:${uploadData.mime};base64,${uploadData.base64}` } },
-          ];
-        }
-        setAttachment(null);
-      }
-
-      const newHistory: ConvMessage[] = [...convHistory, { role: "user", content: userContent }];
-      setConvHistory(newHistory);
-
-      const res = await fetch(`${API_BASE}/chat/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: newHistory, has_vision: hasVision }),
-      });
-
-      const data = await res.json();
-      const reply: string = data.reply || "Sorry, I couldn't get a response.";
-
-      const botMsg: Message = { id: Date.now().toString() + "bot", sender: "bot", text: reply };
-      setMessages(prev => [...prev, botMsg]);
-      
-      let historyReply = reply;
-      if (data.action) {
-        historyReply = `[SYSTEM MEMORY: I have successfully executed the '${data.action.tool}' tool. Do not execute it again unless the user explicitly requests a new action.] ${reply}`;
-      }
-      setConvHistory(prev => [...prev, { role: "assistant", content: historyReply }]);
-
-      speak(reply);
-
-      if (data.action) handleAction(data.action);
-
-    } catch (err) {
-      console.error("[Erha AI] Error:", err);
-      const errMsg: Message = {
-        id: Date.now().toString() + "err",
-        sender: "bot",
-        text: "⚠️ Could not reach the AI backend. Please make sure the Python server is running on port 8000.",
+      const userMsg: Message = {
+        id: Date.now().toString(),
+        sender: "user",
+        text: text || "📎 File attached",
       };
-      setMessages(prev => [...prev, errMsg]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [input, attachment, isLoading, convHistory, speak, handleAction]);
+      setMessages((prev) => [...prev, userMsg]);
+      setInput("");
+      setIsLoading(true);
+
+      try {
+        let userContent: ConvMessage["content"] = text;
+        let hasVision = false;
+
+        // Handle file attachment
+        if (attachment) {
+          const form = new FormData();
+          form.append("file", attachment);
+          const uploadRes = await fetch(`${API_BASE}/chat/upload`, { method: "POST", body: form });
+          const uploadData = await uploadRes.json();
+
+          if (uploadData.type === "docx") {
+            userContent = `${text}\n\n[Attached document content]:\n${uploadData.text}`;
+          } else if (uploadData.type === "image") {
+            hasVision = true;
+            userContent = [
+              { type: "text", text: text || "What do you see in this image?" },
+              {
+                type: "image_url",
+                image_url: { url: `data:${uploadData.mime};base64,${uploadData.base64}` },
+              },
+            ];
+          }
+          setAttachment(null);
+        }
+
+        const newHistory: ConvMessage[] = [...convHistory, { role: "user", content: userContent }];
+        setConvHistory(newHistory);
+
+        const res = await fetch(`${API_BASE}/chat/`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: newHistory, has_vision: hasVision }),
+        });
+
+        const data = await res.json();
+        const reply: string = data.reply || "Sorry, I couldn't get a response.";
+
+        const botMsg: Message = { id: Date.now().toString() + "bot", sender: "bot", text: reply };
+        setMessages((prev) => [...prev, botMsg]);
+
+        let historyReply = reply;
+        if (data.action) {
+          historyReply = `[SYSTEM MEMORY: I have successfully executed the '${data.action.tool}' tool. Do not execute it again unless the user explicitly requests a new action.] ${reply}`;
+        }
+        setConvHistory((prev) => [...prev, { role: "assistant", content: historyReply }]);
+
+        speak(reply);
+
+        if (data.action) handleAction(data.action);
+      } catch (err) {
+        console.error("[Erha AI] Error:", err);
+        const errMsg: Message = {
+          id: Date.now().toString() + "err",
+          sender: "bot",
+          text: "⚠️ Could not reach the AI backend. Please make sure the Python server is running on port 8000.",
+        };
+        setMessages((prev) => [...prev, errMsg]);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [input, attachment, isLoading, convHistory, speak, handleAction],
+  );
 
   // ── Speech Recognition ───────────────────────────────────────────
   const startRecording = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) { alert("Voice input not supported. Please use Chrome."); return; }
+    if (!SR) {
+      alert("Voice input not supported. Please use Chrome.");
+      return;
+    }
 
     window.speechSynthesis.cancel();
     finalTranscriptRef.current = "";
 
     if (recognitionRef.current) {
-      try { recognitionRef.current.stop(); } catch (e) {}
+      try {
+        recognitionRef.current.stop();
+      } catch (e) {}
     }
 
     const recognition = new SR();
     recognition.continuous = true;
     recognition.interimResults = true;
     // Dynamically select language based on conversation context (Chinese vs English/Urdu)
-    const hasChineseInHistory = convHistory.some(m => 
-      typeof m.content === "string" && /[一-龥]/.test(m.content)
+    const hasChineseInHistory = convHistory.some(
+      (m) => typeof m.content === "string" && /[一-龥]/.test(m.content),
     );
     recognition.lang = hasChineseInHistory ? "zh-CN" : "en-IN";
 
@@ -286,27 +343,31 @@ export function AgenticChatbot() {
       setInput(display);
 
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
-      
+
       // Always auto-send on silence when recording is active
       if (display.trim()) {
         silenceTimerRef.current = setTimeout(() => {
           const t = (finalTranscriptRef.current + interim).trim();
-          if (t) { 
-            stopRecording(); 
-            handleSend(t); 
+          if (t) {
+            stopRecording();
+            handleSend(t);
           }
         }, 4500); // Increased to 4.5 seconds to allow longer pauses
       }
     };
 
-    recognition.onerror = (e: any) => { 
+    recognition.onerror = (e: any) => {
       if (e.error !== "no-speech") {
-        setIsRecording(false); 
-        setContinuousVoice(false); 
+        setIsRecording(false);
+        setContinuousVoice(false);
       }
     };
     recognition.onend = () => {
-      if (isRecording) { try { recognition.start(); } catch {} }
+      if (isRecording) {
+        try {
+          recognition.start();
+        } catch {}
+      }
     };
 
     try {
@@ -343,7 +404,10 @@ export function AgenticChatbot() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); }
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   };
 
   return (
@@ -369,10 +433,12 @@ export function AgenticChatbot() {
           top-0 left-0 w-full h-[100dvh] rounded-none border-0
           sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-[390px] sm:h-[620px] 
           sm:max-w-[calc(100vw-2rem)] sm:max-h-[calc(100vh-3rem)] sm:rounded-2xl sm:border
-          ${isOpen 
-            ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" 
-            : "translate-y-full opacity-0 pointer-events-none sm:translate-y-0 sm:scale-75"
+          ${
+            isOpen
+              ? "translate-y-0 opacity-100 scale-100 pointer-events-auto"
+              : "translate-y-full opacity-0 pointer-events-none sm:translate-y-0 sm:scale-75"
           }`}
+      >
         {/* Header */}
         <div
           className="p-4 border-b border-white/10 flex items-center justify-between shrink-0"
@@ -380,7 +446,10 @@ export function AgenticChatbot() {
         >
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "var(--gradient-neon)" }}>
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center"
+                style={{ background: "var(--gradient-neon)" }}
+              >
                 <BotMessageSquare size={20} className="text-background" />
               </div>
               <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
@@ -395,15 +464,23 @@ export function AgenticChatbot() {
           <div className="flex items-center gap-1">
             {/* TTS Toggle */}
             <button
-              onClick={() => { setTtsEnabled(p => !p); window.speechSynthesis.cancel(); }}
+              onClick={() => {
+                setTtsEnabled((p) => !p);
+                window.speechSynthesis.cancel();
+              }}
               title={ttsEnabled ? "Mute voice output" : "Enable voice output"}
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
             >
-              {ttsEnabled
-                ? <Volume2 size={16} className="text-[var(--neon-cyan)]" />
-                : <VolumeX size={16} className="text-muted-foreground" />}
+              {ttsEnabled ? (
+                <Volume2 size={16} className="text-[var(--neon-cyan)]" />
+              ) : (
+                <VolumeX size={16} className="text-muted-foreground" />
+              )}
             </button>
-            <button onClick={() => setIsOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+            >
               <X size={18} />
             </button>
           </div>
@@ -411,13 +488,18 @@ export function AgenticChatbot() {
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-black/40 custom-scrollbar">
-          {messages.map(msg => (
-            <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+            >
               <div
                 className={`max-w-[82%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed
-                  ${msg.sender === "user"
-                    ? "bg-[var(--neon-cyan)] text-background rounded-tr-sm font-medium"
-                    : "glass border border-white/5 rounded-tl-sm"}`}
+                  ${
+                    msg.sender === "user"
+                      ? "bg-[var(--neon-cyan)] text-background rounded-tr-sm font-medium"
+                      : "glass border border-white/5 rounded-tl-sm"
+                  }`}
               >
                 {msg.text}
               </div>
@@ -438,11 +520,18 @@ export function AgenticChatbot() {
         {/* Attachment Preview */}
         {attachment && (
           <div className="px-4 py-2 bg-black/60 border-t border-white/5 flex items-center gap-2">
-            {attachment.type.startsWith("image/")
-              ? <ImageIcon size={14} className="text-[var(--neon-cyan)]" />
-              : <FileText size={14} className="text-[var(--neon-cyan)]" />}
+            {attachment.type.startsWith("image/") ? (
+              <ImageIcon size={14} className="text-[var(--neon-cyan)]" />
+            ) : (
+              <FileText size={14} className="text-[var(--neon-cyan)]" />
+            )}
             <span className="text-xs text-muted-foreground truncate flex-1">{attachment.name}</span>
-            <button onClick={() => setAttachment(null)} className="text-xs text-muted-foreground hover:text-white">✕</button>
+            <button
+              onClick={() => setAttachment(null)}
+              className="text-xs text-muted-foreground hover:text-white"
+            >
+              ✕
+            </button>
           </div>
         )}
 
@@ -470,7 +559,7 @@ export function AgenticChatbot() {
               type="file"
               accept=".docx,.doc,image/*"
               className="hidden"
-              onChange={e => setAttachment(e.target.files?.[0] ?? null)}
+              onChange={(e) => setAttachment(e.target.files?.[0] ?? null)}
             />
 
             {/* Text Input */}
@@ -494,9 +583,11 @@ export function AgenticChatbot() {
               onClick={toggleMic}
               title={isRecording ? "Stop recording" : "Start voice input"}
               className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center transition-all
-                ${isRecording
-                  ? "bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse"
-                  : "glass hover:bg-white/10 text-muted-foreground hover:text-white"}`}
+                ${
+                  isRecording
+                    ? "bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse"
+                    : "glass hover:bg-white/10 text-muted-foreground hover:text-white"
+                }`}
             >
               {isRecording ? <MicOff size={16} /> : <Mic size={16} />}
             </button>
@@ -509,9 +600,11 @@ export function AgenticChatbot() {
                 disabled:opacity-40 disabled:cursor-not-allowed transition-all hover:scale-105"
               style={{ background: "var(--gradient-neon)" }}
             >
-              {isLoading
-                ? <Loader2 size={16} className="text-background animate-spin" />
-                : <Send size={16} className="text-background" />}
+              {isLoading ? (
+                <Loader2 size={16} className="text-background animate-spin" />
+              ) : (
+                <Send size={16} className="text-background" />
+              )}
             </button>
           </div>
 
