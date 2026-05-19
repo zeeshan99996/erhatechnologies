@@ -569,7 +569,7 @@ export function AgenticChatbot() {
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder={isRecording ? "Speaking…" : "Type or speak…"}
-              className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-base sm:text-sm
+              className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-base sm:text-sm
                 focus:outline-none focus:border-[var(--neon-cyan)]/50 focus:ring-1
                 focus:ring-[var(--neon-cyan)]/30 transition-all"
             />
