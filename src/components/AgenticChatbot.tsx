@@ -352,7 +352,7 @@ export function AgenticChatbot() {
       <button
         id="erha-chatbot-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center
           shadow-[0_0_20px_var(--neon-cyan)] hover:scale-110 transition-all duration-300
           ${isOpen ? "scale-0 opacity-0 pointer-events-none" : "scale-100 opacity-100"}`}
         style={{ background: "var(--gradient-neon)" }}
@@ -363,12 +363,16 @@ export function AgenticChatbot() {
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-6 right-6 z-[60] w-[390px] max-w-[calc(100vw-2rem)]
-          h-[620px] max-h-[calc(100vh-3rem)] flex flex-col glass-strong
-          border border-[var(--neon-cyan)]/30 rounded-2xl overflow-hidden
-          shadow-[0_0_40px_rgba(0,255,255,0.1)] transition-all duration-300 origin-bottom-right
-          ${isOpen ? "scale-100 opacity-100" : "scale-50 opacity-0 pointer-events-none"}`}
-      >
+        className={`fixed z-[80] flex flex-col glass-strong
+          border-[var(--neon-cyan)]/30 overflow-hidden
+          shadow-[0_0_40px_rgba(0,255,255,0.1)] transition-all duration-300 sm:origin-bottom-right
+          top-0 left-0 w-full h-[100dvh] rounded-none border-0
+          sm:top-auto sm:left-auto sm:right-6 sm:bottom-6 sm:w-[390px] sm:h-[620px] 
+          sm:max-w-[calc(100vw-2rem)] sm:max-h-[calc(100vh-3rem)] sm:rounded-2xl sm:border
+          ${isOpen 
+            ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" 
+            : "translate-y-full opacity-0 pointer-events-none sm:translate-y-0 sm:scale-75"
+          }`}
         {/* Header */}
         <div
           className="p-4 border-b border-white/10 flex items-center justify-between shrink-0"
@@ -477,7 +481,7 @@ export function AgenticChatbot() {
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder={isRecording ? "Speaking…" : "Type or speak…"}
-              className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm
+              className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-base sm:text-sm
                 focus:outline-none focus:border-[var(--neon-cyan)]/50 focus:ring-1
                 focus:ring-[var(--neon-cyan)]/30 transition-all"
             />
