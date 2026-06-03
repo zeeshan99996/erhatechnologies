@@ -6,10 +6,10 @@ from pydantic import BaseModel
 from typing import Any
 try:
     from api.services.groq_service import chat_with_groq, chat_with_vision
-    from api.services.document_reader import read_docx_bytes
+    from api.services.document_reader import read_docx_bytes, read_pdf_bytes
 except ImportError:
     from services.groq_service import chat_with_groq, chat_with_vision
-    from services.document_reader import read_docx_bytes
+    from services.document_reader import read_docx_bytes, read_pdf_bytes
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
@@ -47,9 +47,14 @@ async def upload_file(file: UploadFile = File(...)):
     content = await file.read()
     fname = file.filename or ""
 
-    # .docx — extract text
+    # .docx / .doc — extract text
     if fname.lower().endswith((".docx", ".doc")):
         text = read_docx_bytes(content)
+        return {"type": "docx", "text": text[:4000]}
+
+    # .pdf — extract text
+    if fname.lower().endswith(".pdf"):
+        text = read_pdf_bytes(content)
         return {"type": "docx", "text": text[:4000]}
 
     # Image — return base64
@@ -58,3 +63,4 @@ async def upload_file(file: UploadFile = File(...)):
         return {"type": "image", "base64": b64, "mime": file.content_type}
 
     return {"type": "unsupported", "text": ""}
+

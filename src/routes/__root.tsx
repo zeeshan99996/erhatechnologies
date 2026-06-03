@@ -4,6 +4,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { TechBackground } from "../components/TechBackground";
 import { AgenticChatbot } from "../components/AgenticChatbot";
+import { GlowingCursor } from "../components/GlowingCursor";
 
 function NotFoundComponent() {
   return (
@@ -28,7 +29,11 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Erha Technologies — AI & Digital Solutions" },
-      { name: "description", content: "Erha Technologies builds AI, web, and agentic solutions from Pakistan. Innovating the future with intelligent digital systems." },
+      {
+        name: "description",
+        content:
+          "Erha Technologies builds AI, web, and agentic solutions from Pakistan. Innovating the future with intelligent digital systems.",
+      },
       { name: "author", content: "Ilyas Shahid — Erha Technologies" },
       { property: "og:title", content: "Erha Technologies — AI & Digital Solutions" },
       { property: "og:description", content: "Innovating the future with AI & digital solutions." },
@@ -42,7 +47,10 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -53,7 +61,9 @@ export const Route = createRootRoute({
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head><HeadContent /></head>
+      <head>
+        <HeadContent />
+      </head>
       <body>
         {children}
         <Scripts />
@@ -65,6 +75,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <>
+      <GlowingCursor />
       <TechBackground />
       <SiteHeader />
       <main className="pt-16 min-h-screen">

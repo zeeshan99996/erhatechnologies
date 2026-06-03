@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import {
-  BotMessageSquare,
   X,
   Send,
   Mic,
@@ -241,7 +240,7 @@ export function AgenticChatbot() {
       setIsLoading(true);
 
       try {
-        let userContent: ConvMessage["content"] = text;
+        let userContent: ConvMessage["content"] = text || "📎 File attached";
         let hasVision = false;
 
         // Handle file attachment
@@ -416,13 +415,12 @@ export function AgenticChatbot() {
       <button
         id="erha-chatbot-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center
-          shadow-[0_0_20px_var(--neon-cyan)] hover:scale-110 transition-all duration-300
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center
+          shadow-[0_0_20px_var(--neon-cyan)] hover:scale-110 transition-all duration-300 overflow-hidden bg-transparent
           ${isOpen ? "scale-0 opacity-0 pointer-events-none" : "scale-100 opacity-100"}`}
-        style={{ background: "var(--gradient-neon)" }}
         aria-label="Open Erha AI Agent"
       >
-        <BotMessageSquare className="text-background" size={24} />
+        <img src="/chatbot-icon.png" alt="Chatbot Icon" className="w-full h-full object-cover" />
       </button>
 
       {/* Chat Window */}
@@ -445,11 +443,12 @@ export function AgenticChatbot() {
         >
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: "var(--gradient-neon)" }}
-              >
-                <BotMessageSquare size={20} className="text-background" />
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+                <img
+                  src="/chatbot-icon.png"
+                  alt="Chatbot Icon"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
             </div>
@@ -534,11 +533,38 @@ export function AgenticChatbot() {
           </div>
         )}
 
-        {/* Voice mode indicator */}
+        {/* Voice mode indicator with animated Waveform */}
         {isRecording && (
-          <div className="px-4 py-1.5 bg-red-500/10 border-t border-red-500/20 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-xs text-red-400">Listening… speak now, 2s pause to send</span>
+          <div className="px-4 py-3.5 bg-red-500/10 border-y border-red-500/20 flex flex-col gap-2 animate-in fade-in duration-300">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-[10px] font-display font-semibold tracking-wider text-red-400 uppercase">
+                  [SYSTEM ACTIVE: LISTENING]
+                </span>
+              </div>
+              <span className="text-[9px] text-red-400/60 uppercase tracking-wider">
+                Auto-send 4.5s silence
+              </span>
+            </div>
+
+            {/* Equalizer animation */}
+            <div className="h-8 flex items-center justify-center gap-1">
+              {[0.2, 0.5, 0.8, 0.4, 0.9, 0.3, 0.7, 0.5, 0.8, 0.2, 0.6, 0.4, 0.9, 0.3, 0.5].map(
+                (delay, index) => (
+                  <div
+                    key={index}
+                    className="w-1 rounded-full bg-red-500/70 waveform-bar"
+                    style={{
+                      height: "6px",
+                      animationDelay: `${delay}s`,
+                      animationDuration: `${0.5 + delay * 0.5}s`,
+                      boxShadow: "0 0 8px rgba(239, 68, 68, 0.4)",
+                    }}
+                  />
+                ),
+              )}
+            </div>
           </div>
         )}
 
@@ -605,10 +631,6 @@ export function AgenticChatbot() {
                 <Send size={16} className="text-background" />
               )}
             </button>
-          </div>
-
-          <div className="text-[9px] text-center text-muted-foreground mt-2 uppercase tracking-[0.2em] opacity-40">
-            Powered by Groq · Llama 3.3 70B
           </div>
         </div>
       </div>

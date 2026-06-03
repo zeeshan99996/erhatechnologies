@@ -6,7 +6,10 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Erha Technologies" },
-      { name: "description", content: "Get in touch with Erha Technologies. Based in Pakistan, working worldwide." },
+      {
+        name: "description",
+        content: "Get in touch with Erha Technologies. Based in Pakistan, working worldwide.",
+      },
       { property: "og:title", content: "Contact Erha Technologies" },
       { property: "og:description", content: "Let's build the future together." },
     ],
@@ -17,17 +20,22 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", interest: "AI Development", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    interest: "AI Development",
+    message: "",
+  });
 
   // Listen for AI agent fill commands
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail as Record<string, string>;
-      setForm(prev => ({
-        name:     detail.name     !== undefined ? detail.name     : prev.name,
-        email:    detail.email    !== undefined ? detail.email    : prev.email,
+      setForm((prev) => ({
+        name: detail.name !== undefined ? detail.name : prev.name,
+        email: detail.email !== undefined ? detail.email : prev.email,
         interest: detail.interest !== undefined ? detail.interest : prev.interest,
-        message:  detail.message  !== undefined ? detail.message  : prev.message,
+        message: detail.message !== undefined ? detail.message : prev.message,
       }));
       // Scroll to form
       document.querySelector("form")?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -45,17 +53,17 @@ function ContactPage() {
         "Full Name": form.name,
         "Email Address": form.email,
         "Service Interest": form.interest,
-        "Message": form.message,
-        "_subject": `New Inquiry: ${form.name} is interested in ${form.interest}`,
-        "_template": "table", // Neatly organizes the fields in your inbox
-        "_honey": "",
+        Message: form.message,
+        _subject: `New Inquiry: ${form.name} is interested in ${form.interest}`,
+        _template: "table", // Neatly organizes the fields in your inbox
+        _honey: "",
       };
 
       await fetch("https://formsubmit.co/ajax/erhatechnologiesofficial@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -70,7 +78,9 @@ function ContactPage() {
   return (
     <div className="px-6 py-20 md:py-24 max-w-6xl mx-auto animate-fade-up">
       <div className="text-center mb-12 md:mb-16">
-        <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-4">Contact</div>
+        <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-4">
+          Contact
+        </div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6">
           Let's <span className="text-gradient">connect</span>
         </h1>
@@ -84,20 +94,21 @@ function ContactPage() {
         <div className="md:col-span-3 glass-strong rounded-2xl p-8">
           {sent ? (
             <div className="text-center py-12">
-              <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4"
-                style={{ background: "var(--gradient-neon)" }}>
+              <div
+                className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4"
+                style={{ background: "var(--gradient-neon)" }}
+              >
                 <Send className="text-background" />
               </div>
               <h3 className="font-display text-2xl mb-2">Message sent</h3>
               <p className="text-muted-foreground">We'll get back to you within 24 hours.</p>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-5"
-            >
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">Name</label>
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
+                  Name
+                </label>
                 <input
                   required
                   value={form.name}
@@ -107,7 +118,9 @@ function ContactPage() {
                 />
               </div>
               <div>
-                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">Email</label>
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
+                  Email
+                </label>
                 <input
                   required
                   type="email"
@@ -118,7 +131,9 @@ function ContactPage() {
                 />
               </div>
               <div>
-                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">Interest</label>
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
+                  Interest
+                </label>
                 <select
                   value={form.interest}
                   onChange={(e) => setForm({ ...form, interest: e.target.value })}
@@ -132,7 +147,9 @@ function ContactPage() {
                 </select>
               </div>
               <div>
-                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">Message</label>
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
+                  Message
+                </label>
                 <textarea
                   required
                   rows={5}
@@ -142,7 +159,11 @@ function ContactPage() {
                   placeholder="Tell us about your project..."
                 />
               </div>
-              <button type="submit" disabled={isSubmitting} className="btn-neon px-7 py-3 rounded-full inline-flex items-center gap-2 disabled:opacity-50">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-neon px-7 py-3 rounded-full inline-flex items-center gap-2 disabled:opacity-50"
+              >
                 {isSubmitting ? "Sending..." : "Send message"} <Send size={16} />
               </button>
             </form>
@@ -154,15 +175,27 @@ function ContactPage() {
           {[
             { icon: Mail, label: "Email", value: "erhatechnologiesofficial@gmail.com" },
             { icon: Phone, label: "Phone", value: "0302 3333499" },
-            { icon: MapPin, label: "Address", value: "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #76, Chungi #6, Multan, Pakistan" },
+            {
+              icon: MapPin,
+              label: "Address",
+              value:
+                "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #76, Chungi #6, Multan, Pakistan",
+            },
           ].map((c) => (
-            <div key={c.label} className="glass rounded-xl p-5 flex items-center gap-4 hover:neon-border transition-all">
-              <div className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0"
-                style={{ background: "var(--gradient-neon)" }}>
+            <div
+              key={c.label}
+              className="glass rounded-xl p-5 flex items-center gap-4 hover:neon-border transition-all"
+            >
+              <div
+                className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0"
+                style={{ background: "var(--gradient-neon)" }}
+              >
                 <c.icon size={18} className="text-background" />
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{c.label}</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                  {c.label}
+                </div>
                 <div className="text-sm">{c.value}</div>
               </div>
             </div>
@@ -175,12 +208,22 @@ function ContactPage() {
               className="w-full h-full border-0 grayscale opacity-80"
               loading="lazy"
             />
-            <div className="absolute inset-0 pointer-events-none"
-              style={{ background: "linear-gradient(135deg, transparent 0%, color-mix(in oklab, var(--neon-cyan) 20%, transparent) 100%)" }} />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(135deg, transparent 0%, color-mix(in oklab, var(--neon-cyan) 20%, transparent) 100%)",
+              }}
+            />
           </div>
 
           <div className="flex gap-3 justify-center pt-2">
-            <a href="https://www.linkedin.com/company/erha-technologies/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:neon-glow transition-all">
+            <a
+              href="https://www.linkedin.com/company/erha-technologies/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full glass flex items-center justify-center hover:neon-glow transition-all"
+            >
               <Linkedin size={16} />
             </a>
           </div>
