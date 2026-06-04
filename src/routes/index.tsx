@@ -39,55 +39,9 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-// Slideshow Images data using the user uploaded pictures
-const slideshowImages = [
-  {
-    src: "/slideshow-1.jpg",
-    loc: "LOC_01 // COGNITIVE LAB // SEC_4",
-    title: "NEURAL COGNITION CORE",
-  },
-  {
-    src: "/slideshow-2.jpg",
-    loc: "LOC_02 // HEADQUARTERS // LOBBY",
-    title: "DISTRIBUTED COGNITIVE GLOBE",
-  },
-  {
-    src: "/slideshow-3.jpg",
-    loc: "LOC_03 // MISSION CONTROL // SEC_1",
-    title: "GLOBAL PIPELINE TELEMETRY",
-  },
-];
-
 function DashboardBackgroundSlideshow() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden h-[180vh] md:h-[160vh]">
-      {slideshowImages.map((img, idx) => {
-        const active = currentSlide === idx;
-        return (
-          <div
-            key={idx}
-            className={`absolute inset-0 transition-opacity duration-[3000ms] ease-in-out ${
-              active ? "opacity-[0.08]" : "opacity-0"
-            }`}
-          >
-            <img
-              src={img.src}
-              alt=""
-              className="w-full h-full object-cover scale-105 filter blur-[4px]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--background)]/60 to-[var(--background)]" />
-          </div>
-        );
-      })}
       <div className="absolute inset-0 scanlines opacity-[0.15]" />
     </div>
   );
