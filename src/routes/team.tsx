@@ -297,22 +297,6 @@ function TeamPage() {
                     ))}
                   </div>
                 </div>
-
-                <div>
-                  <h4 className="text-xs uppercase tracking-widest text-[var(--neon-cyan)] font-bold font-mono mb-2">
-                    TECH STACK
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {selectedMember.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 text-[11px] font-mono rounded bg-[var(--neon-cyan)]/5 border border-[var(--neon-cyan)]/20 text-[var(--neon-cyan)]"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           )}
