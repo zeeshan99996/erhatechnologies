@@ -663,19 +663,16 @@ function HomePage() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full pb-16 lg:py-20">
           <div className="animate-fade-up text-center lg:text-left flex flex-col items-center lg:items-start z-10 order-1">
             <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6 font-display font-bold tracking-tight leading-none text-white">
-              Innovating the
+              We Build <span className="text-gradient drop-shadow-[0_0_30px_rgba(118,185,0,0.2)] font-extrabold">AI Employees</span>,
               <br />
-              <span className="text-gradient drop-shadow-[0_0_30px_rgba(118,185,0,0.2)] font-extrabold">
-                Future with AI
-              </span>
+              Autonomous Agents,
               <br />
               <span className="font-semibold text-muted-foreground text-3xl sm:text-4xl md:text-5xl tracking-normal mt-2 block opacity-85">
-                &amp; Agentic Digital Solutions
+                &amp; Business Automation Systems That Work 24/7.
               </span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
-              Erha Technologies designs and engineers SOTA AI systems, autonomous agentic workflows,
-              and dazzling digital products that scale your business.
+              We engineer production-grade AI systems, multi-agent workflows, and high-performance digital products that automate complex business operations.
             </p>
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
               <Link
