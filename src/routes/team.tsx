@@ -4,7 +4,7 @@ import abdulRehmanImg from "@/assets/team-abdul-rehman.png";
 import salmanImg from "@/assets/team-salman.jpg";
 import zeeshanImg from "@/assets/team-zeeshan.jpg";
 import ilyasResearchImg from "@/assets/team-ilyas-research.jpg";
-import faizResearchImg from "@/assets/team-faiz-research.jpg";
+import faizResearchImg from "@/assets/founder-faiz.jpg";
 import ramzanResearchImg from "@/assets/team-ramzan-research.jpg";
 import sadiaResearchImg from "@/assets/team-sadia-research.png";
 import samiaResearchImg from "@/assets/team-samia-research.jpg";
