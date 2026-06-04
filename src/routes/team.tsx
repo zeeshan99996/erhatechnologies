@@ -276,15 +276,15 @@ function TeamPage() {
 
               <div className="flex flex-col gap-5 text-sm leading-relaxed">
                 <div>
-                  <h4 className="text-xs uppercase tracking-widest text-muted-foreground font-mono mb-2">
-                    [ BIOGRAPHY ]
+                  <h4 className="text-xs uppercase tracking-widest text-[var(--neon-cyan)] font-bold font-mono mb-2">
+                    BIOGRAPHY
                   </h4>
                   <p className="text-muted-foreground">{selectedMember.bio}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase tracking-widest text-muted-foreground font-mono mb-2">
-                    [ CORE SKILLS ]
+                  <h4 className="text-xs uppercase tracking-widest text-[var(--neon-cyan)] font-bold font-mono mb-2">
+                    CORE SKILLS
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedMember.skills.map((s) => (
@@ -299,8 +299,8 @@ function TeamPage() {
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase tracking-widest text-muted-foreground font-mono mb-2">
-                    [ TECH STACK ]
+                  <h4 className="text-xs uppercase tracking-widest text-[var(--neon-cyan)] font-bold font-mono mb-2">
+                    TECH STACK
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedMember.tech.map((t) => (
