@@ -71,7 +71,7 @@ const teamMembers = [
     bio: "Agentic AI Engineer constructing multi-agent architectures and autonomous workflow routing.",
     skills: [
       "AI Automation",
-      "AI Research Engineer",
+      "AI Researching",
       "Agentic Orchestration",
       "Data Science",
     ],
