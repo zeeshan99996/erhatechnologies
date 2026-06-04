@@ -69,7 +69,12 @@ const teamMembers = [
     image: salmanImg,
     accent: "cyan",
     bio: "Agentic AI Engineer constructing multi-agent architectures and autonomous workflow routing.",
-    skills: ["Agentic Orchestration", "Vector Databases", "Cognitive Routing"],
+    skills: [
+      "AI Automation",
+      "AI Research Engineer",
+      "Agentic Orchestration",
+      "Data Science",
+    ],
     tech: ["LangChain", "CrewAI", "LlamaIndex", "Pinecone"],
   },
   {
