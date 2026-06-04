@@ -496,21 +496,21 @@ const innovationTabs = [
     ),
   },
   {
-    id: "thesis",
-    title: "Research Systems",
-    subtitle: "Bibliography Assembly & Style Constraint Verification",
-    icon: Sparkles,
-    desc: "Build highly compliant, academic, and scientific writing drafts structured precisely to LaTeX specifications, complete with indexed, verified bibliography data.",
+    id: "rag",
+    title: "Cognitive RAG",
+    subtitle: "Context-Aware Vector Search & Semantic Pipelines",
+    icon: Database,
+    desc: "Build highly compliant, context-aware Retrieval-Augmented Generation systems. Integrate vector databases, semantic caching, and neural search to retrieve precise enterprise knowledge.",
     stats: [
-      { value: "0% Error", label: "LaTeX Build" },
-      { value: "< 2%", label: "Similarity" },
-      { value: "100%", label: "Compliance" },
+      { value: "< 50ms", label: "Query Retrieval" },
+      { value: "99.8%", label: "Context Accuracy" },
+      { value: "Scale-Out", label: "Vector Index" },
     ],
     features: [
-      "LaTeX Syntax Assembly",
-      "Dynamic BibTeX Referencing",
-      "Structural Proofing Checks",
-      "Scientific Outline Parsing",
+      "Hybrid Vector/Lexical Search",
+      "Dynamic Prompt Context Insertion",
+      "Semantic Cache Verification",
+      "Metadata Chunk Filtering",
     ],
     renderDiagram: (active: boolean) => (
       <svg
@@ -543,7 +543,7 @@ const innovationTabs = [
           fontFamily="monospace"
           textAnchor="middle"
         >
-          SRC
+          QUERY
         </text>
 
         <rect
@@ -565,7 +565,7 @@ const innovationTabs = [
           fontFamily="monospace"
           textAnchor="middle"
         >
-          CITES
+          VEC_DB
         </text>
 
         <circle
@@ -584,7 +584,7 @@ const innovationTabs = [
           fontFamily="monospace"
           textAnchor="middle"
         >
-          PDF
+          LLM
         </text>
       </svg>
     ),
@@ -784,7 +784,7 @@ function HomePage() {
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-xl mx-auto">
             Explore our core specialities and system topologies engineered for enterprise scale and
-            academic precision.
+            high performance.
           </p>
         </div>
 
@@ -811,7 +811,7 @@ function HomePage() {
                 Engineered for <span className="text-gradient">tomorrow</span>
               </h2>
               <p className="text-muted-foreground mb-8 text-base md:text-lg leading-relaxed">
-                We combine deep AI research with production-grade engineering — shipping systems
+                We combine deep AI capabilities with production-grade engineering — shipping systems
                 that are fast, reliable, and beautifully designed.
               </p>
             </div>

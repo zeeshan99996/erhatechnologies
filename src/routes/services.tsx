@@ -8,7 +8,7 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "AI development, agentic systems, web & app engineering, automation, and academic writing services.",
+          "AI development, agentic systems, web & app engineering, automation, and cognitive data solutions.",
       },
       { property: "og:title", content: "Services — Erha Technologies" },
       { property: "og:description", content: "End-to-end AI and digital engineering services." },

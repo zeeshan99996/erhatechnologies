@@ -15,7 +15,6 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TeamResearchRouteImport } from './routes/team.research'
 import { Route as TeamAiRouteImport } from './routes/team.ai'
 
 const TeamRoute = TeamRouteImport.update({
@@ -48,11 +47,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TeamResearchRoute = TeamResearchRouteImport.update({
-  id: '/research',
-  path: '/research',
-  getParentRoute: () => TeamRoute,
-} as any)
 const TeamAiRoute = TeamAiRouteImport.update({
   id: '/ai',
   path: '/ai',
@@ -67,7 +61,6 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/team': typeof TeamRouteWithChildren
   '/team/ai': typeof TeamAiRoute
-  '/team/research': typeof TeamResearchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +70,6 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/team': typeof TeamRouteWithChildren
   '/team/ai': typeof TeamAiRoute
-  '/team/research': typeof TeamResearchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +80,6 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/team': typeof TeamRouteWithChildren
   '/team/ai': typeof TeamAiRoute
-  '/team/research': typeof TeamResearchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +91,6 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/team/ai'
-    | '/team/research'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +100,6 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/team/ai'
-    | '/team/research'
   id:
     | '__root__'
     | '/'
@@ -120,7 +109,6 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/team/ai'
-    | '/team/research'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -176,13 +164,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/team/research': {
-      id: '/team/research'
-      path: '/research'
-      fullPath: '/team/research'
-      preLoaderRoute: typeof TeamResearchRouteImport
-      parentRoute: typeof TeamRoute
-    }
     '/team/ai': {
       id: '/team/ai'
       path: '/ai'
@@ -195,12 +176,10 @@ declare module '@tanstack/react-router' {
 
 interface TeamRouteChildren {
   TeamAiRoute: typeof TeamAiRoute
-  TeamResearchRoute: typeof TeamResearchRoute
 }
 
 const TeamRouteChildren: TeamRouteChildren = {
   TeamAiRoute: TeamAiRoute,
-  TeamResearchRoute: TeamResearchRoute,
 }
 
 const TeamRouteWithChildren = TeamRoute._addFileChildren(TeamRouteChildren)

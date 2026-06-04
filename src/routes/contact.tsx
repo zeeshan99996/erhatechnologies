@@ -141,7 +141,7 @@ function ContactPage() {
                 >
                   <option value="AI Development">AI Development</option>
                   <option value="Web & App Development">Web & App Development</option>
-                  <option value="Research Writing">Research Writing</option>
+                  <option value="AI Integration & RAG">AI Integration & RAG</option>
                   <option value="UI/UX Design">UI/UX Design</option>
                   <option value="Consultation">Consultation</option>
                 </select>

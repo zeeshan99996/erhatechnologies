@@ -46,9 +46,9 @@ const teamMembers = [
     initials: "IS",
     image: ilyasResearchImg,
     accent: "purple",
-    bio: "Founder & CEO leading Erha Technologies. Architect of our academic solutions division, merging classical research paradigms with digital delivery structures.",
-    skills: ["System Architecture", "Academic Research", "Strategy", "Operations"],
-    tech: ["LaTeX", "Zotero", "Python", "Cloud Infrastructure"],
+    bio: "Founder & CEO leading Erha Technologies. Architect of our enterprise AI division, merging advanced machine learning paradigms with scalable delivery structures.",
+    skills: ["System Architecture", "AI Strategy", "Strategy", "Operations"],
+    tech: ["PyTorch", "Transformers", "Python", "Cloud Infrastructure"],
   },
   {
     name: "Faiz Jillani",
@@ -56,8 +56,8 @@ const teamMembers = [
     initials: "FJ",
     image: faizResearchImg,
     accent: "purple",
-    bio: "Co-Founder guiding technical operations. Specialized in crossover AI models and research-grade systems engineering.",
-    skills: ["Academic Writing", "AI Research", "Operations Management"],
+    bio: "Co-Founder guiding technical operations. Specialized in crossover AI models and enterprise-grade systems engineering.",
+    skills: ["MLOps & Scaling", "AI Research", "Operations Management"],
     tech: ["Python", "PyTorch", "Transformers", "GitHub Enterprise"],
   },
 
@@ -110,19 +110,19 @@ const teamMembers = [
     image: qamarImg,
     accent: "cyan",
     bio: "AI Researcher analyzing SOTA models, fine-tuning methodologies, and performance validation criteria.",
-    skills: ["Statistical Analysis", "Model Fine-Tuning", "Literature Synthesis"],
+    skills: ["Statistical Analysis", "Model Fine-Tuning", "Hyperparameter Tuning"],
     tech: ["Jupyter", "Pandas", "PyTorch", "TensorBoard"],
   },
 
-  // Research Writing Team
+  // Data & Cognitive Team
   {
     name: "Muhammad Ramzan",
     role: "Data Scientist",
     initials: "MR",
     image: ramzanResearchImg,
     accent: "purple",
-    bio: "Data Scientist building regression pipelines, clustering algorithms, and predictive telemetry indicators.",
-    skills: ["Predictive Modeling", "Clustering Algorithms", "Statistical Validation"],
+    bio: "Data Scientist building predictive models, AI clustering pipelines, and neural network data analytics.",
+    skills: ["Predictive Modeling", "Clustering Algorithms", "AI Telemetry"],
     tech: ["NumPy", "Pandas", "Scikit-Learn", "R"],
   },
   {
@@ -131,8 +131,8 @@ const teamMembers = [
     initials: "SS",
     image: sadiaResearchImg,
     accent: "purple",
-    bio: "Data Analyst performing data synthesis, trend evaluations, and technical report layouts.",
-    skills: ["Data Wrangling", "Trend Analysis", "Technical Layouts"],
+    bio: "Data Analyst performing data synthesis, trend evaluations, and AI performance visualization dashboards.",
+    skills: ["Data Wrangling", "Trend Analysis", "Performance Dashboarding"],
     tech: ["SQL", "PowerBI", "Excel", "Tableau"],
   },
   {
@@ -141,9 +141,9 @@ const teamMembers = [
     initials: "SA",
     image: samiaResearchImg,
     accent: "purple",
-    bio: "Cloud Database Engineer configuring distributed database schemas, storage optimizations, and cloud database pools.",
-    skills: ["Distributed Storage", "Schema Design", "Latency Reduction"],
-    tech: ["AWS RDS", "MongoDB", "Redis", "PostgreSQL"],
+    bio: "Cloud Database Engineer configuring distributed schemas, vector databases, and storage optimizations for AI model hosting.",
+    skills: ["Distributed Storage", "Vector Indexing", "Latency Reduction"],
+    tech: ["AWS RDS", "Pinecone", "Redis", "PostgreSQL"],
   },
   {
     name: "Umm-e-Aiman",
@@ -151,8 +151,8 @@ const teamMembers = [
     initials: "UA",
     image: ummeaimanResearchImg,
     accent: "purple",
-    bio: "AI Researcher exploring biochemical bioinformatics, DNA sequencing datasets, and computational biology.",
-    skills: ["Bioinformatics", "Data Syntheses", "Computational Biology"],
+    bio: "AI Researcher exploring neural bioinformatics, language models for genetic sequencing, and computational biology.",
+    skills: ["Bioinformatics", "Neural Sequences", "Computational Biology"],
     tech: ["BLAST", "Biopython", "R", "NCBI Entrez"],
   },
   {
@@ -177,7 +177,7 @@ function TeamPage() {
           The <span className="text-gradient">minds</span> behind Erha
         </h1>
         <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Our unified team of AI engineers, developers, and academic researchers. Click any member
+          Our unified team of AI engineers, developers, and cognitive data researchers. Click any member
           to view their profile.
         </p>
       </div>

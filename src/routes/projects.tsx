@@ -49,9 +49,9 @@ const projects = [
     color: "var(--neon-purple)",
   },
   {
-    title: "Scholar AI",
-    tag: "Research",
-    desc: "AI research assistant for academic writing & citations.",
+    title: "OmniSearch",
+    tag: "AI Search",
+    desc: "Cognitive search system powered by RAG and semantic routing.",
     color: "var(--neon-blue)",
   },
 ];
@@ -63,7 +63,7 @@ const ALL_TAGS = [
   "Web App",
   "Mobile App",
   "Automation",
-  "Research",
+  "AI Search",
 ] as const;
 type Tag = (typeof ALL_TAGS)[number];
 
