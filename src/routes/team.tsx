@@ -68,7 +68,7 @@ const teamMembers = [
     initials: "MSA",
     image: salmanImg,
     accent: "cyan",
-    bio: "Agentic AI Engineer constructing multi-agent architectures and autonomous workflow routing.",
+    bio: "AI and Data Science professional with expertise in Agentic AI, AI Automation, and AI Research. Experienced in building intelligent systems, Agents, automating workflows, and developing data-driven solutions that enhance business performance. Passionate about applying cutting-edge AI technologies to solve complex challenges and drive innovation.",
     skills: [
       "AI Automation",
       "AI Research",
