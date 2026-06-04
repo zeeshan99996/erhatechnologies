@@ -96,22 +96,6 @@ function ProjectsPage() {
         </p>
       </div>
 
-      {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
-        {ALL_TAGS.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => setActiveTag(tag)}
-            className={`px-4 py-1.5 rounded-full text-xs capitalize transition-all border ${
-              activeTag === tag
-                ? "border-[var(--neon-cyan)] text-[var(--neon-cyan)] bg-[var(--neon-cyan)]/10"
-                : "border-border text-muted-foreground hover:border-[var(--neon-cyan)]/50"
-            }`}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((p) => (
