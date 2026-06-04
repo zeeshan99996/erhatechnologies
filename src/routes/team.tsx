@@ -78,7 +78,7 @@ const teamMembers = [
     initials: "MS",
     image: muzammilImg,
     accent: "cyan",
-    bio: "AI Engineer specializing in custom machine learning models, system optimizations, and deep neural networks.",
+    bio: "AI Engineer with experience in Generative AI, LLM-powered applications, and AI-driven business solutions. Skilled in developing intelligent systems, prompt engineering, and workflow automation. Experienced in data annotation and AI model development to support high-quality machine learning outcomes. Passionate about leveraging cutting-edge AI technologies to solve complex business challenges. Dedicated to continuous learning and innovation in the field of artificial intelligence.",
     skills: [
       "LLM Integration",
       "Full Stack Development",
