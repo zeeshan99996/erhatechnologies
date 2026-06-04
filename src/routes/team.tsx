@@ -79,7 +79,13 @@ const teamMembers = [
     image: muzammilImg,
     accent: "cyan",
     bio: "AI Engineer specializing in custom machine learning models, system optimizations, and deep neural networks.",
-    skills: ["Machine Learning", "Neural Networks", "Performance Tuning"],
+    skills: [
+      "LLM Integration",
+      "Full Stack Development",
+      "Machine Learning",
+      "Neural Networks",
+      "AI Automation",
+    ],
     tech: ["TensorFlow", "Scikit-Learn", "Python", "FastAPI"],
   },
   {
