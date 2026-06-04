@@ -290,7 +290,7 @@ function TeamPage() {
                   <h4 className="text-xs uppercase tracking-widest text-[var(--neon-cyan)] font-bold font-mono mb-2">
                     BIOGRAPHY
                   </h4>
-                  <p className="text-muted-foreground">{selectedMember.bio}</p>
+                  <p className="text-muted-foreground text-justify">{selectedMember.bio}</p>
                 </div>
 
                 <div>
