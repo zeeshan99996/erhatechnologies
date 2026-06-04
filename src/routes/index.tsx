@@ -663,12 +663,14 @@ function HomePage() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full pb-16 lg:py-20">
           <div className="animate-fade-up text-center lg:text-left flex flex-col items-center lg:items-start z-10 order-1">
             <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6 font-display font-bold tracking-tight leading-none text-white">
-              We Build <span className="text-gradient drop-shadow-[0_0_30px_rgba(118,185,0,0.2)] font-extrabold">AI Employees</span>,
+              We Engineer
               <br />
-              Autonomous Agents,
+              <span className="text-gradient drop-shadow-[0_0_30px_rgba(118,185,0,0.2)] font-extrabold">
+                Production-Grade AI Systems
+              </span>
               <br />
               <span className="font-semibold text-muted-foreground text-3xl sm:text-4xl md:text-5xl tracking-normal mt-2 block opacity-85">
-                &amp; Business Automation Systems That Work 24/7.
+                &amp; Multi-Agent Workflows.
               </span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
