@@ -78,7 +78,7 @@ const innovationTabs = [
           y1="30"
           x2="50"
           y2="80"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-blue)"
           strokeWidth="1.5"
           className={active ? "flow-line" : ""}
           opacity="0.6"
@@ -109,14 +109,14 @@ const innovationTabs = [
           cy="30"
           r="16"
           fill="var(--card)"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-cyan)"
           strokeWidth="2"
           className={`infra-node ${active ? "active" : ""}`}
         />
         <text
           x="100"
           y="34"
-          fill="var(--neon-green)"
+          fill="var(--neon-cyan)"
           fontSize="9"
           fontWeight="bold"
           fontFamily="monospace"
@@ -216,7 +216,7 @@ const innovationTabs = [
       >
         <path
           d="M 20 60 L 70 60 L 130 60 L 180 60"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-purple)"
           strokeWidth="1.5"
           className={active ? "flow-line" : ""}
           opacity="0.6"
@@ -248,14 +248,14 @@ const innovationTabs = [
           cy="60"
           r="14"
           fill="var(--card)"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-purple)"
           strokeWidth="2"
           className={`infra-node ${active ? "active" : ""}`}
         />
         <text
           x="90"
           y="63"
-          fill="var(--neon-green)"
+          fill="var(--neon-purple)"
           fontSize="7"
           fontFamily="monospace"
           textAnchor="middle"
@@ -315,7 +315,7 @@ const innovationTabs = [
           y1="30"
           x2="100"
           y2="60"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-cyan)"
           strokeWidth="1.5"
           className={active ? "flow-line" : ""}
           opacity="0.6"
@@ -325,7 +325,7 @@ const innovationTabs = [
           y1="90"
           x2="100"
           y2="60"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-cyan)"
           strokeWidth="1.5"
           className={active ? "flow-line" : ""}
           opacity="0.6"
@@ -395,14 +395,14 @@ const innovationTabs = [
           height="30"
           rx="4"
           fill="var(--card)"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-cyan)"
           strokeWidth="2"
           className={`infra-node ${active ? "active" : ""}`}
         />
         <text
           x="100"
           y="63"
-          fill="var(--neon-green)"
+          fill="var(--neon-cyan)"
           fontSize="7"
           fontFamily="monospace"
           textAnchor="middle"
@@ -507,14 +507,14 @@ const innovationTabs = [
           height="30"
           rx="3"
           fill="var(--card)"
-          stroke="var(--neon-green)"
+          stroke="var(--neon-cyan)"
           strokeWidth="2"
           className={`infra-node ${active ? "active" : ""}`}
         />
         <text
           x="100"
           y="93"
-          fill="var(--neon-green)"
+          fill="var(--neon-cyan)"
           fontSize="7"
           fontFamily="monospace"
           textAnchor="middle"
@@ -563,7 +563,7 @@ function InnovationDeck() {
               onClick={() => setActiveTabId(t.id)}
               className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border text-left cursor-pointer transition-all duration-300 w-max md:w-full shrink-0 ${
                 tabActive
-                  ? "border-[var(--neon-green)] bg-[var(--neon-green)]/10 text-white font-semibold"
+                  ? "border-[var(--neon-cyan)] bg-[var(--neon-cyan)]/10 text-white font-semibold"
                   : "border-transparent bg-transparent text-muted-foreground hover:text-white"
               }`}
             >
@@ -580,7 +580,7 @@ function InnovationDeck() {
         <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--neon-green)]/10 border border-[var(--neon-green)]/20 text-[var(--neon-green)]">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--neon-cyan)]/10 border border-[var(--neon-cyan)]/20 text-[var(--neon-cyan)]">
                 <TabIcon size={20} />
               </div>
               <div>
@@ -598,7 +598,7 @@ function InnovationDeck() {
             <ul className="space-y-2 mb-6">
               {activeTab.features.map((f) => (
                 <li key={f} className="flex items-center gap-2 text-xs text-foreground">
-                  <CheckCircle2 size={12} className="text-[var(--neon-green)]" />
+                  <CheckCircle2 size={12} className="text-[var(--neon-cyan)]" />
                   <span>{f}</span>
                 </li>
               ))}
@@ -777,7 +777,7 @@ function HomePage() {
               ].map((f) => (
                 <div
                   key={f.title}
-                  className="diagonal-cut-card p-5 text-center group hover:border-[var(--neon-green)]/45 transition-all duration-300"
+                  className="diagonal-cut-card p-5 text-center group hover:border-[var(--neon-cyan)]/45 transition-all duration-300"
                 >
                   <div className="flex flex-col items-center">
                     <f.icon

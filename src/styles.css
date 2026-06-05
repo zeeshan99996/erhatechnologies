@@ -120,19 +120,19 @@
   --secondary-foreground: oklch(0.97 0.01 250);
   --muted: oklch(0.15 0.02 255);
   --muted-foreground: oklch(0.72 0.03 250);
-  --accent: oklch(0.84 0.13 85); /* Warm champagne gold */
+  --accent: oklch(0.78 0.16 195); /* Neon Cyan / Teal */
   --accent-foreground: oklch(0.06 0.01 255);
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.97 0.01 250);
   --border: oklch(0.2 0.04 255 / 0.45); /* Sleek metallic border */
   --input: oklch(0.14 0.03 255);
-  --ring: oklch(0.78 0.15 200);
+  --ring: oklch(0.78 0.16 195);
 
   --neon-cyan: oklch(0.78 0.16 195); /* Electric Mint Teal */
   --neon-purple: oklch(0.65 0.24 300); /* Vibrant Cosmic Purple */
   --neon-blue: oklch(0.68 0.18 245); /* Deep Digital Royal Blue */
-  --neon-gold: oklch(0.84 0.13 85); /* Champagne Gold */
-  --neon-green: oklch(0.85 0.25 142); /* NVIDIA Electric Lime Green */
+  --neon-gold: oklch(0.75 0.14 220); /* Neon Sky Blue (Avoids Yellow) */
+  --neon-green: oklch(0.78 0.16 195); /* Neon Cyan (Avoids Green) */
 
   --gradient-hero: radial-gradient(
     circle at 50% 0%,
