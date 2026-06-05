@@ -130,9 +130,9 @@
 
   --neon-cyan: oklch(0.78 0.16 195); /* Electric Mint Teal */
   --neon-purple: oklch(0.65 0.24 300); /* Vibrant Cosmic Purple */
-  --neon-blue: oklch(0.68 0.18 245); /* Deep Digital Royal Blue */
-  --neon-gold: oklch(0.75 0.14 220); /* Neon Sky Blue (Avoids Yellow) */
-  --neon-green: oklch(0.78 0.16 195); /* Neon Cyan (Avoids Green) */
+  --neon-blue: oklch(0.65 0.24 300); /* Mapped to Cosmic Purple */
+  --neon-gold: oklch(0.65 0.24 300); /* Mapped to Cosmic Purple */
+  --neon-green: oklch(0.78 0.16 195); /* Mapped to Electric Mint Teal */
 
   --gradient-hero: radial-gradient(
     circle at 50% 0%,
@@ -142,7 +142,6 @@
   --gradient-neon: linear-gradient(
     135deg,
     var(--neon-cyan) 0%,
-    var(--neon-blue) 50%,
     var(--neon-purple) 100%
   );
   --gradient-glow: radial-gradient(
@@ -206,8 +205,6 @@
     background: linear-gradient(
       135deg,
       var(--neon-cyan) 0%,
-      var(--neon-blue) 40%,
-      var(--neon-gold) 75%,
       var(--neon-purple) 100%
     );
     -webkit-background-clip: text;
@@ -294,9 +291,7 @@
     background: conic-gradient(
       from 0deg,
       var(--neon-cyan),
-      var(--neon-blue),
       var(--neon-purple),
-      var(--neon-gold),
       var(--neon-cyan)
     );
     opacity: 0;

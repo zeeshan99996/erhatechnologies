@@ -52,11 +52,10 @@ export function TechBackground() {
 
     // Premium color options corresponding to our CSS themes:
     // Cyan: rgba(99, 235, 249, alpha)
-    // Blue: rgba(56, 189, 248, alpha)
     // Purple: rgba(168, 85, 247, alpha)
     const colorChoices = [
       { base: "rgba(99, 235, 249, 0.4)", glow: "rgba(99, 235, 249, 0.08)" },
-      { base: "rgba(56, 189, 248, 0.4)", glow: "rgba(56, 189, 248, 0.08)" },
+      { base: "rgba(168, 85, 247, 0.4)", glow: "rgba(168, 85, 247, 0.08)" },
       { base: "rgba(168, 85, 247, 0.4)", glow: "rgba(168, 85, 247, 0.08)" },
       { base: "rgba(99, 235, 249, 0.35)", glow: "rgba(99, 235, 249, 0.06)" },
     ];
@@ -192,7 +191,7 @@ export function TechBackground() {
         style={{
           width: 550,
           height: 550,
-          background: "var(--neon-blue)",
+          background: "var(--neon-purple)",
           top: "35%",
           left: "25%",
           animationDelay: "4s",

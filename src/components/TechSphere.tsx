@@ -110,7 +110,7 @@ export function TechSphere({ size = 480 }: { size?: number }) {
         }
       } else {
         n.layer = "output";
-        n.color = "rgba(56, 189, 248, 0.85)"; // Neon Blue (Avoids Green)
+        n.color = "rgba(99, 235, 249, 0.85)"; // Neon Cyan (Avoids Green)
         // Assign Hubs on rightmost prediction layer
         if (idx === 94 || idx === 112) {
           n.isHub = true;
@@ -154,7 +154,7 @@ export function TechSphere({ size = 480 }: { size?: number }) {
     const ringColors = [
       "rgba(99, 235, 249, 0.35)", // Outer Ring (Cyan)
       "rgba(168, 85, 247, 0.20)", // Mid Ring (Purple)
-      "rgba(56, 189, 248, 0.28)", // Inner Ring (Blue - Avoids Green)
+      "rgba(168, 85, 247, 0.28)", // Inner Ring (Purple - Avoids Green)
     ];
 
     for (let r = 0; r < ringCount; r++) {
