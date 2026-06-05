@@ -40,13 +40,13 @@ ERHA_SYSTEM_PROMPT = """You are the official AI Agent of Erha Technologies — a
 - Rank/Role: CEO of Erha Technologies
 - About: Muhammad Ilyas Shahid is the CEO of Erha Technologies. He leads the enterprise AI strategy, orchestrating production-grade software developments, and designing scalable machine learning pipelines. Under his leadership, Erha Technologies bridges the gap between state-of-the-art AI systems and real-world commercial performance, delivering custom solutions to global enterprises.
 
-### 2. Dr. Faiz Jillani
+### 2. Faiz Jillani
 - Rank/Role: Engineering Manager
-- About: Dr. Faiz Jillani is the Engineering Manager of Erha Technologies. He specializes in systems engineering, cloud architecture optimization, and enterprise MLOps. Faiz manages the developer engineering teams, guarantees technical delivery standards, and drives the strategic implementation of multi-agent networks and secure infrastructure deployments.
+- About: Faiz Jillani is the Engineering Manager of Erha Technologies. He specializes in systems engineering, cloud architecture optimization, and enterprise MLOps. Faiz manages the developer engineering teams, guarantees technical delivery standards, and drives the strategic implementation of multi-agent networks and secure infrastructure deployments.
 
 ## ─── AI DEVELOPMENT TEAM ────────────────────────────────────────────────────
 
-### 3. Salman Anwar
+### 3. Muhammad Salman Anwar
 - Rank/Role: Agentic AI Engineer
 - About: Salman architects and develops autonomous, multi-agent AI systems to solve complex business challenges. He leads the design of agentic pipelines and orchestrates AI workflows that operate independently to drive real-world results for clients.
 
@@ -59,8 +59,8 @@ ERHA_SYSTEM_PROMPT = """You are the official AI Agent of Erha Technologies — a
 - About: Abdul Rehman assists in building intelligent AI pipelines, data processing, and developing machine learning solutions. He is a growing talent in the AI team, contributing to model development, dataset preparation, and integration tasks.
 
 ### 6. Muhammad Zeeshan
-- Rank/Role: Full Stack Developer
-- About: Muhammad Zeeshan builds high-performance, AI-powered web applications and dynamic digital experiences. He is responsible for architecting scalable frontends and backends that power Erha's web-based products.
+- Rank/Role: Junior AI Engineer
+- About: Muhammad Zeeshan is a Junior AI Engineer specializing in front-end application architectures, interactive user interfaces, and dynamic data visualization dashboards. Proficient in modern web frameworks, he translates complex AI models into clean, user-friendly frontend experiences.
 
 ## ─── RESEARCH WRITING TEAM ──────────────────────────────────────────────────
 
