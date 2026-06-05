@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Target, Eye, Rocket } from "lucide-react";
-import founderImg from "@/assets/founder-ilyas.jpeg";
-import coFounderImg from "@/assets/founder-faiz.jpg";
+import ceoImg from "@/assets/ceo-ilyas.jpeg";
+import managerImg from "@/assets/manager-faiz.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -37,7 +37,7 @@ function AboutPage() {
         </p>
       </div>
 
-      {/* Founder */}
+      {/* CEO */}
       <div className="glass-strong rounded-3xl p-8 md:p-14 mb-12 md:mb-16 relative overflow-hidden">
         <div
           className="orb"
@@ -50,7 +50,7 @@ function AboutPage() {
               style={{ background: "var(--gradient-neon)" }}
             >
               <img
-                src={founderImg}
+                src={ceoImg}
                 alt="Ilyas Shahid — CEO of Erha Technologies"
                 className="w-full h-full object-cover rounded-xl object-top"
                 loading="lazy"
@@ -73,7 +73,7 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* Co-Founder */}
+      {/* Engineering Manager */}
       <div className="glass-strong rounded-3xl p-8 md:p-14 mb-12 md:mb-16 relative overflow-hidden">
         <div
           className="orb"
@@ -104,7 +104,7 @@ function AboutPage() {
               style={{ background: "var(--gradient-neon)" }}
             >
               <img
-                src={coFounderImg}
+                src={managerImg}
                 alt="Faiz Jillani — Engineering Manager of Erha Technologies"
                 className="w-full h-full object-cover rounded-xl object-top"
                 loading="lazy"
