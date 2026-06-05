@@ -6,11 +6,11 @@ import coFounderImg from "@/assets/founder-faiz.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Erha Technologies — Founded by Ilyas Shahid" },
+      { title: "About Erha Technologies — Led by CEO Ilyas Shahid" },
       {
         name: "description",
         content:
-          "Learn about Erha Technologies, a Pakistan-based AI and digital innovation company founded by Ilyas Shahid.",
+          "Learn about Erha Technologies, a Pakistan-based AI and digital innovation company led by CEO Ilyas Shahid.",
       },
       { property: "og:title", content: "About Erha Technologies" },
       { property: "og:description", content: "AI-driven digital innovation from Pakistan." },
@@ -51,7 +51,7 @@ function AboutPage() {
             >
               <img
                 src={founderImg}
-                alt="Ilyas Shahid — CEO & Founder of Erha Technologies"
+                alt="Ilyas Shahid — CEO of Erha Technologies"
                 className="w-full h-full object-cover rounded-xl object-top"
                 loading="lazy"
               />
@@ -59,11 +59,11 @@ function AboutPage() {
           </div>
           <div className="md:col-span-2 text-center md:text-left">
             <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-3">
-              CEO & Founder
+              CEO
             </div>
             <h2 className="text-3xl md:text-4xl mb-4">Ilyas Shahid</h2>
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              Founded by Ilyas Shahid, our company bridges the gap between complex technical
+              Led by CEO Ilyas Shahid, our company bridges the gap between complex technical
               challenges and intuitive, scalable solutions. Whether it's developing intelligent AI
               frameworks or delivering bespoke digital strategies, we focus on precision,
               innovation, and measurable results. At ERHA, we don't just build software; we engineer
@@ -88,11 +88,11 @@ function AboutPage() {
         <div className="relative grid md:grid-cols-3 gap-8 md:gap-10 items-center">
           <div className="md:col-span-2 order-2 md:order-1 text-center md:text-left">
             <div className="text-xs uppercase tracking-[0.3em] text-[var(--neon-cyan)] mb-3">
-              Co-Founder
+              Engineering Manager
             </div>
             <h2 className="text-3xl md:text-4xl mb-4">Faiz Jillani</h2>
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              As Co-Founder, Faiz Jillani drives the strategic vision and operational excellence at
+              As Engineering Manager, Faiz Jillani drives the strategic vision and operational excellence at
               Erha Technologies. With a deep focus on scaling advanced AI solutions and fostering
               global partnerships, Faiz ensures our technological innovations translate into
               tangible business growth and sustainable competitive advantages for our clients.
@@ -105,7 +105,7 @@ function AboutPage() {
             >
               <img
                 src={coFounderImg}
-                alt="Faiz Jillani — Co-Founder of Erha Technologies"
+                alt="Faiz Jillani — Engineering Manager of Erha Technologies"
                 className="w-full h-full object-cover rounded-xl object-top"
                 loading="lazy"
               />

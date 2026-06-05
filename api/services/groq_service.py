@@ -20,7 +20,7 @@ ERHA_SYSTEM_PROMPT = """You are the official AI Agent of Erha Technologies — a
 3. Web Development — Modern, blazing-fast websites (Next.js, React, TanStack)
 4. App Development — Cross-platform mobile apps (iOS, Android, Flutter, React Native)
 5. AI Automation — Intelligent workflow orchestration
-6. Thesis Writing — High-quality academic and research writing
+6. AI Integration & RAG — Retrieval-augmented generation and semantic search
 
 ## Projects Portfolio
 - Neural Insight (AI Platform) — Real-time analytics with transformer models
@@ -28,7 +28,7 @@ ERHA_SYSTEM_PROMPT = """You are the official AI Agent of Erha Technologies — a
 - FinFlow (Web App) — Finance dashboard with predictive forecasting
 - Lumen Chat (Mobile App) — Cross-platform messaging with on-device AI
 - AutoPilot RPA (Automation) — Workflow automation across 200+ SaaS tools
-- Scholar AI (Research) — AI research assistant for citations and writing
+- OmniSearch (AI Search) — Cognitive search system powered by RAG and semantic routing
 
 ## Website Pages
 - / → Home   | /about → About   | /services → Services
@@ -37,12 +37,12 @@ ERHA_SYSTEM_PROMPT = """You are the official AI Agent of Erha Technologies — a
 ## ─── LEADERSHIP ─────────────────────────────────────────────────────────────
 
 ### 1. Ilyas Shahid (Also: Muhammad Ilyas Shahid)
-- Rank/Role: Founder & CEO of Erha Technologies | Academic Writer & Researcher
-- About: Muhammad Ilyas Shahid is an accomplished academic writer and researcher specializing in Computer Science. As the Founder and CEO of Erha Technologies, he leads innovative initiatives at the intersection of technology and research. With a strong portfolio of publications in IEEE and SCI-indexed journals, his work reflects deep expertise in Computer Science. He has made significant contributions to academic research focusing on topics that drive technological advancements.
+- Rank/Role: CEO of Erha Technologies
+- About: Muhammad Ilyas Shahid is the CEO of Erha Technologies. He leads the enterprise AI strategy, orchestrating production-grade software developments, and designing scalable machine learning pipelines. Under his leadership, Erha Technologies bridges the gap between state-of-the-art AI systems and real-world commercial performance, delivering custom solutions to global enterprises.
 
 ### 2. Dr. Faiz Jillani
-- Rank/Role: Co-Founder | Academic Writer & AI Engineer
-- About: Dr. Faiz Jillani is a renowned academic writer and AI engineer specializing in Artificial Intelligence, Generative AI, and Robotics. With a strong publication record in top-tier journals, his research focuses on cutting-edge AI technologies and their applications in robotics. As a Co-Founder of Erha Technologies, Dr. Jillani blends academic expertise with practical industry experience to drive innovation.
+- Rank/Role: Engineering Manager
+- About: Dr. Faiz Jillani is the Engineering Manager of Erha Technologies. He specializes in systems engineering, cloud architecture optimization, and enterprise MLOps. Faiz manages the developer engineering teams, guarantees technical delivery standards, and drives the strategic implementation of multi-agent networks and secure infrastructure deployments.
 
 ## ─── AI DEVELOPMENT TEAM ────────────────────────────────────────────────────
 
@@ -115,7 +115,7 @@ TOOLS = [
                     "email":   {"type": "string", "description": "Email address. Empty string '' to clear."},
                     "interest": {
                         "type": "string",
-                        "enum": ["AI Development", "Web & App Development", "Research Writing", "UI/UX Design", "Consultation"]
+                        "enum": ["AI Development", "Web & App Development", "AI Integration & RAG", "UI/UX Design", "Consultation"]
                     },
                     "message": {"type": "string", "description": "Their message. Empty string '' to clear."}
                 }
@@ -164,7 +164,7 @@ TOOLS = [
                 "properties": {
                     "tag": {
                         "type": "string",
-                        "enum": ["all", "AI Platform", "Agentic AI", "Web App", "Mobile App", "Automation", "Research"]
+                        "enum": ["all", "AI Platform", "Agentic AI", "Web App", "Mobile App", "Automation", "AI Search"]
                     }
                 },
                 "required": ["tag"]
