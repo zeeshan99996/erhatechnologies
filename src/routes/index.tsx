@@ -35,6 +35,9 @@ export const Route = createFileRoute("/")({
         content: "AI development, web & app engineering, agentic systems and automation.",
       },
     ],
+    links: [
+      { rel: "canonical", href: "https://www.erhatechnologies.com/" }
+    ],
   }),
   component: HomePage,
 });

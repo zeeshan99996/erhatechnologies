@@ -13,6 +13,9 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact Erha Technologies" },
       { property: "og:description", content: "Let's build the future together." },
     ],
+    links: [
+      { rel: "canonical", href: "https://www.erhatechnologies.com/contact" }
+    ],
   }),
   component: ContactPage,
 });

@@ -439,7 +439,7 @@ export function AgenticChatbot() {
           ${isOpen ? "scale-0 opacity-0 pointer-events-none" : "scale-100 opacity-100"}`}
         aria-label="Open Erha AI Agent"
       >
-        <img src="/chatbot-icon.png" alt="Chatbot Icon" className="w-full h-full object-cover" />
+        <img src="/chatbot-icon.webp" alt="Chatbot Icon" className="w-full h-full object-cover" />
       </button>
 
       {/* Chat Window */}
@@ -464,7 +464,7 @@ export function AgenticChatbot() {
             <div className="relative">
               <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
                 <img
-                  src="/chatbot-icon.png"
+                  src="/chatbot-icon.webp"
                   alt="Chatbot Icon"
                   className="w-full h-full object-cover"
                 />

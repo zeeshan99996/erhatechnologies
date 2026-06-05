@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import muzammilImg from "@/assets/team-muzammil.jpg";
-import abdulRehmanImg from "@/assets/team-abdul-rehman.png";
+import abdulRehmanImg from "@/assets/team-abdul-rehman.webp";
 import salmanImg from "@/assets/team-salman.jpg";
 import zeeshanImg from "@/assets/team-zeeshan.jpg";
 import ilyasResearchImg from "@/assets/team-ilyas-research.jpg";
@@ -10,7 +10,7 @@ import sadiaResearchImg from "@/assets/team-sadia-research.png";
 import samiaResearchImg from "@/assets/team-samia-research.jpg";
 import ummeaimanResearchImg from "@/assets/team-ummeaiman-research.jpg";
 import zunairaResearchImg from "@/assets/team-zunaira-research.png";
-import qamarImg from "@/assets/team-qamar.png";
+import qamarImg from "@/assets/team-qamar.webp";
 import { useState } from "react";
 import {
   Dialog,
@@ -33,6 +33,9 @@ export const Route = createFileRoute("/team")({
         property: "og:description",
         content: "The minds building the future of AI at Erha Technologies.",
       },
+    ],
+    links: [
+      { rel: "canonical", href: "https://www.erhatechnologies.com/team" }
     ],
   }),
   component: TeamPage,

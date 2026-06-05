@@ -15,6 +15,9 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About Erha Technologies" },
       { property: "og:description", content: "AI-driven digital innovation from Pakistan." },
     ],
+    links: [
+      { rel: "canonical", href: "https://www.erhatechnologies.com/about" }
+    ],
   }),
   component: AboutPage,
 });

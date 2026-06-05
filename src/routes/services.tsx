@@ -13,6 +13,9 @@ export const Route = createFileRoute("/services")({
       { property: "og:title", content: "Services — Erha Technologies" },
       { property: "og:description", content: "End-to-end AI and digital engineering services." },
     ],
+    links: [
+      { rel: "canonical", href: "https://www.erhatechnologies.com/services" }
+    ],
   }),
   component: ServicesPage,
 });
