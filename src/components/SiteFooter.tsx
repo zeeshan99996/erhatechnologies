@@ -62,7 +62,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border py-5 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Erha Technologies — Founded by Ilyas Shahid, Pakistan 🇵🇰
+        © {new Date().getFullYear()} Erha Technologies — Led by CEO Ilyas Shahid, Pakistan 🇵🇰
       </div>
     </footer>
   );

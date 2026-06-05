@@ -665,7 +665,7 @@ function HomePage() {
             <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6 font-display font-bold tracking-tight leading-none text-white">
               We Engineer
               <br />
-              <span className="text-gradient drop-shadow-[0_0_30px_rgba(118,185,0,0.2)] font-extrabold">
+              <span className="text-gradient drop-shadow-[0_0_30px_rgba(99,235,249,0.3)] font-extrabold">
                 Production-Grade AI Systems
               </span>
               <br />
