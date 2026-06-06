@@ -22,7 +22,7 @@ export function SiteHeader() {
             <img
               src={erhaLogo}
               alt="Erha Technologies"
-              className="h-[52px] w-auto transition-all duration-300 group-hover:scale-105"
+              className="h-[42px] w-auto transition-all duration-300 group-hover:scale-105"
               style={{
                 filter:
                   "drop-shadow(0 0 8px color-mix(in oklab, var(--neon-cyan) 60%, transparent))",
@@ -87,7 +87,7 @@ export function SiteHeader() {
                 <img
                   src={erhaLogo}
                   alt="Erha"
-                  className="h-12 w-auto"
+                  className="h-[38px] w-auto"
                   style={{
                     filter:
                       "drop-shadow(0 0 8px color-mix(in oklab, var(--neon-cyan) 60%, transparent))",
