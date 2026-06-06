@@ -25,7 +25,7 @@ export function SiteHeader() {
               className="h-[52px] w-auto transition-all duration-300 group-hover:scale-105"
               style={{
                 filter:
-                  "brightness(0) saturate(100%) invert(70%) sepia(85%) saturate(450%) hue-rotate(160deg) brightness(110%) contrast(95%) drop-shadow(0 0 8px color-mix(in oklab, var(--neon-cyan) 70%, transparent))",
+                  "drop-shadow(0 0 8px color-mix(in oklab, var(--neon-cyan) 60%, transparent))",
               }}
             />
           </Link>
@@ -90,7 +90,7 @@ export function SiteHeader() {
                   className="h-12 w-auto"
                   style={{
                     filter:
-                      "brightness(0) saturate(100%) invert(70%) sepia(85%) saturate(450%) hue-rotate(160deg)",
+                      "drop-shadow(0 0 8px color-mix(in oklab, var(--neon-cyan) 60%, transparent))",
                   }}
                 />
               </Link>
