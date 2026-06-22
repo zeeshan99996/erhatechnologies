@@ -12,10 +12,6 @@ import {
   RotateCw,
   Terminal,
   CheckCircle2,
-  ChevronRight,
-  ChevronLeft,
-  Quote,
-  Star,
   Activity,
   Server,
   Database,
@@ -802,9 +798,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <TestimonialsSlider />
-
       {/* CTA */}
       <section className="px-4 sm:px-6 py-16 sm:py-24 text-center max-w-4xl mx-auto">
         <h2 className="font-display text-3xl sm:text-4xl md:text-6xl mb-5 sm:mb-6 font-bold text-white">
@@ -824,122 +817,4 @@ function HomePage() {
   );
 }
 
-const testimonials = [
-  {
-    quote: "Erha Technologies completely transformed our customer service operations. Their multi-agent RPA system reduced our manual handling times by 84% in under three weeks.",
-    author: "Sarah Jenkins",
-    role: "COO",
-    company: "OmniRetails",
-    location: "USA",
-  },
-  {
-    quote: "The cognitive RAG system they engineered for our research repository is incredibly fast and accurate. Our scientists can now retrieve complex clinical data in seconds.",
-    author: "Dr. Marcus Vance",
-    role: "VP of Tech",
-    company: "BioGen",
-    location: "UK",
-  },
-  {
-    quote: "Working with Ilyas and his engineering team was a phenomenal experience. Their model fine-tuning reduced our API token costs by 60% while maintaining accuracy.",
-    author: "Faisal Al-Suwaidi",
-    role: "Director of AI",
-    company: "Apex Labs",
-    location: "UAE",
-  },
-];
 
-function TestimonialsSlider() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const next = () => setIndex((prev) => (prev + 1) % testimonials.length);
-  const prev = () => setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-
-  return (
-    <section className="px-4 sm:px-6 py-16 sm:py-20 max-w-5xl mx-auto border-t border-white/5 relative">
-      <div className="text-center mb-12">
-        <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-white">
-          Client <span className="text-gradient">Success Stories</span>
-        </h2>
-        <p className="text-sm text-muted-foreground mt-3">
-          See how companies worldwide scale their operations using our advanced AI solutions.
-        </p>
-      </div>
-
-      <div className="relative glass-strong rounded-3xl p-8 md:p-12 overflow-hidden border border-[var(--neon-purple)]/10">
-        <div
-          className="orb"
-          style={{
-            width: 300,
-            height: 300,
-            background: "var(--neon-purple)",
-            top: -150,
-            right: -150,
-            opacity: 0.08,
-          }}
-        />
-        <div className="relative flex flex-col items-center text-center">
-          <Quote className="text-[var(--neon-cyan)] opacity-40 mb-6" size={40} />
-          
-          <div className="min-h-[140px] flex items-center justify-center">
-            <p className="text-base sm:text-lg md:text-xl text-foreground font-medium leading-relaxed italic max-w-3xl animate-fade-in" key={index}>
-              &ldquo;{testimonials[index].quote}&rdquo;
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-col items-center">
-            <div className="flex gap-1 mb-2">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={14} className="fill-[var(--neon-cyan)] text-[var(--neon-cyan)]" />
-              ))}
-            </div>
-            <h4 className="font-display font-bold text-white tracking-wide">
-              {testimonials[index].author}
-            </h4>
-            <p className="text-xs text-muted-foreground mt-1">
-              {testimonials[index].role} &bull; {testimonials[index].company} ({testimonials[index].location})
-            </p>
-          </div>
-        </div>
-
-        {/* Navigation Controls */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 flex justify-between pointer-events-none">
-          <button
-            onClick={prev}
-            className="w-10 h-10 rounded-full glass hover:bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white transition pointer-events-auto cursor-pointer"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={next}
-            className="w-10 h-10 rounded-full glass hover:bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white transition pointer-events-auto cursor-pointer"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-
-        {/* Indicator dots */}
-        <div className="flex justify-center gap-1.5 mt-8">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setIndex(i)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                i === index ? "bg-[var(--neon-cyan)] w-6" : "bg-white/20"
-              }`}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
