@@ -59,10 +59,37 @@ export const Route = createRootRoute({
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Erha Technologies",
+    "url": "https://www.erhatechnologies.com/",
+    "logo": "https://www.erhatechnologies.com/assets/erha-logo-DnCVaBCS.png",
+    "image": "https://www.erhatechnologies.com/assets/erha-logo-DnCVaBCS.png",
+    "description": "Erha Technologies builds production-grade AI systems, multi-agent workflows, and high-performance digital products.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #76, Chungi #6",
+      "addressLocality": "Multan",
+      "addressRegion": "Punjab",
+      "postalCode": "60000",
+      "addressCountry": "PK"
+    },
+    "telephone": "0302 3333499",
+    "email": "erhatechnologiesofficial@gmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/company/erha-technologies/"
+    ]
+  };
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         {children}
