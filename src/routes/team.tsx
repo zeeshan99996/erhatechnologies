@@ -49,6 +49,7 @@ const teamMembers = [
     initials: "IS",
     image: ilyasResearchImg,
     accent: "purple",
+    category: "Leadership",
     bio: "CEO leading Erha Technologies. Architect of our enterprise AI strategy, merging advanced machine learning research with robust engineering pipelines to deliver scalable business solutions. Experienced in orchestrating high-performing technology teams and guiding digital transformation initiatives for global enterprises. Passionate about driving innovation and shaping the future of artificial intelligence in commerce and technology.",
     skills: ["System Architecture", "AI Strategy", "Executive Leadership", "Business Development", "Operations Scaling"],
     tech: ["PyTorch", "Transformers", "Python", "Cloud Infrastructure"],
@@ -59,6 +60,7 @@ const teamMembers = [
     initials: "FJ",
     image: faizResearchImg,
     accent: "purple",
+    category: "Leadership",
     bio: "Engineering Manager guiding technical operations and systems engineering. Specialized in cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines. Committed to bridging the gap between state-of-the-art AI research and production-grade software architecture. Focuses on ensuring reliability, security, and scalability across all digital product deployments.",
     skills: ["MLOps & Scaling", "AI Systems Engineering", "Cloud Infrastructure", "Technical Management", "Security & Compliance"],
     tech: ["Python", "PyTorch", "Transformers", "GitHub Enterprise"],
@@ -71,6 +73,7 @@ const teamMembers = [
     initials: "MSA",
     image: salmanImg,
     accent: "cyan",
+    category: "AI Engineering",
     bio: "AI and Data Science professional with expertise in Agentic AI, AI Automation, and AI Research. Experienced in building intelligent systems, Agents, automating workflows, and developing data-driven solutions that enhance business performance. Passionate about applying cutting-edge AI technologies to solve complex challenges and drive innovation.",
     skills: [
       "AI Automation",
@@ -86,6 +89,7 @@ const teamMembers = [
     initials: "MS",
     image: muzammilImg,
     accent: "cyan",
+    category: "AI Engineering",
     bio: "AI Engineer with experience in Generative AI, LLM-powered applications, and AI-driven business solutions. Skilled in developing intelligent systems, prompt engineering, and workflow automation. Experienced in data annotation and AI model development to support high-quality machine learning outcomes. Passionate about leveraging cutting-edge AI technologies to solve complex challenges. Dedicated to continuous learning and innovation in the field of artificial intelligence.",
     skills: [
       "LLM Integration",
@@ -102,6 +106,7 @@ const teamMembers = [
     initials: "AR",
     image: abdulRehmanImg,
     accent: "cyan",
+    category: "AI Engineering",
     bio: "Junior AI Engineer focused on developing foundational data pipelines, vector databases, and system integration workflows. Skilled in constructing data pre-processing scripts, fine-tuning retrieval configurations, and implementing automated testing frameworks. Dedicated to optimizing workflow reliability and collaborating with senior engineers to deploy robust machine learning systems.",
     skills: ["Data Pipelines", "Prompt Engineering", "System Integration", "Vector Databases", "API Testing"],
     tech: ["Hugging Face", "Python", "Docker", "PostgreSQL"],
@@ -112,6 +117,7 @@ const teamMembers = [
     initials: "MZ",
     image: zeeshanImg,
     accent: "cyan",
+    category: "AI Engineering",
     imagePosition: "object-top",
     bio: "Junior AI Engineer specializing in front-end application architectures, interactive user interfaces, and dynamic data visualization dashboards. Proficient in modern web frameworks, state management libraries, and responsive web design. Passionate about translating complex AI models into clean, user-friendly frontend experiences that deliver high visual impact.",
     skills: ["Frontend Development", "State Management", "UI/UX Aesthetics", "React & TypeScript", "API Integration"],
@@ -123,6 +129,7 @@ const teamMembers = [
     initials: "MQ",
     image: qamarImg,
     accent: "cyan",
+    category: "Research & Data Science",
     bio: "AI Researcher analyzing state-of-the-art machine learning models, model fine-tuning methodologies, and performance validation criteria. Skilled in deep learning research, dataset curation, hyperparameter optimization, and evaluating neural network behaviors. Focused on transitioning advanced research concepts into practical, deployable algorithmic solutions.",
     skills: ["Deep Learning", "Model Fine-Tuning", "Hyperparameter Tuning", "Data Curation", "Performance Evaluation"],
     tech: ["Jupyter", "Pandas", "PyTorch", "TensorBoard"],
@@ -135,6 +142,7 @@ const teamMembers = [
     initials: "MR",
     image: ramzanResearchImg,
     accent: "purple",
+    category: "Research & Data Science",
     bio: "Data Scientist specializing in predictive modeling, telemetry analytics, and advanced machine learning clustering pipelines. Skilled in developing regression models, mathematical validation frameworks, and translating raw data streams into actionable operational insights. Committed to utilizing data engineering and statistical analysis to enhance AI decision-making systems.",
     skills: ["Predictive Modeling", "Clustering Algorithms", "AI Telemetry", "Statistical Analysis", "Data Science"],
     tech: ["NumPy", "Pandas", "Scikit-Learn", "R"],
@@ -145,6 +153,7 @@ const teamMembers = [
     initials: "SS",
     image: sadiaResearchImg,
     accent: "purple",
+    category: "Research & Data Science",
     bio: "Data Analyst focused on performing complex data synthesis, telemetry trend evaluations, and developing AI performance visualization dashboards. Skilled in querying databases, cleaning unstructured data, and constructing high-impact business intelligence reports. Dedicated to helping engineering teams monitor AI system efficiency and user engagement through metrics.",
     skills: ["Data Wrangling", "Trend Analysis", "Performance Dashboarding", "SQL & Database Querying", "BI Reporting"],
     tech: ["SQL", "PowerBI", "Excel", "Tableau"],
@@ -155,6 +164,7 @@ const teamMembers = [
     initials: "SA",
     image: samiaResearchImg,
     accent: "purple",
+    category: "Research & Data Science",
     bio: "Cloud Database Engineer configuring distributed database schemas, vector database indexing, and storage optimizations for AI model hosting. Experienced in cloud storage replication, database clustering, and latency reduction techniques to support real-time retrieval-augmented generation. Dedicated to maintaining high-availability database architectures.",
     skills: ["Distributed Storage", "Vector Indexing", "Latency Optimization", "Cloud Database Management", "NoSQL & SQL Systems"],
     tech: ["AWS RDS", "Pinecone", "Redis", "PostgreSQL"],
@@ -165,6 +175,7 @@ const teamMembers = [
     initials: "UA",
     image: ummeaimanResearchImg,
     accent: "purple",
+    category: "Research & Data Science",
     bio: "AI Researcher exploring computational biology, genetic sequence analysis, and neural bioinformatics datasets. Focused on utilizing large language models and machine learning pipelines to parse biochemical data structures, identify biological markers, and accelerate genomic research. Dedicated to advancing intersectional research in bioinformatics and deep learning.",
     skills: ["Bioinformatics", "Neural Sequences", "Computational Biology", "Genomic Data Analytics", "Scientific Research"],
     tech: ["BLAST", "Biopython", "R", "NCBI Entrez"],
@@ -175,6 +186,7 @@ const teamMembers = [
     initials: "ZN",
     image: zunairaResearchImg,
     accent: "purple",
+    category: "Research & Data Science",
     bio: "AI Researcher specializing in Natural Language Processing (NLP) architectures, semantic language models, and machine translation transformers. Skilled in text tokenization, sentiment analysis pipelines, prompt parsing, and semantic alignment checks. Dedicated to building conversational agents and optimizing linguistic understanding in generative models.",
     skills: ["NLP Architectures", "Semantic Analysis", "Translation Transformers", "Language Modeling", "Text Parsing"],
     tech: ["NLTK", "SpaCy", "Hugging Face", "Python"],
@@ -206,6 +218,7 @@ const resolveImage = (imageStr: string) => {
 function TeamPage() {
   const [selectedMember, setSelectedMember] = useState<any | null>(null);
   const [teamList, setTeamList] = useState<any[]>(teamMembers);
+  const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -235,6 +248,23 @@ function TeamPage() {
     }
   }, []);
 
+  const categories = ["All", "Leadership", "AI Engineering", "Research & Data Science"];
+
+  const getMemberCategory = (m: any) => {
+    if (m.category) return m.category;
+    if (m.role.toLowerCase().includes("ceo") || m.role.toLowerCase().includes("manager")) {
+      return "Leadership";
+    }
+    if (m.accent === "cyan") {
+      return "AI Engineering";
+    }
+    return "Research & Data Science";
+  };
+
+  const filteredTeam = activeCategory === "All"
+    ? teamList
+    : teamList.filter(m => getMemberCategory(m) === activeCategory);
+
   return (
     <div className="px-6 py-24 md:py-28 max-w-7xl mx-auto animate-fade-up">
       <div className="text-center mb-16">
@@ -247,8 +277,25 @@ function TeamPage() {
         </p>
       </div>
 
+      {/* Category Tabs */}
+      <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 cursor-pointer ${
+              activeCategory === cat
+                ? "bg-[var(--neon-cyan)]/15 text-[var(--neon-cyan)] border border-[var(--neon-cyan)]/30 shadow-[0_0_15px_rgba(99,235,249,0.1)]"
+                : "bg-white/5 border border-white/5 text-muted-foreground hover:text-white hover:border-white/10"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-        {teamList.map((m) => {
+        {filteredTeam.map((m) => {
           const accentVar = m.accent === "cyan" ? "var(--neon-cyan)" : "var(--neon-purple)";
           return (
             <div
@@ -352,7 +399,7 @@ function TeamPage() {
                     CORE SKILLS
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
-                    {selectedMember.skills.map((s) => (
+                    {selectedMember.skills.map((s: string) => (
                       <span
                         key={s}
                         className="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white font-medium"

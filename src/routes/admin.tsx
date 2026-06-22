@@ -32,46 +32,71 @@ export const Route = createFileRoute("/admin")({
   component: AdminPage,
 });
 
-// Default Mock Data in case localStorage is empty
+// Default Mock Data matching projects.tsx
 const defaultProjects = [
   {
     title: "Neural Insight",
     tag: "AI Platform",
     desc: "Real-time analytics powered by transformer models.",
     color: "var(--neon-cyan)",
+    problem: "The client needed real-time telemetry anomaly detection processing on 100K+ concurrent data streams with <100ms processing latency.",
+    solution: "Implemented a custom transformer-based sequence processing pipeline with memory-mapped storage buffers and GPU inference optimization.",
+    metrics: ["Latency: <45ms", "Accuracy: 99.4%", "Throughput: 150K events/s"],
+    stack: ["PyTorch", "FastAPI", "Redis", "Docker", "CUDA"]
   },
   {
     title: "Agent Forge",
     tag: "Agentic AI",
     desc: "Build, deploy, and orchestrate autonomous AI agents.",
     color: "var(--neon-purple)",
+    problem: "Organizations struggled to orchestrate multi-agent autonomous tasks that require recursive reasoning, tool execution, and self-correction loops.",
+    solution: "Designed a multi-agent orchestration framework utilizing semantic routing, hierarchical state machines, and dynamic context window compression.",
+    metrics: ["Task Success: 92.1%", "API Cost: -40%", "Exec Time: -65%"],
+    stack: ["CrewAI", "LangGraph", "LlamaIndex", "ChromaDB", "FastAPI"]
   },
   {
     title: "FinFlow",
     tag: "Web App",
     desc: "Next-gen finance dashboard with predictive forecasting.",
     color: "var(--neon-blue)",
+    problem: "The financial operations team required predictive forecasting visual tools to project complex treasury flows across 15 global accounts.",
+    solution: "Engineered a high-performance React dashboard featuring a WebAssembly charting engine and localized predictive auto-regressive forecasting models.",
+    metrics: ["Render Speed: 120 FPS", "Accuracy: 96.8% (30d)", "Initial Load: 1.2s"],
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "WebAssembly", "Rust"]
   },
   {
     title: "Lumen Chat",
     tag: "Mobile App",
     desc: "Cross-platform messaging with on-device AI.",
     color: "var(--neon-cyan)",
+    problem: "Providing secure, enterprise-grade instant messaging with high-quality intelligence without relying on cloud APIs or exposing messages.",
+    solution: "Created a cross-platform mobile application integrating quantized on-device small language models (SLMs) running locally on phone hardware.",
+    metrics: ["Generation: 25 tok/s", "RAM Footprint: <450MB", "Data Security: 100% Local"],
+    stack: ["Flutter", "Llama.cpp", "SQLite", "Rust", "Dart"]
   },
   {
     title: "AutoPilot RPA",
     tag: "Automation",
     desc: "Workflow automation across 200+ SaaS tools.",
     color: "var(--neon-purple)",
+    problem: "Manual data migration and workflow execution across legacy ERP databases and modern SaaS APIs wasted thousands of engineering hours.",
+    solution: "Developed a distributed workflow automation system with self-healing selenium pipelines, fallback selectors, and webhook listener nodes.",
+    metrics: ["Effort Saved: 85%", "System Uptime: 99.98%", "Integrations: 200+ SaaS"],
+    stack: ["Node.js", "RabbitMQ", "Selenium", "GraphQL", "Docker"]
   },
   {
     title: "OmniSearch",
     tag: "AI Search",
     desc: "Cognitive search system powered by RAG and semantic routing.",
     color: "var(--neon-blue)",
+    problem: "Retrieving relevant engineering standards across 5 million internal documentation files was slow and returned irrelevant search hits.",
+    solution: "Built a semantic cognitive search engine powered by dense-sparse hybrid vector indexing, metadata filtering, and LLM auto-rerank layers.",
+    metrics: ["Search Speed: <120ms", "MRR Score: 0.94", "User Adoption: 91%"],
+    stack: ["LlamaIndex", "Qdrant", "Elasticsearch", "FastAPI", "Python"]
   },
 ];
 
+// Default Mock Data matching team.tsx
 const defaultTeam = [
   {
     name: "Ilyas Shahid",
@@ -79,6 +104,7 @@ const defaultTeam = [
     initials: "IS",
     image: "__ilyasResearchImg__",
     accent: "purple",
+    category: "Leadership",
     bio: "CEO leading Erha Technologies. Architect of our enterprise AI strategy, merging advanced machine learning research with robust engineering pipelines to deliver scalable business solutions. Experienced in orchestrating high-performing technology teams and guiding digital transformation initiatives for global enterprises. Passionate about driving innovation and shaping the future of artificial intelligence in commerce and technology.",
     skills: ["System Architecture", "AI Strategy", "Executive Leadership", "Business Development", "Operations Scaling"],
     tech: ["PyTorch", "Transformers", "Python", "Cloud Infrastructure"],
@@ -89,6 +115,7 @@ const defaultTeam = [
     initials: "FJ",
     image: "__faizResearchImg__",
     accent: "purple",
+    category: "Leadership",
     bio: "Engineering Manager guiding technical operations and systems engineering. Specialized in cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines. Committed to bridging the gap between state-of-the-art AI research and production-grade software architecture. Focuses on ensuring reliability, security, and scalability across all digital product deployments.",
     skills: ["MLOps & Scaling", "AI Systems Engineering", "Cloud Infrastructure", "Technical Management", "Security & Compliance"],
     tech: ["Python", "PyTorch", "Transformers", "GitHub Enterprise"],
@@ -99,6 +126,7 @@ const defaultTeam = [
     initials: "MSA",
     image: "__salmanImg__",
     accent: "cyan",
+    category: "AI Engineering",
     bio: "AI and Data Science professional with expertise in Agentic AI, AI Automation, and AI Research. Experienced in building intelligent systems, Agents, automating workflows, and developing data-driven solutions that enhance business performance. Passionate about applying cutting-edge AI technologies to solve complex challenges and drive innovation.",
     skills: ["AI Automation", "AI Research", "Agentic Orchestration", "Data Science"],
     tech: ["LangChain", "CrewAI", "LlamaIndex", "Pinecone"],
@@ -109,6 +137,7 @@ const defaultTeam = [
     initials: "MS",
     image: "__muzammilImg__",
     accent: "cyan",
+    category: "AI Engineering",
     bio: "AI Engineer with experience in Generative AI, LLM-powered applications, and AI-driven business solutions. Skilled in developing intelligent systems, prompt engineering, and workflow automation. Experienced in data annotation and AI model development to support high-quality machine learning outcomes. Passionate about leveraging cutting-edge AI technologies to solve complex challenges. Dedicated to continuous learning and innovation in the field of artificial intelligence.",
     skills: ["LLM Integration", "Full Stack Development", "Machine Learning", "Neural Networks", "AI Automation"],
     tech: ["TensorFlow", "Scikit-Learn", "Python", "FastAPI"],
@@ -119,9 +148,10 @@ const defaultTeam = [
     initials: "AR",
     image: "__abdulRehmanImg__",
     accent: "cyan",
-    bio: "Junior AI Engineer assisting in the development and optimization of machine learning pipelines, RAG integration systems, and data analytics dashboards. Adept at preprocessing datasets, refining agent prompts, and testing backend code integrations. Eager to explore new AI research paradigms and contribute to robust, full-stack client solutions under senior engineering leadership.",
-    skills: ["Data Engineering", "Model Testing", "Python Scripting", "API Integration"],
-    tech: ["Python", "Flask", "Pandas", "SQL"],
+    category: "AI Engineering",
+    bio: "Junior AI Engineer focused on developing foundational data pipelines, vector databases, and system integration workflows. Skilled in constructing data pre-processing scripts, fine-tuning retrieval configurations, and implementing automated testing frameworks. Dedicated to optimizing workflow reliability and collaborating with senior engineers to deploy robust machine learning systems.",
+    skills: ["Data Pipelines", "Prompt Engineering", "System Integration", "Vector Databases", "API Testing"],
+    tech: ["Hugging Face", "Python", "Docker", "PostgreSQL"],
   },
   {
     name: "Muhammad Zeeshan",
@@ -129,19 +159,22 @@ const defaultTeam = [
     initials: "MZ",
     image: "__zeeshanImg__",
     accent: "cyan",
-    bio: "Junior AI Engineer focusing on frontend application interfaces, interactive UI designs, and real-time visualization dashboards. Proficient in React and modern CSS systems to build clean, responsive, and intuitive web experiences. Works closely with AI developers to connect backend LLM pipelines to high-performance client-side applications.",
-    skills: ["Frontend Engineering", "UI/UX Design", "Responsive Layouts", "State Management"],
-    tech: ["React.js", "TypeScript", "Tailwind CSS", "Git"],
+    category: "AI Engineering",
+    imagePosition: "object-top",
+    bio: "Junior AI Engineer specializing in front-end application architectures, interactive user interfaces, and dynamic data visualization dashboards. Proficient in modern web frameworks, state management libraries, and responsive web design. Passionate about translating complex AI models into clean, user-friendly frontend experiences that deliver high visual impact.",
+    skills: ["Frontend Development", "State Management", "UI/UX Aesthetics", "React & TypeScript", "API Integration"],
+    tech: ["TanStack Start", "React 19", "Tailwind CSS", "Vite"],
   },
   {
     name: "Muhammad Qamar",
     role: "AI Researcher",
     initials: "MQ",
     image: "__qamarImg__",
-    accent: "purple",
-    bio: "AI Researcher analyzing state-of-the-art machine learning models, model fine-tuning methodologies, and performance validation criteria. Skilled in deep learning research, dataset curation, and hyperparameter optimization, he focuses on transitioning advanced research concepts into practical, deployable algorithmic solutions.",
-    skills: ["Deep Learning", "Model Evaluation", "Research Methodology", "Dataset Engineering"],
-    tech: ["PyTorch", "HuggingFace", "Python", "Numpy"],
+    accent: "cyan",
+    category: "Research & Data Science",
+    bio: "AI Researcher analyzing state-of-the-art machine learning models, model fine-tuning methodologies, and performance validation criteria. Skilled in deep learning research, dataset curation, hyperparameter optimization, and evaluating neural network behaviors. Focused on transitioning advanced research concepts into practical, deployable algorithmic solutions.",
+    skills: ["Deep Learning", "Model Fine-Tuning", "Hyperparameter Tuning", "Data Curation", "Performance Evaluation"],
+    tech: ["Jupyter", "Pandas", "PyTorch", "TensorBoard"],
   },
   {
     name: "Muhammad Ramzan",
@@ -149,9 +182,10 @@ const defaultTeam = [
     initials: "MR",
     image: "__ramzanResearchImg__",
     accent: "purple",
-    bio: "Data Scientist specializing in predictive modeling, telemetry analytics, and advanced machine learning clustering pipelines. Pursuing a Master's in Data Science and recipient of the UI GREAT Scholarship, he has contributed deep learning research in macular degeneration (ARMD) classification to IEEE and IAES journals.",
-    skills: ["Predictive Modeling", "Clustering Pipelines", "Statistical Analysis", "Research Writing"],
-    tech: ["R", "Python", "Pandas", "Scikit-Learn"],
+    category: "Research & Data Science",
+    bio: "Data Scientist specializing in predictive modeling, telemetry analytics, and advanced machine learning clustering pipelines. Skilled in developing regression models, mathematical validation frameworks, and translating raw data streams into actionable operational insights. Committed to utilizing data engineering and statistical analysis to enhance AI decision-making systems.",
+    skills: ["Predictive Modeling", "Clustering Algorithms", "AI Telemetry", "Statistical Analysis", "Data Science"],
+    tech: ["NumPy", "Pandas", "Scikit-Learn", "R"],
   },
   {
     name: "Sadia Sadiq",
@@ -159,9 +193,10 @@ const defaultTeam = [
     initials: "SS",
     image: "__sadiaResearchImg__",
     accent: "purple",
-    bio: "Data Analyst focused on complex data synthesis, telemetry trend evaluations, and visual performance dashboards. Holding an MS in Mathematics from NUST, she has conducted research in mathematical solitons and Solitary wave equations published in Results in Physics.",
-    skills: ["Data Synthesis", "Trend Analysis", "Mathematical Modeling", "Visual Dashboards"],
-    tech: ["Python", "MATLAB", "SQL", "Tableau"],
+    category: "Research & Data Science",
+    bio: "Data Analyst focused on performing complex data synthesis, telemetry trend evaluations, and developing AI performance visualization dashboards. Skilled in querying databases, cleaning unstructured data, and constructing high-impact business intelligence reports. Dedicated to helping engineering teams monitor AI system efficiency and user engagement through metrics.",
+    skills: ["Data Wrangling", "Trend Analysis", "Performance Dashboarding", "SQL & Database Querying", "BI Reporting"],
+    tech: ["SQL", "PowerBI", "Excel", "Tableau"],
   },
   {
     name: "Samia Akash",
@@ -169,9 +204,10 @@ const defaultTeam = [
     initials: "SA",
     image: "__samiaResearchImg__",
     accent: "purple",
-    bio: "Cloud Database Engineer designing distributed database schemas, vector indexing configurations, and storage optimizations. Highly proficient in SQL systems and cloud architecture, she manages technical documentation and database deployments to enable real-time retrieval-augmented generation.",
-    skills: ["Database Design", "Vector Indexing", "Cloud Architecture", "Technical Writing"],
-    tech: ["PostgreSQL", "MongoDB", "AWS", "Pinecone"],
+    category: "Research & Data Science",
+    bio: "Cloud Database Engineer configuring distributed database schemas, vector database indexing, and storage optimizations for AI model hosting. Experienced in cloud storage replication, database clustering, and latency reduction techniques to support real-time retrieval-augmented generation. Dedicated to maintaining high-availability database architectures.",
+    skills: ["Distributed Storage", "Vector Indexing", "Latency Optimization", "Cloud Database Management", "NoSQL & SQL Systems"],
+    tech: ["AWS RDS", "Pinecone", "Redis", "PostgreSQL"],
   },
   {
     name: "Umm-e-Aiman",
@@ -179,9 +215,10 @@ const defaultTeam = [
     initials: "UA",
     image: "__ummeaimanResearchImg__",
     accent: "purple",
-    bio: "AI Researcher focusing on computational biology, biochemistry analysis, and bioinformatic pipelines. Currently pursuing an M.Phil. in Biochemistry, she works with sequence database tools and deep learning parsing methodologies to analyze biochemical datasets.",
-    skills: ["Computational Biology", "Sequence Database Tools", "Bioinformatics", "Data Curation"],
-    tech: ["Python", "Biopython", "Blast", "PDB"],
+    category: "Research & Data Science",
+    bio: "AI Researcher exploring computational biology, genetic sequence analysis, and neural bioinformatics datasets. Focused on utilizing large language models and machine learning pipelines to parse biochemical data structures, identify biological markers, and accelerate genomic research. Dedicated to advancing intersectional research in bioinformatics and deep learning.",
+    skills: ["Bioinformatics", "Neural Sequences", "Computational Biology", "Genomic Data Analytics", "Scientific Research"],
+    tech: ["BLAST", "Biopython", "R", "NCBI Entrez"],
   },
   {
     name: "Zunaira Naseem",
@@ -189,9 +226,10 @@ const defaultTeam = [
     initials: "ZN",
     image: "__zunairaResearchImg__",
     accent: "purple",
-    bio: "AI Researcher specializing in Natural Language Processing (NLP) architectures, translation models, and text tokenization. With a background in Corpus Linguistics, she utilizes semantic parsing, sentiment analysis pipelines, and text analysis tools (Antconc, Sketch Engine) to optimize linguistic understanding.",
-    skills: ["NLP Architectures", "Semantic Parsing", "Corpus Linguistics", "Sentiment Analysis"],
-    tech: ["Python", "NLTK", "SpaCy", "Antconc"],
+    category: "Research & Data Science",
+    bio: "AI Researcher specializing in Natural Language Processing (NLP) architectures, semantic language models, and machine translation transformers. Skilled in text tokenization, sentiment analysis pipelines, prompt parsing, and semantic alignment checks. Dedicated to building conversational agents and optimizing linguistic understanding in generative models.",
+    skills: ["NLP Architectures", "Semantic Analysis", "Translation Transformers", "Language Modeling", "Text Parsing"],
+    tech: ["NLTK", "SpaCy", "Hugging Face", "Python"],
   },
 ];
 
@@ -200,6 +238,10 @@ interface Project {
   tag: string;
   desc: string;
   color: string;
+  problem?: string;
+  solution?: string;
+  metrics?: string[];
+  stack?: string[];
 }
 
 interface TeamMember {
@@ -208,6 +250,7 @@ interface TeamMember {
   initials: string;
   image: string;
   accent: string;
+  category?: string;
   bio: string;
   skills: string[];
   tech: string[];
@@ -226,11 +269,15 @@ function AdminPage() {
   // Project modal states
   const [projectModal, setProjectModal] = useState<"add" | "edit" | null>(null);
   const [editProjectIdx, setEditProjectIdx] = useState<number | null>(null);
-  const [projectForm, setProjectForm] = useState<Project>({
+  const [projectForm, setProjectForm] = useState<any>({
     title: "",
     tag: "Agentic AI",
     desc: "",
-    color: "var(--neon-cyan)"
+    color: "var(--neon-cyan)",
+    problem: "",
+    solution: "",
+    metrics: "",
+    stack: ""
   });
 
   // Team member modal states
@@ -242,6 +289,7 @@ function AdminPage() {
     initials: "",
     image: "",
     accent: "cyan",
+    category: "AI Engineering",
     bio: "",
     skills: "",
     tech: ""
@@ -323,13 +371,27 @@ function AdminPage() {
       title: "",
       tag: "Agentic AI",
       desc: "",
-      color: "var(--neon-cyan)"
+      color: "var(--neon-cyan)",
+      problem: "",
+      solution: "",
+      metrics: "",
+      stack: ""
     });
     setProjectModal("add");
   };
 
   const openEditProject = (idx: number) => {
-    setProjectForm(projects[idx]);
+    const p = projects[idx];
+    setProjectForm({
+      title: p.title,
+      tag: p.tag,
+      desc: p.desc,
+      color: p.color,
+      problem: p.problem || "",
+      solution: p.solution || "",
+      metrics: p.metrics ? p.metrics.join(", ") : "",
+      stack: p.stack ? p.stack.join(", ") : ""
+    });
     setEditProjectIdx(idx);
     setProjectModal("edit");
   };
@@ -341,12 +403,26 @@ function AdminPage() {
       return;
     }
 
+    const metricsArray = projectForm.metrics ? projectForm.metrics.split(",").map((m: string) => m.trim()).filter((m: string) => m !== "") : [];
+    const stackArray = projectForm.stack ? projectForm.stack.split(",").map((s: string) => s.trim()).filter((s: string) => s !== "") : [];
+
+    const projectObject: Project = {
+      title: projectForm.title,
+      tag: projectForm.tag,
+      desc: projectForm.desc,
+      color: projectForm.color,
+      problem: projectForm.problem || "",
+      solution: projectForm.solution || "",
+      metrics: metricsArray,
+      stack: stackArray
+    };
+
     let updatedProjects = [...projects];
     if (projectModal === "add") {
-      updatedProjects.unshift(projectForm);
+      updatedProjects.unshift(projectObject);
       showNotification(`Project "${projectForm.title}" added successfully.`);
     } else if (projectModal === "edit" && editProjectIdx !== null) {
-      updatedProjects[editProjectIdx] = projectForm;
+      updatedProjects[editProjectIdx] = projectObject;
       showNotification(`Project "${projectForm.title}" updated successfully.`);
     }
 
@@ -364,6 +440,7 @@ function AdminPage() {
       initials: "",
       image: "",
       accent: "cyan",
+      category: "AI Engineering",
       bio: "",
       skills: "",
       tech: ""
@@ -379,6 +456,7 @@ function AdminPage() {
       initials: member.initials,
       image: member.image.startsWith("__") ? "" : member.image, // hide internal keyword markers
       accent: member.accent,
+      category: member.category || "AI Engineering",
       bio: member.bio,
       skills: member.skills.join(", "),
       tech: member.tech ? member.tech.join(", ") : ""
@@ -425,6 +503,7 @@ function AdminPage() {
       initials,
       image: imageValue || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
       accent: teamForm.accent,
+      category: teamForm.category || "AI Engineering",
       bio: teamForm.bio,
       skills: skillsArray,
       tech: techArray
@@ -763,8 +842,8 @@ function AdminPage() {
                     <th className="p-4">Initials</th>
                     <th className="p-4">Full Name</th>
                     <th className="p-4">Role/Designation</th>
+                    <th className="p-4">Category</th>
                     <th className="p-4">Accent</th>
-                    <th className="p-4">Skills</th>
                     <th className="p-4 text-right">Actions</th>
                   </tr>
                 </thead>
@@ -778,6 +857,7 @@ function AdminPage() {
                       </td>
                       <td className="p-4 font-bold text-white">{t.name}</td>
                       <td className="p-4 text-xs font-mono">{t.role}</td>
+                      <td className="p-4 text-xs font-semibold text-muted-foreground">{t.category || "AI Engineering"}</td>
                       <td className="p-4 text-xs font-mono">
                         <span className={`text-[10px] uppercase px-2 py-0.5 rounded-full ${
                           t.accent === "cyan" 
@@ -786,9 +866,6 @@ function AdminPage() {
                         }`}>
                           {t.accent}
                         </span>
-                      </td>
-                      <td className="p-4 text-xs text-muted-foreground max-w-xs truncate">
-                        {t.skills.join(", ")}
                       </td>
                       <td className="p-4 text-right">
                         <div className="inline-flex gap-2">
@@ -923,7 +1000,7 @@ function AdminPage() {
               {projectModal === "add" ? "Create New Project" : "Edit Project Registry"}
             </h3>
 
-            <form onSubmit={saveProject} className="space-y-4">
+            <form onSubmit={saveProject} className="space-y-4 max-h-[70vh] overflow-y-auto pr-1">
               <div>
                 <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
                   Project Title *
@@ -976,11 +1053,64 @@ function AdminPage() {
                 </label>
                 <textarea
                   required
-                  rows={3}
+                  rows={2}
                   value={projectForm.desc}
                   onChange={(e) => setProjectForm({ ...projectForm, desc: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-lg glass border border-white/10 text-xs focus:outline-none focus:border-[var(--neon-cyan)] resize-none bg-black/40 text-white"
                   placeholder="Summarize product purpose and technology stack details..."
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block font-mono">
+                    Performance Metrics (Comma-separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={projectForm.metrics || ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, metrics: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-lg glass border border-white/10 text-xs focus:outline-none focus:border-[var(--neon-cyan)] bg-black/40 text-white font-mono"
+                    placeholder="e.g. Latency: <45ms, Accuracy: 99.4%"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block font-mono">
+                    Tech Stack (Comma-separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={projectForm.stack || ""}
+                    onChange={(e) => setProjectForm({ ...projectForm, stack: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-lg glass border border-white/10 text-xs focus:outline-none focus:border-[var(--neon-cyan)] bg-black/40 text-white font-mono"
+                    placeholder="e.g. PyTorch, FastAPI, Redis, Docker"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                  The Challenge (Problem Statement)
+                </label>
+                <textarea
+                  rows={2}
+                  value={projectForm.problem || ""}
+                  onChange={(e) => setProjectForm({ ...projectForm, problem: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-lg glass border border-white/10 text-xs focus:outline-none focus:border-[var(--neon-cyan)] resize-none bg-black/40 text-white"
+                  placeholder="What business/engineering challenge needed solving..."
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                  The Solution
+                </label>
+                <textarea
+                  rows={2}
+                  value={projectForm.solution || ""}
+                  onChange={(e) => setProjectForm({ ...projectForm, solution: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-lg glass border border-white/10 text-xs focus:outline-none focus:border-[var(--neon-cyan)] resize-none bg-black/40 text-white"
+                  placeholder="How Erha engineered the anomaly platform/workflow/agent..."
                 />
               </div>
 
@@ -1043,7 +1173,7 @@ function AdminPage() {
                 </div>
               </div>
 
-              <div className="grid sm:grid-cols-3 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
                     Initials (Max 3 Chars)
@@ -1060,6 +1190,30 @@ function AdminPage() {
 
                 <div>
                   <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                    Avatar Image Upload
+                  </label>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-3 py-2.5 rounded-lg border border-white/10 text-xs font-semibold text-muted-foreground hover:text-white bg-white/5 inline-flex items-center justify-center gap-1.5 cursor-pointer w-full"
+                    >
+                      <Upload size={12} /> Upload File
+                    </button>
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleImageFileChange}
+                      accept="image/*"
+                      className="hidden"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
                     Theme Accent
                   </label>
                   <select
@@ -1074,24 +1228,17 @@ function AdminPage() {
 
                 <div>
                   <label className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
-                    Avatar Image Upload
+                    Employee Category
                   </label>
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="px-3 py-2.5 rounded-lg border border-white/10 text-xs font-semibold text-muted-foreground hover:text-white bg-white/5 inline-flex items-center justify-center gap-1.5 cursor-pointer w-full"
-                    >
-                      <Upload size={12} /> Upload
-                    </button>
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      onChange={handleImageFileChange}
-                      accept="image/*"
-                      className="hidden"
-                    />
-                  </div>
+                  <select
+                    value={teamForm.category}
+                    onChange={(e) => setTeamForm({ ...teamForm, category: e.target.value })}
+                    className="w-full px-3 py-2.5 rounded-lg glass border border-white/10 text-xs focus:outline-none focus:border-[var(--neon-cyan)] bg-black/40 text-white"
+                  >
+                    <option value="Leadership">Leadership</option>
+                    <option value="AI Engineering">AI Engineering</option>
+                    <option value="Research & Data Science">Research & Data Science</option>
+                  </select>
                 </div>
               </div>
 
@@ -1181,7 +1328,7 @@ function AdminPage() {
       {/* --- MODAL: CONFIRM DELETION --- */}
       {deleteConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in font-sans">
-          <div className="glass max-w-sm w-full rounded-2xl p-6 border border-white/10 shadow-2xl relative text-center">
+          <div className="glass max-sm w-full rounded-2xl p-6 border border-white/10 shadow-2xl relative text-center">
             <div className="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 mx-auto mb-4">
               <Trash2 size={20} />
             </div>
