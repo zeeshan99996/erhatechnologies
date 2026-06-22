@@ -182,7 +182,7 @@ function ContactPage() {
               icon: MapPin,
               label: "Address",
               value:
-                "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #76, Chungi #6, Multan, Pakistan",
+                "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #02, Chungi #6, Multan, Pakistan",
             },
           ].map((c) => (
             <div

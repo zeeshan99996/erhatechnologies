@@ -69,7 +69,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
     "description": "Erha Technologies builds production-grade AI systems, multi-agent workflows, and high-performance digital products.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #76, Chungi #6",
+      "streetAddress": "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #02, Chungi #6",
       "addressLocality": "Multan",
       "addressRegion": "Punjab",
       "postalCode": "60000",
