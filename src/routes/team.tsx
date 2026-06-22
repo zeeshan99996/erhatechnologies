@@ -11,7 +11,7 @@ import samiaResearchImg from "@/assets/team-samia-research.jpg";
 import ummeaimanResearchImg from "@/assets/team-ummeaiman-research.jpg";
 import zunairaResearchImg from "@/assets/team-zunaira-research.png";
 import qamarImg from "@/assets/team-qamar.webp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -181,8 +181,59 @@ const teamMembers = [
   },
 ];
 
+const imageMapper: Record<string, any> = {
+  "__ilyasResearchImg__": ilyasResearchImg,
+  "__faizResearchImg__": faizResearchImg,
+  "__salmanImg__": salmanImg,
+  "__muzammilImg__": muzammilImg,
+  "__abdulRehmanImg__": abdulRehmanImg,
+  "__zeeshanImg__": zeeshanImg,
+  "__qamarImg__": qamarImg,
+  "__ramzanResearchImg__": ramzanResearchImg,
+  "__sadiaResearchImg__": sadiaResearchImg,
+  "__samiaResearchImg__": samiaResearchImg,
+  "__ummeaimanResearchImg__": ummeaimanResearchImg,
+  "__zunairaResearchImg__": zunairaResearchImg,
+};
+
+const resolveImage = (imageStr: string) => {
+  if (imageStr && imageStr.startsWith("__") && imageStr in imageMapper) {
+    return imageMapper[imageStr];
+  }
+  return imageStr;
+};
+
 function TeamPage() {
-  const [selectedMember, setSelectedMember] = useState<(typeof teamMembers)[number] | null>(null);
+  const [selectedMember, setSelectedMember] = useState<any | null>(null);
+  const [teamList, setTeamList] = useState<any[]>(teamMembers);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("erha_team_members");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          const mapped = parsed.map((m: any) => ({
+            ...m,
+            image: resolveImage(m.image)
+          }));
+          setTeamList(mapped);
+        } catch (e) {
+          console.error("Failed to parse local team members cache", e);
+        }
+      } else {
+        // Initialize localStorage with string representations of images for the default array
+        const localStorageVersion = teamMembers.map(m => {
+          const imageKey = Object.keys(imageMapper).find(key => imageMapper[key] === m.image);
+          return {
+            ...m,
+            image: imageKey || m.image
+          };
+        });
+        localStorage.setItem("erha_team_members", JSON.stringify(localStorageVersion));
+      }
+    }
+  }, []);
 
   return (
     <div className="px-6 py-24 md:py-28 max-w-7xl mx-auto animate-fade-up">
@@ -197,7 +248,7 @@ function TeamPage() {
       </div>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-        {teamMembers.map((m) => {
+        {teamList.map((m) => {
           const accentVar = m.accent === "cyan" ? "var(--neon-cyan)" : "var(--neon-purple)";
           return (
             <div

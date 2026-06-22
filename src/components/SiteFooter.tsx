@@ -31,6 +31,11 @@ export function SiteFooter() {
                 Projects
               </Link>
             </li>
+            <li>
+              <Link to="/admin" className="hover:text-foreground">
+                Admin Panel
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

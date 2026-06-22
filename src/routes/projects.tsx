@@ -72,6 +72,22 @@ type Tag = (typeof ALL_TAGS)[number];
 
 function ProjectsPage() {
   const [activeTag, setActiveTag] = useState<Tag>("all");
+  const [projectList, setProjectList] = useState(projects);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("erha_projects");
+      if (stored) {
+        try {
+          setProjectList(JSON.parse(stored));
+        } catch (e) {
+          console.error("Failed to parse local projects cache", e);
+        }
+      } else {
+        localStorage.setItem("erha_projects", JSON.stringify(projects));
+      }
+    }
+  }, []);
 
   // Listen for AI agent filter commands
   useEffect(() => {
@@ -83,7 +99,7 @@ function ProjectsPage() {
     return () => window.removeEventListener("erha:filter-projects", handler);
   }, []);
 
-  const filtered = activeTag === "all" ? projects : projects.filter((p) => p.tag === activeTag);
+  const filtered = activeTag === "all" ? projectList : projectList.filter((p) => p.tag === activeTag);
 
   return (
     <div className="px-6 py-20 md:py-24 max-w-7xl mx-auto animate-fade-up">
