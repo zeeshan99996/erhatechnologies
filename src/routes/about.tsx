@@ -441,12 +441,12 @@ function AboutPage() {
           </p>
 
           {/* Category Tabs */}
-          <div className="flex flex-nowrap md:flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 overflow-x-auto scrollbar-none max-w-full py-1.5 px-1">
+          <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none w-full max-w-full py-2 px-1">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+                className={`px-3 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
                   activeCategory === cat
                     ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.15)]"
                     : "bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800/60"
