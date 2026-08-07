@@ -466,15 +466,11 @@ function AboutPage() {
 
       {/* Engineering & Research Team Member Grid */}
       <div className="mb-20" id="team">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-3">
-            <Users size={14} />
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-4 animate-fade-up drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
             Our Technical Team
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            Engineers, Researchers & Data Scientists
           </h2>
-          <p className="text-sm text-slate-300 mb-8">
+          <p className="text-sm sm:text-base text-slate-300 mb-8">
             Meet the multidisciplinary software developers, AI researchers, and cloud specialists driving our client solutions.
           </p>
 
