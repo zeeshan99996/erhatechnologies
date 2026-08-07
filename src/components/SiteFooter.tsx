@@ -79,7 +79,7 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="hover:text-cyan-400 transition-colors">
+                <Link to="/about" className="hover:text-cyan-400 transition-colors">
                   Leadership &amp; Team
                 </Link>
               </li>
