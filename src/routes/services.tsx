@@ -21,6 +21,11 @@ import {
   Globe,
   TrendingUp,
   Search,
+  ShoppingCart,
+  Server,
+  Cloud,
+  Layout,
+  RefreshCw,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -117,6 +122,42 @@ const serviceCategories = [
         title: "Mobile & Cross-Platform App Development",
         desc: "Native-quality cross-platform mobile applications for iOS and Android, built with Flutter or React Native for speed and reliability.",
         features: ["iOS & Android", "React Native / Flutter", "On-Device AI", "Offline-First Architecture"],
+      },
+      {
+        icon: ShoppingCart,
+        title: "E-commerce Development & Commerce Solutions",
+        desc: "High-conversion online stores and enterprise e-commerce platforms with multi-currency support, automated checkout, and real-time inventory sync.",
+        features: ["Headless Commerce", "Payment Gateways", "Storefront Optimization", "Inventory & Order Sync"],
+      },
+      {
+        icon: Layers,
+        title: "Custom SaaS & Product Development",
+        desc: "End-to-end SaaS product engineering from MVP to enterprise scale with multi-tenant architecture, automated subscription billing, and robust security.",
+        features: ["Multi-Tenant SaaS", "Subscription & Billing", "Role-Based Access Control", "Scalable Microservices"],
+      },
+      {
+        icon: Server,
+        title: "Backend, API & System Integration",
+        desc: "High-throughput backend architectures, API gateway pipelines, and seamless enterprise system integrations connecting cloud services with legacy platforms.",
+        features: ["RESTful & GraphQL APIs", "Legacy Middleware", "Event-Driven Pipelines", "System Interoperability"],
+      },
+      {
+        icon: Cloud,
+        title: "Cloud, DevOps & Infrastructure Engineering",
+        desc: "Cloud-native deployment, automated CI/CD pipelines, container orchestration, and multi-cloud infrastructure optimized for speed, security, and cost efficiency.",
+        features: ["Kubernetes & Docker", "Infrastructure as Code", "AWS / GCP / Azure", "Zero-Downtime Deploy"],
+      },
+      {
+        icon: Layout,
+        title: "UI/UX Design & Product Experience",
+        desc: "User-centered design systems, responsive web & mobile UI interfaces, and intuitive user experiences crafted to maximize product adoption and conversion.",
+        features: ["User Journey Mapping", "Interactive Wireframing", "Design Systems", "Usability & Accessibility"],
+      },
+      {
+        icon: RefreshCw,
+        title: "Software Modernization & Ongoing Support",
+        desc: "Transform legacy software systems with cloud-native migration, code refactoring, security patching, and continuous proactive maintenance support.",
+        features: ["Legacy Refactoring", "Cloud Migration", "Performance Tuning", "24/7 SLA & Maintenance"],
       },
     ],
   },
