@@ -15,8 +15,13 @@ import {
   ShieldCheck,
   Globe2,
   Code2,
+  Building2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import officeWorkspaceImg from "@/assets/office-workspace.jpg";
+import aiComputeClusterImg from "@/assets/ai-compute-cluster.jpg";
+import cloudControlCenterImg from "@/assets/cloud-control-center.jpg";
+import executiveLoungeImg from "@/assets/executive-lounge.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -426,48 +431,101 @@ function HomePage() {
         <InnovationDeck />
       </section>
 
-      {/* WHY CHOOSE ERHA TECHNOLOGIES */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto">
-        <div className="glass-strong rounded-3xl p-8 sm:p-12 md:p-16 border border-slate-800 shadow-2xl relative overflow-hidden">
-          <div className="relative grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <div className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-2 font-mono">
-                Why Work With Us
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-                Built for trust, precision, and <span className="text-gradient">performance</span>
-              </h2>
-              <p className="text-slate-300 text-base leading-relaxed mb-8">
-                We bridge advanced AI research with robust software engineering, delivering systems that accelerate digital transformation.
-              </p>
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300"
-              >
-                Learn more about our methodology <ArrowRight size={16} />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { title: "Cutting-edge AI", icon: Brain, desc: "SOTA Multi-Model Systems" },
-                { title: "SaaS & Web Excellence", icon: Code2, desc: "High Performance UIs" },
-                { title: "Enterprise Security", icon: ShieldCheck, desc: "SOC2 Compliant Standards" },
-                { title: "Global Infrastructure", icon: Globe2, desc: "Edge Computing & Cloud" },
-              ].map((f) => (
-                <div
-                  key={f.title}
-                  className="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all duration-200"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
-                    <f.icon size={20} />
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-1">{f.title}</h3>
-                  <p className="text-xs text-slate-400 font-medium">{f.desc}</p>
-                </div>
-              ))}
-            </div>
+      {/* GLOBAL OFFICES & INFRASTRUCTURE GALLERY */}
+      <section className="px-4 sm:px-6 py-20 sm:py-28 max-w-7xl mx-auto border-t border-slate-800/60">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-3">
+            <Building2 size={14} />
+            Offices & Infrastructure
           </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4 animate-fade-up">
+            State-of-the-Art <span className="text-gradient">Offices & Compute Infrastructure</span>
+          </h2>
+          <p className="text-sm sm:text-base text-slate-300">
+            Explore our high-performance AI labs, multi-region compute clusters, and collaborative software engineering hubs.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-8">
+          {[
+            {
+              title: "AI Research & Compute Cluster",
+              subtitle: "High-Density GPU Rig & Multi-Agent Labs",
+              desc: "Production-grade supercomputing infrastructure executing custom LLM fine-tuning, multi-agent reasoning loops, and sub-5ms vector retrieval.",
+              image: aiComputeClusterImg,
+              badge: "AI Compute Hub",
+              specs: ["Sub-5ms Latency", "Multi-Agent Cluster"],
+            },
+            {
+              title: "Software Engineering & Tech Hub",
+              subtitle: "Developer Headquarters & Full-Stack Labs",
+              desc: "Modern collaborative engineering workspaces housing our full-stack developers, system architects, and software research teams.",
+              image: officeWorkspaceImg,
+              badge: "Engineering Lab",
+              specs: ["Full-Stack Engineering", "Agile Workflows"],
+            },
+            {
+              title: "Cloud Operations & Network Center",
+              subtitle: "24/7 Monitoring & Global Edge Deployment",
+              desc: "Real-time network control room and infrastructure telemetry monitoring 99.9% uptime and zero-downtime deployment pipelines.",
+              image: cloudControlCenterImg,
+              badge: "Cloud NOC",
+              specs: ["Global Edge Grid", "SOC2 Compliant"],
+            },
+            {
+              title: "Executive Innovation & Strategy Suite",
+              subtitle: "Client Strategy & AI Architecture Lounge",
+              desc: "Dedicated executive suite for enterprise AI strategy workshops, system design alignment, and global client collaboration.",
+              image: executiveLoungeImg,
+              badge: "Strategy Suite",
+              specs: ["Executive Advisory", "Global Partnerships"],
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="group relative rounded-3xl overflow-hidden border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(6,182,212,0.22)] hover:-translate-y-2 cursor-pointer bg-slate-900/60"
+            >
+              {/* Image Container */}
+              <div className="relative w-full h-72 sm:h-80 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent opacity-90 group-hover:opacity-75 transition-opacity duration-300" />
+
+                {/* Floating Badge */}
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-slate-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold tracking-wider backdrop-blur-md shadow-lg group-hover:border-cyan-400 group-hover:scale-105 transition-all">
+                  {item.badge}
+                </div>
+              </div>
+
+              {/* Card Content Overlay */}
+              <div className="p-6 sm:p-8 -mt-24 sm:-mt-28 relative z-10">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-1.5 group-hover:text-cyan-300 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-xs font-mono font-semibold text-cyan-400 mb-3">
+                  {item.subtitle}
+                </p>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+                  {item.desc}
+                </p>
+
+                {/* Specs Pills */}
+                <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-800/80">
+                  {item.specs.map((spec) => (
+                    <span
+                      key={spec}
+                      className="px-3 py-1 text-[11px] font-mono font-semibold rounded-lg bg-slate-900/90 border border-slate-800 text-slate-300 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors"
+                    >
+                      {spec}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
