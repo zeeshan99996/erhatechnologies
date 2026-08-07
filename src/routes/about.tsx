@@ -383,15 +383,18 @@ function AboutPage() {
 
         <div className="space-y-8">
           {/* CEO Card */}
-          <div className="glass-strong rounded-3xl p-8 md:p-12 border border-slate-800 shadow-2xl relative overflow-hidden group hover:border-cyan-500/40 transition-all">
+          <div className="glass-strong rounded-3xl p-8 md:p-12 border border-slate-800/80 shadow-2xl relative overflow-hidden group hover:border-cyan-500/50 hover:shadow-[0_10px_40px_rgba(6,182,212,0.18)] hover:-translate-y-1.5 transition-all duration-300">
             <div className="relative grid md:grid-cols-3 gap-8 md:gap-12 items-center">
               <div className="max-w-[280px] mx-auto md:max-w-none w-full">
-                <div className="aspect-square rounded-2xl overflow-hidden shadow-xl border-2 border-cyan-500/40 bg-slate-900">
-                  <img
-                    src={ceoImg}
-                    alt="Ilyas Shahid — Chief Executive Officer"
-                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                  />
+                <div className="relative aspect-square rounded-3xl group/avatar">
+                  <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-400 opacity-30 group-hover/avatar:opacity-100 blur-md transition-all duration-500 group-hover:scale-105 animate-spin-slow" />
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-xl border-2 border-cyan-500/50 bg-slate-900 z-10 transition-transform duration-500 group-hover:scale-[1.02]">
+                    <img
+                      src={ceoImg}
+                      alt="Ilyas Shahid — Chief Executive Officer"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="md:col-span-2 text-center md:text-left">
@@ -423,7 +426,7 @@ function AboutPage() {
           </div>
 
           {/* Engineering Manager Card */}
-          <div className="glass-strong rounded-3xl p-8 md:p-12 border border-slate-800 shadow-2xl relative overflow-hidden group hover:border-indigo-500/40 transition-all">
+          <div className="glass-strong rounded-3xl p-8 md:p-12 border border-slate-800/80 shadow-2xl relative overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_10px_40px_rgba(99,102,241,0.18)] hover:-translate-y-1.5 transition-all duration-300">
             <div className="relative grid md:grid-cols-3 gap-8 md:gap-12 items-center">
               <div className="md:col-span-2 order-2 md:order-1 text-center md:text-left">
                 <div className="inline-block px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold uppercase rounded-full mb-3 font-mono">
@@ -451,12 +454,15 @@ function AboutPage() {
                 </div>
               </div>
               <div className="order-1 md:order-2 max-w-[280px] mx-auto md:max-w-none w-full">
-                <div className="aspect-square rounded-2xl overflow-hidden shadow-xl border-2 border-indigo-500/40 bg-slate-900">
-                  <img
-                    src={managerImg}
-                    alt="Faiz Jillani — Engineering Manager"
-                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                  />
+                <div className="relative aspect-square rounded-3xl group/avatar">
+                  <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-indigo-500 via-cyan-500 to-indigo-400 opacity-30 group-hover/avatar:opacity-100 blur-md transition-all duration-500 group-hover:scale-105 animate-spin-slow" />
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-xl border-2 border-indigo-500/50 bg-slate-900 z-10 transition-transform duration-500 group-hover:scale-[1.02]">
+                    <img
+                      src={managerImg}
+                      alt="Faiz Jillani — Engineering Manager"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -466,8 +472,8 @@ function AboutPage() {
 
       {/* Engineering & Research Team Member Grid */}
       <div className="mb-20" id="team">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-4 animate-fade-up drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3 animate-fade-up">
             Our Technical Team
           </h2>
           <p className="text-sm sm:text-base text-slate-300 mb-8">
@@ -497,22 +503,29 @@ function AboutPage() {
           {filteredTeam.map((m) => (
             <div
               key={m.name}
-              className="glass card-3d rounded-2xl p-6 text-center shadow-xl cursor-pointer flex flex-col items-center justify-between group hover:border-cyan-500/40 transition-all border border-slate-800"
+              className="glass card-3d rounded-3xl p-6 text-center shadow-xl cursor-pointer flex flex-col items-center justify-between group transition-all duration-300 border border-slate-800/80 hover:border-cyan-500/50 hover:shadow-[0_10px_35px_rgba(6,182,212,0.2)] hover:-translate-y-2 relative overflow-hidden"
               onClick={() => setSelectedMember(m)}
             >
-              <div className="flex flex-col items-center w-full">
-                <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-500/40 shadow-lg bg-slate-900">
-                  {m.image ? (
-                    <img
-                      src={m.image}
-                      alt={m.name}
-                      className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center font-bold text-xl text-cyan-400">
-                      {m.initials}
-                    </div>
-                  )}
+              {/* Background ambient glow on hover */}
+              <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="flex flex-col items-center w-full relative z-10">
+                {/* Animated Avatar Circle with glowing aura ring */}
+                <div className="relative w-28 h-28 mx-auto mb-4 group/avatar">
+                  <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-400 opacity-20 group-hover/avatar:opacity-100 blur-sm transition-all duration-500 group-hover:scale-110 animate-spin-slow" />
+                  <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/40 shadow-xl bg-slate-900 transition-transform duration-500 group-hover:scale-105">
+                    {m.image ? (
+                      <img
+                        src={m.image}
+                        alt={m.name}
+                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center font-bold text-xl text-cyan-400">
+                        {m.initials}
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">
@@ -523,7 +536,7 @@ function AboutPage() {
                 </div>
               </div>
 
-              <span className="text-[11px] font-semibold text-slate-400 group-hover:text-cyan-400 flex items-center gap-1 transition-colors mt-2">
+              <span className="text-[11px] font-semibold text-slate-400 group-hover:text-cyan-400 flex items-center gap-1 transition-all duration-300 mt-2 group-hover:translate-x-1">
                 View Profile <ArrowRight size={12} />
               </span>
             </div>
