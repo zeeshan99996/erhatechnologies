@@ -441,15 +441,15 @@ function AboutPage() {
           </p>
 
           {/* Category Tabs */}
-          <div className="flex flex-nowrap items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none w-full max-w-full py-2 px-1">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-full py-2 px-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+                className={`px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                   activeCategory === cat
-                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.15)]"
-                    : "bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800/60"
+                    ? "bg-cyan-500 text-slate-950 border border-cyan-400 font-extrabold shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
+                    : "bg-slate-900/90 border border-slate-700/80 text-white hover:text-cyan-300 hover:border-cyan-400 hover:bg-slate-800"
                 }`}
               >
                 {cat}
