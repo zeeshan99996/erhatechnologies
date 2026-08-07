@@ -69,7 +69,7 @@ function InfrastructureGallery() {
     let animationId: number;
     const step = () => {
       if (!isHovered && el) {
-        el.scrollLeft += 1.8;
+        el.scrollLeft += 4.0;
         if (el.scrollLeft >= el.scrollWidth / 2) {
           el.scrollLeft = 0;
         }
