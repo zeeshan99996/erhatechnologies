@@ -26,6 +26,11 @@ import {
   Cloud,
   Layout,
   RefreshCw,
+  Target,
+  Megaphone,
+  Users,
+  FileText,
+  Mail,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -178,6 +183,42 @@ const serviceCategories = [
         title: "AEO, GEO & AI Search Optimization",
         desc: "Optimize your brand for Answer Engine Optimization and Generative Engine Optimization to dominate AI-powered search results like ChatGPT, Perplexity, and Google SGE.",
         features: ["Answer Engine Optimization", "Generative Engine Optimization", "AI Citation Building", "Structured Data & Schema"],
+      },
+      {
+        icon: Target,
+        title: "Google Ads & PPC Campaign Management",
+        desc: "High-ROI pay-per-click campaign setup, keyword targeting, ad creative optimization, and continuous conversion tracking across Google Search and Display network.",
+        features: ["Google Search & Display", "PPC Bidding Optimization", "Ad Copy & Extensions", "ROAS Tracking"],
+      },
+      {
+        icon: Megaphone,
+        title: "Meta Ads & Paid Social Campaigns",
+        desc: "Data-driven paid social campaigns across Facebook, Instagram, LinkedIn, and TikTok designed to acquire qualified leads and maximize return on ad spend.",
+        features: ["Facebook & Instagram Ads", "Audience Targeting", "Retargeting Funnels", "Creative A/B Testing"],
+      },
+      {
+        icon: Users,
+        title: "Social Media Marketing & Brand Growth",
+        desc: "Strategic social media channel management, audience building, brand positioning, and engaging content creation that builds loyal customer communities.",
+        features: ["Content Scheduling", "Community Engagement", "Brand Voice Strategy", "Viral Short-Form Content"],
+      },
+      {
+        icon: FileText,
+        title: "Content Marketing & Conversion Copywriting",
+        desc: "Compelling storytelling and high-converting copy that engages target audiences, establishes industry authority, and turns readers into paying clients.",
+        features: ["SEO Blog Content", "Landing Page Copywriting", "Whitepapers & Case Studies", "Editorial Calendars"],
+      },
+      {
+        icon: Mail,
+        title: "Email Marketing & CRM Automation",
+        desc: "Automated email marketing funnels, customer lifecycle messaging, lead nurturing workflows, and hyper-segmented newsletter campaigns.",
+        features: ["Automated Drip Sequences", "Klaviyo / HubSpot Pipelines", "Audience Segmentation", "A/B Subject Testing"],
+      },
+      {
+        icon: BarChart2,
+        title: "Conversion Rate Optimization & Analytics",
+        desc: "Data-backed website optimization, user behavior analytics, heatmap audits, and landing page A/B testing to increase your visitor-to-customer conversion rate.",
+        features: ["A/B & Multivariate Testing", "Heatmaps & Session Recording", "Funnel Drop-Off Audit", "GA4 & Custom Dashboards"],
       },
     ],
   },

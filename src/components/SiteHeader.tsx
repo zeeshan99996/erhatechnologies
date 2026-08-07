@@ -6,6 +6,7 @@ import {
   BarChart2, ScanSearch, Mic, Lightbulb,
   Globe, Smartphone, Search, TrendingUp,
   ShoppingCart, Layers, Server, Cloud, Layout, RefreshCw,
+  Target, Megaphone, Users, FileText, Mail,
 } from "lucide-react";
 import erhaLogo from "@/assets/erha-logo-new.png";
 
@@ -53,6 +54,12 @@ const serviceMenu = [
     items: [
       { icon: Search, label: "SEO & Organic Search Growth" },
       { icon: TrendingUp, label: "AEO, GEO & AI Search Optimization" },
+      { icon: Target, label: "Google Ads & PPC Campaign Management" },
+      { icon: Megaphone, label: "Meta Ads & Paid Social Campaigns" },
+      { icon: Users, label: "Social Media Marketing & Brand Growth" },
+      { icon: FileText, label: "Content Marketing & Copywriting" },
+      { icon: Mail, label: "Email Marketing & CRM Automation" },
+      { icon: BarChart2, label: "Conversion Rate Optimization & Analytics" },
     ],
   },
 ];
@@ -166,7 +173,7 @@ export function SiteHeader() {
                       {/* Bottom CTA Row */}
                       <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between">
                         <span className="text-[11px] font-mono text-slate-500">
-                          18 services across 3 capability areas
+                          24 services across 3 capability areas
                         </span>
                         <Link
                           to="/services"
