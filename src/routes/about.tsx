@@ -301,36 +301,6 @@ function AboutPage() {
   return (
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-6xl mx-auto animate-fade-up">
 
-
-      {/* Mission / Vision / Values */}
-      <div className="grid md:grid-cols-3 gap-6 mb-20">
-        {[
-          {
-            icon: Target,
-            title: "Mission",
-            text: "Empower global organizations with production-grade AI solutions that automate complexity and catalyze sustainable growth.",
-          },
-          {
-            icon: Eye,
-            title: "Vision",
-            text: "Become the benchmark leader in autonomous agentic AI systems, custom LLMs, and high-performance digital engineering.",
-          },
-          {
-            icon: Rocket,
-            title: "Values",
-            text: "Uncompromising software quality, rapid execution velocity, transparent partnership, and continuous innovation.",
-          },
-        ].map((c) => (
-          <div key={c.title} className="glass card-3d rounded-2xl p-8 border border-slate-800">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5">
-              <c.icon size={22} />
-            </div>
-            <h3 className="font-extrabold text-2xl text-white mb-3">{c.title}</h3>
-            <p className="text-sm text-slate-300 leading-relaxed">{c.text}</p>
-          </div>
-        ))}
-      </div>
-
       {/* Executive Leadership Section (CEO & Engineering Manager) */}
       <div className="mb-20" id="leadership">
         <div className="text-center max-w-2xl mx-auto mb-12">
@@ -550,6 +520,35 @@ function AboutPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Mission / Vision / Values */}
+      <div className="grid md:grid-cols-3 gap-6 mb-20">
+        {[
+          {
+            icon: Target,
+            title: "Mission",
+            text: "Empower global organizations with production-grade AI solutions that automate complexity and catalyze sustainable growth.",
+          },
+          {
+            icon: Eye,
+            title: "Vision",
+            text: "Become the benchmark leader in autonomous agentic AI systems, custom LLMs, and high-performance digital engineering.",
+          },
+          {
+            icon: Rocket,
+            title: "Values",
+            text: "Uncompromising software quality, rapid execution velocity, transparent partnership, and continuous innovation.",
+          },
+        ].map((c) => (
+          <div key={c.title} className="glass card-3d rounded-2xl p-8 border border-slate-800">
+            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5">
+              <c.icon size={22} />
+            </div>
+            <h3 className="font-extrabold text-2xl text-white mb-3">{c.title}</h3>
+            <p className="text-sm text-slate-300 leading-relaxed">{c.text}</p>
+          </div>
+        ))}
       </div>
 
       {/* CTA */}
