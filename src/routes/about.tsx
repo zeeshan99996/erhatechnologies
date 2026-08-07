@@ -65,7 +65,7 @@ interface TeamMember {
   role: string;
   initials: string;
   image: string;
-  category: "Executive Leadership" | "AI Engineering" | "Research & Data Science";
+  category: "Executive Leadership" | "DevOps Engineer" | "AI Engineer" | "HR & Business Operations" | "Full Stack Developer";
   bio: string;
   skills: string[];
   tech: string[];
@@ -115,7 +115,7 @@ const teamMembers: TeamMember[] = [
     role: "Agentic AI Engineer",
     initials: "MSA",
     image: salmanImg,
-    category: "AI Engineering",
+    category: "AI Engineer",
     bio: "AI and Data Science professional with expertise in Agentic AI, AI Automation, and AI Research. Experienced in building intelligent agent networks, automating enterprise workflows, and developing data-driven systems.",
     skills: [
       "AI Automation",
@@ -130,7 +130,7 @@ const teamMembers: TeamMember[] = [
     role: "AI Engineer",
     initials: "MS",
     image: muzammilImg,
-    category: "AI Engineering",
+    category: "AI Engineer",
     bio: "AI Engineer with experience in Generative AI, LLM-powered applications, and AI-driven business solutions. Skilled in prompt engineering, model tuning, and workflow automation.",
     skills: [
       "LLM Integration",
@@ -146,7 +146,7 @@ const teamMembers: TeamMember[] = [
     role: "Junior AI Engineer",
     initials: "AR",
     image: abdulRehmanImg,
-    category: "AI Engineering",
+    category: "AI Engineer",
     bio: "Junior AI Engineer focused on developing data pipelines, vector databases, and system integration workflows. Skilled in constructing data pre-processing scripts and retrieval configurations.",
     skills: [
       "Data Pipelines",
@@ -162,7 +162,7 @@ const teamMembers: TeamMember[] = [
     role: "Full Stack Developer",
     initials: "MZ",
     image: zeeshanImg,
-    category: "AI Engineering",
+    category: "Full Stack Developer",
     bio: "Full Stack Developer specializing in web application architectures, interactive user interfaces, and dynamic dashboards. Proficient in modern frontend frameworks and API integrations.",
     skills: [
       "Frontend Development",
@@ -178,7 +178,7 @@ const teamMembers: TeamMember[] = [
     role: "Agentic AI Engineer",
     initials: "YS",
     image: yasirImg,
-    category: "AI Engineering",
+    category: "AI Engineer",
     bio: "Agentic AI Engineer specializing in designing, building, and orchestrating autonomous AI agent systems. Proficient in multi-agent workflows and tool integration.",
     skills: [
       "Agentic Orchestration",
@@ -194,7 +194,7 @@ const teamMembers: TeamMember[] = [
     role: "Junior AI Developer",
     initials: "MH",
     image: hassanImg,
-    category: "AI Engineering",
+    category: "AI Engineer",
     bio: "Junior AI Developer focusing on frontend implementation of AI components, model visualization, and building responsive enterprise dashboards.",
     skills: [
       "Frontend Engineering",
@@ -210,7 +210,7 @@ const teamMembers: TeamMember[] = [
     role: "AI Researcher",
     initials: "MQ",
     image: qamarImg,
-    category: "Research & Data Science",
+    category: "AI Engineer",
     bio: "AI Researcher analyzing state-of-the-art machine learning models, model fine-tuning methodologies, and performance validation criteria.",
     skills: [
       "Deep Learning",
@@ -226,7 +226,7 @@ const teamMembers: TeamMember[] = [
     role: "Data Scientist",
     initials: "MR",
     image: ramzanResearchImg,
-    category: "Research & Data Science",
+    category: "AI Engineer",
     bio: "Data Scientist specializing in predictive modeling, telemetry analytics, and advanced machine learning clustering pipelines.",
     skills: [
       "Predictive Modeling",
@@ -239,42 +239,42 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Sadia Sadiq",
-    role: "Data Analyst",
+    role: "HR & Business Operations Lead",
     initials: "SS",
     image: sadiaResearchImg,
-    category: "Research & Data Science",
-    bio: "Data Analyst focused on performing data synthesis, telemetry trend evaluations, and developing AI performance dashboards.",
+    category: "HR & Business Operations",
+    bio: "HR & Business Operations Lead managing talent acquisition, enterprise team workflows, organizational scaling, and business operations.",
     skills: [
-      "Data Wrangling",
-      "Trend Analysis",
-      "Performance Dashboarding",
-      "SQL & Database Querying",
-      "BI Reporting",
+      "HR Management",
+      "Business Operations",
+      "Talent Acquisition",
+      "Team Scaling",
+      "Operations Strategy",
     ],
-    tech: ["SQL", "PowerBI", "Excel", "Tableau"],
+    tech: ["HR Operations", "Workforce Strategy", "SQL", "Tableau"],
   },
   {
     name: "Samia Akash",
-    role: "Cloud Database Engineer",
+    role: "DevOps & Cloud Engineer",
     initials: "SA",
     image: samiaResearchImg,
-    category: "Research & Data Science",
-    bio: "Cloud Database Engineer configuring distributed database schemas, vector database indexing, and storage optimizations for AI workloads.",
+    category: "DevOps Engineer",
+    bio: "DevOps & Cloud Engineer configuring CI/CD pipelines, cloud infrastructure, vector database indexing, and system reliability.",
     skills: [
-      "Distributed Storage",
-      "Vector Indexing",
-      "Latency Optimization",
-      "Cloud Database Management",
-      "NoSQL & SQL Systems",
+      "Cloud Infrastructure",
+      "CI/CD Pipelines",
+      "DevOps Operations",
+      "System Reliability",
+      "Database Architecture",
     ],
-    tech: ["AWS RDS", "Pinecone", "Redis", "PostgreSQL"],
+    tech: ["AWS", "Docker", "Kubernetes", "Redis", "PostgreSQL"],
   },
   {
     name: "Umm-e-Aiman",
     role: "AI Researcher",
     initials: "UA",
     image: ummeaimanResearchImg,
-    category: "Research & Data Science",
+    category: "AI Engineer",
     bio: "AI Researcher exploring computational biology, genetic sequence analysis, and neural bioinformatics datasets.",
     skills: [
       "Bioinformatics",
@@ -291,7 +291,13 @@ function AboutPage() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const categories = ["All", "AI Engineering", "Research & Data Science"];
+  const categories = [
+    "All",
+    "DevOps Engineer",
+    "AI Engineer",
+    "HR & Business Operations",
+    "Full Stack Developer",
+  ];
 
   const filteredTeam =
     activeCategory === "All"
