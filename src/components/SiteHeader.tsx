@@ -158,9 +158,9 @@ export function SiteHeader() {
                                   <Link
                                     to="/services"
                                     onClick={() => setServicesOpen(false)}
-                                    className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 text-xs font-medium transition-all group/item"
+                                    className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-white hover:text-cyan-300 hover:bg-slate-800/80 text-xs font-semibold transition-all group/item"
                                   >
-                                    <item.icon size={13} className={`shrink-0 opacity-60 group-hover/item:opacity-100 ${group.accent}`} />
+                                    <item.icon size={13} className={`shrink-0 opacity-90 group-hover/item:opacity-100 ${group.accent}`} />
                                     <span className="leading-tight">{item.label}</span>
                                   </Link>
                                 </li>
@@ -266,7 +266,7 @@ export function SiteHeader() {
                                 key={item.label}
                                 to="/services"
                                 onClick={() => setOpen(false)}
-                                className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-slate-400 hover:text-white text-xs font-medium transition-all"
+                                className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-white hover:text-cyan-300 text-xs font-semibold transition-all"
                               >
                                 <item.icon size={12} className={`shrink-0 ${group.accent}`} />
                                 {item.label}
