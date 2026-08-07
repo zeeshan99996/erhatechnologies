@@ -408,10 +408,20 @@ function AboutPage() {
       {/* Engineering & Research Team Member Grid */}
       <div className="mb-20" id="team">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3 animate-fade-up">
-            Our Technical Team
-          </h2>
-          <p className="text-sm sm:text-base text-slate-300 mb-8">
+          <div className="inline-flex flex-col items-center group/heading cursor-default mb-2">
+            {/* Animated Glowing Radius Circle Badge */}
+            <div className="relative w-10 h-10 mb-3 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.25)] group-hover/heading:scale-110 group-hover/heading:border-cyan-400 transition-all duration-300">
+              <div className="absolute -inset-1 rounded-full bg-cyan-500/20 opacity-40 group-hover/heading:opacity-100 blur-sm animate-pulse" />
+              <Users size={18} className="relative z-10" />
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight group-hover/heading:text-cyan-200 transition-all duration-300 group-hover/heading:drop-shadow-[0_0_25px_rgba(6,182,212,0.4)] animate-fade-up">
+              Our Technical Team
+            </h2>
+          </div>
+
+          <p className="text-xs sm:text-sm text-slate-300 mb-8">
             Meet the multidisciplinary software developers, AI researchers, and cloud specialists driving our client solutions.
           </p>
 
