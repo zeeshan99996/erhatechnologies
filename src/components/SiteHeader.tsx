@@ -5,6 +5,7 @@ import {
   Bot, MessageSquare, Workflow, Sparkles,
   BarChart2, ScanSearch, Mic, Lightbulb,
   Globe, Smartphone, Search, TrendingUp,
+  ShoppingCart, Layers, Server, Cloud, Layout, RefreshCw,
 } from "lucide-react";
 import erhaLogo from "@/assets/erha-logo-new.png";
 
@@ -38,6 +39,12 @@ const serviceMenu = [
     items: [
       { icon: Globe, label: "Web Development & Enterprise Applications" },
       { icon: Smartphone, label: "Mobile & Cross-Platform App Development" },
+      { icon: ShoppingCart, label: "E-commerce Development & Commerce Solutions" },
+      { icon: Layers, label: "Custom SaaS & Product Development" },
+      { icon: Server, label: "Backend, API & System Integration" },
+      { icon: Cloud, label: "Cloud, DevOps & Infrastructure Engineering" },
+      { icon: Layout, label: "UI/UX Design & Product Experience" },
+      { icon: RefreshCw, label: "Software Modernization & Support" },
     ],
   },
   {
@@ -129,7 +136,7 @@ export function SiteHeader() {
                   {/* Mega Dropdown */}
                   {servicesOpen && (
                     <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[680px] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[820px] max-w-[90vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
                       onMouseLeave={() => setServicesOpen(false)}
                     >
                       <div className="grid grid-cols-3 gap-5">
@@ -159,7 +166,7 @@ export function SiteHeader() {
                       {/* Bottom CTA Row */}
                       <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between">
                         <span className="text-[11px] font-mono text-slate-500">
-                          12 services across 3 capability areas
+                          18 services across 3 capability areas
                         </span>
                         <Link
                           to="/services"
