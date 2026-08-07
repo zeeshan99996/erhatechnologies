@@ -155,7 +155,7 @@ const defaultTeam = [
   },
   {
     name: "Muhammad Zeeshan",
-    role: "Junior AI Engineer",
+    role: "Full Stack Developer",
     initials: "MZ",
     image: "__zeeshanImg__",
     accent: "cyan",
@@ -186,6 +186,28 @@ const defaultTeam = [
     bio: "Data Scientist specializing in predictive modeling, telemetry analytics, and advanced machine learning clustering pipelines. Skilled in developing regression models, mathematical validation frameworks, and translating raw data streams into actionable operational insights. Committed to utilizing data engineering and statistical analysis to enhance AI decision-making systems.",
     skills: ["Predictive Modeling", "Clustering Algorithms", "AI Telemetry", "Statistical Analysis", "Data Science"],
     tech: ["NumPy", "Pandas", "Scikit-Learn", "R"],
+  },
+  {
+    name: "Yasir Shah",
+    role: "Agentic AI Engineer",
+    initials: "YS",
+    image: "__yasirImg__",
+    accent: "cyan",
+    category: "AI Engineering",
+    bio: "Agentic AI Engineer specializing in designing, building, and orchestrating autonomous AI agent systems. Proficient in multi-agent workflows, tool integration, and recursive reasoning loops to automate complex business processes and scale intelligent solutions.",
+    skills: ["Agentic Orchestration", "Multi-Agent Systems", "Workflow Automation", "LLM Orchestration", "AI Integration"],
+    tech: ["LangChain", "CrewAI", "LangGraph", "Python"],
+  },
+  {
+    name: "Muhammad Hassan",
+    role: "Junior AI Developer",
+    initials: "MH",
+    image: "__hassanImg__",
+    accent: "cyan",
+    category: "AI Engineering",
+    bio: "Junior AI Developer focusing on frontend implementation of AI components, interactive model visualization, and building responsive dashboards. Skilled in web development, API integration, and creating seamless user experiences for AI applications.",
+    skills: ["Frontend Engineering", "UI/UX Optimization", "API Integration", "React & TypeScript", "Model Visualization"],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
   },
   {
     name: "Sadia Sadiq",
@@ -329,7 +351,73 @@ function AdminPage() {
       const localTeam = localStorage.getItem("erha_team_members");
       if (localTeam) {
         try {
-          setTeamMembers(JSON.parse(localTeam));
+          const parsed = JSON.parse(localTeam);
+          const hasYasir = parsed.some((m: any) => m.name === "Yasir Shah");
+          if (!hasYasir) {
+            const ramzanIdx = parsed.findIndex((m: any) => m.name === "Muhammad Ramzan");
+            const newMember = {
+              name: "Yasir Shah",
+              role: "Agentic AI Engineer",
+              initials: "YS",
+              image: "__yasirImg__",
+              accent: "cyan",
+              category: "AI Engineering",
+              bio: "Agentic AI Engineer specializing in designing, building, and orchestrating autonomous AI agent systems. Proficient in multi-agent workflows, tool integration, and recursive reasoning loops to automate complex business processes and scale intelligent solutions.",
+              skills: ["Agentic Orchestration", "Multi-Agent Systems", "Workflow Automation", "LLM Orchestration", "AI Integration"],
+              tech: ["LangChain", "CrewAI", "LangGraph", "Python"],
+            };
+            if (ramzanIdx !== -1) {
+              parsed.splice(ramzanIdx + 1, 0, newMember);
+            } else {
+              parsed.push(newMember);
+            }
+          }
+          const hasManzar = parsed.some((m: any) => m.name === "Manzar Abbas");
+          if (!hasManzar) {
+            const yasirIdx = parsed.findIndex((m: any) => m.name === "Yasir Shah");
+            const newMember = {
+              name: "Manzar Abbas",
+              role: "Digital Marketer",
+              initials: "MA",
+              image: "__manzarImg__",
+              accent: "purple",
+              category: "Research & Data Science",
+              bio: "Digital Marketer specialized in driving brand growth, user acquisition, and search engine optimization. Experienced in managing campaign telemetry, social media automation, and data-driven marketing strategies to expand market reach and engagement for advanced technology platforms.",
+              skills: ["Search Engine Optimization", "Campaign Management", "Content Strategy", "Brand Growth", "Analytics Telemetry"],
+              tech: ["Google Analytics", "Google Ads", "Meta Business Suite", "SEMrush"],
+            };
+            if (yasirIdx !== -1) {
+              parsed.splice(yasirIdx + 1, 0, newMember);
+            } else {
+              parsed.push(newMember);
+            }
+          }
+          const hasHassan = parsed.some((m: any) => m.name === "Muhammad Hassan");
+          if (!hasHassan) {
+            const manzarIdx = parsed.findIndex((m: any) => m.name === "Manzar Abbas");
+            const newMember = {
+              name: "Muhammad Hassan",
+              role: "Junior AI Developer",
+              initials: "MH",
+              image: "__hassanImg__",
+              accent: "cyan",
+              category: "AI Engineering",
+              bio: "Junior AI Developer focusing on frontend implementation of AI components, interactive model visualization, and building responsive dashboards. Skilled in web development, API integration, and creating seamless user experiences for AI applications.",
+              skills: ["Frontend Engineering", "UI/UX Optimization", "API Integration", "React & TypeScript", "Model Visualization"],
+              tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+            };
+            if (manzarIdx !== -1) {
+              parsed.splice(manzarIdx + 1, 0, newMember);
+            } else {
+              parsed.push(newMember);
+            }
+          }
+          const zeeshanIdx = parsed.findIndex((m: any) => m.name === "Muhammad Zeeshan");
+          if (zeeshanIdx !== -1 && parsed[zeeshanIdx].role === "Junior AI Engineer") {
+            parsed[zeeshanIdx].role = "Full Stack Developer";
+          }
+          localStorage.setItem("erha_team_members", JSON.stringify(parsed));
+          setTeamMembers(parsed);
         } catch {
           setTeamMembers(defaultTeam as any);
         }

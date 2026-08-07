@@ -92,8 +92,7 @@ export function TechSphere({ size = 480 }: { size?: number }) {
     nodes.forEach((n, idx) => {
       if (idx < 40) {
         n.layer = "input";
-        n.color = "rgba(99, 235, 249, 0.85)"; // Mint Teal / Cyan
-        // Assign Hubs on leftmost nodes
+        n.color = "rgba(56, 189, 248, 0.9)"; // Sky Cyan
         if (idx === 6 || idx === 18) {
           n.isHub = true;
           n.hubLabel = idx === 6 ? "IN_TENSOR" : "DATA_STREAM";
@@ -101,8 +100,7 @@ export function TechSphere({ size = 480 }: { size?: number }) {
         }
       } else if (idx < 80) {
         n.layer = "hidden";
-        n.color = "rgba(168, 85, 247, 0.85)"; // Cosmic Purple
-        // Assign Hubs in middle latent space
+        n.color = "rgba(129, 140, 248, 0.9)"; // Indigo
         if (idx === 52 || idx === 68) {
           n.isHub = true;
           n.hubLabel = idx === 52 ? "LATENT_SPACE" : "ATTN_WEIGHTS";
@@ -110,8 +108,7 @@ export function TechSphere({ size = 480 }: { size?: number }) {
         }
       } else {
         n.layer = "output";
-        n.color = "rgba(99, 235, 249, 0.85)"; // Neon Cyan (Avoids Green)
-        // Assign Hubs on rightmost prediction layer
+        n.color = "rgba(56, 189, 248, 0.9)"; // Sky Cyan
         if (idx === 94 || idx === 112) {
           n.isHub = true;
           n.hubLabel = idx === 94 ? "OUT_LOGITS" : "LOSS_GRADIENT";

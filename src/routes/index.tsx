@@ -3,35 +3,34 @@ import { TechSphere } from "../components/TechSphere";
 import {
   ArrowRight,
   Brain,
-  Code,
   Cpu,
   Sparkles,
   Zap,
   Bot,
-  Play,
-  RotateCw,
   Terminal,
   CheckCircle2,
   Activity,
   Server,
   Database,
-  Network,
+  ShieldCheck,
+  Globe2,
+  Code2,
 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Erha Technologies — Innovating the Future with AI" },
+      { title: "Erha Technologies — Enterprise AI & Digital Solutions" },
       {
         name: "description",
         content:
-          "AI development, web & app engineering, agentic systems and automation by Erha Technologies.",
+          "Erha Technologies engineers production-grade AI systems, multi-agent workflows, custom web applications, and enterprise digital solutions.",
       },
-      { property: "og:title", content: "Erha Technologies — Innovating the Future with AI" },
+      { property: "og:title", content: "Erha Technologies — Enterprise AI & Digital Solutions" },
       {
         property: "og:description",
-        content: "AI development, web & app engineering, agentic systems and automation.",
+        content: "Production-grade AI systems, multi-agent workflows, and enterprise digital solutions.",
       },
     ],
     links: [
@@ -41,15 +40,6 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-function DashboardBackgroundSlideshow() {
-  return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden h-[180vh] md:h-[160vh]">
-      <div className="absolute inset-0 scanlines opacity-[0.15]" />
-    </div>
-  );
-}
-
-// Systems Ltd & GoCloud inspired Capabilities Deck
 const innovationTabs = [
   {
     id: "agents",
@@ -63,9 +53,9 @@ const innovationTabs = [
       { value: "< 80ms", label: "Latency" },
     ],
     features: [
-      "Autonomous Planning",
-      "Short/Long Term Memory",
-      "Dynamic Tool Usage",
+      "Autonomous Planning & Reasoning",
+      "Short/Long Term Memory Caching",
+      "Dynamic Tool Execution",
       "Conflict Resolution Routing",
     ],
     renderDiagram: (active: boolean) => (
@@ -75,118 +65,27 @@ const innovationTabs = [
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <line
-          x1="100"
-          y1="30"
-          x2="50"
-          y2="80"
-          stroke="var(--neon-blue)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
-        <line
-          x1="100"
-          y1="30"
-          x2="100"
-          y2="90"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
-        <line
-          x1="100"
-          y1="30"
-          x2="150"
-          y2="80"
-          stroke="var(--neon-purple)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
+        <line x1="100" y1="30" x2="50" y2="80" stroke="#38bdf8" strokeWidth="1.5" opacity="0.6" />
+        <line x1="100" y1="30" x2="100" y2="90" stroke="#818cf8" strokeWidth="1.5" opacity="0.6" />
+        <line x1="100" y1="30" x2="150" y2="80" stroke="#38bdf8" strokeWidth="1.5" opacity="0.6" />
 
-        <circle
-          cx="100"
-          cy="30"
-          r="16"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="2"
-          className={`infra-node ${active ? "active" : ""}`}
-        />
-        <text
-          x="100"
-          y="34"
-          fill="var(--neon-cyan)"
-          fontSize="9"
-          fontWeight="bold"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="100" cy="30" r="16" fill="#0f172a" stroke="#38bdf8" strokeWidth="2" />
+        <text x="100" y="34" fill="#38bdf8" fontSize="8" fontWeight="bold" fontFamily="monospace" textAnchor="middle">
           HUB
         </text>
 
-        <circle
-          cx="50"
-          cy="80"
-          r="12"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="2"
-          className={`infra-node ${active ? "active" : ""}`}
-        />
-        <text
-          x="50"
-          y="83"
-          fill="var(--neon-cyan)"
-          fontSize="7"
-          fontWeight="bold"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="50" cy="80" r="12" fill="#0f172a" stroke="#38bdf8" strokeWidth="2" />
+        <text x="50" y="83" fill="#cbd5e1" fontSize="7" fontWeight="bold" fontFamily="monospace" textAnchor="middle">
           AGT_1
         </text>
 
-        <circle
-          cx="100"
-          cy="90"
-          r="12"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="2"
-          className={`infra-node ${active ? "active" : ""}`}
-        />
-        <text
-          x="100"
-          y="93"
-          fill="var(--neon-cyan)"
-          fontSize="7"
-          fontWeight="bold"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="100" cy="90" r="12" fill="#0f172a" stroke="#818cf8" strokeWidth="2" />
+        <text x="100" y="93" fill="#cbd5e1" fontSize="7" fontWeight="bold" fontFamily="monospace" textAnchor="middle">
           AGT_2
         </text>
 
-        <circle
-          cx="150"
-          cy="80"
-          r="12"
-          fill="var(--card)"
-          stroke="var(--neon-purple)"
-          strokeWidth="2"
-          className={`infra-node ${active ? "active" : ""}`}
-        />
-        <text
-          x="150"
-          y="83"
-          fill="var(--neon-purple)"
-          fontSize="7"
-          fontWeight="bold"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="150" cy="80" r="12" fill="#0f172a" stroke="#38bdf8" strokeWidth="2" />
+        <text x="150" y="83" fill="#cbd5e1" fontSize="7" fontWeight="bold" fontFamily="monospace" textAnchor="middle">
           AGT_3
         </text>
       </svg>
@@ -216,74 +115,20 @@ const innovationTabs = [
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M 20 60 L 70 60 L 130 60 L 180 60"
-          stroke="var(--neon-purple)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
-
-        <rect
-          x="15"
-          y="45"
-          width="26"
-          height="30"
-          rx="3"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="28"
-          y="63"
-          fill="var(--neon-cyan)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <path d="M 20 60 L 70 60 L 130 60 L 180 60" stroke="#818cf8" strokeWidth="1.5" opacity="0.6" />
+        <rect x="15" y="45" width="28" height="30" rx="4" fill="#0f172a" stroke="#38bdf8" strokeWidth="1.5" />
+        <text x="29" y="63" fill="#38bdf8" fontSize="7" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
           DATA
         </text>
 
-        <circle
-          cx="90"
-          cy="60"
-          r="14"
-          fill="var(--card)"
-          stroke="var(--neon-purple)"
-          strokeWidth="2"
-          className={`infra-node ${active ? "active" : ""}`}
-        />
-        <text
-          x="90"
-          y="63"
-          fill="var(--neon-purple)"
-          fontSize="7"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="90" cy="60" r="14" fill="#0f172a" stroke="#818cf8" strokeWidth="2" />
+        <text x="90" y="63" fill="#818cf8" fontSize="7" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
           LoRA
         </text>
 
-        <rect
-          x="145"
-          y="45"
-          width="30"
-          height="30"
-          rx="3"
-          fill="var(--card)"
-          stroke="var(--neon-purple)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="160"
-          y="63"
-          fill="var(--neon-purple)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
-          WEIGHT
+        <rect x="145" y="45" width="32" height="30" rx="4" fill="#0f172a" stroke="#38bdf8" strokeWidth="1.5" />
+        <text x="161" y="63" fill="#38bdf8" fontSize="7" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+          MODEL
         </text>
       </svg>
     ),
@@ -312,141 +157,23 @@ const innovationTabs = [
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <line
-          x1="30"
-          y1="30"
-          x2="100"
-          y2="60"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
-        <line
-          x1="30"
-          y1="90"
-          x2="100"
-          y2="60"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
-        <line
-          x1="100"
-          y1="60"
-          x2="170"
-          y2="30"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
-        <line
-          x1="100"
-          y1="60"
-          x2="170"
-          y2="90"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
+        <line x1="30" y1="30" x2="100" y2="60" stroke="#38bdf8" strokeWidth="1.5" opacity="0.6" />
+        <line x1="30" y1="90" x2="100" y2="60" stroke="#38bdf8" strokeWidth="1.5" opacity="0.6" />
+        <line x1="100" y1="60" x2="170" y2="30" stroke="#38bdf8" strokeWidth="1.5" opacity="0.6" />
+        <line x1="100" y1="60" x2="170" y2="90" stroke="#38bdf8" strokeWidth="1.5" opacity="0.6" />
 
-        <circle
-          cx="30"
-          cy="30"
-          r="10"
-          fill="var(--card)"
-          stroke="var(--neon-purple)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="30"
-          y="33"
-          fill="var(--neon-purple)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="30" cy="30" r="10" fill="#0f172a" stroke="#818cf8" strokeWidth="1.5" />
+        <text x="30" y="33" fill="#cbd5e1" fontSize="6" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
           EDGE
         </text>
-        <circle
-          cx="30"
-          cy="90"
-          r="10"
-          fill="var(--card)"
-          stroke="var(--neon-purple)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="30"
-          y="93"
-          fill="var(--neon-purple)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="30" cy="90" r="10" fill="#0f172a" stroke="#818cf8" strokeWidth="1.5" />
+        <text x="30" y="93" fill="#cbd5e1" fontSize="6" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
           EDGE
         </text>
 
-        <rect
-          x="80"
-          y="45"
-          width="40"
-          height="30"
-          rx="4"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="2"
-          className={`infra-node ${active ? "active" : ""}`}
-        />
-        <text
-          x="100"
-          y="63"
-          fill="var(--neon-cyan)"
-          fontSize="7"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
-          GATEWAY
-        </text>
-
-        <circle
-          cx="170"
-          cy="30"
-          r="10"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="170"
-          y="33"
-          fill="var(--neon-cyan)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
-          LLM
-        </text>
-        <circle
-          cx="170"
-          cy="90"
-          r="10"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="170"
-          y="93"
-          fill="var(--neon-cyan)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
-          DB
+        <rect x="80" y="45" width="40" height="30" rx="4" fill="#0f172a" stroke="#38bdf8" strokeWidth="2" />
+        <text x="100" y="63" fill="#38bdf8" fontSize="7" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+          CLUSTER
         </text>
       </svg>
     ),
@@ -475,71 +202,17 @@ const innovationTabs = [
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M 20 30 C 60 30, 60 90, 100 90 C 140 90, 140 30, 180 30"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-          className={active ? "flow-line" : ""}
-          opacity="0.6"
-        />
-
-        <circle
-          cx="30"
-          cy="30"
-          r="10"
-          fill="var(--card)"
-          stroke="var(--neon-purple)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="30"
-          y="33"
-          fill="var(--neon-purple)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <path d="M 20 30 C 60 30, 60 90, 100 90 C 140 90, 140 30, 180 30" stroke="#38bdf8" strokeWidth="1.5" opacity="0.6" />
+        <circle cx="30" cy="30" r="10" fill="#0f172a" stroke="#818cf8" strokeWidth="1.5" />
+        <text x="30" y="33" fill="#cbd5e1" fontSize="6" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
           QUERY
         </text>
-
-        <rect
-          x="85"
-          y="75"
-          width="30"
-          height="30"
-          rx="3"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="2"
-          className={`infra-node ${active ? "active" : ""}`}
-        />
-        <text
-          x="100"
-          y="93"
-          fill="var(--neon-cyan)"
-          fontSize="7"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <rect x="85" y="75" width="30" height="30" rx="4" fill="#0f172a" stroke="#38bdf8" strokeWidth="2" />
+        <text x="100" y="93" fill="#38bdf8" fontSize="7" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
           VEC_DB
         </text>
-
-        <circle
-          cx="170"
-          cy="30"
-          r="10"
-          fill="var(--card)"
-          stroke="var(--neon-cyan)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="170"
-          y="33"
-          fill="var(--neon-cyan)"
-          fontSize="6"
-          fontFamily="monospace"
-          textAnchor="middle"
-        >
+        <circle cx="170" cy="30" r="10" fill="#0f172a" stroke="#38bdf8" strokeWidth="1.5" />
+        <text x="170" y="33" fill="#cbd5e1" fontSize="6" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
           LLM
         </text>
       </svg>
@@ -549,75 +222,69 @@ const innovationTabs = [
 
 function InnovationDeck() {
   const [activeTabId, setActiveTabId] = useState("agents");
-
   const activeTab = innovationTabs.find((t) => t.id === activeTabId) || innovationTabs[0];
   const TabIcon = activeTab.icon;
 
   return (
     <div className="flex flex-col md:flex-row gap-6 md:gap-8 mt-8 md:mt-12">
       {/* Tab Navigation Column */}
-      <div className="w-full md:w-1/4 flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible gap-2 pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-white/5 pr-0 md:pr-4 scrollbar-none">
+      <div className="w-full md:w-1/4 flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible gap-2 pb-3 md:pb-0 border-b md:border-b-0 md:border-r border-slate-800 pr-0 md:pr-4 scrollbar-none">
         {innovationTabs.map((t, idx) => {
           const tabActive = activeTabId === t.id;
           return (
             <button
               key={t.id}
               onClick={() => setActiveTabId(t.id)}
-              className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border text-left cursor-pointer transition-all duration-300 w-max md:w-full shrink-0 ${
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left cursor-pointer transition-all duration-200 w-max md:w-full shrink-0 ${
                 tabActive
-                  ? "border-[var(--neon-cyan)] bg-[var(--neon-cyan)]/10 text-white font-semibold"
-                  : "border-transparent bg-transparent text-muted-foreground hover:text-white"
+                  ? "bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-semibold shadow-[0_0_15px_rgba(6,182,212,0.15)]"
+                  : "bg-slate-900/40 border border-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-800/60"
               }`}
             >
-              <span className="font-mono text-xs opacity-40">0{idx + 1}</span>
-              <span className="text-sm font-display tracking-tight">{t.title}</span>
+              <span className="font-mono text-xs opacity-50">0{idx + 1}</span>
+              <span className="text-sm font-semibold tracking-tight">{t.title}</span>
             </button>
           );
         })}
       </div>
 
       {/* Detail Window Column */}
-      <div className="w-full md:w-3/4 grid lg:grid-cols-2 gap-6 md:gap-8 items-center bg-white/5 border border-white/10 p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl animate-fade-in relative overflow-hidden">
-        {/* Detail Content */}
+      <div className="w-full md:w-3/4 grid lg:grid-cols-2 gap-6 md:gap-8 items-center glass-strong border border-slate-800 p-6 md:p-8 rounded-3xl relative overflow-hidden">
         <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[var(--neon-cyan)]/10 border border-[var(--neon-cyan)]/20 text-[var(--neon-cyan)]">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
                 <TabIcon size={20} />
               </div>
               <div>
-                <h4 className="font-display font-bold text-xl text-white tracking-tight">
+                <h3 className="font-bold text-xl text-white tracking-tight">
                   {activeTab.title}
-                </h4>
-                <div className="text-[9px] font-mono uppercase text-muted-foreground tracking-wider mt-0.5">
+                </h3>
+                <div className="text-[10px] font-mono uppercase text-slate-400 tracking-wider mt-0.5">
                   {activeTab.subtitle}
                 </div>
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6">{activeTab.desc}</p>
+            <p className="text-sm text-slate-300 leading-relaxed mb-6">{activeTab.desc}</p>
 
-            <ul className="space-y-2 mb-6">
+            <ul className="space-y-2.5 mb-6">
               {activeTab.features.map((f) => (
-                <li key={f} className="flex items-center gap-2 text-xs text-foreground">
-                  <CheckCircle2 size={12} className="text-[var(--neon-cyan)]" />
+                <li key={f} className="flex items-center gap-2 text-xs text-slate-200 font-medium">
+                  <CheckCircle2 size={14} className="text-cyan-400" />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Stats Metrics (Systems Ltd style) */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 border-t border-white/5 pt-4 sm:pt-6 mt-4">
+          <div className="grid grid-cols-3 gap-3 border-t border-slate-800 pt-6 mt-4">
             {activeTab.stats.map((s) => (
-              <div
-                key={s.label}
-                className="diagonal-cut-card p-2 sm:p-3 rounded-lg flex flex-col text-center"
-              >
-                <span className="text-gradient font-bold text-xs sm:text-sm md:text-base leading-none">
+              <div key={s.label} className="bg-slate-900/60 border border-slate-800 p-3 rounded-xl flex flex-col text-center">
+                <span className="text-gradient font-extrabold text-sm sm:text-base leading-none">
                   {s.value}
                 </span>
-                <span className="text-[8px] sm:text-[9px] text-muted-foreground uppercase tracking-widest mt-1 sm:mt-1.5 font-mono">
+                <span className="text-[9px] text-slate-400 uppercase tracking-wider mt-1.5 font-mono">
                   {s.label}
                 </span>
               </div>
@@ -625,16 +292,16 @@ function InnovationDeck() {
           </div>
         </div>
 
-        {/* Diagram Visualizer (GoCloud style SVG pipelines) */}
-        <div className="bg-black/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-center items-center h-full min-h-[220px]">
-          <div className="text-[9px] font-mono uppercase text-muted-foreground tracking-widest mb-4">
+        {/* Diagram Visualizer */}
+        <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-center items-center h-full min-h-[220px]">
+          <div className="text-[10px] font-mono uppercase text-slate-400 tracking-widest mb-4 font-semibold">
             System Topology Blueprint
           </div>
           <div className="w-full flex justify-center items-center">
             {activeTab.renderDiagram(true)}
           </div>
-          <div className="text-[8px] font-mono uppercase text-[var(--neon-cyan)] mt-4 flex items-center gap-1.5">
-            <Activity size={10} className="animate-pulse" /> Stream telemetry status: active
+          <div className="text-[9px] font-mono uppercase text-cyan-400 mt-4 flex items-center gap-1.5 font-semibold">
+            <Activity size={12} className="animate-pulse text-cyan-400" /> Telemetry Status: Active
           </div>
         </div>
       </div>
@@ -642,8 +309,19 @@ function InnovationDeck() {
   );
 }
 
+const servicesList = [
+  "WEBSITES",
+  "AI AGENTS",
+  "SOFTWARES",
+  "CUSTOM LLMS",
+  "AI CHATBOTS",
+  "MOBILE APPS",
+] as const;
+
 function HomePage() {
   const [sphereSize, setSphereSize] = useState(480);
+  const [serviceIndex, setServiceIndex] = useState(0);
+  const [flipPhase, setFlipPhase] = useState<"idle" | "flip-in">("idle");
 
   useEffect(() => {
     const update = () => {
@@ -655,142 +333,137 @@ function HomePage() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      // Trigger flip-in on new word
+      setFlipPhase("flip-in");
+      setServiceIndex((prev) => (prev + 1) % servicesList.length);
+      // Reset after animation completes
+      const reset = setTimeout(() => setFlipPhase("idle"), 500);
+      return () => clearTimeout(reset);
+    }, 2200);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="animate-fade-in relative min-h-screen">
-      {/* Dynamic dashboard background slideshow */}
-      <DashboardBackgroundSlideshow />
 
-      {/* HERO */}
-      <section className="relative min-h-screen lg:min-h-[90vh] flex flex-col lg:items-center justify-center px-4 sm:px-6 overflow-hidden z-10 pt-28 sm:pt-32 lg:pt-0">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full pb-16 lg:py-20">
-          <div className="animate-fade-up text-center lg:text-left flex flex-col items-center lg:items-start z-10 order-1">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl mb-6 font-display font-bold tracking-tight leading-none text-white">
-              We Engineer
-              <br />
-              <span className="text-gradient drop-shadow-[0_0_30px_rgba(99,235,249,0.3)] font-extrabold">
-                Production-Grade AI Systems
-              </span>
-              <br />
-              <span className="font-semibold text-muted-foreground text-3xl sm:text-4xl md:text-5xl tracking-normal mt-2 block opacity-85">
-                &amp; Multi-Agent Workflows.
-              </span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
-              We engineer production-grade AI systems, multi-agent workflows, and high-performance digital products that automate complex business operations.
-            </p>
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-              <Link
-                to="/services"
-                className="btn-neon px-8 py-3.5 rounded-full inline-flex items-center gap-2 transform hover:scale-105 transition-all duration-300"
-              >
-                Get Started <ArrowRight size={16} />
-              </Link>
-              <Link
-                to="/contact"
-                className="px-8 py-3.5 rounded-full glass hover:neon-border hover:scale-105 hover:bg-white/5 transition-all duration-300 inline-flex items-center gap-2"
-              >
-                Contact Us
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4 md:gap-8 mt-12 w-full max-w-md border-t border-white/10 pt-8">
-              {[
-                { v: "100+", l: "Projects" },
-                { v: "50+", l: "AI Solutions" },
-                { v: "15+", l: "Countries" },
-              ].map((s) => (
-                <div key={s.l} className="text-center lg:text-left">
-                  <div className="font-display text-2xl md:text-3xl text-gradient font-bold">
-                    {s.v}
-                  </div>
-                  <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest mt-1">
-                    {s.l}
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* HERO SECTION (Compact, 100% Visible Above The Fold) */}
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-10 text-center overflow-hidden">
+        <div className="max-w-6xl mx-auto flex flex-col items-center z-10 w-full animate-fade-up">
+          
+          {/* Top Pill Badge */}
+          <div className="inline-flex items-center justify-center px-4 py-1 sm:px-5 sm:py-1.5 rounded-full border border-slate-700/80 bg-slate-900/60 backdrop-blur-md text-xs font-semibold text-slate-300 tracking-wide mb-3 sm:mb-4 shadow-sm">
+            Building Brands <span className="font-bold text-white ml-1">Worldwide.</span>
           </div>
 
-          {/* Hero Column 2: 3D Cognitive Sphere */}
-          <div
-            className="relative animate-fade-up flex justify-center items-center w-full order-2"
-            style={{ animationDelay: "0.15s" }}
-          >
-            <div
-              className="relative flex items-center justify-center"
-              style={{
-                width: sphereSize,
-                height: sphereSize,
-                maxWidth: "100%",
-                flexShrink: 0,
-              }}
+          {/* Sub-headline with Flanking Horizontal Lines */}
+          <div className="w-full flex items-center justify-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+            <span className="h-[1px] w-8 sm:w-20 md:w-32 bg-gradient-to-r from-transparent to-slate-500/80" />
+            <h2 className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.2em] font-extrabold text-slate-300 shrink-0">
+              ACCELERATING BUSINESSES BEYOND BOUNDARIES
+            </h2>
+            <span className="h-[1px] w-8 sm:w-20 md:w-32 bg-gradient-to-l from-transparent to-slate-500/80" />
+          </div>
+
+          {/* Massive Impact Typography Headline with Digital Flip-Clock Ticker */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-[76px] 2xl:text-[90px] font-black uppercase tracking-tight leading-[0.98] text-white mb-5 sm:mb-6 text-center drop-shadow-md w-full">
+            <span className="inline-flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-4 max-w-full">
+              <span>BUILDING</span>
+              <span
+                style={{ perspective: '600px', display: 'inline-block', overflow: 'hidden' }}
+              >
+                <span
+                  key={serviceIndex}
+                  className={`text-[#45DDFD] inline-block ${flipPhase === 'flip-in' ? 'ticker-flip-in' : ''}`}
+                  style={{ transformOrigin: 'center top', backfaceVisibility: 'hidden' }}
+                >
+                  {servicesList[serviceIndex]}
+                </span>
+              </span>
+            </span> <br />
+            <span className="text-stroke-white block mt-1">GENERATING LEADS!</span>
+          </h1>
+
+          {/* Clean Paragraph */}
+          <p className="text-sm sm:text-base md:text-lg xl:text-xl text-slate-300 max-w-2xl xl:max-w-3xl leading-relaxed mb-6 sm:mb-8 md:mb-10 text-center font-normal px-2 sm:px-4">
+            Enterprise software house & AI engineering agency — building intelligent systems, scalable web platforms, and custom digital solutions precision-engineered around your business goals.
+          </p>
+
+          {/* Centered CTA Buttons (100% Visible On Screen) */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 w-full sm:w-auto">
+            <Link
+              to="/services"
+              className="btn-neon font-bold text-sm sm:text-base px-8 py-3.5 rounded-full inline-flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all w-full sm:w-auto"
             >
-              <TechSphere size={sphereSize} />
-            </div>
+              Explore Solutions <ArrowRight size={18} />
+            </Link>
+            <Link
+              to="/contact"
+              className="px-8 py-3.5 rounded-full border border-slate-700/80 hover:border-cyan-400 bg-slate-900/50 hover:bg-slate-800/80 text-white font-semibold text-sm sm:text-base transition-all duration-200 shadow-sm w-full sm:w-auto"
+            >
+              Schedule Consultation
+            </Link>
           </div>
+
         </div>
       </section>
 
-      {/* TABBED SERVICE OVERVIEW: INNOVATION DECK (Systems Ltd inspired) */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto border-t border-white/5">
+      {/* CORE CAPABILITIES DECK */}
+      <section className="px-4 sm:px-6 py-16 sm:py-24 max-w-7xl mx-auto border-t border-slate-800/60">
         <div className="text-center mb-12">
-          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-white">
-            Architectural <span className="text-gradient">Innovations</span>
+          <div className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-2 font-mono">
+            System Architecture
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Enterprise <span className="text-gradient">Capabilities</span>
           </h2>
-          <p className="text-sm text-muted-foreground mt-3 max-w-xl mx-auto">
-            Explore our core specialities and system topologies engineered for enterprise scale and
-            high performance.
+          <p className="text-sm sm:text-base text-slate-400 mt-3 max-w-xl mx-auto">
+            Engineered topologies built for high performance, compliance, and global scale.
           </p>
         </div>
 
         <InnovationDeck />
       </section>
 
-      {/* WHY US */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto border-t border-white/5">
-        <div className="glass-strong rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 relative overflow-hidden border border-[var(--neon-purple)]/20 shadow-[0_0_50px_rgba(168,85,247,0.05)]">
-          <div
-            className="orb"
-            style={{
-              width: 400,
-              height: 400,
-              background: "var(--neon-purple)",
-              top: -100,
-              right: -100,
-              opacity: 0.1,
-            }}
-          />
-          <div className="relative grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      {/* WHY CHOOSE ERHA TECHNOLOGIES */}
+      <section className="px-4 sm:px-6 py-16 sm:py-20 max-w-7xl mx-auto">
+        <div className="glass-strong rounded-3xl p-8 sm:p-12 md:p-16 border border-slate-800 shadow-2xl relative overflow-hidden">
+          <div className="relative grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 font-bold text-white">
-                Engineered for <span className="text-gradient">tomorrow</span>
+              <div className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-2 font-mono">
+                Why Work With Us
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+                Built for trust, precision, and <span className="text-gradient">performance</span>
               </h2>
-              <p className="text-muted-foreground mb-8 text-base md:text-lg leading-relaxed">
-                We combine deep AI capabilities with production-grade engineering — shipping systems
-                that are fast, reliable, and beautifully designed.
+              <p className="text-slate-300 text-base leading-relaxed mb-8">
+                We bridge advanced AI research with robust software engineering, delivering systems that accelerate digital transformation.
               </p>
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300"
+              >
+                Learn more about our methodology <ArrowRight size={16} />
+              </Link>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { title: "Cutting-edge AI", icon: Brain, desc: "SOTA Model Integration" },
-                { title: "Pixel-perfect UX", icon: Sparkles, desc: "Stunning Visual Design" },
-                { title: "24/7 Support", icon: Bot, desc: "Autonomous Maintenance" },
-                { title: "Future-proof", icon: Cpu, desc: "Scalable Infrastructure" },
+                { title: "Cutting-edge AI", icon: Brain, desc: "SOTA Multi-Model Systems" },
+                { title: "SaaS & Web Excellence", icon: Code2, desc: "High Performance UIs" },
+                { title: "Enterprise Security", icon: ShieldCheck, desc: "SOC2 Compliant Standards" },
+                { title: "Global Infrastructure", icon: Globe2, desc: "Edge Computing & Cloud" },
               ].map((f) => (
                 <div
                   key={f.title}
-                  className="diagonal-cut-card p-5 text-center group hover:border-[var(--neon-cyan)]/45 transition-all duration-300"
+                  className="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all duration-200"
                 >
-                  <div className="flex flex-col items-center">
-                    <f.icon
-                      className="mx-auto mb-2 text-[var(--neon-cyan)] transition-all duration-300 group-hover:scale-110 group-hover:glow-text-cyan"
-                      size={24}
-                    />
-                    <div className="text-sm font-semibold tracking-wide text-white">{f.title}</div>
-                    <div className="text-[9px] text-muted-foreground mt-1 uppercase tracking-wider font-mono">
-                      {f.desc}
-                    </div>
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
+                    <f.icon size={20} />
                   </div>
+                  <h3 className="text-base font-bold text-white mb-1">{f.title}</h3>
+                  <p className="text-xs text-slate-400 font-medium">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -798,23 +471,21 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 text-center max-w-4xl mx-auto">
-        <h2 className="font-display text-3xl sm:text-4xl md:text-6xl mb-5 sm:mb-6 font-bold text-white">
-          Ready to <span className="text-gradient">build the future</span>?
+      {/* CALL TO ACTION */}
+      <section className="px-4 sm:px-6 py-20 sm:py-28 text-center max-w-4xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+          Ready to scale your <span className="text-gradient">digital infrastructure</span>?
         </h2>
-        <p className="text-muted-foreground mb-8 text-lg">
-          Let&apos;s create something extraordinary together.
+        <p className="text-slate-300 text-base sm:text-lg mb-8 max-w-xl mx-auto">
+          Partner with Erha Technologies to build software that elevates your enterprise.
         </p>
         <Link
           to="/contact"
-          className="btn-neon px-9 py-4 rounded-full inline-flex items-center gap-2 transform hover:scale-105 hover:shadow-[0_0_30px_var(--neon-cyan)] transition-all duration-300"
+          className="btn-neon font-semibold text-base px-9 py-4 rounded-full inline-flex items-center gap-2"
         >
-          Start your project <ArrowRight size={18} />
+          Start Your Project <ArrowRight size={18} />
         </Link>
       </section>
     </div>
   );
 }
-
-

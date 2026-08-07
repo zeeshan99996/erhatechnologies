@@ -1,10 +1,11 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { TechBackground } from "../components/TechBackground";
 import { AgenticChatbot } from "../components/AgenticChatbot";
 import { GlowingCursor } from "../components/GlowingCursor";
+import { FloatingSocialBar } from "../components/FloatingSocialBar";
 
 function NotFoundComponent() {
   return (
@@ -28,17 +29,23 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Erha Technologies — AI & Digital Solutions" },
+      { name: "theme-color", content: "#0f172a" },
+      { title: "Erha Technologies — Enterprise AI & Digital Engineering" },
       {
         name: "description",
         content:
-          "Erha Technologies builds AI, web, and agentic solutions from Pakistan. Innovating the future with intelligent digital systems.",
+          "Erha Technologies engineers production-grade AI agents, custom LLMs, RAG systems, web applications, mobile apps, and search optimization solutions.",
       },
-      { name: "author", content: "Ilyas Shahid — Erha Technologies" },
-      { property: "og:title", content: "Erha Technologies — AI & Digital Solutions" },
-      { property: "og:description", content: "Innovating the future with AI & digital solutions." },
+      { name: "keywords", content: "AI Agents, Agentic AI, Custom LLM, RAG, Web Development, Mobile Apps, Enterprise AI, SEO, AEO, Pakistan, Multan" },
+      { name: "author", content: "Erha Technologies" },
+      { property: "og:site_name", content: "Erha Technologies" },
+      { property: "og:title", content: "Erha Technologies — Enterprise AI & Digital Engineering" },
+      { property: "og:description", content: "Production-grade AI systems, multi-agent workflows, custom web applications, and enterprise digital solutions." },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Erha Technologies — Enterprise AI & Digital Engineering" },
+      { name: "twitter:description", content: "Production-grade AI systems, multi-agent workflows, custom web applications, and enterprise digital solutions." },
     ],
     links: [
       { rel: "icon", type: "image/png", href: "/favicon.png" },
@@ -49,7 +56,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
     ],
   }),
@@ -61,24 +68,38 @@ export const Route = createRootRoute({
 function RootShell({ children }: { children: React.ReactNode }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Erha Technologies",
-    "url": "https://www.erhatechnologies.com/",
-    "logo": "https://www.erhatechnologies.com/assets/erha-logo-DnCVaBCS.png",
-    "image": "https://www.erhatechnologies.com/assets/erha-logo-DnCVaBCS.png",
-    "description": "Erha Technologies builds production-grade AI systems, multi-agent workflows, and high-performance digital products.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #02, Chungi #6",
-      "addressLocality": "Multan",
-      "addressRegion": "Punjab",
-      "postalCode": "60000",
-      "addressCountry": "PK"
-    },
-    "telephone": "0302 3333499",
-    "email": "erhatechnologiesofficial@gmail.com",
-    "sameAs": [
-      "https://www.linkedin.com/company/erha-technologies/"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.erhatechnologies.com/#organization",
+        "name": "Erha Technologies",
+        "url": "https://www.erhatechnologies.com/",
+        "logo": "https://www.erhatechnologies.com/favicon.png",
+        "description": "Erha Technologies builds production-grade AI systems, multi-agent workflows, and high-performance digital products.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #02, Chungi #6",
+          "addressLocality": "Multan",
+          "addressRegion": "Punjab",
+          "postalCode": "60000",
+          "addressCountry": "PK"
+        },
+        "telephone": "0302 3333499",
+        "email": "info@erhatechnologies.com",
+        "sameAs": [
+          "https://www.linkedin.com/company/erha-technologies/",
+          "https://www.facebook.com/people/Erha-Technologies/61592220862497/",
+          "https://www.instagram.com/erhatechnologies",
+          "https://www.tiktok.com/@erhatechnologies"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.erhatechnologies.com/#website",
+        "url": "https://www.erhatechnologies.com/",
+        "name": "Erha Technologies",
+        "publisher": { "@id": "https://www.erhatechnologies.com/#organization" }
+      }
     ]
   };
 
@@ -100,12 +121,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   return (
     <>
       <GlowingCursor />
       <TechBackground />
       <SiteHeader />
-      <main className="pt-16 min-h-screen">
+      <FloatingSocialBar />
+      <main className={`${isHome ? "" : "pt-16"} min-h-screen`}>
         <Outlet />
       </main>
       <SiteFooter />

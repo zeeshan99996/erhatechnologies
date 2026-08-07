@@ -416,13 +416,13 @@ export function AgenticChatbot() {
         href="https://wa.me/923023333499"
         target="_blank"
         rel="noopener noreferrer"
-        className={`fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center
+        className={`fixed bottom-[72px] right-4 sm:bottom-[92px] sm:right-6 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full flex items-center justify-center
           bg-[#25D366] text-white shadow-[0_0_20px_#25D366] hover:shadow-[0_0_30px_#25D366] hover:scale-110 transition-all duration-300
           ${isOpen ? "scale-0 opacity-0 pointer-events-none" : "scale-100 opacity-100"}`}
         aria-label="Contact on WhatsApp"
       >
         <svg
-          className="w-7 h-7 sm:w-8 sm:h-8 fill-current"
+          className="w-5.5 h-5.5 sm:w-6.5 sm:h-6.5 fill-current"
           viewBox="0 0 16 16"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -434,69 +434,62 @@ export function AgenticChatbot() {
       <button
         id="erha-chatbot-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center
-          shadow-[0_0_20px_var(--neon-cyan)] hover:scale-110 transition-all duration-300 overflow-hidden bg-transparent
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full flex items-center justify-center
+          bg-[#45DEFD] text-white shadow-[0_0_20px_#45DEFD] hover:shadow-[0_0_30px_#45DEFD] hover:scale-110 transition-all duration-300
           ${isOpen ? "scale-0 opacity-0 pointer-events-none" : "scale-100 opacity-100"}`}
         aria-label="Open Erha AI Agent"
       >
-        <img src="/chatbot-icon.webp" alt="Chatbot Icon" className="w-full h-full object-cover" />
+        <svg
+          className="w-5.5 h-5.5 sm:w-6.5 sm:h-6.5 fill-current"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+        </svg>
       </button>
 
       {/* Chat Window */}
       <div
-        className={`fixed z-[80] flex flex-col glass-strong
-          border border-[var(--neon-cyan)]/30 rounded-2xl overflow-hidden
-          shadow-[0_0_40px_rgba(0,255,255,0.1)] transition-all duration-300
+        className={`fixed z-[80] flex flex-col bg-white
+          border border-slate-200 rounded-2xl overflow-hidden
+          shadow-2xl transition-all duration-300
           left-1/2 -translate-x-1/2 bottom-4 w-[calc(100vw-2rem)] max-w-[380px] h-[75vh] max-h-[520px]
-          sm:left-auto sm:right-6 sm:bottom-6 sm:translate-x-0 sm:w-[390px] sm:h-[620px] sm:max-h-[calc(100vh-3rem)] sm:max-w-none
+          sm:left-auto sm:right-6 sm:bottom-6 sm:translate-x-0 sm:w-[390px] sm:h-[600px] sm:max-h-[calc(100vh-3rem)] sm:max-w-none
           ${
             isOpen
               ? "translate-y-0 scale-100 opacity-100 pointer-events-auto"
-              : "translate-y-10 scale-95 opacity-0 pointer-events-none sm:translate-y-0 sm:scale-75"
+              : "translate-y-10 scale-95 opacity-0 pointer-events-none"
           }`}
       >
         {/* Header */}
-        <div
-          className="p-4 border-b border-white/10 flex items-center justify-between shrink-0"
-          style={{ background: "linear-gradient(to right, rgba(0,255,255,0.1), transparent)" }}
-        >
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
-                <img
-                  src="/chatbot-icon.webp"
-                  alt="Chatbot Icon"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
+        <div className="p-4 bg-slate-900 text-white border-b border-slate-800 flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-sm font-bold text-xs">
+              AI
             </div>
             <div>
-              <h3 className="text-sm font-bold">Erha AI Agent</h3>
-              <div className="text-[9px] text-muted-foreground uppercase tracking-[0.15em] flex items-center gap-1">
-                <CheckCircle2 size={10} className="text-[var(--neon-cyan)]" /> Online & Ready
-              </div>
+              <div className="text-sm font-bold text-white leading-none">Ask Ai</div>
+              <div className="text-[11px] text-blue-400 font-medium mt-0.5">Autonomous Operations</div>
             </div>
           </div>
           <div className="flex items-center gap-1">
-            {/* TTS Toggle */}
             <button
               onClick={() => {
                 setTtsEnabled((p) => !p);
                 window.speechSynthesis.cancel();
               }}
               title={ttsEnabled ? "Mute voice output" : "Enable voice output"}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
             >
               {ttsEnabled ? (
-                <Volume2 size={16} className="text-[var(--neon-cyan)]" />
+                <Volume2 size={16} className="text-blue-400" />
               ) : (
-                <VolumeX size={16} className="text-muted-foreground" />
+                <VolumeX size={16} className="text-slate-500" />
               )}
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
             >
               <X size={18} />
             </button>
@@ -504,19 +497,18 @@ export function AgenticChatbot() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-black/40 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50 custom-scrollbar">
           {messages.map((msg) => (
             <div
               key={msg.id}
               className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[82%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed
-                  ${
-                    msg.sender === "user"
-                      ? "bg-[var(--neon-cyan)] text-background rounded-tr-sm font-medium"
-                      : "glass border border-white/5 rounded-tl-sm"
-                  }`}
+                className={`max-w-[84%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                  msg.sender === "user"
+                    ? "bg-blue-600 text-white rounded-tr-xs font-medium shadow-xs"
+                    : "bg-white text-slate-800 border border-slate-200 rounded-tl-xs shadow-xs"
+                }`}
               >
                 {msg.text}
               </div>
@@ -525,8 +517,8 @@ export function AgenticChatbot() {
 
           {isLoading && (
             <div className="flex justify-start">
-              <div className="glass border border-white/5 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-2 text-muted-foreground text-sm">
-                <Loader2 size={14} className="animate-spin text-[var(--neon-cyan)]" />
+              <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-xs px-4 py-3 flex items-center gap-2 text-slate-500 text-sm shadow-xs">
+                <Loader2 size={14} className="animate-spin text-blue-600" />
                 Erha AI is thinking…
               </div>
             </div>
@@ -536,65 +528,44 @@ export function AgenticChatbot() {
 
         {/* Attachment Preview */}
         {attachment && (
-          <div className="px-4 py-2 bg-black/60 border-t border-white/5 flex items-center gap-2">
+          <div className="px-4 py-2 bg-slate-100 border-t border-slate-200 flex items-center gap-2">
             {attachment.type.startsWith("image/") ? (
-              <ImageIcon size={14} className="text-[var(--neon-cyan)]" />
+              <ImageIcon size={14} className="text-blue-600" />
             ) : (
-              <FileText size={14} className="text-[var(--neon-cyan)]" />
+              <FileText size={14} className="text-blue-600" />
             )}
-            <span className="text-xs text-muted-foreground truncate flex-1">{attachment.name}</span>
+            <span className="text-xs text-slate-600 truncate flex-1">{attachment.name}</span>
             <button
               onClick={() => setAttachment(null)}
-              className="text-xs text-muted-foreground hover:text-white"
+              className="text-xs text-slate-500 hover:text-slate-900"
             >
               ✕
             </button>
           </div>
         )}
 
-        {/* Voice mode indicator with animated Waveform */}
+        {/* Voice mode indicator */}
         {isRecording && (
-          <div className="px-4 py-3.5 bg-red-500/10 border-y border-red-500/20 flex flex-col gap-2 animate-in fade-in duration-300">
+          <div className="px-4 py-3 bg-red-50 border-y border-red-200 flex flex-col gap-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-[10px] font-display font-semibold tracking-wider text-red-400 uppercase">
-                  [SYSTEM ACTIVE: LISTENING]
+                <span className="text-[10px] font-bold text-red-600 uppercase tracking-wider">
+                  Listening…
                 </span>
               </div>
-              <span className="text-[9px] text-red-400/60 uppercase tracking-wider">
-                Auto-send 4.5s silence
-              </span>
-            </div>
-
-            {/* Equalizer animation */}
-            <div className="h-8 flex items-center justify-center gap-1">
-              {[0.2, 0.5, 0.8, 0.4, 0.9, 0.3, 0.7, 0.5, 0.8, 0.2, 0.6, 0.4, 0.9, 0.3, 0.5].map(
-                (delay, index) => (
-                  <div
-                    key={index}
-                    className="w-1 rounded-full bg-red-500/70 waveform-bar"
-                    style={{
-                      height: "6px",
-                      animationDelay: `${delay}s`,
-                      animationDuration: `${0.5 + delay * 0.5}s`,
-                      boxShadow: "0 0 8px rgba(239, 68, 68, 0.4)",
-                    }}
-                  />
-                ),
-              )}
+              <span className="text-[9px] text-red-500 uppercase">Auto-send after silence</span>
             </div>
           </div>
         )}
 
         {/* Input Area */}
-        <div className="p-3 bg-black/60 border-t border-white/10 shrink-0">
+        <div className="p-3 bg-white border-t border-slate-200 shrink-0">
           <div className="flex items-center gap-2">
-            {/* Attach */}
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="w-9 h-9 shrink-0 rounded-full glass flex items-center justify-center hover:bg-white/10 text-muted-foreground hover:text-white transition-colors"
-              title="Attach file (.docx or image)"
+              className="w-9 h-9 shrink-0 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors"
+              title="Attach file"
             >
               <Paperclip size={16} />
             </button>
@@ -606,7 +577,6 @@ export function AgenticChatbot() {
               onChange={(e) => setAttachment(e.target.files?.[0] ?? null)}
             />
 
-            {/* Text Input */}
             <input
               ref={inputRef}
               type="text"
@@ -614,40 +584,32 @@ export function AgenticChatbot() {
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder={isRecording ? "Speaking…" : "Type or speak…"}
-              className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-base sm:text-sm
-                focus:outline-none focus:border-[var(--neon-cyan)]/50 focus:ring-1
-                focus:ring-[var(--neon-cyan)]/30 transition-all"
+              className="flex-1 min-w-0 bg-slate-50 border border-slate-200 rounded-full px-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white transition-all"
             />
 
-            {/* Hidden mic restart to avoid circular dependency */}
             <button id="hidden-mic-restart" onClick={startRecording} className="hidden" />
 
-            {/* Mic */}
             <button
               onClick={toggleMic}
               title={isRecording ? "Stop recording" : "Start voice input"}
-              className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center transition-all
-                ${
-                  isRecording
-                    ? "bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse"
-                    : "glass hover:bg-white/10 text-muted-foreground hover:text-white"
-                }`}
+              className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center transition-all ${
+                isRecording
+                  ? "bg-red-500 text-white animate-pulse"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
+              }`}
             >
               {isRecording ? <MicOff size={16} /> : <Mic size={16} />}
             </button>
 
-            {/* Send */}
             <button
               onClick={() => handleSend()}
               disabled={(!input.trim() && !attachment) || isLoading}
-              className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center
-                disabled:opacity-40 disabled:cursor-not-allowed transition-all hover:scale-105"
-              style={{ background: "var(--gradient-neon)" }}
+              className="w-9 h-9 shrink-0 rounded-full bg-[#45DDFD] hover:bg-[#38bdf8] text-slate-950 font-bold flex items-center justify-center disabled:opacity-40 transition-all shadow-sm"
             >
               {isLoading ? (
-                <Loader2 size={16} className="text-background animate-spin" />
+                <Loader2 size={16} className="animate-spin" />
               ) : (
-                <Send size={16} className="text-background" />
+                <Send size={16} />
               )}
             </button>
           </div>
