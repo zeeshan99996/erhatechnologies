@@ -65,7 +65,14 @@ interface TeamMember {
   role: string;
   initials: string;
   image: string;
-  category: "Executive Leadership" | "DevOps Engineer" | "AI Engineer" | "HR & Business Operations" | "Full Stack Developer";
+  category:
+    | "Executive Leadership"
+    | "DevOps Engineer"
+    | "AI Engineer"
+    | "HR & Business Operations"
+    | "Full Stack Developer"
+    | "QA"
+    | "Operations";
   bio: string;
   skills: string[];
   tech: string[];
@@ -143,19 +150,19 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Abdul Rehman",
-    role: "Junior AI Engineer",
+    role: "QA & Automation Engineer",
     initials: "AR",
     image: abdulRehmanImg,
-    category: "AI Engineer",
-    bio: "Junior AI Engineer focused on developing data pipelines, vector databases, and system integration workflows. Skilled in constructing data pre-processing scripts and retrieval configurations.",
+    category: "QA",
+    bio: "QA & Automation Engineer focused on API regression testing, automated test suites, vector database validation, and quality assurance workflows.",
     skills: [
-      "Data Pipelines",
-      "Prompt Engineering",
-      "System Integration",
-      "Vector Databases",
+      "Automation Testing",
       "API Testing",
+      "Vector Database Validation",
+      "System Integration",
+      "Regression Testing",
     ],
-    tech: ["Hugging Face", "Python", "Docker", "PostgreSQL"],
+    tech: ["Playwright", "Jest", "Python", "Docker", "PostgreSQL"],
   },
   {
     name: "Muhammad Zeeshan",
@@ -271,19 +278,19 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Umm-e-Aiman",
-    role: "AI Researcher",
+    role: "Operations & Research Specialist",
     initials: "UA",
     image: ummeaimanResearchImg,
-    category: "AI Engineer",
-    bio: "AI Researcher exploring computational biology, genetic sequence analysis, and neural bioinformatics datasets.",
+    category: "Operations",
+    bio: "Operations & Research Specialist coordinating technical operations, research telemetry workflows, and operational compliance.",
     skills: [
-      "Bioinformatics",
-      "Neural Sequences",
-      "Computational Biology",
-      "Genomic Data Analytics",
-      "Scientific Research",
+      "Technical Operations",
+      "Data Workflows",
+      "Operational Compliance",
+      "Research Coordination",
+      "Telemetry Analysis",
     ],
-    tech: ["BLAST", "Biopython", "R", "NCBI Entrez"],
+    tech: ["Python", "Jira", "SQL", "Tableau", "Git"],
   },
 ];
 
@@ -297,6 +304,8 @@ function AboutPage() {
     "AI Engineer",
     "HR & Business Operations",
     "Full Stack Developer",
+    "QA",
+    "Operations",
   ];
 
   const filteredTeam =
