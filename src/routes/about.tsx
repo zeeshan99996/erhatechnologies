@@ -300,42 +300,7 @@ function AboutPage() {
 
   return (
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-6xl mx-auto animate-fade-up">
-      {/* Header */}
-      <div className="text-center mb-16 md:mb-20">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-4">
-          <Globe size={14} />
-          About Erha Technologies
-        </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
-          Engineering the <span className="text-gradient">future of digital business</span>
-        </h1>
-        <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-          ERHA TECHNOLOGIES is a premium digital solutions provider dedicated to empowering enterprises through cutting-edge Artificial Intelligence integration, autonomous agentic workflows, custom software engineering, and high-availability cloud infrastructure.
-        </p>
-      </div>
 
-      {/* Stats Counter Banner */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
-        {[
-          { label: "AI Workflows Deployed", value: "100+", icon: Sparkles },
-          { label: "System Uptime & SLA", value: "99.9%", icon: ShieldCheck },
-          { label: "Specialized Engineers", value: "15+", icon: Users },
-          { label: "Execution Velocity", value: "10x", icon: Zap },
-        ].map((stat) => (
-          <div
-            key={stat.label}
-            className="glass rounded-2xl p-6 text-center border border-slate-800 shadow-xl"
-          >
-            <div className="w-10 h-10 mx-auto rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-3">
-              <stat.icon size={20} />
-            </div>
-            <div className="text-3xl font-extrabold text-white mb-1 font-display">
-              {stat.value}
-            </div>
-            <div className="text-xs text-slate-400 font-medium">{stat.label}</div>
-          </div>
-        ))}
-      </div>
 
       {/* Mission / Vision / Values */}
       <div className="grid md:grid-cols-3 gap-6 mb-20">
