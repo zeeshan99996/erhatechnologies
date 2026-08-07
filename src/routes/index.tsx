@@ -23,42 +23,58 @@ import aiComputeClusterImg from "@/assets/ai-compute-cluster.jpg";
 import cloudControlCenterImg from "@/assets/cloud-control-center.jpg";
 import executiveLoungeImg from "@/assets/executive-lounge.jpg";
 
-const infrastructureCards = [
+const serviceCards = [
   {
-    title: "AI Research & Compute Cluster",
-    subtitle: "High-Density GPU Rig & Multi-Agent Labs",
-    desc: "Production-grade supercomputing infrastructure executing custom LLM fine-tuning, multi-agent reasoning loops, and sub-5ms vector retrieval.",
+    title: "AI Agents & Autonomous Systems",
+    subtitle: "Multi-Agent Orchestration & Reasoning",
+    desc: "Self-correcting AI agent networks that plan, reason, and execute multi-step enterprise workflows autonomously.",
     image: aiComputeClusterImg,
-    badge: "AI Compute Hub",
-    specs: ["Sub-5ms Latency", "Multi-Agent Cluster"],
+    badge: "AI Services",
+    specs: ["Autonomous Agents", "Sub-5ms RAG"],
   },
   {
-    title: "Software Engineering & Tech Hub",
-    subtitle: "Developer Headquarters & Full-Stack Labs",
-    desc: "Modern collaborative engineering workspaces housing our full-stack developers, system architects, and software research teams.",
+    title: "Web & Enterprise SaaS Engineering",
+    subtitle: "Modern React, Next.js & Microservices",
+    desc: "High-performance, pixel-perfect web applications and multi-tenant SaaS platforms engineered for global scale.",
     image: officeWorkspaceImg,
-    badge: "Engineering Lab",
-    specs: ["Full-Stack Engineering", "Agile Workflows"],
+    badge: "Development",
+    specs: ["Full-Stack SaaS", "Agile Velocity"],
   },
   {
-    title: "Cloud Operations & Network Center",
-    subtitle: "24/7 Monitoring & Global Edge Deployment",
-    desc: "Real-time network control room and infrastructure telemetry monitoring 99.9% uptime and zero-downtime deployment pipelines.",
+    title: "Cloud, DevOps & Infrastructure",
+    subtitle: "AWS, GCP, Kubernetes & Edge Grid",
+    desc: "Cloud-native deployment, container orchestration, and real-time operations ensuring 99.9% system SLA.",
     image: cloudControlCenterImg,
     badge: "Cloud NOC",
-    specs: ["Global Edge Grid", "SOC2 Compliant"],
+    specs: ["Zero-Downtime", "SOC2 Compliant"],
   },
   {
-    title: "Executive Innovation & Strategy Suite",
-    subtitle: "Client Strategy & AI Architecture Lounge",
-    desc: "Dedicated executive suite for enterprise AI strategy workshops, system design alignment, and global client collaboration.",
+    title: "Executive AI Strategy & Consulting",
+    subtitle: "Enterprise Transformation & Roadmaps",
+    desc: "Strategic AI advisory, LLM architecture roadmaps, and custom AI integration plans for global leaders.",
     image: executiveLoungeImg,
-    badge: "Strategy Suite",
-    specs: ["Executive Advisory", "Global Partnerships"],
+    badge: "AI Strategy",
+    specs: ["Executive Advisory", "AI Roadmapping"],
+  },
+  {
+    title: "Generative AI, Custom LLMs & RAG",
+    subtitle: "Domain Models & Vector Search",
+    desc: "Production RAG pipelines and custom LLM fine-tuning connecting proprietary enterprise data to AI.",
+    image: aiComputeClusterImg,
+    badge: "GenAI & LLMs",
+    specs: ["Vector Databases", "SOTA Fine-Tuning"],
+  },
+  {
+    title: "E-Commerce & Digital Growth",
+    subtitle: "Headless Commerce, SEO & AEO",
+    desc: "High-conversion online storefronts and AI Search Optimization (AEO/GEO) dominating ChatGPT & Google.",
+    image: officeWorkspaceImg,
+    badge: "Search & Growth",
+    specs: ["Headless Commerce", "AEO / GEO Search"],
   },
 ];
 
-function InfrastructureGallery() {
+function ServiceGallery() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -69,7 +85,7 @@ function InfrastructureGallery() {
     let animationId: number;
     const step = () => {
       if (!isHovered && el) {
-        el.scrollLeft += 4.0;
+        el.scrollLeft += 3.5;
         if (el.scrollLeft >= el.scrollWidth / 2) {
           el.scrollLeft = 0;
         }
@@ -86,15 +102,17 @@ function InfrastructureGallery() {
       ref={scrollRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="flex gap-5 overflow-x-auto scrollbar-none py-4 px-2 scroll-smooth select-none cursor-grab active:cursor-grabbing"
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
+      className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none py-4 px-2 sm:px-4 scroll-smooth select-none cursor-grab active:cursor-grabbing w-full"
     >
-      {[...infrastructureCards, ...infrastructureCards].map((item, idx) => (
+      {[...serviceCards, ...serviceCards].map((item, idx) => (
         <div
           key={`${item.title}-${idx}`}
-          className="shrink-0 w-[260px] sm:w-[310px] md:w-[340px] group relative rounded-2xl overflow-hidden border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_15px_35px_rgba(6,182,212,0.2)] hover:-translate-y-1.5 cursor-pointer bg-slate-900/80 flex flex-col"
+          className="shrink-0 w-[240px] min-[400px]:w-[270px] sm:w-[310px] md:w-[340px] lg:w-[360px] group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_15px_35px_rgba(6,182,212,0.22)] hover:-translate-y-1.5 cursor-pointer bg-slate-900/80 flex flex-col"
         >
-          {/* Image Container - Smaller Compact Height */}
-          <div className="relative w-full h-44 sm:h-48 overflow-hidden">
+          {/* Image Container - Fully Responsive */}
+          <div className="relative w-full h-36 min-[400px]:h-40 sm:h-48 overflow-hidden">
             <img
               src={item.image}
               alt={item.title}
@@ -103,31 +121,31 @@ function InfrastructureGallery() {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-70 transition-opacity duration-300" />
 
             {/* Floating Badge */}
-            <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-slate-950/80 border border-cyan-500/40 text-cyan-300 text-[10px] font-mono font-bold tracking-wider backdrop-blur-md shadow-lg group-hover:border-cyan-400 group-hover:scale-105 transition-all">
+            <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 px-2.5 py-0.5 rounded-full bg-slate-950/80 border border-cyan-500/40 text-cyan-300 text-[9px] sm:text-[10px] font-mono font-bold tracking-wider backdrop-blur-md shadow-lg group-hover:border-cyan-400 group-hover:scale-105 transition-all">
               {item.badge}
             </div>
           </div>
 
-          {/* Card Content */}
-          <div className="p-4 sm:p-5 relative z-10 flex-1 flex flex-col justify-between">
+          {/* Card Content Overlay */}
+          <div className="p-3.5 sm:p-5 relative z-10 flex-1 flex flex-col justify-between">
             <div>
-              <h3 className="text-base sm:text-lg font-extrabold text-white mb-1 group-hover:text-cyan-300 transition-colors">
+              <h3 className="text-sm sm:text-base md:text-lg font-extrabold text-white mb-1 group-hover:text-cyan-300 transition-colors leading-tight">
                 {item.title}
               </h3>
-              <p className="text-[11px] font-mono font-semibold text-cyan-400 mb-2">
+              <p className="text-[10px] sm:text-[11px] font-mono font-semibold text-cyan-400 mb-2">
                 {item.subtitle}
               </p>
-              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+              <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed mb-3 sm:mb-4 line-clamp-3">
                 {item.desc}
               </p>
             </div>
 
             {/* Specs Pills */}
-            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800/80">
+            <div className="flex flex-wrap gap-1 sm:gap-1.5 pt-2.5 sm:pt-3 border-t border-slate-800/80">
               {item.specs.map((spec) => (
                 <span
                   key={spec}
-                  className="px-2 py-0.5 text-[10px] font-mono font-semibold rounded-md bg-slate-900 border border-slate-800 text-slate-300 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors"
+                  className="px-2 py-0.5 text-[9px] sm:text-[10px] font-mono font-semibold rounded-md bg-slate-900 border border-slate-800 text-slate-300 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors"
                 >
                   {spec}
                 </span>
@@ -548,23 +566,23 @@ function HomePage() {
         <InnovationDeck />
       </section>
 
-      {/* GLOBAL OFFICES & INFRASTRUCTURE GALLERY */}
+      {/* OUR SERVICES ANIMATED MARQUEE GALLERY */}
       <section className="px-4 sm:px-6 py-20 sm:py-28 max-w-7xl mx-auto border-t border-slate-800/60 overflow-hidden">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-3">
-            <Building2 size={14} />
-            Offices & Infrastructure
+            <Sparkles size={14} />
+            Services & Capabilities
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4 animate-fade-up">
-            State-of-the-Art <span className="text-gradient">Offices & Compute Infrastructure</span>
+            Enterprise <span className="text-gradient">AI & Digital Services</span>
           </h2>
           <p className="text-sm sm:text-base text-slate-300">
-            Explore our high-performance AI labs, multi-region compute clusters, and collaborative software engineering hubs.
+            Explore our end-to-end AI agent systems, custom software development, cloud infrastructure, and AI growth solutions.
           </p>
         </div>
 
-        {/* Auto-scrolling Gallery */}
-        <InfrastructureGallery />
+        {/* Auto-scrolling Services Gallery */}
+        <ServiceGallery />
       </section>
 
       {/* CALL TO ACTION */}
