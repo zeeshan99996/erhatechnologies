@@ -17,11 +17,128 @@ import {
   Code2,
   Building2,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import officeWorkspaceImg from "@/assets/office-workspace.jpg";
 import aiComputeClusterImg from "@/assets/ai-compute-cluster.jpg";
 import cloudControlCenterImg from "@/assets/cloud-control-center.jpg";
 import executiveLoungeImg from "@/assets/executive-lounge.jpg";
+
+const infrastructureCards = [
+  {
+    title: "AI Research & Compute Cluster",
+    subtitle: "High-Density GPU Rig & Multi-Agent Labs",
+    desc: "Production-grade supercomputing infrastructure executing custom LLM fine-tuning, multi-agent reasoning loops, and sub-5ms vector retrieval.",
+    image: aiComputeClusterImg,
+    badge: "AI Compute Hub",
+    specs: ["Sub-5ms Latency", "Multi-Agent Cluster"],
+  },
+  {
+    title: "Software Engineering & Tech Hub",
+    subtitle: "Developer Headquarters & Full-Stack Labs",
+    desc: "Modern collaborative engineering workspaces housing our full-stack developers, system architects, and software research teams.",
+    image: officeWorkspaceImg,
+    badge: "Engineering Lab",
+    specs: ["Full-Stack Engineering", "Agile Workflows"],
+  },
+  {
+    title: "Cloud Operations & Network Center",
+    subtitle: "24/7 Monitoring & Global Edge Deployment",
+    desc: "Real-time network control room and infrastructure telemetry monitoring 99.9% uptime and zero-downtime deployment pipelines.",
+    image: cloudControlCenterImg,
+    badge: "Cloud NOC",
+    specs: ["Global Edge Grid", "SOC2 Compliant"],
+  },
+  {
+    title: "Executive Innovation & Strategy Suite",
+    subtitle: "Client Strategy & AI Architecture Lounge",
+    desc: "Dedicated executive suite for enterprise AI strategy workshops, system design alignment, and global client collaboration.",
+    image: executiveLoungeImg,
+    badge: "Strategy Suite",
+    specs: ["Executive Advisory", "Global Partnerships"],
+  },
+];
+
+function InfrastructureGallery() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let animationId: number;
+    const step = () => {
+      if (!isHovered && el) {
+        el.scrollLeft += 0.8;
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+      animationId = requestAnimationFrame(step);
+    };
+
+    animationId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animationId);
+  }, [isHovered]);
+
+  return (
+    <div
+      ref={scrollRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="flex gap-5 overflow-x-auto scrollbar-none py-4 px-2 scroll-smooth select-none cursor-grab active:cursor-grabbing"
+    >
+      {[...infrastructureCards, ...infrastructureCards].map((item, idx) => (
+        <div
+          key={`${item.title}-${idx}`}
+          className="shrink-0 w-[260px] sm:w-[310px] md:w-[340px] group relative rounded-2xl overflow-hidden border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_15px_35px_rgba(6,182,212,0.2)] hover:-translate-y-1.5 cursor-pointer bg-slate-900/80 flex flex-col"
+        >
+          {/* Image Container - Smaller Compact Height */}
+          <div className="relative w-full h-44 sm:h-48 overflow-hidden">
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-70 transition-opacity duration-300" />
+
+            {/* Floating Badge */}
+            <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-slate-950/80 border border-cyan-500/40 text-cyan-300 text-[10px] font-mono font-bold tracking-wider backdrop-blur-md shadow-lg group-hover:border-cyan-400 group-hover:scale-105 transition-all">
+              {item.badge}
+            </div>
+          </div>
+
+          {/* Card Content */}
+          <div className="p-4 sm:p-5 relative z-10 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 className="text-base sm:text-lg font-extrabold text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-[11px] font-mono font-semibold text-cyan-400 mb-2">
+                {item.subtitle}
+              </p>
+              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                {item.desc}
+              </p>
+            </div>
+
+            {/* Specs Pills */}
+            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800/80">
+              {item.specs.map((spec) => (
+                <span
+                  key={spec}
+                  className="px-2 py-0.5 text-[10px] font-mono font-semibold rounded-md bg-slate-900 border border-slate-800 text-slate-300 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors"
+                >
+                  {spec}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -432,8 +549,8 @@ function HomePage() {
       </section>
 
       {/* GLOBAL OFFICES & INFRASTRUCTURE GALLERY */}
-      <section className="px-4 sm:px-6 py-20 sm:py-28 max-w-7xl mx-auto border-t border-slate-800/60">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+      <section className="px-4 sm:px-6 py-20 sm:py-28 max-w-7xl mx-auto border-t border-slate-800/60 overflow-hidden">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-3">
             <Building2 size={14} />
             Offices & Infrastructure
@@ -446,87 +563,8 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-8">
-          {[
-            {
-              title: "AI Research & Compute Cluster",
-              subtitle: "High-Density GPU Rig & Multi-Agent Labs",
-              desc: "Production-grade supercomputing infrastructure executing custom LLM fine-tuning, multi-agent reasoning loops, and sub-5ms vector retrieval.",
-              image: aiComputeClusterImg,
-              badge: "AI Compute Hub",
-              specs: ["Sub-5ms Latency", "Multi-Agent Cluster"],
-            },
-            {
-              title: "Software Engineering & Tech Hub",
-              subtitle: "Developer Headquarters & Full-Stack Labs",
-              desc: "Modern collaborative engineering workspaces housing our full-stack developers, system architects, and software research teams.",
-              image: officeWorkspaceImg,
-              badge: "Engineering Lab",
-              specs: ["Full-Stack Engineering", "Agile Workflows"],
-            },
-            {
-              title: "Cloud Operations & Network Center",
-              subtitle: "24/7 Monitoring & Global Edge Deployment",
-              desc: "Real-time network control room and infrastructure telemetry monitoring 99.9% uptime and zero-downtime deployment pipelines.",
-              image: cloudControlCenterImg,
-              badge: "Cloud NOC",
-              specs: ["Global Edge Grid", "SOC2 Compliant"],
-            },
-            {
-              title: "Executive Innovation & Strategy Suite",
-              subtitle: "Client Strategy & AI Architecture Lounge",
-              desc: "Dedicated executive suite for enterprise AI strategy workshops, system design alignment, and global client collaboration.",
-              image: executiveLoungeImg,
-              badge: "Strategy Suite",
-              specs: ["Executive Advisory", "Global Partnerships"],
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="group relative rounded-3xl overflow-hidden border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(6,182,212,0.22)] hover:-translate-y-2 cursor-pointer bg-slate-900/60"
-            >
-              {/* Image Container */}
-              <div className="relative w-full h-72 sm:h-80 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent opacity-90 group-hover:opacity-75 transition-opacity duration-300" />
-
-                {/* Floating Badge */}
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-slate-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold tracking-wider backdrop-blur-md shadow-lg group-hover:border-cyan-400 group-hover:scale-105 transition-all">
-                  {item.badge}
-                </div>
-              </div>
-
-              {/* Card Content Overlay */}
-              <div className="p-6 sm:p-8 -mt-24 sm:-mt-28 relative z-10">
-                <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-1.5 group-hover:text-cyan-300 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs font-mono font-semibold text-cyan-400 mb-3">
-                  {item.subtitle}
-                </p>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
-                  {item.desc}
-                </p>
-
-                {/* Specs Pills */}
-                <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-800/80">
-                  {item.specs.map((spec) => (
-                    <span
-                      key={spec}
-                      className="px-3 py-1 text-[11px] font-mono font-semibold rounded-lg bg-slate-900/90 border border-slate-800 text-slate-300 group-hover:border-cyan-500/30 group-hover:text-cyan-200 transition-colors"
-                    >
-                      {spec}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Auto-scrolling Gallery */}
+        <InfrastructureGallery />
       </section>
 
       {/* CALL TO ACTION */}
