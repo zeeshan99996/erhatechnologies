@@ -37,6 +37,9 @@ import ummeaimanResearchImg from "@/assets/team-ummeaiman-research.jpg";
 import qamarImg from "@/assets/team-qamar.webp";
 import yasirImg from "@/assets/team-yasir-shah.jpg";
 import hassanImg from "@/assets/team-muhammad-hassan.jpg";
+import sadiaNewImg from "@/assets/team-sadia-new.jpg";
+import anwarImg from "@/assets/team-muhammad-anwar.jpg";
+import misbahImg from "@/assets/team-misbah-fakhar.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -196,7 +199,7 @@ const teamMembers: TeamMember[] = [
     name: "Sadia Sadiq",
     role: "Marketing Manager",
     initials: "SS",
-    image: sadiaResearchImg,
+    image: sadiaNewImg,
     category: "HR & Business Operations",
     bio: "Marketing Manager leading digital brand strategy, client acquisition campaigns, market research, and growth analytics at Erha Technologies.",
     skills: ["Digital Marketing", "Brand Strategy", "Market Research", "Campaign Management", "Conversion Optimization"],
@@ -250,7 +253,7 @@ const teamMembers: TeamMember[] = [
     name: "Muhammad Anwar",
     role: "Associate QA Engineer",
     initials: "MA",
-    image: "",
+    image: anwarImg,
     category: "QA",
     bio: "Associate QA Engineer performing manual and automated test suite execution, cross-browser validation, and test case documentation.",
     skills: ["Manual Testing", "Test Case Execution", "Cross-Browser Testing", "Issue Tracking", "Regression Testing"],
@@ -282,7 +285,7 @@ const teamMembers: TeamMember[] = [
     name: "Misbah Fakhar",
     role: "Database Engineer",
     initials: "MF",
-    image: "",
+    image: misbahImg,
     category: "Operations",
     bio: "Database Engineer optimizing distributed relational and vector databases, data schema design, data indexing, and backend operational stability.",
     skills: ["Database Architecture", "SQL Query Optimization", "Vector Indexing", "Data Telemetry", "Database Security"],
