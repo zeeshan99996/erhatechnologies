@@ -479,10 +479,10 @@ function AboutPage() {
                       <img
                         src={m.image}
                         alt={m.name}
-                        className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+                        className={`w-full h-full object-cover transition-all duration-500 ${
                           m.name === "Muhammad Zeeshan"
-                            ? "scale-[1.85] translate-y-1 object-[center_15%]"
-                            : "object-center"
+                            ? "object-center group-hover:scale-[1.85] group-hover:translate-y-1 group-hover:object-[center_15%]"
+                            : "object-center group-hover:scale-110"
                         }`}
                       />
                     ) : (
