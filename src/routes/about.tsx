@@ -41,6 +41,7 @@ import sadiaNewImg from "@/assets/team-sadia-new.jpg";
 import anwarImg from "@/assets/team-muhammad-anwar.jpg";
 import misbahImg from "@/assets/team-misbah-fakhar.jpg";
 import drOmerImg from "@/assets/team-dr-omer-aziz.jpg";
+import saqlainImg from "@/assets/team-saqlain-rajput.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -210,7 +211,7 @@ const teamMembers: TeamMember[] = [
     name: "Saqlain Rajput",
     role: "Business Developer",
     initials: "SR",
-    image: "",
+    image: saqlainImg,
     category: "HR & Business Operations",
     bio: "Business Developer driving strategic client partnerships, enterprise sales, client onboarding, and global business growth initiatives.",
     skills: ["Business Development", "Enterprise Sales", "Client Partnerships", "Strategic Growth", "Market Expansion"],
