@@ -479,7 +479,11 @@ function AboutPage() {
                       <img
                         src={m.image}
                         alt={m.name}
-                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                        className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+                          m.name === "Muhammad Zeeshan"
+                            ? "scale-[1.85] translate-y-1 object-[center_15%]"
+                            : "object-center"
+                        }`}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center font-bold text-xl text-cyan-400">
@@ -604,7 +608,11 @@ function AboutPage() {
                       <img
                         src={selectedMember.image}
                         alt={selectedMember.name}
-                        className="w-full h-full object-cover object-top"
+                        className={`w-full h-full object-cover ${
+                          selectedMember.name === "Muhammad Zeeshan"
+                            ? "scale-[1.85] translate-y-1 object-[center_15%]"
+                            : "object-top"
+                        }`}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center font-bold text-xl text-cyan-400">
