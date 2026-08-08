@@ -120,22 +120,22 @@ const teamMembers: TeamMember[] = [
   // DevOps Engineer
   {
     name: "Dr. Omer Aziz",
-    role: "DevOps Engineer / Team Lead",
+    role: "DevOps Engineer",
     initials: "DOA",
     image: "",
     category: "DevOps Engineer",
-    bio: "Senior DevOps Engineer and Technical Team Lead specializing in cloud infrastructure, CI/CD pipeline automation, system scaling, and Kubernetes orchestration.",
-    skills: ["Cloud Architecture", "CI/CD Automation", "Infrastructure Scaling", "Team Leadership", "Kubernetes"],
+    bio: "Senior DevOps Engineer specializing in cloud infrastructure, CI/CD pipeline automation, system scaling, and Kubernetes orchestration.",
+    skills: ["Cloud Architecture", "CI/CD Automation", "Infrastructure Scaling", "System Performance", "Kubernetes"],
     tech: ["AWS", "Docker", "Kubernetes", "Terraform", "GitHub Actions"],
   },
   {
     name: "Muhammad Salman Anwar",
-    role: "DevOps Engineer / Team Lead",
+    role: "Team Lead",
     initials: "MSA",
     image: salmanImg,
     category: "DevOps Engineer",
-    bio: "DevOps Engineer & Team Lead with expertise in automation pipelines, cloud infrastructure, MLOps orchestration, and system reliability engineering.",
-    skills: ["DevOps Automation", "System Reliability", "MLOps Pipelines", "Cloud Security", "Agile Leadership"],
+    bio: "Technical Team Lead with expertise in agile leadership, automation pipelines, cloud infrastructure, MLOps orchestration, and system reliability engineering.",
+    skills: ["Team Leadership", "DevOps Automation", "System Reliability", "MLOps Pipelines", "Agile Leadership"],
     tech: ["AWS", "Docker", "Kubernetes", "Python", "Prometheus"],
   },
 
