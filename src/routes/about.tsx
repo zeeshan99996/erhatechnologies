@@ -40,6 +40,7 @@ import hassanImg from "@/assets/team-muhammad-hassan.jpg";
 import sadiaNewImg from "@/assets/team-sadia-new.jpg";
 import anwarImg from "@/assets/team-muhammad-anwar.jpg";
 import misbahImg from "@/assets/team-misbah-fakhar.jpg";
+import drOmerImg from "@/assets/team-dr-omer-aziz.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -125,7 +126,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Omer Aziz",
     role: "DevOps Engineer",
     initials: "DOA",
-    image: "",
+    image: drOmerImg,
     category: "DevOps Engineer",
     bio: "Senior DevOps Engineer specializing in cloud infrastructure, CI/CD pipeline automation, system scaling, and Kubernetes orchestration.",
     skills: ["Cloud Architecture", "CI/CD Automation", "Infrastructure Scaling", "System Performance", "Kubernetes"],
