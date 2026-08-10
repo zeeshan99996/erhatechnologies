@@ -32,7 +32,7 @@ Projects Portfolio;
 
 Website Pages;
 - / → Home   | /about → About   | /services → Services   | /pricing → Pricing & Packages
-- /projects → Portfolio   | /team → Team   | /contact → Contact
+- /projects → Portfolio   | /team → Team   | /contact → Contact   | /privacy → Privacy Policy   | /refund-policy → Refund Policy
 
 PRICING & SERVICE PACKAGES (Basic, Standard, Premium);
 1. AI & Agentic Solutions Packages:

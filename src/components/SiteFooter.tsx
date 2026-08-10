@@ -128,13 +128,23 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Support */}
+          {/* Support & Legal */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Support</h4>
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Legal &amp; Policies</h4>
             <ul className="space-y-2.5 text-sm text-slate-300 font-medium">
               <li>
+                <Link to="/privacy" className="hover:text-cyan-400 transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/refund-policy" className="hover:text-cyan-400 transition-colors">
+                  Refund &amp; Cancellation Policy
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="hover:text-cyan-400 transition-colors">
-                  Contact Support
+                  Contact Support &amp; NDA
                 </Link>
               </li>
             </ul>
