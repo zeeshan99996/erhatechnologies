@@ -63,8 +63,8 @@ LEADERSHIP;
 Team Members;
 
 3. Muhammad Salman Anwar
-- Rank/Role: Agentic AI Engineer
-- About: Salman architects and develops autonomous, multi-agent AI systems to solve complex business challenges. He leads the design of agentic pipelines and orchestrates AI workflows that operate independently to drive real-world results for clients.
+- Rank/Role: AI Engineer & Automation Lead
+- About: AI Engineer & Automation Specialist specializing in AI Agents, workflow automation, LLM applications, and scalable AI solutions. Leads the development team, manages AI projects, integrates AI models and APIs, and delivers reliable, production-ready solutions.
 
 4. Muzammil Shadab
 - Rank/Role: AI Engineer

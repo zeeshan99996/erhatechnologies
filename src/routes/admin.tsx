@@ -122,14 +122,14 @@ const defaultTeam = [
   },
   {
     name: "Muhammad Salman Anwar",
-    role: "Agentic AI Engineer",
+    role: "AI Engineer & Automation Lead",
     initials: "MSA",
     image: "__salmanImg__",
     accent: "cyan",
     category: "AI Engineering",
-    bio: "AI and Data Science professional with expertise in Agentic AI, AI Automation, and AI Research. Experienced in building intelligent systems, Agents, automating workflows, and developing data-driven solutions that enhance business performance. Passionate about applying cutting-edge AI technologies to solve complex challenges and drive innovation.",
-    skills: ["AI Automation", "AI Research", "Agentic Orchestration", "Data Science"],
-    tech: ["LangChain", "CrewAI", "LlamaIndex", "Pinecone"],
+    bio: "AI Engineer & Automation Specialist specializing in AI Agents, workflow automation, LLM applications, and scalable AI solutions. Leads the development team, manages AI projects, integrates AI models and APIs, and delivers reliable, production-ready solutions.",
+    skills: ["Technical Leadership", "System Reliability", "MLOps Pipelines", "AI Agents", "AI Automation", "LLM Applications", "RAG Chatbots", "API Integration"],
+    tech: ["Agentic AI", "Python", "n8n", "LLM", "RAG Chatbots", "APIs"],
   },
   {
     name: "Muzammil Shadab",
