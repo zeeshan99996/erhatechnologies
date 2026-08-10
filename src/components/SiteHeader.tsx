@@ -140,16 +140,16 @@ export function SiteHeader() {
                   <button
                     onClick={() => setServicesOpen((v) => !v)}
                     onMouseEnter={() => setServicesOpen(true)}
-                    className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all inline-flex items-center gap-1 cursor-pointer ${
-                      isServicesActive
-                        ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/30"
-                        : "text-slate-300 hover:text-white hover:bg-slate-800/50"
+                    className={`px-4 py-2 text-base font-extrabold rounded-xl transition-all inline-flex items-center gap-1.5 cursor-pointer shadow-md ${
+                      isServicesActive || servicesOpen
+                        ? "text-cyan-300 bg-cyan-500/20 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.35)] scale-105"
+                        : "text-slate-100 hover:text-cyan-300 hover:bg-slate-800/80 border border-slate-800/60 font-extrabold"
                     }`}
                   >
-                    {l.label}
+                    Services
                     <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                      size={16}
+                      className={`transition-transform duration-200 ${servicesOpen ? "rotate-180 text-cyan-400" : "text-slate-400"}`}
                     />
                   </button>
 

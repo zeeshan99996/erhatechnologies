@@ -300,15 +300,15 @@ function ServicesPage() {
   return (
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-7xl mx-auto animate-fade-up">
       {/* Header Section */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-4 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-          <Sparkles size={14} className="animate-spin-slow" />
+      <div className="text-center mb-14">
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 text-xs sm:text-sm font-mono font-black uppercase tracking-widest mb-6 shadow-[0_0_25px_rgba(6,182,212,0.3)]">
+          <Sparkles size={16} className="animate-spin-slow" />
           Enterprise Service Capabilities
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-          Services Built for <span className="bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Enterprise Scale</span>
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-white tracking-tight mb-6 leading-tight">
+          Services Built for <span className="bg-gradient-to-r from-cyan-300 via-indigo-300 to-purple-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(6,182,212,0.4)]">Enterprise Scale</span>
         </h1>
-        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+        <p className="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto font-medium leading-relaxed mb-10">
           From autonomous AI agent swarms to high-performance web applications and omni-channel AI search growth — full-spectrum digital capabilities under one roof.
         </p>
 
@@ -316,87 +316,87 @@ function ServicesPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             to="/pricing"
-            className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold shadow-lg"
+            className="btn-neon inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-base font-black shadow-xl scale-105"
           >
-            <Sparkles size={16} /> Explore Basic, Standard & Premium Packages <ArrowRight size={16} />
+            <Sparkles size={18} /> Explore Basic, Standard & Premium Packages <ArrowRight size={18} />
           </Link>
         </div>
       </div>
 
       {/* Interactive Category Filter & Live Search Bar */}
-      <div className="mb-14 space-y-6">
+      <div className="mb-16 space-y-6">
         {/* Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800/80 max-w-3xl mx-auto backdrop-blur-xl shadow-2xl">
+        <div className="flex flex-wrap items-center justify-center gap-3 p-2.5 bg-slate-900/95 rounded-3xl border border-slate-700/80 max-w-4xl mx-auto backdrop-blur-2xl shadow-2xl">
           <button
             onClick={() => setActiveTab("all")}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer ${
               activeTab === "all"
-                ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
-                : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-105"
+                : "text-slate-200 hover:text-white hover:bg-slate-800/80"
             }`}
           >
             ✨ All Services ({allServices.length})
           </button>
           <button
             onClick={() => setActiveTab("ai")}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
               activeTab === "ai"
-                ? "bg-cyan-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
-                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800/60"
+                ? "bg-cyan-400 text-slate-950 font-black shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-105"
+                : "text-slate-200 hover:text-cyan-300 hover:bg-slate-800/80"
             }`}
           >
-            <Bot size={16} /> AI Services (8)
+            <Bot size={18} /> AI Services (8)
           </button>
           <button
             onClick={() => setActiveTab("dev")}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
               activeTab === "dev"
-                ? "bg-indigo-500 text-white font-extrabold shadow-[0_0_20px_rgba(99,102,241,0.4)] scale-105"
-                : "text-slate-300 hover:text-indigo-300 hover:bg-slate-800/60"
+                ? "bg-indigo-500 text-white font-black shadow-[0_0_25px_rgba(99,102,241,0.5)] scale-105"
+                : "text-slate-200 hover:text-indigo-300 hover:bg-slate-800/80"
             }`}
           >
-            <Globe size={16} /> Development Services (8)
+            <Globe size={18} /> Development Services (8)
           </button>
           <button
             onClick={() => setActiveTab("growth")}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
               activeTab === "growth"
-                ? "bg-emerald-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105"
-                : "text-slate-300 hover:text-emerald-300 hover:bg-slate-800/60"
+                ? "bg-emerald-400 text-slate-950 font-black shadow-[0_0_25px_rgba(16,185,129,0.5)] scale-105"
+                : "text-slate-200 hover:text-emerald-300 hover:bg-slate-800/80"
             }`}
           >
-            <TrendingUp size={16} /> Search & Growth (8)
+            <TrendingUp size={18} /> Search & Growth (8)
           </button>
         </div>
 
         {/* Live Search Input */}
-        <div className="relative max-w-xl mx-auto">
-          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+        <div className="relative max-w-2xl mx-auto">
+          <Search size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search 24+ services by title, tech stack, or feature..."
-            className="w-full pl-11 pr-10 py-3 rounded-2xl bg-slate-900/90 border border-slate-800 text-slate-100 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition-all"
+            className="w-full pl-13 pr-12 py-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-400 text-sm sm:text-base font-semibold focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition-all shadow-xl"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1"
             >
-              <CloseIcon size={14} />
+              <CloseIcon size={16} />
             </button>
           )}
         </div>
 
         {/* Filter Summary Status */}
-        <div className="text-center text-xs font-mono text-slate-400">
-          Showing <span className="text-cyan-400 font-bold">{filteredServices.length}</span> capabilities
+        <div className="text-center text-sm font-mono font-bold text-slate-300">
+          Showing <span className="text-cyan-400 font-black text-base">{filteredServices.length}</span> capabilities
           {activeTab !== "all" && (
-            <span> under <span className="text-white font-bold">{serviceCategories.find(c => c.id === activeTab)?.label}</span></span>
+            <span> under <span className="text-white font-black">{serviceCategories.find(c => c.id === activeTab)?.label}</span></span>
           )}
           {searchQuery && (
-            <span> matching &ldquo;<span className="text-cyan-300">{searchQuery}</span>&rdquo;</span>
+            <span> matching &ldquo;<span className="text-cyan-300 font-bold">{searchQuery}</span>&rdquo;</span>
           )}
         </div>
       </div>
@@ -404,15 +404,15 @@ function ServicesPage() {
       {/* Services Grid Display */}
       {filteredServices.length === 0 ? (
         <div className="glass-strong rounded-3xl p-12 text-center border border-slate-800 max-w-xl mx-auto">
-          <Lightbulb size={36} className="text-cyan-400 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-white mb-2">No Matching Services Found</h3>
-          <p className="text-xs text-slate-400 mb-6">Try clearing your search query or switching category tabs to browse all services.</p>
+          <Lightbulb size={40} className="text-cyan-400 mx-auto mb-4" />
+          <h3 className="text-xl font-black text-white mb-2">No Matching Services Found</h3>
+          <p className="text-sm text-slate-300 mb-6">Try clearing your search query or switching category tabs to browse all services.</p>
           <button
             onClick={() => {
               setActiveTab("all");
               setSearchQuery("");
             }}
-            className="px-5 py-2.5 rounded-xl bg-slate-800 text-cyan-400 text-xs font-bold hover:bg-slate-700 transition-all"
+            className="px-6 py-3 rounded-xl bg-cyan-500 text-slate-950 text-xs sm:text-sm font-black hover:bg-cyan-400 transition-all shadow-lg"
           >
             Reset Filters
           </button>
@@ -424,31 +424,31 @@ function ServicesPage() {
             return (
               <div
                 key={s.title}
-                className="glass card-3d rounded-2xl p-6 flex flex-col justify-between border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)]"
+                className="glass card-3d rounded-3xl p-6 sm:p-7 flex flex-col justify-between border border-slate-800/90 hover:border-cyan-400/60 transition-all duration-300 group hover:shadow-[0_12px_40px_rgba(6,182,212,0.2)] bg-slate-950/70"
               >
                 <div>
                   {/* Category Header Badge */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${colors.tag} ${colors.tagText}`}>
+                    <span className={`text-xs font-mono font-black uppercase tracking-wider px-3 py-1 rounded-full border shadow-sm ${colors.tag} ${colors.tagText}`}>
                       {s.categoryLabel}
                     </span>
-                    <span className="text-[10px] font-mono font-bold text-slate-500">
+                    <span className="text-xs font-mono font-bold text-slate-400">
                       {String(idx + 1).padStart(2, "0")} / 24
                     </span>
                   </div>
 
                   {/* Icon */}
-                  <div className={`w-11 h-11 rounded-xl ${colors.iconBg} border ${colors.iconBorder} flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform`}>
-                    <s.icon size={20} />
+                  <div className={`w-12 h-12 rounded-2xl ${colors.iconBg} border ${colors.iconBorder} flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform shadow-md`}>
+                    <s.icon size={22} />
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-extrabold text-base text-white mb-2 leading-snug group-hover:text-cyan-300 transition-colors">
+                  <h3 className="font-black text-lg sm:text-xl text-white mb-2.5 leading-snug group-hover:text-cyan-300 transition-colors drop-shadow-sm">
                     {s.title}
                   </h3>
 
                   {/* Desc */}
-                  <p className="text-xs text-slate-300 leading-relaxed mb-5 min-h-[48px]">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 min-h-[52px]">
                     {s.desc}
                   </p>
 
@@ -457,7 +457,7 @@ function ServicesPage() {
                     {s.features.map((f) => (
                       <span
                         key={f}
-                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border bg-slate-900/80 border-slate-800 text-slate-300`}
+                        className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border bg-slate-900/90 border-slate-800 text-slate-200`}
                       >
                         {f}
                       </span>
@@ -469,13 +469,13 @@ function ServicesPage() {
                 <div className="flex items-center gap-2 pt-2">
                   <button
                     onClick={() => setSelectedService(s)}
-                    className="flex-1 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold transition-all text-center cursor-pointer"
+                    className="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-black transition-all text-center cursor-pointer shadow-md"
                   >
                     View Specs
                   </button>
                   <Link
                     to="/pricing"
-                    className="py-2 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold transition-all text-center"
+                    className="py-2.5 px-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-black transition-all text-center shadow-md"
                   >
                     Packages
                   </Link>
