@@ -254,97 +254,319 @@ const accentMap: Record<string, { border: string; bg: string; text: string; icon
   },
 };
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { X as CloseIcon } from "lucide-react";
+
 function ServicesPage() {
-  let globalIdx = 0;
+  const [activeTab, setActiveTab] = useState<"all" | "ai" | "dev" | "growth">("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedService, setSelectedService] = useState<{
+    icon: any;
+    title: string;
+    desc: string;
+    features: string[];
+    categoryLabel: string;
+    accent: string;
+  } | null>(null);
+
+  // Flatten all services with their category info
+  const allServices = serviceCategories.flatMap((cat) =>
+    cat.services.map((s) => ({
+      ...s,
+      categoryId: cat.id,
+      categoryLabel: cat.label,
+      categoryTagline: cat.tagline,
+      accent: cat.accent,
+    }))
+  );
+
+  // Filter based on active tab and search query
+  const filteredServices = allServices.filter((s) => {
+    const matchesTab = activeTab === "all" || s.categoryId === activeTab;
+    const matchesSearch =
+      searchQuery.trim() === "" ||
+      s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.features.some((f) => f.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      s.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesTab && matchesSearch;
+  });
 
   return (
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-7xl mx-auto animate-fade-up">
-      {/* Header */}
-      <div className="text-center mb-16 md:mb-20">
-        <div className="text-xs uppercase tracking-widest text-cyan-400 font-mono font-bold mb-3">
-          Capabilities
+      {/* Header Section */}
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-4 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+          <Sparkles size={14} className="animate-spin-slow" />
+          Enterprise Service Capabilities
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
-          Services built for <span className="text-gradient">enterprise scale</span>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+          Services Built for <span className="bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Enterprise Scale</span>
         </h1>
-        <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
-          From autonomous AI agents to enterprise software and AI-powered search growth — full-spectrum digital capabilities under one roof.
+        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+          From autonomous AI agent swarms to high-performance web applications and omni-channel AI search growth — full-spectrum digital capabilities under one roof.
         </p>
-        <div className="flex justify-center">
+
+        {/* Global Package CTA Banner */}
+        <div className="flex flex-wrap justify-center gap-4">
           <Link
             to="/pricing"
             className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold shadow-lg"
           >
-            <Sparkles size={16} /> Explore Package Tiers (Basic, Standard, Premium) <ArrowRight size={16} />
+            <Sparkles size={16} /> Explore Basic, Standard & Premium Packages <ArrowRight size={16} />
           </Link>
         </div>
       </div>
 
-      {/* Service Category Sections */}
-      <div className="space-y-20">
-        {serviceCategories.map((cat) => {
-          const colors = accentMap[cat.accent];
-          return (
-            <section key={cat.id} id={cat.id} className="scroll-mt-28">
-              {/* Category Header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="flex-1 h-px bg-slate-800" />
-                <div className={`flex items-center gap-3 px-8 py-3.5 rounded-full border ${colors.border} ${colors.bg} shadow-xl backdrop-blur-md`}>
-                  <span className="text-base sm:text-lg md:text-xl font-black uppercase tracking-widest text-white font-mono">
-                    {cat.label}
-                  </span>
-                </div>
-                <div className="flex-1 h-px bg-slate-800" />
-              </div>
-              <p className="text-center text-sm font-bold mb-10 text-white font-mono tracking-wide opacity-90">
-                — {cat.tagline} —
-              </p>
+      {/* Interactive Category Filter & Live Search Bar */}
+      <div className="mb-14 space-y-6">
+        {/* Category Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800/80 max-w-3xl mx-auto backdrop-blur-xl shadow-2xl">
+          <button
+            onClick={() => setActiveTab("all")}
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+              activeTab === "all"
+                ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
+                : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+            }`}
+          >
+            ✨ All Services ({allServices.length})
+          </button>
+          <button
+            onClick={() => setActiveTab("ai")}
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              activeTab === "ai"
+                ? "bg-cyan-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
+                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800/60"
+            }`}
+          >
+            <Bot size={16} /> AI Services (8)
+          </button>
+          <button
+            onClick={() => setActiveTab("dev")}
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              activeTab === "dev"
+                ? "bg-indigo-500 text-white font-extrabold shadow-[0_0_20px_rgba(99,102,241,0.4)] scale-105"
+                : "text-slate-300 hover:text-indigo-300 hover:bg-slate-800/60"
+            }`}
+          >
+            <Globe size={16} /> Development Services (8)
+          </button>
+          <button
+            onClick={() => setActiveTab("growth")}
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              activeTab === "growth"
+                ? "bg-emerald-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105"
+                : "text-slate-300 hover:text-emerald-300 hover:bg-slate-800/60"
+            }`}
+          >
+            <TrendingUp size={16} /> Search & Growth (8)
+          </button>
+        </div>
 
-              {/* Services Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                {cat.services.map((s) => {
-                  const idx = globalIdx++;
-                  return (
-                    <div
-                      key={s.title}
-                      className="glass card-3d rounded-2xl p-6 flex flex-col justify-between border border-slate-800 hover:border-slate-700 transition-all duration-200 group"
-                    >
-                      <div>
-                        {/* Icon */}
-                        <div className={`w-11 h-11 rounded-xl ${colors.iconBg} border ${colors.iconBorder} flex items-center justify-center text-white mb-5`}>
-                          <s.icon size={20} />
-                        </div>
-                        {/* Number */}
-                        <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-white mb-2">
-                          {String(idx + 1).padStart(2, "0")} / SERVICE
-                        </div>
-                        {/* Title */}
-                        <h3 className="font-extrabold text-base text-white mb-2 leading-snug">{s.title}</h3>
-                        {/* Desc */}
-                        <p className="text-xs text-white leading-relaxed mb-5 opacity-90">{s.desc}</p>
-                      </div>
+        {/* Live Search Input */}
+        <div className="relative max-w-xl mx-auto">
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search 24+ services by title, tech stack, or feature..."
+            className="w-full pl-11 pr-10 py-3 rounded-2xl bg-slate-900/90 border border-slate-800 text-slate-100 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition-all"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1"
+            >
+              <CloseIcon size={14} />
+            </button>
+          )}
+        </div>
 
-                      {/* Feature Tags */}
-                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800">
-                        {s.features.map((f) => (
-                          <span
-                            key={f}
-                            className={`text-[10px] font-semibold px-2.5 py-1 rounded-full border ${colors.tag} text-white`}
-                          >
-                            {f}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })}
+        {/* Filter Summary Status */}
+        <div className="text-center text-xs font-mono text-slate-400">
+          Showing <span className="text-cyan-400 font-bold">{filteredServices.length}</span> capabilities
+          {activeTab !== "all" && (
+            <span> under <span className="text-white font-bold">{serviceCategories.find(c => c.id === activeTab)?.label}</span></span>
+          )}
+          {searchQuery && (
+            <span> matching &ldquo;<span className="text-cyan-300">{searchQuery}</span>&rdquo;</span>
+          )}
+        </div>
       </div>
 
-      {/* Solution Configurator */}
+      {/* Services Grid Display */}
+      {filteredServices.length === 0 ? (
+        <div className="glass-strong rounded-3xl p-12 text-center border border-slate-800 max-w-xl mx-auto">
+          <Lightbulb size={36} className="text-cyan-400 mx-auto mb-4" />
+          <h3 className="text-lg font-bold text-white mb-2">No Matching Services Found</h3>
+          <p className="text-xs text-slate-400 mb-6">Try clearing your search query or switching category tabs to browse all services.</p>
+          <button
+            onClick={() => {
+              setActiveTab("all");
+              setSearchQuery("");
+            }}
+            className="px-5 py-2.5 rounded-xl bg-slate-800 text-cyan-400 text-xs font-bold hover:bg-slate-700 transition-all"
+          >
+            Reset Filters
+          </button>
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20">
+          {filteredServices.map((s, idx) => {
+            const colors = accentMap[s.accent];
+            return (
+              <div
+                key={s.title}
+                className="glass card-3d rounded-2xl p-6 flex flex-col justify-between border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)]"
+              >
+                <div>
+                  {/* Category Header Badge */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${colors.tag} ${colors.tagText}`}>
+                      {s.categoryLabel}
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-slate-500">
+                      {String(idx + 1).padStart(2, "0")} / 24
+                    </span>
+                  </div>
+
+                  {/* Icon */}
+                  <div className={`w-11 h-11 rounded-xl ${colors.iconBg} border ${colors.iconBorder} flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform`}>
+                    <s.icon size={20} />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-extrabold text-base text-white mb-2 leading-snug group-hover:text-cyan-300 transition-colors">
+                    {s.title}
+                  </h3>
+
+                  {/* Desc */}
+                  <p className="text-xs text-slate-300 leading-relaxed mb-5 min-h-[48px]">
+                    {s.desc}
+                  </p>
+
+                  {/* Feature Tags */}
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800/80 mb-6">
+                    {s.features.map((f) => (
+                      <span
+                        key={f}
+                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border bg-slate-900/80 border-slate-800 text-slate-300`}
+                      >
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card CTA Actions */}
+                <div className="flex items-center gap-2 pt-2">
+                  <button
+                    onClick={() => setSelectedService(s)}
+                    className="flex-1 py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold transition-all text-center cursor-pointer"
+                  >
+                    View Specs
+                  </button>
+                  <Link
+                    to="/pricing"
+                    className="py-2 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold transition-all text-center"
+                  >
+                    Packages
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Service Detail Modal */}
+      {selectedService && (
+        <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
+          <DialogContent className="glass-strong border border-slate-700/80 text-white rounded-3xl max-w-lg p-6 sm:p-8 shadow-2xl">
+            <DialogHeader className="border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                  <selectedService.icon size={24} />
+                </div>
+                <div>
+                  <DialogTitle className="text-xl font-extrabold text-white tracking-tight">
+                    {selectedService.title}
+                  </DialogTitle>
+                  <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider mt-1 block">
+                    {selectedService.categoryLabel}
+                  </span>
+                </div>
+              </div>
+            </DialogHeader>
+
+            <div className="space-y-5 py-4 text-xs sm:text-sm">
+              <div>
+                <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                  CAPABILITY OVERVIEW
+                </h4>
+                <p className="text-slate-300 leading-relaxed">
+                  {selectedService.desc}
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-2">
+                  KEY DELIVERABLES & FEATURES
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {selectedService.features.map((f) => (
+                    <div key={f} className="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200">
+                      <CheckCircle2 size={14} className="text-cyan-400 shrink-0" />
+                      <span className="text-xs font-medium">{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/30">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-xs font-bold text-white block">Available in Package Tiers</span>
+                    <span className="text-[11px] text-slate-300">Basic ($499), Standard & Premium Tiers</span>
+                  </div>
+                  <Link
+                    to="/pricing"
+                    onClick={() => setSelectedService(null)}
+                    className="px-3.5 py-1.5 rounded-xl bg-cyan-500 text-slate-950 text-xs font-black hover:bg-cyan-400 transition-all"
+                  >
+                    View Pricing
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+              <button
+                onClick={() => setSelectedService(null)}
+                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold"
+              >
+                Close
+              </button>
+              <Link
+                to="/contact"
+                onClick={() => setSelectedService(null)}
+                className="btn-neon px-5 py-2 rounded-xl text-xs font-bold inline-flex items-center gap-1.5"
+              >
+                Get Custom Quote <ArrowRight size={14} />
+              </Link>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {/* Solution Configurator Section */}
       <SolutionConfigurator />
     </div>
   );
