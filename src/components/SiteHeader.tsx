@@ -25,55 +25,37 @@ const serviceMenu = [
     id: "ai",
     category: "AI Services",
     icon: Bot,
-    description: "Autonomous AI agents, custom LLMs, RAG & computer vision",
+    tagline: "8 Capabilities",
+    description: "Autonomous AI agents, custom LLMs, RAG, voice AI & predictive machine learning",
     accent: "text-cyan-400",
-    bgHover: "hover:bg-cyan-500/10 hover:border-cyan-500/30",
-    items: [
-      { id: "agents", icon: Bot, label: "AI Agents & Agentic Systems" },
-      { id: "chatbots", icon: MessageSquare, label: "AI Chatbots & Virtual Assistants" },
-      { id: "automation", icon: Workflow, label: "AI Integration & Workflow Automation" },
-      { id: "llm", icon: Sparkles, label: "Generative AI, Custom LLMs & RAG" },
-      { id: "ml", icon: BarChart2, label: "Machine Learning & Predictive AI" },
-      { id: "vision", icon: ScanSearch, label: "Computer Vision & Document AI" },
-      { id: "voice", icon: Mic, label: "Voice AI Agents & Speech Automation" },
-      { id: "consulting", icon: Lightbulb, label: "AI Strategy & Consulting" },
-    ],
+    borderHover: "hover:border-cyan-500/60 hover:shadow-[0_0_25px_rgba(6,182,212,0.25)]",
+    bgHover: "hover:bg-cyan-500/10",
+    badgeBg: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
+    iconBg: "bg-cyan-500/15 border-cyan-500/30 text-cyan-400",
   },
   {
     id: "dev",
     category: "Development Services",
     icon: Globe,
-    description: "Custom web apps, mobile apps, SaaS & cloud engineering",
+    tagline: "8 Capabilities",
+    description: "Custom web apps, cross-platform mobile, SaaS platforms & cloud engineering",
     accent: "text-indigo-400",
-    bgHover: "hover:bg-indigo-500/10 hover:border-indigo-500/30",
-    items: [
-      { id: "web", icon: Globe, label: "Web Development & Enterprise Apps" },
-      { id: "mobile", icon: Smartphone, label: "Mobile & Cross-Platform Apps" },
-      { id: "ecommerce", icon: ShoppingCart, label: "E-commerce & Commerce Solutions" },
-      { id: "saas", icon: Layers, label: "Custom SaaS & Product Engineering" },
-      { id: "backend", icon: Server, label: "Backend, API & System Integration" },
-      { id: "cloud", icon: Cloud, label: "Cloud, DevOps & Infrastructure" },
-      { id: "design", icon: Layout, label: "UI/UX Design & Experience" },
-      { id: "modernization", icon: RefreshCw, label: "Software Modernization & Support" },
-    ],
+    borderHover: "hover:border-indigo-500/60 hover:shadow-[0_0_25px_rgba(99,102,241,0.25)]",
+    bgHover: "hover:bg-indigo-500/10",
+    badgeBg: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
+    iconBg: "bg-indigo-500/15 border-indigo-500/30 text-indigo-400",
   },
   {
     id: "seo",
     category: "SEO Services",
     icon: TrendingUp,
-    description: "SEO, AEO/GEO, Google Ads & paid social growth",
+    tagline: "8 Capabilities",
+    description: "Technical SEO, AI search optimization (AEO/GEO), Google Ads & paid social growth",
     accent: "text-emerald-400",
-    bgHover: "hover:bg-emerald-500/10 hover:border-emerald-500/30",
-    items: [
-      { id: "seo", icon: Search, label: "SEO & Organic Search Growth" },
-      { id: "aeo", icon: TrendingUp, label: "AEO, GEO & AI Search Optimization" },
-      { id: "ppc", icon: Target, label: "Google Ads & PPC Management" },
-      { id: "meta", icon: Megaphone, label: "Meta Ads & Paid Social Campaigns" },
-      { id: "social", icon: Users, label: "Social Media Marketing & Brand Growth" },
-      { id: "content", icon: FileText, label: "Content Marketing & Copywriting" },
-      { id: "email", icon: Mail, label: "Email Marketing & CRM Automation" },
-      { id: "cro", icon: BarChart2, label: "Conversion Rate Optimization" },
-    ],
+    borderHover: "hover:border-emerald-500/60 hover:shadow-[0_0_25px_rgba(16,185,129,0.25)]",
+    bgHover: "hover:bg-emerald-500/10",
+    badgeBg: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+    iconBg: "bg-emerald-500/15 border-emerald-500/30 text-emerald-400",
   },
 ];
 
@@ -153,70 +135,62 @@ export function SiteHeader() {
                     />
                   </button>
 
-                  {/* Mega Dropdown */}
+                  {/* Main Services Category Dropdown */}
                   {servicesOpen && (
                     <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[850px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[720px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
                       onMouseLeave={() => setServicesOpen(false)}
                     >
-                      <div className="grid grid-cols-3 gap-5">
-                        {serviceMenu.map((group) => (
-                          <div key={group.category} className="flex flex-col">
-                            {/* Primary Category Sub-Menu Header */}
-                            <Link
-                              to="/services"
-                              search={{ cat: group.id }}
-                              onClick={() => setServicesOpen(false)}
-                              className={`group/cat flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-800/80 bg-slate-950/70 ${group.bgHover} transition-all mb-3`}
-                            >
-                              <div className={`w-8 h-8 rounded-lg bg-slate-900 border border-slate-700/80 flex items-center justify-center ${group.accent} shrink-0 group-hover/cat:scale-110 transition-transform`}>
-                                <group.icon size={16} />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center justify-between">
-                                  <span className={`text-xs font-extrabold uppercase tracking-wider font-mono ${group.accent}`}>
-                                    {group.category}
-                                  </span>
-                                  <ArrowRight size={11} className={`opacity-0 group-hover/cat:opacity-100 transition-opacity ${group.accent}`} />
-                                </div>
-                                <p className="text-[10px] text-slate-400 truncate leading-tight mt-0.5">
-                                  {group.description}
-                                </p>
-                              </div>
-                            </Link>
+                      <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">
+                        Select a Service Category:
+                      </div>
 
-                            {/* Sub-items List */}
-                            <ul className="space-y-1">
-                              {group.items.map((item) => (
-                                <li key={item.label}>
-                                  <Link
-                                    to="/services"
-                                    search={{ cat: group.id, sub: item.id }}
-                                    onClick={() => setServicesOpen(false)}
-                                    className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-200 hover:text-white hover:bg-slate-800/80 text-[11px] font-semibold transition-all group/item"
-                                  >
-                                    <item.icon size={13} className={`shrink-0 opacity-80 group-hover/item:opacity-100 ${group.accent}`} />
-                                    <span className="leading-tight truncate">{item.label}</span>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {serviceMenu.map((group) => (
+                          <Link
+                            key={group.id}
+                            to="/services"
+                            search={{ cat: group.id }}
+                            onClick={() => setServicesOpen(false)}
+                            className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                          >
+                            <div>
+                              <div className="flex items-center justify-between mb-3">
+                                <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
+                                  <group.icon size={20} />
+                                </div>
+                                <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
+                                  {group.tagline}
+                                </span>
+                              </div>
+
+                              <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
+                                {group.category}
+                              </h3>
+
+                              <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
+                                {group.description}
+                              </p>
+                            </div>
+
+                            <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
+                              <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
+                                Open {group.category} <ArrowRight size={12} />
+                              </span>
+                            </div>
+                          </Link>
                         ))}
                       </div>
 
-                      {/* Bottom CTA Row */}
-                      <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between">
-                        <span className="text-[11px] font-mono text-slate-400">
-                          Select a category: <span className="text-cyan-400 font-bold">AI Services</span>, <span className="text-indigo-400 font-bold">Development Services</span>, or <span className="text-emerald-400 font-bold">SEO Services</span>
-                        </span>
+                      <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Looking for full catalog?</span>
                         <Link
                           to="/services"
                           search={{ cat: "all" }}
                           onClick={() => setServicesOpen(false)}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                          className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
                         >
-                          View All Services Catalog <ArrowRight size={12} />
+                          View All 24+ Services <ArrowRight size={12} />
                         </Link>
                       </div>
                     </div>
@@ -282,7 +256,7 @@ export function SiteHeader() {
                         : "text-slate-200 hover:text-cyan-400 hover:bg-slate-800/60"
                     }`}
                   >
-                    Services Sub-Menu
+                    Services Categories
                     <ChevronDown
                       size={16}
                       className={`transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`}
@@ -290,37 +264,31 @@ export function SiteHeader() {
                   </button>
 
                   {mobileServicesOpen && (
-                    <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-4">
+                    <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-2">
                       {serviceMenu.map((group) => (
-                        <div key={group.category}>
-                          <Link
-                            to="/services"
-                            search={{ cat: group.id }}
-                            onClick={() => setOpen(false)}
-                            className={`flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono mb-2`}
-                          >
-                            <span className="flex items-center gap-2">
-                              <group.icon size={14} />
-                              {group.category}
-                            </span>
-                            <ArrowRight size={12} />
-                          </Link>
-                          <div className="space-y-1 pl-1">
-                            {group.items.map((item) => (
-                              <Link
-                                key={item.label}
-                                to="/services"
-                                search={{ cat: group.id, sub: item.id }}
-                                onClick={() => setOpen(false)}
-                                className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-slate-300 hover:text-white text-xs font-semibold transition-all"
-                              >
-                                <item.icon size={12} className={`shrink-0 ${group.accent}`} />
-                                {item.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
+                        <Link
+                          key={group.id}
+                          to="/services"
+                          search={{ cat: group.id }}
+                          onClick={() => setOpen(false)}
+                          className={`flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono hover:border-slate-700 transition-all`}
+                        >
+                          <span className="flex items-center gap-2 text-sm font-extrabold">
+                            <group.icon size={16} />
+                            {group.category}
+                          </span>
+                          <ArrowRight size={14} />
+                        </Link>
                       ))}
+                      <Link
+                        to="/services"
+                        search={{ cat: "all" }}
+                        onClick={() => setOpen(false)}
+                        className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-300 text-xs font-bold transition-all"
+                      >
+                        <span>✨ View All Services</span>
+                        <ArrowRight size={12} />
+                      </Link>
                     </div>
                   )}
                 </div>
