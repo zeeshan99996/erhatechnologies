@@ -29,14 +29,14 @@ const serviceMenu = [
     accent: "text-cyan-400",
     bgHover: "hover:bg-cyan-500/10 hover:border-cyan-500/30",
     items: [
-      { icon: Bot, label: "AI Agents & Agentic Systems" },
-      { icon: MessageSquare, label: "AI Chatbots & Virtual Assistants" },
-      { icon: Workflow, label: "AI Integration & Workflow Automation" },
-      { icon: Sparkles, label: "Generative AI, Custom LLMs & RAG" },
-      { icon: BarChart2, label: "Machine Learning & Predictive AI" },
-      { icon: ScanSearch, label: "Computer Vision & Document AI" },
-      { icon: Mic, label: "Voice AI Agents & Speech Automation" },
-      { icon: Lightbulb, label: "AI Strategy & Consulting" },
+      { id: "agents", icon: Bot, label: "AI Agents & Agentic Systems" },
+      { id: "chatbots", icon: MessageSquare, label: "AI Chatbots & Virtual Assistants" },
+      { id: "automation", icon: Workflow, label: "AI Integration & Workflow Automation" },
+      { id: "llm", icon: Sparkles, label: "Generative AI, Custom LLMs & RAG" },
+      { id: "ml", icon: BarChart2, label: "Machine Learning & Predictive AI" },
+      { id: "vision", icon: ScanSearch, label: "Computer Vision & Document AI" },
+      { id: "voice", icon: Mic, label: "Voice AI Agents & Speech Automation" },
+      { id: "consulting", icon: Lightbulb, label: "AI Strategy & Consulting" },
     ],
   },
   {
@@ -47,32 +47,32 @@ const serviceMenu = [
     accent: "text-indigo-400",
     bgHover: "hover:bg-indigo-500/10 hover:border-indigo-500/30",
     items: [
-      { icon: Globe, label: "Web Development & Enterprise Apps" },
-      { icon: Smartphone, label: "Mobile & Cross-Platform Apps" },
-      { icon: ShoppingCart, label: "E-commerce & Commerce Solutions" },
-      { icon: Layers, label: "Custom SaaS & Product Engineering" },
-      { icon: Server, label: "Backend, API & System Integration" },
-      { icon: Cloud, label: "Cloud, DevOps & Infrastructure" },
-      { icon: Layout, label: "UI/UX Design & Experience" },
-      { icon: RefreshCw, label: "Software Modernization & Support" },
+      { id: "web", icon: Globe, label: "Web Development & Enterprise Apps" },
+      { id: "mobile", icon: Smartphone, label: "Mobile & Cross-Platform Apps" },
+      { id: "ecommerce", icon: ShoppingCart, label: "E-commerce & Commerce Solutions" },
+      { id: "saas", icon: Layers, label: "Custom SaaS & Product Engineering" },
+      { id: "backend", icon: Server, label: "Backend, API & System Integration" },
+      { id: "cloud", icon: Cloud, label: "Cloud, DevOps & Infrastructure" },
+      { id: "design", icon: Layout, label: "UI/UX Design & Experience" },
+      { id: "modernization", icon: RefreshCw, label: "Software Modernization & Support" },
     ],
   },
   {
-    id: "growth",
-    category: "Search & Growth Services",
+    id: "seo",
+    category: "SEO Services",
     icon: TrendingUp,
-    description: "SEO, AEO/GEO, paid ads & conversion rate growth",
+    description: "SEO, AEO/GEO, Google Ads & paid social growth",
     accent: "text-emerald-400",
     bgHover: "hover:bg-emerald-500/10 hover:border-emerald-500/30",
     items: [
-      { icon: Search, label: "SEO & Organic Search Growth" },
-      { icon: TrendingUp, label: "AEO, GEO & AI Search Optimization" },
-      { icon: Target, label: "Google Ads & PPC Management" },
-      { icon: Megaphone, label: "Meta Ads & Paid Social Campaigns" },
-      { icon: Users, label: "Social Media Marketing & Brand Growth" },
-      { icon: FileText, label: "Content Marketing & Copywriting" },
-      { icon: Mail, label: "Email Marketing & CRM Automation" },
-      { icon: BarChart2, label: "Conversion Rate Optimization" },
+      { id: "seo", icon: Search, label: "SEO & Organic Search Growth" },
+      { id: "aeo", icon: TrendingUp, label: "AEO, GEO & AI Search Optimization" },
+      { id: "ppc", icon: Target, label: "Google Ads & PPC Management" },
+      { id: "meta", icon: Megaphone, label: "Meta Ads & Paid Social Campaigns" },
+      { id: "social", icon: Users, label: "Social Media Marketing & Brand Growth" },
+      { id: "content", icon: FileText, label: "Content Marketing & Copywriting" },
+      { id: "email", icon: Mail, label: "Email Marketing & CRM Automation" },
+      { id: "cro", icon: BarChart2, label: "Conversion Rate Optimization" },
     ],
   },
 ];
@@ -165,7 +165,7 @@ export function SiteHeader() {
                             {/* Primary Category Sub-Menu Header */}
                             <Link
                               to="/services"
-                              hash={group.id}
+                              search={{ cat: group.id }}
                               onClick={() => setServicesOpen(false)}
                               className={`group/cat flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-800/80 bg-slate-950/70 ${group.bgHover} transition-all mb-3`}
                             >
@@ -191,7 +191,7 @@ export function SiteHeader() {
                                 <li key={item.label}>
                                   <Link
                                     to="/services"
-                                    hash={group.id}
+                                    search={{ cat: group.id, sub: item.id }}
                                     onClick={() => setServicesOpen(false)}
                                     className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-200 hover:text-white hover:bg-slate-800/80 text-[11px] font-semibold transition-all group/item"
                                   >
@@ -208,14 +208,15 @@ export function SiteHeader() {
                       {/* Bottom CTA Row */}
                       <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between">
                         <span className="text-[11px] font-mono text-slate-400">
-                          Select a category above: <span className="text-cyan-400 font-bold">AI Services</span>, <span className="text-indigo-400 font-bold">Development Services</span>, or <span className="text-emerald-400 font-bold">Search & Growth Services</span>
+                          Select a category: <span className="text-cyan-400 font-bold">AI Services</span>, <span className="text-indigo-400 font-bold">Development Services</span>, or <span className="text-emerald-400 font-bold">SEO Services</span>
                         </span>
                         <Link
                           to="/services"
+                          search={{ cat: "all" }}
                           onClick={() => setServicesOpen(false)}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
                         >
-                          View Full Services Catalog <ArrowRight size={12} />
+                          View All Services Catalog <ArrowRight size={12} />
                         </Link>
                       </div>
                     </div>
@@ -294,7 +295,7 @@ export function SiteHeader() {
                         <div key={group.category}>
                           <Link
                             to="/services"
-                            hash={group.id}
+                            search={{ cat: group.id }}
                             onClick={() => setOpen(false)}
                             className={`flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono mb-2`}
                           >
@@ -309,7 +310,7 @@ export function SiteHeader() {
                               <Link
                                 key={item.label}
                                 to="/services"
-                                hash={group.id}
+                                search={{ cat: group.id, sub: item.id }}
                                 onClick={() => setOpen(false)}
                                 className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-slate-300 hover:text-white text-xs font-semibold transition-all"
                               >

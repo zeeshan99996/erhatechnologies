@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { z } from "zod";
 import {
   Brain,
   Bot,
@@ -31,20 +32,28 @@ import {
   Users,
   FileText,
   Mail,
+  Filter,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const servicesSearchSchema = z.object({
+  cat: z.string().optional(),
+  category: z.string().optional(),
+  sub: z.string().optional(),
+});
 
 export const Route = createFileRoute("/services")({
+  validateSearch: (search) => servicesSearchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Services — Erha Technologies Enterprise AI & Software" },
+      { title: "Services — Erha Technologies Enterprise AI, Software & SEO" },
       {
         name: "description",
         content:
-          "AI agents, agentic systems, chatbots, LLMs, RAG, computer vision, voice AI, web development, mobile apps, SEO and AI search optimization by Erha Technologies.",
+          "AI services, development services, and SEO services by Erha Technologies. Autonomous AI agents, web & mobile development, and organic search growth.",
       },
       { property: "og:title", content: "Services — Erha Technologies" },
-      { property: "og:description", content: "End-to-end AI, software, and growth services." },
+      { property: "og:description", content: "End-to-end AI, software, and SEO growth services." },
     ],
     links: [
       { rel: "canonical", href: "https://www.erhatechnologies.com/services" }
@@ -57,52 +66,71 @@ const serviceCategories = [
   {
     id: "ai",
     label: "AI Services",
-    tagline: "Intelligent systems that reason, act, and scale",
+    tagline: "Autonomous systems, LLMs & intelligent automation",
     accent: "cyan",
+    subCategories: [
+      { id: "all", label: "✨ All AI Services" },
+      { id: "agents", label: "🤖 AI Agents & Swarms" },
+      { id: "chatbots", label: "💬 Chatbots & Assistants" },
+      { id: "automation", label: "⚡ Workflow Automation" },
+      { id: "llm", label: "🧠 Custom LLMs & RAG" },
+      { id: "ml", label: "📊 Predictive AI & ML" },
+      { id: "vision", label: "👁️ Computer Vision" },
+      { id: "voice", label: "🎙️ Voice AI Agents" },
+      { id: "consulting", label: "💡 AI Strategy Advisory" },
+    ],
     services: [
       {
+        subId: "agents",
         icon: Bot,
         title: "AI Agents & Agentic Systems",
         desc: "Autonomous multi-agent systems that plan, reason, and execute complex multi-step business tasks without constant human supervision.",
         features: ["Multi-Agent Orchestration", "Autonomous Planning", "Tool Use & APIs", "Self-Correction Loops"],
       },
       {
+        subId: "chatbots",
         icon: MessageSquare,
         title: "AI Chatbots & Virtual Assistants",
         desc: "Intelligent, context-aware chatbots and virtual assistants tailored to your business workflows, embedded across any channel.",
         features: ["Custom LLM Fine-Tuning", "Multi-Turn Context", "CRM Integration", "Multi-Channel Deploy"],
       },
       {
+        subId: "automation",
         icon: Workflow,
         title: "AI Integration & Workflow Automation",
         desc: "Seamlessly integrate AI capabilities into your existing systems and automate complex workflows across 200+ enterprise SaaS platforms.",
         features: ["RPA Automation", "API Orchestration", "Webhook Pipelines", "Real-Time Triggers"],
       },
       {
+        subId: "llm",
         icon: Sparkles,
         title: "Generative AI, Custom LLMs & RAG",
         desc: "Build production-grade generative AI systems with custom LLM fine-tuning and retrieval-augmented generation for your proprietary data.",
         features: ["LLM Fine-Tuning", "RAG Pipelines", "Vector Embeddings", "Hybrid Search"],
       },
       {
+        subId: "ml",
         icon: BarChart2,
         title: "Machine Learning & Predictive AI",
         desc: "Custom ML models for forecasting, anomaly detection, recommendation engines, and data-driven decision intelligence at enterprise scale.",
         features: ["Predictive Modelling", "Anomaly Detection", "Recommendation Engines", "MLOps Infrastructure"],
       },
       {
+        subId: "vision",
         icon: ScanSearch,
         title: "Computer Vision & Document AI",
         desc: "Extract intelligence from images, video, and documents using state-of-the-art computer vision and document understanding models.",
         features: ["Object Detection", "OCR & Document Parsing", "Image Classification", "Video Analytics"],
       },
       {
+        subId: "voice",
         icon: Mic,
         title: "Voice AI Agents & Speech Automation",
         desc: "Deploy voice-enabled AI agents that understand, reason, and respond in natural speech for customer service and enterprise workflows.",
         features: ["STT / TTS Pipelines", "Voice Agent Flows", "Real-Time Transcription", "Multilingual Support"],
       },
       {
+        subId: "consulting",
         icon: Lightbulb,
         title: "AI Strategy & Transformation Consulting",
         desc: "Strategic AI advisory to help enterprises identify, prioritize, and execute high-ROI AI initiatives with a clear transformation roadmap.",
@@ -113,52 +141,71 @@ const serviceCategories = [
   {
     id: "dev",
     label: "Development Services",
-    tagline: "Engineering-first products built to last",
+    tagline: "Engineering-first web, mobile & cloud software",
     accent: "indigo",
+    subCategories: [
+      { id: "all", label: "✨ All Development" },
+      { id: "web", label: "🌐 Web Apps & Enterprise" },
+      { id: "mobile", label: "📱 Mobile Apps" },
+      { id: "ecommerce", label: "🛒 E-Commerce Solutions" },
+      { id: "saas", label: "🧱 Custom SaaS Engineering" },
+      { id: "backend", label: "⚙️ Backend & APIs" },
+      { id: "cloud", label: "☁️ Cloud & DevOps" },
+      { id: "design", label: "🎨 UI/UX Experience" },
+      { id: "modernization", label: "🔄 Legacy Modernization" },
+    ],
     services: [
       {
+        subId: "web",
         icon: Globe,
         title: "Web Development & Enterprise Applications",
         desc: "High-performance, pixel-perfect web applications and enterprise platforms engineered with modern frameworks and rock-solid infrastructure.",
         features: ["React / Next.js", "Node.js & Python", "REST & GraphQL APIs", "CI/CD & Cloud Deploy"],
       },
       {
+        subId: "mobile",
         icon: Smartphone,
         title: "Mobile & Cross-Platform App Development",
         desc: "Native-quality cross-platform mobile applications for iOS and Android, built with Flutter or React Native for speed and reliability.",
         features: ["iOS & Android", "React Native / Flutter", "On-Device AI", "Offline-First Architecture"],
       },
       {
+        subId: "ecommerce",
         icon: ShoppingCart,
         title: "E-commerce Development & Commerce Solutions",
         desc: "High-conversion online stores and enterprise e-commerce platforms with multi-currency support, automated checkout, and real-time inventory sync.",
         features: ["Headless Commerce", "Payment Gateways", "Storefront Optimization", "Inventory & Order Sync"],
       },
       {
+        subId: "saas",
         icon: Layers,
         title: "Custom SaaS & Product Development",
         desc: "End-to-end SaaS product engineering from MVP to enterprise scale with multi-tenant architecture, automated subscription billing, and robust security.",
         features: ["Multi-Tenant SaaS", "Subscription & Billing", "Role-Based Access Control", "Scalable Microservices"],
       },
       {
+        subId: "backend",
         icon: Server,
         title: "Backend, API & System Integration",
         desc: "High-throughput backend architectures, API gateway pipelines, and seamless enterprise system integrations connecting cloud services with legacy platforms.",
         features: ["RESTful & GraphQL APIs", "Legacy Middleware", "Event-Driven Pipelines", "System Interoperability"],
       },
       {
+        subId: "cloud",
         icon: Cloud,
         title: "Cloud, DevOps & Infrastructure Engineering",
         desc: "Cloud-native deployment, automated CI/CD pipelines, container orchestration, and multi-cloud infrastructure optimized for speed, security, and cost efficiency.",
         features: ["Kubernetes & Docker", "Infrastructure as Code", "AWS / GCP / Azure", "Zero-Downtime Deploy"],
       },
       {
+        subId: "design",
         icon: Layout,
         title: "UI/UX Design & Product Experience",
         desc: "User-centered design systems, responsive web & mobile UI interfaces, and intuitive user experiences crafted to maximize product adoption and conversion.",
         features: ["User Journey Mapping", "Interactive Wireframing", "Design Systems", "Usability & Accessibility"],
       },
       {
+        subId: "modernization",
         icon: RefreshCw,
         title: "Software Modernization & Ongoing Support",
         desc: "Transform legacy software systems with cloud-native migration, code refactoring, security patching, and continuous proactive maintenance support.",
@@ -167,54 +214,73 @@ const serviceCategories = [
     ],
   },
   {
-    id: "growth",
-    label: "Search & Growth Services",
-    tagline: "Visibility engineered for the AI-first web",
+    id: "seo",
+    label: "SEO Services",
+    tagline: "Organic search, AI search (AEO/GEO) & paid growth",
     accent: "emerald",
+    subCategories: [
+      { id: "all", label: "✨ All SEO & Growth" },
+      { id: "seo", label: "🔍 Technical & Organic SEO" },
+      { id: "aeo", label: "📈 AEO / GEO & AI Search" },
+      { id: "ppc", label: "🎯 Google Ads & PPC" },
+      { id: "meta", label: "📣 Meta & Social Ads" },
+      { id: "social", label: "👥 Social Media Growth" },
+      { id: "content", label: "📝 Content & Copywriting" },
+      { id: "email", label: "✉️ Email Marketing & CRM" },
+      { id: "cro", label: "📊 Conversion Optimization" },
+    ],
     services: [
       {
+        subId: "seo",
         icon: Search,
         title: "SEO & Organic Search Growth",
         desc: "Technical SEO, content strategy, and performance optimization to drive sustainable organic search growth and measurable ranking improvements.",
         features: ["Technical SEO Audits", "Keyword Strategy", "On-Page Optimization", "Core Web Vitals"],
       },
       {
+        subId: "aeo",
         icon: TrendingUp,
         title: "AEO, GEO & AI Search Optimization",
         desc: "Optimize your brand for Answer Engine Optimization and Generative Engine Optimization to dominate AI-powered search results like ChatGPT, Perplexity, and Google SGE.",
         features: ["Answer Engine Optimization", "Generative Engine Optimization", "AI Citation Building", "Structured Data & Schema"],
       },
       {
+        subId: "ppc",
         icon: Target,
         title: "Google Ads & PPC Campaign Management",
         desc: "High-ROI pay-per-click campaign setup, keyword targeting, ad creative optimization, and continuous conversion tracking across Google Search and Display network.",
         features: ["Google Search & Display", "PPC Bidding Optimization", "Ad Copy & Extensions", "ROAS Tracking"],
       },
       {
+        subId: "meta",
         icon: Megaphone,
         title: "Meta Ads & Paid Social Campaigns",
         desc: "Data-driven paid social campaigns across Facebook, Instagram, LinkedIn, and TikTok designed to acquire qualified leads and maximize return on ad spend.",
         features: ["Facebook & Instagram Ads", "Audience Targeting", "Retargeting Funnels", "Creative A/B Testing"],
       },
       {
+        subId: "social",
         icon: Users,
         title: "Social Media Marketing & Brand Growth",
         desc: "Strategic social media channel management, audience building, brand positioning, and engaging content creation that builds loyal customer communities.",
         features: ["Content Scheduling", "Community Engagement", "Brand Voice Strategy", "Viral Short-Form Content"],
       },
       {
+        subId: "content",
         icon: FileText,
         title: "Content Marketing & Conversion Copywriting",
         desc: "Compelling storytelling and high-converting copy that engages target audiences, establishes industry authority, and turns readers into paying clients.",
         features: ["SEO Blog Content", "Landing Page Copywriting", "Whitepapers & Case Studies", "Editorial Calendars"],
       },
       {
+        subId: "email",
         icon: Mail,
         title: "Email Marketing & CRM Automation",
         desc: "Automated email marketing funnels, customer lifecycle messaging, lead nurturing workflows, and hyper-segmented newsletter campaigns.",
         features: ["Automated Drip Sequences", "Klaviyo / HubSpot Pipelines", "Audience Segmentation", "A/B Subject Testing"],
       },
       {
+        subId: "cro",
         icon: BarChart2,
         title: "Conversion Rate Optimization & Analytics",
         desc: "Data-backed website optimization, user behavior analytics, heatmap audits, and landing page A/B testing to increase your visitor-to-customer conversion rate.",
@@ -263,7 +329,22 @@ import {
 import { X as CloseIcon } from "lucide-react";
 
 function ServicesPage() {
-  const [activeTab, setActiveTab] = useState<"all" | "ai" | "dev" | "growth">("all");
+  const search = Route.useSearch();
+  const navigate = useNavigate({ from: Route.id });
+
+  // Map category param ('ai' | 'dev' | 'seo' | 'growth' | 'all')
+  const getValidCat = (param?: string): "ai" | "dev" | "seo" | "all" => {
+    const clean = (param || "").toLowerCase();
+    if (clean === "seo" || clean === "growth") return "seo";
+    if (clean === "dev") return "dev";
+    if (clean === "ai") return "ai";
+    if (clean === "all") return "all";
+    return "ai"; // Default category when visiting Services
+  };
+
+  const initialCat = getValidCat(search.cat || search.category);
+  const [activeTab, setActiveTab] = useState<"all" | "ai" | "dev" | "seo">(initialCat);
+  const [activeSubCat, setActiveSubCat] = useState<string>(search.sub || "all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedService, setSelectedService] = useState<{
     icon: any;
@@ -274,7 +355,33 @@ function ServicesPage() {
     accent: string;
   } | null>(null);
 
-  // Flatten all services with their category info
+  // Synchronize state when URL search parameters change
+  useEffect(() => {
+    const cat = getValidCat(search.cat || search.category);
+    setActiveTab(cat);
+    setActiveSubCat(search.sub || "all");
+  }, [search.cat, search.category, search.sub]);
+
+  // Tab switch handler
+  const handleTabChange = (tab: "all" | "ai" | "dev" | "seo") => {
+    setActiveTab(tab);
+    setActiveSubCat("all");
+    navigate({
+      search: (prev) => ({ ...prev, cat: tab, sub: undefined }),
+      replace: true,
+    });
+  };
+
+  // Sub-category switch handler
+  const handleSubCatChange = (subId: string) => {
+    setActiveSubCat(subId);
+    navigate({
+      search: (prev) => ({ ...prev, cat: activeTab, sub: subId === "all" ? undefined : subId }),
+      replace: true,
+    });
+  };
+
+  // Flatten all services with their parent category info
   const allServices = serviceCategories.flatMap((cat) =>
     cat.services.map((s) => ({
       ...s,
@@ -285,50 +392,106 @@ function ServicesPage() {
     }))
   );
 
-  // Filter based on active tab and search query
+  // Filter based on active main tab, sub-category, and live search query
   const filteredServices = allServices.filter((s) => {
     const matchesTab = activeTab === "all" || s.categoryId === activeTab;
+    const matchesSub = activeSubCat === "all" || s.subId === activeSubCat;
     const matchesSearch =
       searchQuery.trim() === "" ||
       s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       s.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
       s.features.some((f) => f.toLowerCase().includes(searchQuery.toLowerCase())) ||
       s.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesTab && matchesSearch;
+
+    return matchesTab && matchesSub && matchesSearch;
   });
+
+  const activeCategoryObj = serviceCategories.find((c) => c.id === activeTab);
 
   return (
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-7xl mx-auto animate-fade-up">
       {/* Header Section */}
-      <div className="text-center mb-14">
+      <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 text-xs sm:text-sm font-mono font-black uppercase tracking-widest mb-6 shadow-[0_0_25px_rgba(6,182,212,0.3)]">
           <Sparkles size={16} className="animate-spin-slow" />
-          Enterprise Service Capabilities
+          Enterprise Capabilities Catalog
         </div>
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-white tracking-tight mb-6 leading-tight">
-          Services Built for <span className="bg-gradient-to-r from-cyan-300 via-indigo-300 to-purple-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(6,182,212,0.4)]">Enterprise Scale</span>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">
+          {activeTab === "ai" && (
+            <>
+              AI Services & <span className="bg-gradient-to-r from-cyan-300 via-cyan-400 to-blue-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(6,182,212,0.4)]">Autonomous Agents</span>
+            </>
+          )}
+          {activeTab === "dev" && (
+            <>
+              Development Services & <span className="bg-gradient-to-r from-indigo-300 via-indigo-400 to-purple-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(99,102,241,0.4)]">Engineering</span>
+            </>
+          )}
+          {activeTab === "seo" && (
+            <>
+              SEO Services & <span className="bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(16,185,129,0.4)]">Organic Growth</span>
+            </>
+          )}
+          {activeTab === "all" && (
+            <>
+              Full-Spectrum Services for <span className="bg-gradient-to-r from-cyan-300 via-indigo-300 to-purple-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(6,182,212,0.4)]">Enterprise Scale</span>
+            </>
+          )}
         </h1>
-        <p className="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto font-medium leading-relaxed mb-10">
-          From autonomous AI agent swarms to high-performance web applications and omni-channel AI search growth — full-spectrum digital capabilities under one roof.
+        <p className="text-base sm:text-lg text-slate-200 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
+          {activeTab === "ai" && "Autonomous multi-agent swarms, custom LLM fine-tuning, RAG data pipelines, voice AI, and predictive machine learning models built for production."}
+          {activeTab === "dev" && "Engineering-first web applications, mobile apps, multi-tenant SaaS platforms, microservices backend APIs, and cloud infrastructure."}
+          {activeTab === "seo" && "Dominate organic search and next-gen AI answer engines (ChatGPT, Perplexity, Google SGE) with technical SEO, PPC, and conversion rate growth."}
+          {activeTab === "all" && "Explore our full catalog of 24+ enterprise capabilities spanning AI Services, Development Services, and SEO Services."}
         </p>
 
         {/* Global Package CTA Banner */}
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             to="/pricing"
-            className="btn-neon inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-base font-black shadow-xl scale-105"
+            className="btn-neon inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-sm sm:text-base font-black shadow-xl scale-105"
           >
-            <Sparkles size={18} /> Explore Basic, Standard & Premium Packages <ArrowRight size={18} />
+            <Sparkles size={18} /> View Basic, Standard & Premium Tiers <ArrowRight size={18} />
           </Link>
         </div>
       </div>
 
-      {/* Interactive Category Filter & Live Search Bar */}
-      <div className="mb-16 space-y-6">
-        {/* Category Tabs */}
+      {/* Main Category Tabs & Sub-Category Navigation */}
+      <div className="mb-14 space-y-5">
+        {/* Main Category Selector Bar */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 p-2 sm:p-2.5 bg-slate-900/95 rounded-2xl sm:rounded-3xl border border-slate-700/80 max-w-4xl mx-auto backdrop-blur-2xl shadow-2xl">
           <button
-            onClick={() => setActiveTab("all")}
+            onClick={() => handleTabChange("ai")}
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              activeTab === "ai"
+                ? "bg-cyan-400 text-slate-950 font-black shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-[1.02] sm:scale-105"
+                : "text-slate-200 hover:text-cyan-300 hover:bg-slate-800/80"
+            }`}
+          >
+            <Bot size={18} className="sm:w-5 sm:h-5" /> AI Services (8)
+          </button>
+          <button
+            onClick={() => handleTabChange("dev")}
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              activeTab === "dev"
+                ? "bg-indigo-500 text-white font-black shadow-[0_0_25px_rgba(99,102,241,0.5)] scale-[1.02] sm:scale-105"
+                : "text-slate-200 hover:text-indigo-300 hover:bg-slate-800/80"
+            }`}
+          >
+            <Globe size={18} className="sm:w-5 sm:h-5" /> Development Services (8)
+          </button>
+          <button
+            onClick={() => handleTabChange("seo")}
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              activeTab === "seo"
+                ? "bg-emerald-400 text-slate-950 font-black shadow-[0_0_25px_rgba(16,185,129,0.5)] scale-[1.02] sm:scale-105"
+                : "text-slate-200 hover:text-emerald-300 hover:bg-slate-800/80"
+            }`}
+          >
+            <TrendingUp size={18} className="sm:w-5 sm:h-5" /> SEO Services (8)
+          </button>
+          <button
+            onClick={() => handleTabChange("all")}
             className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer ${
               activeTab === "all"
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-[1.02] sm:scale-105"
@@ -337,52 +500,51 @@ function ServicesPage() {
           >
             ✨ All Services ({allServices.length})
           </button>
-          <button
-            onClick={() => setActiveTab("ai")}
-            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
-              activeTab === "ai"
-                ? "bg-cyan-400 text-slate-950 font-black shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-[1.02] sm:scale-105"
-                : "text-slate-200 hover:text-cyan-300 hover:bg-slate-800/80"
-            }`}
-          >
-            <Bot size={16} className="sm:w-4 sm:h-4" /> AI Services (8)
-          </button>
-          <button
-            onClick={() => setActiveTab("dev")}
-            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
-              activeTab === "dev"
-                ? "bg-indigo-500 text-white font-black shadow-[0_0_25px_rgba(99,102,241,0.5)] scale-[1.02] sm:scale-105"
-                : "text-slate-200 hover:text-indigo-300 hover:bg-slate-800/80"
-            }`}
-          >
-            <Globe size={16} className="sm:w-4 sm:h-4" /> Development Services (8)
-          </button>
-          <button
-            onClick={() => setActiveTab("growth")}
-            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
-              activeTab === "growth"
-                ? "bg-emerald-400 text-slate-950 font-black shadow-[0_0_25px_rgba(16,185,129,0.5)] scale-[1.02] sm:scale-105"
-                : "text-slate-200 hover:text-emerald-300 hover:bg-slate-800/80"
-            }`}
-          >
-            <TrendingUp size={16} className="sm:w-4 sm:h-4" /> Search & Growth (8)
-          </button>
         </div>
 
-        {/* Live Search Input */}
-        <div className="relative max-w-2xl mx-auto">
-          <Search size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400" />
+        {/* Sub-Category Filter Pills */}
+        {activeCategoryObj && (
+          <div className="flex flex-wrap items-center justify-center gap-2 max-w-5xl mx-auto pt-1 animate-fade-in">
+            <span className="text-xs font-mono font-bold text-slate-400 flex items-center gap-1 mr-1 uppercase tracking-wider">
+              <Filter size={13} className="text-cyan-400" /> Sub-Category:
+            </span>
+            {activeCategoryObj.subCategories.map((sub) => {
+              const isActive = activeSubCat === sub.id;
+              return (
+                <button
+                  key={sub.id}
+                  onClick={() => handleSubCatChange(sub.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-extrabold transition-all cursor-pointer border ${
+                    isActive
+                      ? activeTab === "ai"
+                        ? "bg-cyan-500/25 text-cyan-300 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.35)] scale-105"
+                        : activeTab === "dev"
+                        ? "bg-indigo-500/25 text-indigo-300 border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.35)] scale-105"
+                        : "bg-emerald-500/25 text-emerald-300 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.35)] scale-105"
+                      : "bg-slate-900/90 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white"
+                  }`}
+                >
+                  {sub.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Search Bar Input */}
+        <div className="relative max-w-2xl mx-auto pt-2">
+          <Search size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400 mt-1" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search 24+ services by title, tech stack, or feature..."
-            className="w-full pl-13 pr-12 py-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-400 text-sm sm:text-base font-semibold focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition-all shadow-xl"
+            placeholder={`Filter ${activeTab === "all" ? "all 24+" : activeCategoryObj?.label || ""} capabilities by keyword...`}
+            className="w-full pl-13 pr-12 py-3.5 rounded-2xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-400 text-sm sm:text-base font-semibold focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition-all shadow-xl"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1 mt-1"
             >
               <CloseIcon size={16} />
             </button>
@@ -390,10 +552,13 @@ function ServicesPage() {
         </div>
 
         {/* Filter Summary Status */}
-        <div className="text-center text-sm font-mono font-bold text-slate-300">
-          Showing <span className="text-cyan-400 font-black text-base">{filteredServices.length}</span> capabilities
+        <div className="text-center text-xs sm:text-sm font-mono font-bold text-slate-300">
+          Displaying <span className="text-cyan-400 font-black text-base">{filteredServices.length}</span> capabilities
           {activeTab !== "all" && (
-            <span> under <span className="text-white font-black">{serviceCategories.find(c => c.id === activeTab)?.label}</span></span>
+            <span> under <span className="text-white font-black">{activeCategoryObj?.label}</span></span>
+          )}
+          {activeSubCat !== "all" && activeCategoryObj && (
+            <span> (Sub-Category: <span className="text-cyan-300 font-bold">{activeCategoryObj.subCategories.find(s => s.id === activeSubCat)?.label}</span>)</span>
           )}
           {searchQuery && (
             <span> matching &ldquo;<span className="text-cyan-300 font-bold">{searchQuery}</span>&rdquo;</span>
@@ -406,15 +571,15 @@ function ServicesPage() {
         <div className="glass-strong rounded-3xl p-12 text-center border border-slate-800 max-w-xl mx-auto">
           <Lightbulb size={40} className="text-cyan-400 mx-auto mb-4" />
           <h3 className="text-xl font-black text-white mb-2">No Matching Services Found</h3>
-          <p className="text-sm text-slate-300 mb-6">Try clearing your search query or switching category tabs to browse all services.</p>
+          <p className="text-sm text-slate-300 mb-6">Try selecting a different sub-category or clearing your search filter.</p>
           <button
             onClick={() => {
-              setActiveTab("all");
+              setActiveSubCat("all");
               setSearchQuery("");
             }}
-            className="px-6 py-3 rounded-xl bg-cyan-500 text-slate-950 text-xs sm:text-sm font-black hover:bg-cyan-400 transition-all shadow-lg"
+            className="px-6 py-3 rounded-xl bg-cyan-500 text-slate-950 text-xs sm:text-sm font-black hover:bg-cyan-400 transition-all shadow-lg cursor-pointer"
           >
-            Reset Filters
+            Reset Sub-Category Filters
           </button>
         </div>
       ) : (
@@ -433,7 +598,7 @@ function ServicesPage() {
                       {s.categoryLabel}
                     </span>
                     <span className="text-xs font-mono font-bold text-slate-400">
-                      {String(idx + 1).padStart(2, "0")} / 24
+                      {String(idx + 1).padStart(2, "0")} / {filteredServices.length}
                     </span>
                   </div>
 
