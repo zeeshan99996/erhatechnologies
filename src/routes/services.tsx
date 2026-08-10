@@ -445,15 +445,6 @@ function ServicesPage() {
           {activeTab === "all" && "Explore our full catalog of 24+ enterprise capabilities spanning AI Services, Development Services, and SEO Services."}
         </p>
 
-        {/* Global Package CTA Banner */}
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            to="/pricing"
-            className="btn-neon inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-sm sm:text-base font-black shadow-xl scale-105"
-          >
-            <Sparkles size={18} /> View Basic, Standard & Premium Tiers <ArrowRight size={18} />
-          </Link>
-        </div>
       </div>
 
       {/* Main Category Tabs & Sub-Category Navigation */}
