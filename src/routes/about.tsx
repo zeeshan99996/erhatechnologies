@@ -104,17 +104,17 @@ const executiveLeadership: TeamMember[] = [
   },
   {
     name: "Faiz Jillani",
-    role: "Engineering Manager",
+    role: "CTO",
     initials: "FJ",
     image: managerImg,
     category: "Executive Leadership",
     highlight: "AI Systems Engineering & Technical Operations Lead",
-    bio: "Engineering Manager driving strategic vision and technical operations at Erha Technologies. Specialized in scaling advanced AI systems, cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines.",
+    bio: "Chief Technology Officer driving strategic vision and technical operations at Erha Technologies. Specialized in scaling advanced AI systems, cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines.",
     skills: [
-      "Engineering Management",
+      "Technology Strategy & MLOps",
       "AI Systems Architecture",
-      "MLOps & Scaling",
       "Cloud Infrastructure",
+      "Engineering Leadership",
       "Security & Compliance",
     ],
     tech: ["Python", "PyTorch", "Transformers", "GitHub Enterprise"],
@@ -317,7 +317,7 @@ function AboutPage() {
   return (
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-6xl mx-auto animate-fade-up">
 
-      {/* Executive Leadership Section (CEO & Engineering Manager) */}
+      {/* Executive Leadership Section (CEO & CTO) */}
       <div className="mb-20" id="leadership">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-3">
@@ -376,12 +376,12 @@ function AboutPage() {
             </div>
           </div>
 
-          {/* Engineering Manager Card */}
+          {/* CTO Card */}
           <div className="glass-strong rounded-3xl p-8 md:p-12 border border-slate-800/80 shadow-2xl relative overflow-hidden group hover:border-indigo-500/50 hover:shadow-[0_10px_40px_rgba(99,102,241,0.18)] hover:-translate-y-1.5 transition-all duration-300">
             <div className="relative grid md:grid-cols-3 gap-8 md:gap-12 items-center">
               <div className="md:col-span-2 order-2 md:order-1 text-center md:text-left">
                 <div className="inline-block px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold uppercase rounded-full mb-3 font-mono">
-                  Engineering Manager
+                  Chief Technology Officer (CTO)
                 </div>
                 <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-2">
                   Faiz Jillani
@@ -390,7 +390,7 @@ function AboutPage() {
                   AI Systems Engineering & Technical Operations Lead
                 </p>
                 <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-6">
-                  Engineering Manager driving strategic vision and technical operations at Erha Technologies. Specialized in scaling advanced AI systems, cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines.
+                  Chief Technology Officer driving strategic vision and technical operations at Erha Technologies. Specialized in scaling advanced AI systems, cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines.
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 justify-center md:justify-start">
@@ -410,7 +410,7 @@ function AboutPage() {
                   <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-xl border-2 border-indigo-500/50 bg-slate-900 z-10 transition-transform duration-500 group-hover:scale-[1.02]">
                     <img
                       src={managerImg}
-                      alt="Faiz Jillani — Engineering Manager"
+                      alt="Faiz Jillani — Chief Technology Officer"
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>

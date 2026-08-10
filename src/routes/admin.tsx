@@ -111,13 +111,13 @@ const defaultTeam = [
   },
   {
     name: "Faiz Jillani",
-    role: "Engineering Manager",
+    role: "CTO",
     initials: "FJ",
     image: "__faizResearchImg__",
     accent: "purple",
     category: "Leadership",
-    bio: "Engineering Manager guiding technical operations and systems engineering. Specialized in cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines. Committed to bridging the gap between state-of-the-art AI research and production-grade software architecture. Focuses on ensuring reliability, security, and scalability across all digital product deployments.",
-    skills: ["MLOps & Scaling", "AI Systems Engineering", "Cloud Infrastructure", "Technical Management", "Security & Compliance"],
+    bio: "Chief Technology Officer guiding technical operations and systems engineering. Specialized in cross-over artificial intelligence models, cloud infrastructure optimization, and enterprise MLOps pipelines. Committed to bridging the gap between state-of-the-art AI research and production-grade software architecture. Focuses on ensuring reliability, security, and scalability across all digital product deployments.",
+    skills: ["Technology Strategy & MLOps", "AI Systems Engineering", "Cloud Infrastructure", "Engineering Leadership", "Security & Compliance"],
     tech: ["Python", "PyTorch", "Transformers", "GitHub Enterprise"],
   },
   {

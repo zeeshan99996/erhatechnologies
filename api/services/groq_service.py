@@ -41,8 +41,8 @@ LEADERSHIP;
 - About: Muhammad Ilyas Shahid is the CEO of Erha Technologies. He leads the enterprise AI strategy, orchestrating production-grade software developments, and designing scalable machine learning pipelines. Under his leadership, Erha Technologies bridges the gap between state-of-the-art AI systems and real-world commercial performance, delivering custom solutions to global enterprises.
 
 2. Faiz Jillani
-- Rank/Role: Engineering Manager
-- About: Faiz Jillani is the Engineering Manager of Erha Technologies. He specializes in systems engineering, cloud architecture optimization, and enterprise MLOps. Faiz manages the developer engineering teams, guarantees technical delivery standards, and drives the strategic implementation of multi-agent networks and secure infrastructure deployments.
+- Rank/Role: Chief Technology Officer (CTO)
+- About: Faiz Jillani is the Chief Technology Officer (CTO) of Erha Technologies. He specializes in systems engineering, cloud architecture optimization, and enterprise MLOps. Faiz manages the developer engineering teams, guarantees technical delivery standards, and drives the strategic implementation of multi-agent networks and secure infrastructure deployments.
 
 Team Members;
 
