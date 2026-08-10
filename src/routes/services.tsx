@@ -492,34 +492,7 @@ function ServicesPage() {
           </button>
         </div>
 
-        {/* Sub-Category Filter Pills */}
-        {activeCategoryObj && (
-          <div className="flex flex-wrap items-center justify-center gap-2 max-w-5xl mx-auto pt-1 animate-fade-in">
-            <span className="text-xs font-mono font-bold text-slate-400 flex items-center gap-1 mr-1 uppercase tracking-wider">
-              <Filter size={13} className="text-cyan-400" /> Sub-Category:
-            </span>
-            {activeCategoryObj.subCategories.map((sub) => {
-              const isActive = activeSubCat === sub.id;
-              return (
-                <button
-                  key={sub.id}
-                  onClick={() => handleSubCatChange(sub.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-extrabold transition-all cursor-pointer border ${
-                    isActive
-                      ? activeTab === "ai"
-                        ? "bg-cyan-500/25 text-cyan-300 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.35)] scale-105"
-                        : activeTab === "dev"
-                        ? "bg-indigo-500/25 text-indigo-300 border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.35)] scale-105"
-                        : "bg-emerald-500/25 text-emerald-300 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.35)] scale-105"
-                      : "bg-slate-900/90 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white"
-                  }`}
-                >
-                  {sub.label}
-                </button>
-              );
-            })}
-          </div>
-        )}
+
 
         {/* Search Bar Input */}
         <div className="relative max-w-2xl mx-auto pt-2">
