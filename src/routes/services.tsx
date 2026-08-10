@@ -285,7 +285,7 @@ function ServicesPage() {
         {serviceCategories.map((cat) => {
           const colors = accentMap[cat.accent];
           return (
-            <section key={cat.id}>
+            <section key={cat.id} id={cat.id} className="scroll-mt-28">
               {/* Category Header */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="flex-1 h-px bg-slate-800" />

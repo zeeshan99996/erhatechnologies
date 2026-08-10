@@ -22,8 +22,12 @@ const links = [
 
 const serviceMenu = [
   {
+    id: "ai",
     category: "AI Services",
+    icon: Bot,
+    description: "Autonomous AI agents, custom LLMs, RAG & computer vision",
     accent: "text-cyan-400",
+    bgHover: "hover:bg-cyan-500/10 hover:border-cyan-500/30",
     items: [
       { icon: Bot, label: "AI Agents & Agentic Systems" },
       { icon: MessageSquare, label: "AI Chatbots & Virtual Assistants" },
@@ -32,35 +36,43 @@ const serviceMenu = [
       { icon: BarChart2, label: "Machine Learning & Predictive AI" },
       { icon: ScanSearch, label: "Computer Vision & Document AI" },
       { icon: Mic, label: "Voice AI Agents & Speech Automation" },
-      { icon: Lightbulb, label: "AI Strategy & Transformation Consulting" },
+      { icon: Lightbulb, label: "AI Strategy & Consulting" },
     ],
   },
   {
+    id: "dev",
     category: "Development Services",
+    icon: Globe,
+    description: "Custom web apps, mobile apps, SaaS & cloud engineering",
     accent: "text-indigo-400",
+    bgHover: "hover:bg-indigo-500/10 hover:border-indigo-500/30",
     items: [
-      { icon: Globe, label: "Web Development & Enterprise Applications" },
-      { icon: Smartphone, label: "Mobile & Cross-Platform App Development" },
-      { icon: ShoppingCart, label: "E-commerce Development & Commerce Solutions" },
-      { icon: Layers, label: "Custom SaaS & Product Development" },
+      { icon: Globe, label: "Web Development & Enterprise Apps" },
+      { icon: Smartphone, label: "Mobile & Cross-Platform Apps" },
+      { icon: ShoppingCart, label: "E-commerce & Commerce Solutions" },
+      { icon: Layers, label: "Custom SaaS & Product Engineering" },
       { icon: Server, label: "Backend, API & System Integration" },
-      { icon: Cloud, label: "Cloud, DevOps & Infrastructure Engineering" },
-      { icon: Layout, label: "UI/UX Design & Product Experience" },
+      { icon: Cloud, label: "Cloud, DevOps & Infrastructure" },
+      { icon: Layout, label: "UI/UX Design & Experience" },
       { icon: RefreshCw, label: "Software Modernization & Support" },
     ],
   },
   {
-    category: "Search & Growth",
+    id: "growth",
+    category: "Search & Growth Services",
+    icon: TrendingUp,
+    description: "SEO, AEO/GEO, paid ads & conversion rate growth",
     accent: "text-emerald-400",
+    bgHover: "hover:bg-emerald-500/10 hover:border-emerald-500/30",
     items: [
       { icon: Search, label: "SEO & Organic Search Growth" },
       { icon: TrendingUp, label: "AEO, GEO & AI Search Optimization" },
-      { icon: Target, label: "Google Ads & PPC Campaign Management" },
+      { icon: Target, label: "Google Ads & PPC Management" },
       { icon: Megaphone, label: "Meta Ads & Paid Social Campaigns" },
       { icon: Users, label: "Social Media Marketing & Brand Growth" },
       { icon: FileText, label: "Content Marketing & Copywriting" },
       { icon: Mail, label: "Email Marketing & CRM Automation" },
-      { icon: BarChart2, label: "Conversion Rate Optimization & Analytics" },
+      { icon: BarChart2, label: "Conversion Rate Optimization" },
     ],
   },
 ];
@@ -144,25 +156,47 @@ export function SiteHeader() {
                   {/* Mega Dropdown */}
                   {servicesOpen && (
                     <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[820px] max-w-[90vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[850px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
                       onMouseLeave={() => setServicesOpen(false)}
                     >
                       <div className="grid grid-cols-3 gap-5">
                         {serviceMenu.map((group) => (
-                          <div key={group.category}>
-                            <div className={`text-[10px] font-bold uppercase tracking-widest font-mono mb-3 ${group.accent}`}>
-                              {group.category}
-                            </div>
+                          <div key={group.category} className="flex flex-col">
+                            {/* Primary Category Sub-Menu Header */}
+                            <Link
+                              to="/services"
+                              hash={group.id}
+                              onClick={() => setServicesOpen(false)}
+                              className={`group/cat flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-800/80 bg-slate-950/70 ${group.bgHover} transition-all mb-3`}
+                            >
+                              <div className={`w-8 h-8 rounded-lg bg-slate-900 border border-slate-700/80 flex items-center justify-center ${group.accent} shrink-0 group-hover/cat:scale-110 transition-transform`}>
+                                <group.icon size={16} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                  <span className={`text-xs font-extrabold uppercase tracking-wider font-mono ${group.accent}`}>
+                                    {group.category}
+                                  </span>
+                                  <ArrowRight size={11} className={`opacity-0 group-hover/cat:opacity-100 transition-opacity ${group.accent}`} />
+                                </div>
+                                <p className="text-[10px] text-slate-400 truncate leading-tight mt-0.5">
+                                  {group.description}
+                                </p>
+                              </div>
+                            </Link>
+
+                            {/* Sub-items List */}
                             <ul className="space-y-1">
                               {group.items.map((item) => (
                                 <li key={item.label}>
                                   <Link
                                     to="/services"
+                                    hash={group.id}
                                     onClick={() => setServicesOpen(false)}
-                                    className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-white hover:text-cyan-300 hover:bg-slate-800/80 text-xs font-semibold transition-all group/item"
+                                    className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-200 hover:text-white hover:bg-slate-800/80 text-[11px] font-semibold transition-all group/item"
                                   >
-                                    <item.icon size={13} className={`shrink-0 opacity-90 group-hover/item:opacity-100 ${group.accent}`} />
-                                    <span className="leading-tight">{item.label}</span>
+                                    <item.icon size={13} className={`shrink-0 opacity-80 group-hover/item:opacity-100 ${group.accent}`} />
+                                    <span className="leading-tight truncate">{item.label}</span>
                                   </Link>
                                 </li>
                               ))}
@@ -173,15 +207,15 @@ export function SiteHeader() {
 
                       {/* Bottom CTA Row */}
                       <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between">
-                        <span className="text-[11px] font-mono text-slate-500">
-                          24 services across 3 capability areas
+                        <span className="text-[11px] font-mono text-slate-400">
+                          Select a category above: <span className="text-cyan-400 font-bold">AI Services</span>, <span className="text-indigo-400 font-bold">Development Services</span>, or <span className="text-emerald-400 font-bold">Search & Growth Services</span>
                         </span>
                         <Link
                           to="/services"
                           onClick={() => setServicesOpen(false)}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
                         >
-                          View All Services <ArrowRight size={12} />
+                          View Full Services Catalog <ArrowRight size={12} />
                         </Link>
                       </div>
                     </div>
@@ -247,7 +281,7 @@ export function SiteHeader() {
                         : "text-slate-200 hover:text-cyan-400 hover:bg-slate-800/60"
                     }`}
                   >
-                    Services
+                    Services Sub-Menu
                     <ChevronDown
                       size={16}
                       className={`transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`}
@@ -255,19 +289,29 @@ export function SiteHeader() {
                   </button>
 
                   {mobileServicesOpen && (
-                    <div className="mt-1 mb-2 ml-2 border-l-2 border-slate-800 pl-4 space-y-4">
+                    <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-4">
                       {serviceMenu.map((group) => (
                         <div key={group.category}>
-                          <div className={`text-[10px] font-bold uppercase tracking-widest font-mono mb-2 ${group.accent}`}>
-                            {group.category}
-                          </div>
-                          <div className="space-y-1">
+                          <Link
+                            to="/services"
+                            hash={group.id}
+                            onClick={() => setOpen(false)}
+                            className={`flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono mb-2`}
+                          >
+                            <span className="flex items-center gap-2">
+                              <group.icon size={14} />
+                              {group.category}
+                            </span>
+                            <ArrowRight size={12} />
+                          </Link>
+                          <div className="space-y-1 pl-1">
                             {group.items.map((item) => (
                               <Link
                                 key={item.label}
                                 to="/services"
+                                hash={group.id}
                                 onClick={() => setOpen(false)}
-                                className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-white hover:text-cyan-300 text-xs font-semibold transition-all"
+                                className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-slate-300 hover:text-white text-xs font-semibold transition-all"
                               >
                                 <item.icon size={12} className={`shrink-0 ${group.accent}`} />
                                 {item.label}
