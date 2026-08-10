@@ -326,12 +326,12 @@ function ServicesPage() {
       {/* Interactive Category Filter & Live Search Bar */}
       <div className="mb-16 space-y-6">
         {/* Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 p-2.5 bg-slate-900/95 rounded-3xl border border-slate-700/80 max-w-4xl mx-auto backdrop-blur-2xl shadow-2xl">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 p-2 sm:p-2.5 bg-slate-900/95 rounded-2xl sm:rounded-3xl border border-slate-700/80 max-w-4xl mx-auto backdrop-blur-2xl shadow-2xl">
           <button
             onClick={() => setActiveTab("all")}
-            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer ${
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer ${
               activeTab === "all"
-                ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-105"
+                ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-[1.02] sm:scale-105"
                 : "text-slate-200 hover:text-white hover:bg-slate-800/80"
             }`}
           >
@@ -339,33 +339,33 @@ function ServicesPage() {
           </button>
           <button
             onClick={() => setActiveTab("ai")}
-            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
               activeTab === "ai"
-                ? "bg-cyan-400 text-slate-950 font-black shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-105"
+                ? "bg-cyan-400 text-slate-950 font-black shadow-[0_0_25px_rgba(6,182,212,0.5)] scale-[1.02] sm:scale-105"
                 : "text-slate-200 hover:text-cyan-300 hover:bg-slate-800/80"
             }`}
           >
-            <Bot size={18} /> AI Services (8)
+            <Bot size={16} className="sm:w-4 sm:h-4" /> AI Services (8)
           </button>
           <button
             onClick={() => setActiveTab("dev")}
-            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
               activeTab === "dev"
-                ? "bg-indigo-500 text-white font-black shadow-[0_0_25px_rgba(99,102,241,0.5)] scale-105"
+                ? "bg-indigo-500 text-white font-black shadow-[0_0_25px_rgba(99,102,241,0.5)] scale-[1.02] sm:scale-105"
                 : "text-slate-200 hover:text-indigo-300 hover:bg-slate-800/80"
             }`}
           >
-            <Globe size={18} /> Development Services (8)
+            <Globe size={16} className="sm:w-4 sm:h-4" /> Development Services (8)
           </button>
           <button
             onClick={() => setActiveTab("growth")}
-            className={`px-6 py-3 rounded-2xl text-sm sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-base font-black transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
               activeTab === "growth"
-                ? "bg-emerald-400 text-slate-950 font-black shadow-[0_0_25px_rgba(16,185,129,0.5)] scale-105"
+                ? "bg-emerald-400 text-slate-950 font-black shadow-[0_0_25px_rgba(16,185,129,0.5)] scale-[1.02] sm:scale-105"
                 : "text-slate-200 hover:text-emerald-300 hover:bg-slate-800/80"
             }`}
           >
-            <TrendingUp size={18} /> Search & Growth (8)
+            <TrendingUp size={16} className="sm:w-4 sm:h-4" /> Search & Growth (8)
           </button>
         </div>
 
