@@ -412,10 +412,7 @@ function ServicesPage() {
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-7xl mx-auto animate-fade-up">
       {/* Header Section */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 text-xs sm:text-sm font-mono font-black uppercase tracking-widest mb-6 shadow-[0_0_25px_rgba(6,182,212,0.3)]">
-          <Sparkles size={16} className="animate-spin-slow" />
-          Enterprise Capabilities Catalog
-        </div>
+
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">
           {activeTab === "ai" && (
             <>
