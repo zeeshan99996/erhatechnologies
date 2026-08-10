@@ -267,9 +267,17 @@ function ServicesPage() {
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
           Services built for <span className="text-gradient">enterprise scale</span>
         </h1>
-        <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
           From autonomous AI agents to enterprise software and AI-powered search growth — full-spectrum digital capabilities under one roof.
         </p>
+        <div className="flex justify-center">
+          <Link
+            to="/pricing"
+            className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold shadow-lg"
+          >
+            <Sparkles size={16} /> Explore Package Tiers (Basic, Standard, Premium) <ArrowRight size={16} />
+          </Link>
+        </div>
       </div>
 
       {/* Service Category Sections */}

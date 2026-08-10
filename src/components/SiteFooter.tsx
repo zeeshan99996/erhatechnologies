@@ -79,6 +79,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link to="/pricing" className="hover:text-cyan-400 transition-colors">
+                  Pricing &amp; Packages
+                </Link>
+              </li>
+              <li>
                 <Link to="/about" className="hover:text-cyan-400 transition-colors">
                   Leadership &amp; Team
                 </Link>

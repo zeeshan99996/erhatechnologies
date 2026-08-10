@@ -31,8 +31,24 @@ Projects Portfolio;
 - OmniSearch (AI Search) — Cognitive search system powered by RAG and semantic routing
 
 Website Pages;
-- / → Home   | /about → About   | /services → Services
+- / → Home   | /about → About   | /services → Services   | /pricing → Pricing & Packages
 - /projects → Portfolio   | /team → Team   | /contact → Contact
+
+PRICING & SERVICE PACKAGES (Basic, Standard, Premium);
+1. AI & Agentic Solutions Packages:
+   - Basic ($399-$499/mo): Single-Domain AI Chatbot, RAG on 500 documents, standard GPT-4o integration, up to 15k queries/mo.
+   - Standard ($1,199-$1,499/mo) [Most Popular]: Autonomous Multi-Agent Orchestration (up to 5 agents), Custom LLM Fine-Tuning, 200+ SaaS tool integrations, up to 150k queries/mo, priority support.
+   - Premium ($2,899-$3,499/mo): Unlimited Autonomous Agent Swarms, Dedicated Private LLM & Air-Gapped Deploy, Custom Voice & Vision AI, Dedicated AI Architect, 1h SLA.
+
+2. Web & Software Engineering Packages:
+   - Basic ($649-$799/mo or setup): Up to 8 Custom Responsive Pages, React/Next.js, Headless CMS, 95+ Lighthouse Performance, 30 days support.
+   - Standard ($1,799-$2,199/mo) [Most Popular]: Full-Stack Web App + Mobile Apps (iOS & Android), REST/GraphQL API Backend, Auth, Stripe Payment Billing, Admin Dashboard, 90 days warranty.
+   - Premium ($3,699-$4,499/mo): Microservices & Event-Driven Architecture, Headless E-Commerce, Kubernetes CI/CD, 24/7 Managed Infrastructure & 99.99% Uptime SLA.
+
+3. Search, AEO & Growth Packages:
+   - Basic ($319-$399/mo): Technical SEO Audit, 30 Keywords Mapping, On-Page Fixes, GA4 & Search Console Reports.
+   - Standard ($949-$1,199/mo) [Most Popular]: AEO & GEO (AI Search Optimization for ChatGPT & Perplexity), Google & Meta Ads Management, 4 SEO articles/mo, CRO analytics.
+   - Premium ($2,299-$2,799/mo): Full-Funnel Omnichannel Dominance, Unlimited Paid Ads Management, Short-Form Video Production, CRM Drip Automation.
 
 LEADERSHIP;
 
