@@ -410,42 +410,7 @@ function ServicesPage() {
 
   return (
     <div className="px-4 sm:px-6 py-20 md:py-28 max-w-7xl mx-auto animate-fade-up">
-      {/* Header Section */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 text-xs sm:text-sm font-mono font-black uppercase tracking-widest mb-6 shadow-[0_0_25px_rgba(6,182,212,0.3)]">
-          <Sparkles size={16} className="animate-spin-slow" />
-          Enterprise Capabilities Catalog
-        </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">
-          {activeTab === "ai" && (
-            <>
-              AI Services & <span className="bg-gradient-to-r from-cyan-300 via-cyan-400 to-blue-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(6,182,212,0.4)]">Autonomous Agents</span>
-            </>
-          )}
-          {activeTab === "dev" && (
-            <>
-              Development Services & <span className="bg-gradient-to-r from-indigo-300 via-indigo-400 to-purple-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(99,102,241,0.4)]">Engineering</span>
-            </>
-          )}
-          {activeTab === "seo" && (
-            <>
-              SEO Services & <span className="bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(16,185,129,0.4)]">Organic Growth</span>
-            </>
-          )}
-          {activeTab === "all" && (
-            <>
-              Full-Spectrum Services for <span className="bg-gradient-to-r from-cyan-300 via-indigo-300 to-purple-400 bg-clip-text text-transparent font-black drop-shadow-[0_0_35px_rgba(6,182,212,0.4)]">Enterprise Scale</span>
-            </>
-          )}
-        </h1>
-        <p className="text-base sm:text-lg text-slate-200 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
-          {activeTab === "ai" && "Autonomous multi-agent swarms, custom LLM fine-tuning, RAG data pipelines, voice AI, and predictive machine learning models built for production."}
-          {activeTab === "dev" && "Engineering-first web applications, mobile apps, multi-tenant SaaS platforms, microservices backend APIs, and cloud infrastructure."}
-          {activeTab === "seo" && "Dominate organic search and next-gen AI answer engines (ChatGPT, Perplexity, Google SGE) with technical SEO, PPC, and conversion rate growth."}
-          {activeTab === "all" && "Explore our full catalog of 24+ enterprise capabilities spanning AI Services, Development Services, and SEO Services."}
-        </p>
 
-      </div>
 
       {/* Main Category Tabs & Sub-Category Navigation */}
       <div className="mb-14 space-y-5">
