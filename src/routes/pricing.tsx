@@ -290,8 +290,8 @@ const faqs = [
     a: "Absolutely! Our Basic, Standard, and Premium packages are structured baselines. If your project requires custom integrations, specialized datasets, or unique SLAs, our team can tailor a bespoke package specific to your business needs.",
   },
   {
-    q: "What is the difference between monthly and annual billing?",
-    a: "Annual billing comes with an automatic 20% discount on all packages. When you select annual billing, your subscription is billed once per year, giving you the best overall value and dedicated priority support.",
+    q: "What is included in each package tier?",
+    a: "Every package includes architecture design, core engineering, security compliance, deployment, and dedicated post-launch support tailored to your selected tier.",
   },
   {
     q: "How fast can we start after selecting a package?",
@@ -308,7 +308,6 @@ const faqs = [
 ];
 
 function PricingPage() {
-  const [billingCycle, setBillingCycle] = useState<"annual" | "monthly">("annual");
   const [activeCategory, setActiveCategory] = useState<"all" | "ai" | "dev" | "growth">("all");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -374,35 +373,12 @@ function PricingPage() {
             <TrendingUp size={15} /> Search & Growth
           </button>
         </div>
-
-        {/* Monthly vs Annual Toggle */}
-        <div className="flex items-center justify-center gap-4 mt-8">
-          <span className={`text-sm font-bold ${billingCycle === "monthly" ? "text-white" : "text-slate-400"}`}>
-            Monthly Billing
-          </span>
-          <button
-            onClick={() => setBillingCycle(billingCycle === "monthly" ? "annual" : "monthly")}
-            className="w-14 h-8 rounded-full bg-slate-900 border border-slate-700 p-1 flex items-center transition-colors cursor-pointer relative"
-          >
-            <div
-              className={`w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 shadow-md transition-transform duration-300 ${
-                billingCycle === "annual" ? "translate-x-6" : "translate-x-0"
-              }`}
-            />
-          </button>
-          <span className={`text-sm font-bold flex items-center gap-2 ${billingCycle === "annual" ? "text-white" : "text-slate-400"}`}>
-            Annual Billing
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-mono font-bold animate-pulse">
-              Save 20%
-            </span>
-          </span>
-        </div>
       </div>
 
       {/* Pricing Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
         {filteredPackages.map((pkg) => {
-          const price = billingCycle === "annual" ? pkg.annualPrice : pkg.monthlyPrice;
+          const price = pkg.monthlyPrice;
 
           let cardBorder = "border-slate-800/80 hover:border-slate-700";
           let badgeBg = "bg-slate-800 text-slate-300 border-slate-700";
