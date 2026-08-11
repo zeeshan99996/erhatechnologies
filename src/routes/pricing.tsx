@@ -308,11 +308,11 @@ const faqs = [
 ];
 
 function PricingPage() {
-  const [activeCategory, setActiveCategory] = useState<"all" | "ai" | "dev" | "growth">("all");
+  const [activeCategory, setActiveCategory] = useState<"ai" | "dev" | "growth">("ai");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const filteredPackages = pricingPackages.filter(
-    (pkg) => activeCategory === "all" || pkg.category === activeCategory
+    (pkg) => pkg.category === activeCategory
   );
 
   return (
@@ -332,16 +332,6 @@ function PricingPage() {
 
         {/* Category Filter Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2 mt-8 p-1.5 bg-slate-900/90 rounded-2xl border border-slate-800/80 max-w-2xl mx-auto backdrop-blur-xl">
-          <button
-            onClick={() => setActiveCategory("all")}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
-              activeCategory === "all"
-                ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
-                : "text-slate-300 hover:text-white hover:bg-slate-800/60"
-            }`}
-          >
-            All Packages
-          </button>
           <button
             onClick={() => setActiveCategory("ai")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
