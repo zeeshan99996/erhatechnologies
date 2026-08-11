@@ -10,6 +10,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { useState, useMemo } from "react";
+import { ServiceModal } from "@/components/ServiceModal";
 
 export const Route = createFileRoute("/services/development")({
   head: () => ({
@@ -141,17 +142,21 @@ function DevelopmentServicesPage() {
                   </div>
                 </div>
 
-                <a
-                  href={`/services/${service.id}`}
+                <button
+                  type="button"
+                  onClick={() => setActiveModalId(service.id)}
                   className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
                 >
                   Explore Service & Tiers <ArrowRight size={14} />
-                </a>
+                </button>
               </div>
             );
           })}
         </div>
       )}
+
+      {/* Interactive Service Detail & Pricing Modal */}
+      <ServiceModal serviceId={activeModalId} onClose={() => setActiveModalId(null)} />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { useState, useMemo } from "react";
+import { ServiceModal } from "@/components/ServiceModal";
 
 export const Route = createFileRoute("/services/seo")({
   head: () => ({
@@ -140,17 +141,21 @@ function SEOServicesPage() {
                   </div>
                 </div>
 
-                <a
-                  href={`/services/${service.id}`}
+                <button
+                  type="button"
+                  onClick={() => setActiveModalId(service.id)}
                   className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
                 >
                   Explore Service & Retainers <ArrowRight size={14} />
-                </a>
+                </button>
               </div>
             );
           })}
         </div>
       )}
+
+      {/* Interactive Service Detail & Pricing Modal */}
+      <ServiceModal serviceId={activeModalId} onClose={() => setActiveModalId(null)} />
     </div>
   );
 }

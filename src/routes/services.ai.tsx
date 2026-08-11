@@ -10,6 +10,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { useState, useMemo } from "react";
+import { ServiceModal } from "@/components/ServiceModal";
 
 export const Route = createFileRoute("/services/ai")({
   head: () => ({
@@ -35,6 +36,7 @@ export const Route = createFileRoute("/services/ai")({
 
 function AIServicesPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
   const aiServices = useMemo(() => {
     return servicesList.filter(
@@ -141,17 +143,21 @@ function AIServicesPage() {
                   </div>
                 </div>
 
-                <a
-                  href={`/services/${service.id}`}
+                <button
+                  type="button"
+                  onClick={() => setActiveModalId(service.id)}
                   className="btn-neon w-full py-3 px-4 rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md cursor-pointer"
                 >
                   Explore Service & Tiers <ArrowRight size={14} />
-                </a>
+                </button>
               </div>
             );
           })}
         </div>
       )}
+
+      {/* Interactive Modal */}
+      <ServiceModal serviceId={activeModalId} onClose={() => setActiveModalId(null)} />
     </div>
   );
 }

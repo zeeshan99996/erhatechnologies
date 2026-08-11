@@ -23,17 +23,20 @@ export const Route = createFileRoute("/services")({
   validateSearch: (search) => servicesSearchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Services Hub — Erha Technologies Enterprise AI, Software & SEO" },
+      { title: "Our Services & Capabilities — Erha Technologies" },
       {
         name: "description",
         content:
-          "Explore dedicated category pages for AI Services, Web & Mobile Development, and SEO Growth with 24+ specialized services and transparent budget pricing.",
+          "Explore our full suite of 24 software services across AI, Autonomous Systems, Custom Web & Mobile Development, and SEO & Digital Growth.",
       },
-      { property: "og:title", content: "Services Hub — Erha Technologies" },
-      { property: "og:description", content: "24+ Enterprise AI, Software, and SEO growth services." },
+      { property: "og:title", content: "Our Services & Capabilities — Erha Technologies" },
+      {
+        property: "og:description",
+        content: "Explore 24 dedicated software services across AI, Development, and Digital Search Growth.",
+      },
     ],
     links: [
-      { rel: "canonical", href: "https://www.erhatechnologies.com/services" }
+      { rel: "canonical", href: "https://www.erhatechnologies.com/services" },
     ],
   }),
   component: ServicesPage,
@@ -42,6 +45,7 @@ export const Route = createFileRoute("/services")({
 function ServicesPage() {
   const search = Route.useSearch();
   const navigate = useNavigate({ from: Route.id });
+  const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
   const getValidCat = (param?: string): "ai" | "dev" | "seo" => {
     const clean = (param || "").toLowerCase();
@@ -203,17 +207,21 @@ function ServicesPage() {
                   </div>
                 </div>
 
-                <a
-                  href={`/services/${service.id}`}
+                <button
+                  type="button"
+                  onClick={() => setActiveModalId(service.id)}
                   className="btn-neon w-full py-3 px-4 rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md cursor-pointer"
                 >
                   View Service & Budget Tiers <ArrowRight size={14} />
-                </a>
+                </button>
               </div>
             );
           })}
         </div>
       )}
+
+      {/* Interactive Service Detail & Pricing Modal */}
+      <ServiceModal serviceId={activeModalId} onClose={() => setActiveModalId(null)} />
     </div>
   );
 }
