@@ -20,6 +20,9 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TeamAiRouteImport } from './routes/team.ai'
+import { Route as ServicesSeoRouteImport } from './routes/services.seo'
+import { Route as ServicesDevelopmentRouteImport } from './routes/services.development'
+import { Route as ServicesAiRouteImport } from './routes/services.ai'
 import { Route as ServicesServiceIdRouteImport } from './routes/services.$serviceId'
 
 const TeamRoute = TeamRouteImport.update({
@@ -77,6 +80,21 @@ const TeamAiRoute = TeamAiRouteImport.update({
   path: '/ai',
   getParentRoute: () => TeamRoute,
 } as any)
+const ServicesSeoRoute = ServicesSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesDevelopmentRoute = ServicesDevelopmentRouteImport.update({
+  id: '/development',
+  path: '/development',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAiRoute = ServicesAiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesServiceIdRoute = ServicesServiceIdRouteImport.update({
   id: '/$serviceId',
   path: '/$serviceId',
@@ -95,6 +113,9 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
   '/services/$serviceId': typeof ServicesServiceIdRoute
+  '/services/ai': typeof ServicesAiRoute
+  '/services/development': typeof ServicesDevelopmentRoute
+  '/services/seo': typeof ServicesSeoRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +130,9 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
   '/services/$serviceId': typeof ServicesServiceIdRoute
+  '/services/ai': typeof ServicesAiRoute
+  '/services/development': typeof ServicesDevelopmentRoute
+  '/services/seo': typeof ServicesSeoRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRoutesById {
@@ -124,6 +148,9 @@ export interface FileRoutesById {
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
   '/services/$serviceId': typeof ServicesServiceIdRoute
+  '/services/ai': typeof ServicesAiRoute
+  '/services/development': typeof ServicesDevelopmentRoute
+  '/services/seo': typeof ServicesSeoRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +167,9 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/services/$serviceId'
+    | '/services/ai'
+    | '/services/development'
+    | '/services/seo'
     | '/team/ai'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +184,9 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/services/$serviceId'
+    | '/services/ai'
+    | '/services/development'
+    | '/services/seo'
     | '/team/ai'
   id:
     | '__root__'
@@ -168,6 +201,9 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/services/$serviceId'
+    | '/services/ai'
+    | '/services/development'
+    | '/services/seo'
     | '/team/ai'
   fileRoutesById: FileRoutesById
 }
@@ -263,6 +299,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamAiRouteImport
       parentRoute: typeof TeamRoute
     }
+    '/services/seo': {
+      id: '/services/seo'
+      path: '/seo'
+      fullPath: '/services/seo'
+      preLoaderRoute: typeof ServicesSeoRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/development': {
+      id: '/services/development'
+      path: '/development'
+      fullPath: '/services/development'
+      preLoaderRoute: typeof ServicesDevelopmentRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ai': {
+      id: '/services/ai'
+      path: '/ai'
+      fullPath: '/services/ai'
+      preLoaderRoute: typeof ServicesAiRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/$serviceId': {
       id: '/services/$serviceId'
       path: '/$serviceId'
@@ -275,10 +332,16 @@ declare module '@tanstack/react-router' {
 
 interface ServicesRouteChildren {
   ServicesServiceIdRoute: typeof ServicesServiceIdRoute
+  ServicesAiRoute: typeof ServicesAiRoute
+  ServicesDevelopmentRoute: typeof ServicesDevelopmentRoute
+  ServicesSeoRoute: typeof ServicesSeoRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesServiceIdRoute: ServicesServiceIdRoute,
+  ServicesAiRoute: ServicesAiRoute,
+  ServicesDevelopmentRoute: ServicesDevelopmentRoute,
+  ServicesSeoRoute: ServicesSeoRoute,
 }
 
 const ServicesRouteWithChildren = ServicesRoute._addFileChildren(

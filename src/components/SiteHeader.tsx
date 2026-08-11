@@ -146,40 +146,42 @@ export function SiteHeader() {
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {serviceMenu.map((group) => (
-                          <Link
-                            key={group.id}
-                            to="/services"
-                            search={{ cat: group.id }}
-                            onClick={() => setServicesOpen(false)}
-                            className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
-                          >
-                            <div>
-                              <div className="flex items-center justify-between mb-3">
-                                <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
-                                  <group.icon size={20} />
+                        {serviceMenu.map((group) => {
+                          const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
+                          return (
+                            <Link
+                              key={group.id}
+                              to={routePath}
+                              onClick={() => setServicesOpen(false)}
+                              className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                            >
+                              <div>
+                                <div className="flex items-center justify-between mb-3">
+                                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
+                                    <group.icon size={20} />
+                                  </div>
+                                  <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
+                                    {group.tagline}
+                                  </span>
                                 </div>
-                                <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
-                                  {group.tagline}
-                                </span>
+
+                                <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
+                                  {group.category}
+                                </h3>
+
+                                <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
+                                  {group.description}
+                                </p>
                               </div>
 
-                              <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
-                                {group.category}
-                              </h3>
-
-                              <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
-                                {group.description}
-                              </p>
-                            </div>
-
-                            <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
-                              <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
-                                Open {group.category} <ArrowRight size={12} />
-                              </span>
-                            </div>
-                          </Link>
-                        ))}
+                              <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
+                                <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
+                                  Open {group.category} <ArrowRight size={12} />
+                                </span>
+                              </div>
+                            </Link>
+                          );
+                        })}
                       </div>
 
                       <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">

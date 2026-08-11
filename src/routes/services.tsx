@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
-import { servicesList, DetailedService } from "@/lib/servicesData";
+import { servicesList } from "@/lib/servicesData";
 import {
   Bot,
   Code,
@@ -9,9 +9,8 @@ import {
   Sparkles,
   ArrowRight,
   CheckCircle2,
-  ChevronLeft,
-  Send,
   Lightbulb,
+  Globe,
 } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 
@@ -24,13 +23,13 @@ export const Route = createFileRoute("/services")({
   validateSearch: (search) => servicesSearchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Services Catalog — Erha Technologies Enterprise AI, Software & SEO" },
+      { title: "Services Hub — Erha Technologies Enterprise AI, Software & SEO" },
       {
         name: "description",
         content:
-          "Full catalog of 24+ enterprise services across AI Agents, Web & Mobile Engineering, and SEO Growth with dedicated service detail pages & budget pricing.",
+          "Explore dedicated category pages for AI Services, Web & Mobile Development, and SEO Growth with 24+ specialized services and transparent budget pricing.",
       },
-      { property: "og:title", content: "Services Catalog — Erha Technologies" },
+      { property: "og:title", content: "Services Hub — Erha Technologies" },
       { property: "og:description", content: "24+ Enterprise AI, Software, and SEO growth services." },
     ],
     links: [
@@ -39,12 +38,6 @@ export const Route = createFileRoute("/services")({
   }),
   component: ServicesPage,
 });
-
-const serviceCategories = [
-  { id: "ai", label: "AI Services", icon: Bot, accent: "cyan", count: 8 },
-  { id: "dev", label: "Development Services", icon: Code, accent: "indigo", count: 8 },
-  { id: "seo", label: "SEO & Growth Services", icon: TrendingUp, accent: "emerald", count: 8 },
-];
 
 function ServicesPage() {
   const search = Route.useSearch();
@@ -95,14 +88,98 @@ function ServicesPage() {
       <div className="text-center max-w-4xl mx-auto mb-12">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-4 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
           <Sparkles size={14} className="animate-spin-slow" />
-          24+ Enterprise Services Catalog
+          Dedicated Service Portals & Catalog
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">
           Full-Spectrum <span className="bg-gradient-to-r from-cyan-300 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Services & Solutions</span>
         </h1>
         <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
-          Click any service card to view its dedicated page complete with detailed benefits, technical architecture, and service-specific budget pricing tiers.
+          Explore our dedicated category hubs for AI, Software Development, and SEO & Growth services—each equipped with detailed benefits, technical architecture, and transparent budget pricing.
         </p>
+
+        {/* 3 Main Dedicated Category Entrance Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-left">
+          {/* AI Category Card */}
+          <Link
+            to="/services/ai"
+            className="glass-strong rounded-3xl p-6 border border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)] transition-all duration-300 group flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-3 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 group-hover:scale-110 transition-transform">
+                  <Bot size={28} />
+                </div>
+                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                  8 Capabilities
+                </span>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                AI Services & Autonomous Systems
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                Autonomous AI agents, custom LLM fine-tuning, RAG data pipelines, voice AI, and predictive ML.
+              </p>
+            </div>
+            <div className="pt-3 border-t border-slate-800 text-xs font-bold text-cyan-400 flex items-center justify-between group-hover:translate-x-1 transition-transform">
+              <span>Open AI Services Hub</span>
+              <ArrowRight size={14} />
+            </div>
+          </Link>
+
+          {/* Development Category Card */}
+          <Link
+            to="/services/development"
+            className="glass-strong rounded-3xl p-6 border border-indigo-500/40 hover:border-indigo-400 hover:shadow-[0_0_30px_rgba(99,102,241,0.25)] transition-all duration-300 group flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-3 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 group-hover:scale-110 transition-transform">
+                  <Code size={28} />
+                </div>
+                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
+                  8 Capabilities
+                </span>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                Development & Software Engineering
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                React/Next.js web apps, mobile apps, SaaS platforms, backend APIs, microservices & DevOps.
+              </p>
+            </div>
+            <div className="pt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between group-hover:translate-x-1 transition-transform">
+              <span>Open Development Hub</span>
+              <ArrowRight size={14} />
+            </div>
+          </Link>
+
+          {/* SEO Category Card */}
+          <Link
+            to="/services/seo"
+            className="glass-strong rounded-3xl p-6 border border-emerald-500/40 hover:border-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)] transition-all duration-300 group flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-3 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 group-hover:scale-110 transition-transform">
+                  <TrendingUp size={28} />
+                </div>
+                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+                  8 Capabilities
+                </span>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                SEO Services & Digital Search Growth
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                Technical SEO, AEO/GEO for ChatGPT & Perplexity, Google Ads, Meta Ads, and conversion optimization.
+              </p>
+            </div>
+            <div className="pt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between group-hover:translate-x-1 transition-transform">
+              <span>Open SEO Growth Hub</span>
+              <ArrowRight size={14} />
+            </div>
+          </Link>
+        </div>
 
         {/* Category Navigation Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-3xl mx-auto mb-6">
@@ -114,7 +191,7 @@ function ServicesPage() {
                 : "text-slate-300 hover:text-white hover:bg-slate-800"
             }`}
           >
-            ✨ All Services ({servicesList.length})
+            ✨ All 24 Services
           </button>
           <button
             onClick={() => handleTabChange("ai")}
