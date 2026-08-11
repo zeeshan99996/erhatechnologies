@@ -142,21 +142,18 @@ function DevelopmentServicesPage() {
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setActiveModalId(service.id)}
+                <Link
+                  to="/services/$serviceId"
+                  params={{ serviceId: service.id }}
                   className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
                 >
                   Explore Service & Tiers <ArrowRight size={14} />
-                </button>
+                </Link>
               </div>
             );
           })}
         </div>
       )}
-
-      {/* Interactive Service Detail & Pricing Modal */}
-      <ServiceModal serviceId={activeModalId} onClose={() => setActiveModalId(null)} />
     </div>
   );
 }

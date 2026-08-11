@@ -143,21 +143,18 @@ function AIServicesPage() {
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setActiveModalId(service.id)}
+                <Link
+                  to="/services/$serviceId"
+                  params={{ serviceId: service.id }}
                   className="btn-neon w-full py-3 px-4 rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md cursor-pointer"
                 >
                   Explore Service & Tiers <ArrowRight size={14} />
-                </button>
+                </Link>
               </div>
             );
           })}
         </div>
       )}
-
-      {/* Interactive Modal */}
-      <ServiceModal serviceId={activeModalId} onClose={() => setActiveModalId(null)} />
     </div>
   );
 }
