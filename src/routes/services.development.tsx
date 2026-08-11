@@ -168,7 +168,7 @@ function DevelopmentServicesPage() {
                 </div>
 
                 <a
-                  href="/pricing"
+                  href="/pricing?cat=dev"
                   className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-extrabold text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer uppercase tracking-wider"
                 >
                   VIEW PRICING <ArrowRight size={14} />

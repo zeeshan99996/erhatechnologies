@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { z } from "zod";
 import {
   CheckCircle2,
   Zap,
@@ -18,7 +19,13 @@ import {
   ChevronDown,
 } from "lucide-react";
 
+const pricingSearchSchema = z.object({
+  cat: z.string().optional(),
+  category: z.string().optional(),
+});
+
 export const Route = createFileRoute("/pricing")({
+  validateSearch: (search) => pricingSearchSchema.parse(search),
   head: () => ({
     meta: [
       { title: "Pricing & Packages — Erha Technologies Enterprise AI & Web" },
@@ -308,8 +315,25 @@ const faqs = [
 ];
 
 function PricingPage() {
-  const [activeCategory, setActiveCategory] = useState<"all" | "ai" | "dev" | "growth">("all");
+  const search = Route.useSearch();
+  const getValidCat = (param?: string): "all" | "ai" | "dev" | "growth" => {
+    const clean = (param || "").toLowerCase().trim();
+    if (clean === "ai") return "ai";
+    if (clean === "dev" || clean === "development") return "dev";
+    if (clean === "growth" || clean === "seo") return "growth";
+    if (clean === "all") return "all";
+    return "all";
+  };
+
+  const initialCategory = getValidCat(search.cat || search.category);
+  const [activeCategory, setActiveCategory] = useState<"all" | "ai" | "dev" | "growth">(initialCategory);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  useEffect(() => {
+    if (search.cat || search.category) {
+      setActiveCategory(getValidCat(search.cat || search.category));
+    }
+  }, [search.cat, search.category]);
 
   const filteredPackages = pricingPackages.filter(
     (pkg) => activeCategory === "all" || pkg.category === activeCategory
