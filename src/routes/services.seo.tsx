@@ -141,13 +141,12 @@ function SEOServicesPage() {
                   </div>
                 </div>
 
-                <Link
-                  to="/services/$serviceId"
-                  params={{ serviceId: service.id }}
+                <a
+                  href={`/services/${service.id}`}
                   className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
                 >
                   Explore Service & Retainers <ArrowRight size={14} />
-                </Link>
+                </a>
               </div>
             );
           })}

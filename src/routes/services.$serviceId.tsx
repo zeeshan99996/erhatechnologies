@@ -3,13 +3,16 @@ import { servicesList } from "@/lib/servicesData";
 import { ServiceDetailPage } from "@/components/ServiceDetailPage";
 
 export const Route = createFileRoute("/services/$serviceId")({
+  loader: ({ params }) => {
+    return { serviceId: params.serviceId || "" };
+  },
   head: ({ params }) => {
-    const service = servicesList.find((s) => s.id === params.serviceId);
-    if (!service) {
-      return {
-        meta: [{ title: "Service Not Found — Erha Technologies" }],
-      };
-    }
+    const serviceId = params?.serviceId || "";
+    const service =
+      servicesList.find((s) => s.id === serviceId) ||
+      servicesList.find((s) => s.id.toLowerCase().includes(serviceId.toLowerCase())) ||
+      servicesList[0];
+
     return {
       meta: [
         { title: `${service.title} — Benefits, Architecture & Pricing | Erha Technologies` },
@@ -29,6 +32,6 @@ export const Route = createFileRoute("/services/$serviceId")({
 });
 
 function RouteComponent() {
-  const { serviceId } = Route.useParams();
-  return <ServiceDetailPage serviceId={serviceId} />;
+  const data = Route.useLoaderData();
+  return <ServiceDetailPage serviceId={data.serviceId} />;
 }

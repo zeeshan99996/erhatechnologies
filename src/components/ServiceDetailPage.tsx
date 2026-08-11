@@ -19,7 +19,12 @@ import {
 
 export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
   const navigate = useNavigate();
-  const service = servicesList.find((s) => s.id === serviceId);
+  
+  const cleanId = (serviceId || "").toLowerCase().trim();
+  const service =
+    servicesList.find((s) => s.id.toLowerCase() === cleanId) ||
+    servicesList.find((s) => cleanId.includes(s.id.toLowerCase()) || s.id.toLowerCase().includes(cleanId)) ||
+    servicesList[0];
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
