@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { servicesList } from "@/lib/servicesData";
 import {
+  Bot,
+  Code,
   TrendingUp,
   Search,
   ArrowRight,
@@ -35,6 +37,7 @@ export const Route = createFileRoute("/services/seo")({
 
 function SEOServicesPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
   const seoServices = useMemo(() => {
     return servicesList.filter(
@@ -59,10 +62,32 @@ function SEOServicesPage() {
         </Link>
       </div>
 
+      {/* Top Category Navigation Sub-Menu Bar */}
+      <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-3xl mx-auto mb-10 shadow-xl">
+        <Link
+          to="/services/ai"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-cyan-300 hover:bg-slate-800 transition-all flex items-center gap-1.5"
+        >
+          <Bot size={16} /> AI Services (8)
+        </Link>
+        <Link
+          to="/services/development"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-indigo-300 hover:bg-slate-800 transition-all flex items-center gap-1.5"
+        >
+          <Code size={16} /> Development (8)
+        </Link>
+        <Link
+          to="/services/seo"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 text-slate-950 font-black shadow-lg flex items-center gap-1.5"
+        >
+          <TrendingUp size={16} /> SEO & Growth (8)
+        </Link>
+      </div>
+
       {/* Hero Header */}
       <div className="text-center max-w-4xl mx-auto mb-14">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase tracking-widest mb-4 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-          <TrendingUp size={14} /> Dedicated Organic & Paid Growth
+          <TrendingUp size={14} /> Dedicated Organic & Paid Growth Page
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">

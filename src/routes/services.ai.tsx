@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { servicesList } from "@/lib/servicesData";
 import {
   Bot,
+  Code,
+  TrendingUp,
   Sparkles,
   ArrowRight,
   CheckCircle2,
@@ -61,10 +63,32 @@ function AIServicesPage() {
         </Link>
       </div>
 
+      {/* Top Category Navigation Sub-Menu Bar */}
+      <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-3xl mx-auto mb-10 shadow-xl">
+        <Link
+          to="/services/ai"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 font-black shadow-lg flex items-center gap-1.5"
+        >
+          <Bot size={16} /> AI Services (8)
+        </Link>
+        <Link
+          to="/services/development"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-indigo-300 hover:bg-slate-800 transition-all flex items-center gap-1.5"
+        >
+          <Code size={16} /> Development (8)
+        </Link>
+        <Link
+          to="/services/seo"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-emerald-300 hover:bg-slate-800 transition-all flex items-center gap-1.5"
+        >
+          <TrendingUp size={16} /> SEO & Growth (8)
+        </Link>
+      </div>
+
       {/* Hero Header */}
       <div className="text-center max-w-4xl mx-auto mb-14">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-4 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-          <Bot size={14} /> Dedicated AI Capabilities
+          <Bot size={14} /> Dedicated AI Capabilities Page
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">
@@ -72,7 +96,7 @@ function AIServicesPage() {
         </h1>
 
         <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
-          Autonomous multi-agent swarms, custom LLM fine-tuning, RAG data pipelines, voice AI agents, and predictive machine learning models built for enterprise scale.
+          Explore all 8 dedicated AI services—from autonomous agent swarms and custom LLM fine-tuning to voice AI agents and predictive machine learning models built for enterprise scale.
         </p>
 
         {/* Live Search */}

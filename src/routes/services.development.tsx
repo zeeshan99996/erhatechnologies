@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { servicesList } from "@/lib/servicesData";
 import {
+  Bot,
   Code,
-  Globe,
+  TrendingUp,
+  Sparkles,
   ArrowRight,
   CheckCircle2,
   ChevronLeft,
@@ -15,11 +17,11 @@ import { ServiceModal } from "@/components/ServiceModal";
 export const Route = createFileRoute("/services/development")({
   head: () => ({
     meta: [
-      { title: "Development Services & Software Engineering — Erha Technologies" },
+      { title: "Development & Software Engineering Services — Erha Technologies" },
       {
         name: "description",
         content:
-          "Full-stack web applications, mobile apps, SaaS platforms, microservices APIs, and cloud infrastructure engineered for scale.",
+          "React, Next.js web applications, mobile apps, SaaS platforms, microservices, cloud DevOps, and legacy modernization.",
       },
       { property: "og:title", content: "Development Services & Software Engineering — Erha Technologies" },
       {
@@ -36,6 +38,7 @@ export const Route = createFileRoute("/services/development")({
 
 function DevelopmentServicesPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
   const devServices = useMemo(() => {
     return servicesList.filter(
@@ -60,10 +63,32 @@ function DevelopmentServicesPage() {
         </Link>
       </div>
 
+      {/* Top Category Navigation Sub-Menu Bar */}
+      <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-3xl mx-auto mb-10 shadow-xl">
+        <Link
+          to="/services/ai"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-cyan-300 hover:bg-slate-800 transition-all flex items-center gap-1.5"
+        >
+          <Bot size={16} /> AI Services (8)
+        </Link>
+        <Link
+          to="/services/development"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 text-white font-black shadow-lg flex items-center gap-1.5"
+        >
+          <Code size={16} /> Development (8)
+        </Link>
+        <Link
+          to="/services/seo"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-emerald-300 hover:bg-slate-800 transition-all flex items-center gap-1.5"
+        >
+          <TrendingUp size={16} /> SEO & Growth (8)
+        </Link>
+      </div>
+
       {/* Hero Header */}
       <div className="text-center max-w-4xl mx-auto mb-14">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-mono font-bold uppercase tracking-widest mb-4 shadow-[0_0_20px_rgba(99,102,241,0.2)]">
-          <Code size={14} /> Dedicated Engineering Capabilities
+          <Code size={14} /> Dedicated Engineering Capabilities Page
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">

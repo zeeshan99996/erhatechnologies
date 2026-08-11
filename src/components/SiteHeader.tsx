@@ -91,7 +91,7 @@ export function SiteHeader() {
     setMobileServicesOpen(false);
   }, [location.pathname]);
 
-  const isServicesActive = location.pathname === "/services";
+  const isServicesActive = location.pathname.startsWith("/services");
 
   return (
     <>
@@ -185,14 +185,13 @@ export function SiteHeader() {
                       </div>
 
                       <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
-                        <span>Looking for full catalog?</span>
+                        <span>Looking for main services hub?</span>
                         <Link
                           to="/services"
-                          search={{ cat: "all" }}
                           onClick={() => setServicesOpen(false)}
                           className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
                         >
-                          View All 24+ Services <ArrowRight size={12} />
+                          View Services Hub <ArrowRight size={12} />
                         </Link>
                       </div>
                     </div>
@@ -267,28 +266,29 @@ export function SiteHeader() {
 
                   {mobileServicesOpen && (
                     <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-2">
-                      {serviceMenu.map((group) => (
-                        <Link
-                          key={group.id}
-                          to="/services"
-                          search={{ cat: group.id }}
-                          onClick={() => setOpen(false)}
-                          className={`flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono hover:border-slate-700 transition-all`}
-                        >
-                          <span className="flex items-center gap-2 text-sm font-extrabold">
-                            <group.icon size={16} />
-                            {group.category}
-                          </span>
-                          <ArrowRight size={14} />
-                        </Link>
-                      ))}
+                      {serviceMenu.map((group) => {
+                        const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
+                        return (
+                          <Link
+                            key={group.id}
+                            to={routePath}
+                            onClick={() => setOpen(false)}
+                            className={`flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono hover:border-slate-700 transition-all`}
+                          >
+                            <span className="flex items-center gap-2 text-sm font-extrabold">
+                              <group.icon size={16} />
+                              {group.category}
+                            </span>
+                            <ArrowRight size={14} />
+                          </Link>
+                        );
+                      })}
                       <Link
                         to="/services"
-                        search={{ cat: "all" }}
                         onClick={() => setOpen(false)}
                         className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-300 text-xs font-bold transition-all"
                       >
-                        <span>✨ View All Services</span>
+                        <span>✨ View Services Hub</span>
                         <ArrowRight size={12} />
                       </Link>
                     </div>
