@@ -43,16 +43,15 @@ function ServicesPage() {
   const search = Route.useSearch();
   const navigate = useNavigate({ from: Route.id });
 
-  const getValidCat = (param?: string): "ai" | "dev" | "seo" | "all" => {
+  const getValidCat = (param?: string): "ai" | "dev" | "seo" => {
     const clean = (param || "").toLowerCase();
     if (clean === "seo" || clean === "growth") return "seo";
     if (clean === "dev") return "dev";
-    if (clean === "ai") return "ai";
-    return "all";
+    return "ai";
   };
 
   const initialCat = getValidCat(search.cat || search.category);
-  const [activeTab, setActiveTab] = useState<"all" | "ai" | "dev" | "seo">(initialCat);
+  const [activeTab, setActiveTab] = useState<"ai" | "dev" | "seo">(initialCat);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -60,7 +59,7 @@ function ServicesPage() {
     setActiveTab(cat);
   }, [search.cat, search.category]);
 
-  const handleTabChange = (tab: "all" | "ai" | "dev" | "seo") => {
+  const handleTabChange = (tab: "ai" | "dev" | "seo") => {
     setActiveTab(tab);
     navigate({
       search: (prev) => ({ ...prev, cat: tab }),
@@ -70,7 +69,7 @@ function ServicesPage() {
 
   const filteredServices = useMemo(() => {
     return servicesList.filter((s) => {
-      const matchesTab = activeTab === "all" || s.category === activeTab;
+      const matchesTab = s.category === activeTab;
       const matchesSearch =
         searchQuery.trim() === "" ||
         s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -101,16 +100,6 @@ function ServicesPage() {
 
         {/* Category Navigation Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-3xl mx-auto mb-6">
-          <button
-            onClick={() => handleTabChange("all")}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-              activeTab === "all"
-                ? "bg-blue-600 text-white shadow-lg"
-                : "text-slate-300 hover:text-white hover:bg-slate-800"
-            }`}
-          >
-            ✨ All 24 Services
-          </button>
           <button
             onClick={() => handleTabChange("ai")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
