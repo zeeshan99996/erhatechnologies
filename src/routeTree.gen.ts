@@ -20,6 +20,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TeamAiRouteImport } from './routes/team.ai'
+import { Route as ServicesServiceIdRouteImport } from './routes/services.$serviceId'
 
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
@@ -76,6 +77,11 @@ const TeamAiRoute = TeamAiRouteImport.update({
   path: '/ai',
   getParentRoute: () => TeamRoute,
 } as any)
+const ServicesServiceIdRoute = ServicesServiceIdRouteImport.update({
+  id: '/$serviceId',
+  path: '/$serviceId',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -86,8 +92,9 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
+  '/services/$serviceId': typeof ServicesServiceIdRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRoutesByTo {
@@ -99,8 +106,9 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
+  '/services/$serviceId': typeof ServicesServiceIdRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRoutesById {
@@ -113,8 +121,9 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
+  '/services/$serviceId': typeof ServicesServiceIdRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/services'
     | '/team'
+    | '/services/$serviceId'
     | '/team/ai'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/services'
     | '/team'
+    | '/services/$serviceId'
     | '/team/ai'
   id:
     | '__root__'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/services'
     | '/team'
+    | '/services/$serviceId'
     | '/team/ai'
   fileRoutesById: FileRoutesById
 }
@@ -168,7 +180,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProjectsRoute: typeof ProjectsRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
   TeamRoute: typeof TeamRouteWithChildren
 }
 
@@ -251,8 +263,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamAiRouteImport
       parentRoute: typeof TeamRoute
     }
+    '/services/$serviceId': {
+      id: '/services/$serviceId'
+      path: '/$serviceId'
+      fullPath: '/services/$serviceId'
+      preLoaderRoute: typeof ServicesServiceIdRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
+
+interface ServicesRouteChildren {
+  ServicesServiceIdRoute: typeof ServicesServiceIdRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesServiceIdRoute: ServicesServiceIdRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
 
 interface TeamRouteChildren {
   TeamAiRoute: typeof TeamAiRoute
@@ -273,7 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProjectsRoute: ProjectsRoute,
   RefundPolicyRoute: RefundPolicyRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
   TeamRoute: TeamRouteWithChildren,
 }
 export const routeTree = rootRouteImport
