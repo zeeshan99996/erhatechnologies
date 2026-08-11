@@ -204,9 +204,8 @@ function ServicesPage() {
                 </div>
 
                 <Link
-                  to="/services/$serviceId"
-                  params={{ serviceId: service.id }}
-                  className="btn-neon w-full py-3 px-4 rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md"
+                  to={`/services/${service.id}` as any}
+                  className="btn-neon w-full py-3 px-4 rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md cursor-pointer"
                 >
                   View Service & Budget Tiers <ArrowRight size={14} />
                 </Link>
