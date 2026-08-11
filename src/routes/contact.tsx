@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
-import { Mail, MapPin, Phone, Send, Linkedin, CheckCircle2, Facebook, Instagram } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Mail, MapPin, Phone, Send, Linkedin, CheckCircle2, Facebook, Instagram, ChevronDown } from "lucide-react";
 
 // Custom TikTok icon since the installed lucide-react version doesn't include it
 function Tiktok({ size = 18 }: { size?: number }) {
@@ -114,6 +114,73 @@ const budgetRanges = [
   "$50,000 - $100,000",
   "$100,000+"
 ];
+
+function CustomBudgetDropdown({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (val: string) => void;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={dropdownRef} className="relative w-full">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full px-4 py-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 text-white text-sm focus:border-cyan-400/80 focus:outline-none focus:ring-4 focus:ring-cyan-500/10 hover:border-slate-700/80 transition-all duration-300 font-medium flex items-center justify-between cursor-pointer"
+      >
+        <span className={value ? "text-white font-semibold" : "text-slate-400 font-medium"}>
+          {value || "Select budget"}
+        </span>
+        <ChevronDown size={18} className={`text-cyan-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute left-0 top-full mt-2 w-full z-50 rounded-xl overflow-hidden border border-slate-700/80 bg-[#070c18] shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-xl animate-fade-in">
+          {/* Header Banner matching user's reference screenshot */}
+          <div className="bg-blue-600 text-white font-medium text-base sm:text-lg px-5 py-3 border-b border-blue-500/40">
+            Select budget
+          </div>
+
+          {/* Options List matching user's reference screenshot */}
+          <div className="py-1">
+            {budgetRanges.map((b) => (
+              <button
+                key={b}
+                type="button"
+                onClick={() => {
+                  onChange(b);
+                  setIsOpen(false);
+                }}
+                className={`w-full text-left px-5 py-3 text-base sm:text-lg font-normal transition-colors cursor-pointer flex items-center justify-between ${
+                  value === b
+                    ? "bg-blue-600/30 text-cyan-300 font-semibold"
+                    : "text-white hover:bg-blue-600/20 hover:text-cyan-300"
+                }`}
+              >
+                <span>{b}</span>
+                {value === b && <span className="text-cyan-400 font-bold text-sm">✓</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
@@ -365,16 +432,10 @@ function ContactPage() {
                   <label className="text-[11px] uppercase tracking-widest font-bold text-slate-200 mb-2 block font-sans">
                     Budget Range
                   </label>
-                  <select
+                  <CustomBudgetDropdown
                     value={form.budget}
-                    onChange={(e) => setForm({ ...form, budget: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 text-white text-sm focus:border-cyan-400/80 focus:outline-none focus:ring-4 focus:ring-cyan-500/10 focus:shadow-[0_0_15px_rgba(34,211,238,0.08)] hover:border-slate-700/80 transition-all duration-300 font-medium appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%20%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M7%209l3%203%203-3%22%20stroke%3D%22%2322d3ee%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_1rem_center] bg-no-repeat pr-10 cursor-pointer"
-                  >
-                    <option value="" className="text-slate-500 bg-slate-950">Select budget</option>
-                    {budgetRanges.map((b) => (
-                      <option key={b} value={b} className="text-white bg-slate-950">{b}</option>
-                    ))}
-                  </select>
+                    onChange={(b) => setForm({ ...form, budget: b })}
+                  />
                 </div>
               </div>
 
