@@ -47,15 +47,16 @@ function ServicesPage() {
   const navigate = useNavigate({ from: Route.id });
   const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
-  const getValidCat = (param?: string): "ai" | "dev" | "seo" => {
+  const getValidCat = (param?: string): "all" | "ai" | "dev" | "seo" => {
     const clean = (param || "").toLowerCase();
     if (clean === "seo" || clean === "growth") return "seo";
     if (clean === "dev") return "dev";
-    return "ai";
+    if (clean === "ai") return "ai";
+    return "all";
   };
 
   const initialCat = getValidCat(search.cat || search.category);
-  const [activeTab, setActiveTab] = useState<"ai" | "dev" | "seo">(initialCat);
+  const [activeTab, setActiveTab] = useState<"all" | "ai" | "dev" | "seo">(initialCat);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -63,7 +64,7 @@ function ServicesPage() {
     setActiveTab(cat);
   }, [search.cat, search.category]);
 
-  const handleTabChange = (tab: "ai" | "dev" | "seo") => {
+  const handleTabChange = (tab: "all" | "ai" | "dev" | "seo") => {
     setActiveTab(tab);
     navigate({
       search: (prev) => ({ ...prev, cat: tab }),
@@ -73,7 +74,7 @@ function ServicesPage() {
 
   const filteredServices = useMemo(() => {
     return servicesList.filter((s) => {
-      const matchesTab = s.category === activeTab;
+      const matchesTab = activeTab === "all" || s.category === activeTab;
       const matchesSearch =
         searchQuery.trim() === "" ||
         s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -100,10 +101,18 @@ function ServicesPage() {
           Explore our dedicated category hubs for AI, Software Development, and SEO & Growth services—each equipped with detailed benefits, technical architecture, and transparent budget pricing.
         </p>
 
-
-
         {/* Category Navigation Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-3xl mx-auto mb-6">
+          <button
+            onClick={() => handleTabChange("all")}
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              activeTab === "all"
+                ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black shadow-lg"
+                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800"
+            }`}
+          >
+            <Sparkles size={16} /> All 24 Services
+          </button>
           <Link
             to="/services/ai"
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
