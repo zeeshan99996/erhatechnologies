@@ -20,9 +20,33 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TeamAiRouteImport } from './routes/team.ai'
+import { Route as ServicesWorkflowAutomationRouteImport } from './routes/services.workflow-automation'
+import { Route as ServicesWebDevelopmentRouteImport } from './routes/services.web-development'
+import { Route as ServicesVoiceAiRouteImport } from './routes/services.voice-ai'
+import { Route as ServicesUiUxDesignRouteImport } from './routes/services.ui-ux-design'
+import { Route as ServicesTechnicalSeoRouteImport } from './routes/services.technical-seo'
+import { Route as ServicesSocialMediaRouteImport } from './routes/services.social-media'
 import { Route as ServicesSeoRouteImport } from './routes/services.seo'
+import { Route as ServicesSaasEngineeringRouteImport } from './routes/services.saas-engineering'
+import { Route as ServicesPredictiveMlRouteImport } from './routes/services.predictive-ml'
+import { Route as ServicesPpcGoogleAdsRouteImport } from './routes/services.ppc-google-ads'
+import { Route as ServicesModernizationRouteImport } from './routes/services.modernization'
+import { Route as ServicesMobileAppsRouteImport } from './routes/services.mobile-apps'
+import { Route as ServicesMetaAdsRouteImport } from './routes/services.meta-ads'
+import { Route as ServicesGenerativeAiLlmRouteImport } from './routes/services.generative-ai-llm'
+import { Route as ServicesEmailMarketingRouteImport } from './routes/services.email-marketing'
+import { Route as ServicesEcommerceRouteImport } from './routes/services.ecommerce'
 import { Route as ServicesDevelopmentRouteImport } from './routes/services.development'
+import { Route as ServicesCroAnalyticsRouteImport } from './routes/services.cro-analytics'
+import { Route as ServicesContentMarketingRouteImport } from './routes/services.content-marketing'
+import { Route as ServicesComputerVisionRouteImport } from './routes/services.computer-vision'
+import { Route as ServicesCloudDevopsRouteImport } from './routes/services.cloud-devops'
+import { Route as ServicesBackendApiRouteImport } from './routes/services.backend-api'
+import { Route as ServicesAiConsultingRouteImport } from './routes/services.ai-consulting'
+import { Route as ServicesAiChatbotsRouteImport } from './routes/services.ai-chatbots'
+import { Route as ServicesAiAgentsRouteImport } from './routes/services.ai-agents'
 import { Route as ServicesAiRouteImport } from './routes/services.ai'
+import { Route as ServicesAeoGeoRouteImport } from './routes/services.aeo-geo'
 import { Route as ServicesServiceIdRouteImport } from './routes/services.$serviceId'
 
 const TeamRoute = TeamRouteImport.update({
@@ -80,9 +104,85 @@ const TeamAiRoute = TeamAiRouteImport.update({
   path: '/ai',
   getParentRoute: () => TeamRoute,
 } as any)
+const ServicesWorkflowAutomationRoute =
+  ServicesWorkflowAutomationRouteImport.update({
+    id: '/workflow-automation',
+    path: '/workflow-automation',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesWebDevelopmentRoute = ServicesWebDevelopmentRouteImport.update({
+  id: '/web-development',
+  path: '/web-development',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesVoiceAiRoute = ServicesVoiceAiRouteImport.update({
+  id: '/voice-ai',
+  path: '/voice-ai',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesUiUxDesignRoute = ServicesUiUxDesignRouteImport.update({
+  id: '/ui-ux-design',
+  path: '/ui-ux-design',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesTechnicalSeoRoute = ServicesTechnicalSeoRouteImport.update({
+  id: '/technical-seo',
+  path: '/technical-seo',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSocialMediaRoute = ServicesSocialMediaRouteImport.update({
+  id: '/social-media',
+  path: '/social-media',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesSeoRoute = ServicesSeoRouteImport.update({
   id: '/seo',
   path: '/seo',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSaasEngineeringRoute = ServicesSaasEngineeringRouteImport.update({
+  id: '/saas-engineering',
+  path: '/saas-engineering',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPredictiveMlRoute = ServicesPredictiveMlRouteImport.update({
+  id: '/predictive-ml',
+  path: '/predictive-ml',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPpcGoogleAdsRoute = ServicesPpcGoogleAdsRouteImport.update({
+  id: '/ppc-google-ads',
+  path: '/ppc-google-ads',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesModernizationRoute = ServicesModernizationRouteImport.update({
+  id: '/modernization',
+  path: '/modernization',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesMobileAppsRoute = ServicesMobileAppsRouteImport.update({
+  id: '/mobile-apps',
+  path: '/mobile-apps',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesMetaAdsRoute = ServicesMetaAdsRouteImport.update({
+  id: '/meta-ads',
+  path: '/meta-ads',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesGenerativeAiLlmRoute = ServicesGenerativeAiLlmRouteImport.update({
+  id: '/generative-ai-llm',
+  path: '/generative-ai-llm',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesEmailMarketingRoute = ServicesEmailMarketingRouteImport.update({
+  id: '/email-marketing',
+  path: '/email-marketing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesEcommerceRoute = ServicesEcommerceRouteImport.update({
+  id: '/ecommerce',
+  path: '/ecommerce',
   getParentRoute: () => ServicesRoute,
 } as any)
 const ServicesDevelopmentRoute = ServicesDevelopmentRouteImport.update({
@@ -90,9 +190,55 @@ const ServicesDevelopmentRoute = ServicesDevelopmentRouteImport.update({
   path: '/development',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesCroAnalyticsRoute = ServicesCroAnalyticsRouteImport.update({
+  id: '/cro-analytics',
+  path: '/cro-analytics',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesContentMarketingRoute =
+  ServicesContentMarketingRouteImport.update({
+    id: '/content-marketing',
+    path: '/content-marketing',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesComputerVisionRoute = ServicesComputerVisionRouteImport.update({
+  id: '/computer-vision',
+  path: '/computer-vision',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCloudDevopsRoute = ServicesCloudDevopsRouteImport.update({
+  id: '/cloud-devops',
+  path: '/cloud-devops',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesBackendApiRoute = ServicesBackendApiRouteImport.update({
+  id: '/backend-api',
+  path: '/backend-api',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAiConsultingRoute = ServicesAiConsultingRouteImport.update({
+  id: '/ai-consulting',
+  path: '/ai-consulting',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAiChatbotsRoute = ServicesAiChatbotsRouteImport.update({
+  id: '/ai-chatbots',
+  path: '/ai-chatbots',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAiAgentsRoute = ServicesAiAgentsRouteImport.update({
+  id: '/ai-agents',
+  path: '/ai-agents',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesAiRoute = ServicesAiRouteImport.update({
   id: '/ai',
   path: '/ai',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesAeoGeoRoute = ServicesAeoGeoRouteImport.update({
+  id: '/aeo-geo',
+  path: '/aeo-geo',
   getParentRoute: () => ServicesRoute,
 } as any)
 const ServicesServiceIdRoute = ServicesServiceIdRouteImport.update({
@@ -113,9 +259,33 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
   '/services/$serviceId': typeof ServicesServiceIdRoute
+  '/services/aeo-geo': typeof ServicesAeoGeoRoute
   '/services/ai': typeof ServicesAiRoute
+  '/services/ai-agents': typeof ServicesAiAgentsRoute
+  '/services/ai-chatbots': typeof ServicesAiChatbotsRoute
+  '/services/ai-consulting': typeof ServicesAiConsultingRoute
+  '/services/backend-api': typeof ServicesBackendApiRoute
+  '/services/cloud-devops': typeof ServicesCloudDevopsRoute
+  '/services/computer-vision': typeof ServicesComputerVisionRoute
+  '/services/content-marketing': typeof ServicesContentMarketingRoute
+  '/services/cro-analytics': typeof ServicesCroAnalyticsRoute
   '/services/development': typeof ServicesDevelopmentRoute
+  '/services/ecommerce': typeof ServicesEcommerceRoute
+  '/services/email-marketing': typeof ServicesEmailMarketingRoute
+  '/services/generative-ai-llm': typeof ServicesGenerativeAiLlmRoute
+  '/services/meta-ads': typeof ServicesMetaAdsRoute
+  '/services/mobile-apps': typeof ServicesMobileAppsRoute
+  '/services/modernization': typeof ServicesModernizationRoute
+  '/services/ppc-google-ads': typeof ServicesPpcGoogleAdsRoute
+  '/services/predictive-ml': typeof ServicesPredictiveMlRoute
+  '/services/saas-engineering': typeof ServicesSaasEngineeringRoute
   '/services/seo': typeof ServicesSeoRoute
+  '/services/social-media': typeof ServicesSocialMediaRoute
+  '/services/technical-seo': typeof ServicesTechnicalSeoRoute
+  '/services/ui-ux-design': typeof ServicesUiUxDesignRoute
+  '/services/voice-ai': typeof ServicesVoiceAiRoute
+  '/services/web-development': typeof ServicesWebDevelopmentRoute
+  '/services/workflow-automation': typeof ServicesWorkflowAutomationRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRoutesByTo {
@@ -130,9 +300,33 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
   '/services/$serviceId': typeof ServicesServiceIdRoute
+  '/services/aeo-geo': typeof ServicesAeoGeoRoute
   '/services/ai': typeof ServicesAiRoute
+  '/services/ai-agents': typeof ServicesAiAgentsRoute
+  '/services/ai-chatbots': typeof ServicesAiChatbotsRoute
+  '/services/ai-consulting': typeof ServicesAiConsultingRoute
+  '/services/backend-api': typeof ServicesBackendApiRoute
+  '/services/cloud-devops': typeof ServicesCloudDevopsRoute
+  '/services/computer-vision': typeof ServicesComputerVisionRoute
+  '/services/content-marketing': typeof ServicesContentMarketingRoute
+  '/services/cro-analytics': typeof ServicesCroAnalyticsRoute
   '/services/development': typeof ServicesDevelopmentRoute
+  '/services/ecommerce': typeof ServicesEcommerceRoute
+  '/services/email-marketing': typeof ServicesEmailMarketingRoute
+  '/services/generative-ai-llm': typeof ServicesGenerativeAiLlmRoute
+  '/services/meta-ads': typeof ServicesMetaAdsRoute
+  '/services/mobile-apps': typeof ServicesMobileAppsRoute
+  '/services/modernization': typeof ServicesModernizationRoute
+  '/services/ppc-google-ads': typeof ServicesPpcGoogleAdsRoute
+  '/services/predictive-ml': typeof ServicesPredictiveMlRoute
+  '/services/saas-engineering': typeof ServicesSaasEngineeringRoute
   '/services/seo': typeof ServicesSeoRoute
+  '/services/social-media': typeof ServicesSocialMediaRoute
+  '/services/technical-seo': typeof ServicesTechnicalSeoRoute
+  '/services/ui-ux-design': typeof ServicesUiUxDesignRoute
+  '/services/voice-ai': typeof ServicesVoiceAiRoute
+  '/services/web-development': typeof ServicesWebDevelopmentRoute
+  '/services/workflow-automation': typeof ServicesWorkflowAutomationRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRoutesById {
@@ -148,9 +342,33 @@ export interface FileRoutesById {
   '/services': typeof ServicesRouteWithChildren
   '/team': typeof TeamRouteWithChildren
   '/services/$serviceId': typeof ServicesServiceIdRoute
+  '/services/aeo-geo': typeof ServicesAeoGeoRoute
   '/services/ai': typeof ServicesAiRoute
+  '/services/ai-agents': typeof ServicesAiAgentsRoute
+  '/services/ai-chatbots': typeof ServicesAiChatbotsRoute
+  '/services/ai-consulting': typeof ServicesAiConsultingRoute
+  '/services/backend-api': typeof ServicesBackendApiRoute
+  '/services/cloud-devops': typeof ServicesCloudDevopsRoute
+  '/services/computer-vision': typeof ServicesComputerVisionRoute
+  '/services/content-marketing': typeof ServicesContentMarketingRoute
+  '/services/cro-analytics': typeof ServicesCroAnalyticsRoute
   '/services/development': typeof ServicesDevelopmentRoute
+  '/services/ecommerce': typeof ServicesEcommerceRoute
+  '/services/email-marketing': typeof ServicesEmailMarketingRoute
+  '/services/generative-ai-llm': typeof ServicesGenerativeAiLlmRoute
+  '/services/meta-ads': typeof ServicesMetaAdsRoute
+  '/services/mobile-apps': typeof ServicesMobileAppsRoute
+  '/services/modernization': typeof ServicesModernizationRoute
+  '/services/ppc-google-ads': typeof ServicesPpcGoogleAdsRoute
+  '/services/predictive-ml': typeof ServicesPredictiveMlRoute
+  '/services/saas-engineering': typeof ServicesSaasEngineeringRoute
   '/services/seo': typeof ServicesSeoRoute
+  '/services/social-media': typeof ServicesSocialMediaRoute
+  '/services/technical-seo': typeof ServicesTechnicalSeoRoute
+  '/services/ui-ux-design': typeof ServicesUiUxDesignRoute
+  '/services/voice-ai': typeof ServicesVoiceAiRoute
+  '/services/web-development': typeof ServicesWebDevelopmentRoute
+  '/services/workflow-automation': typeof ServicesWorkflowAutomationRoute
   '/team/ai': typeof TeamAiRoute
 }
 export interface FileRouteTypes {
@@ -167,9 +385,33 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/services/$serviceId'
+    | '/services/aeo-geo'
     | '/services/ai'
+    | '/services/ai-agents'
+    | '/services/ai-chatbots'
+    | '/services/ai-consulting'
+    | '/services/backend-api'
+    | '/services/cloud-devops'
+    | '/services/computer-vision'
+    | '/services/content-marketing'
+    | '/services/cro-analytics'
     | '/services/development'
+    | '/services/ecommerce'
+    | '/services/email-marketing'
+    | '/services/generative-ai-llm'
+    | '/services/meta-ads'
+    | '/services/mobile-apps'
+    | '/services/modernization'
+    | '/services/ppc-google-ads'
+    | '/services/predictive-ml'
+    | '/services/saas-engineering'
     | '/services/seo'
+    | '/services/social-media'
+    | '/services/technical-seo'
+    | '/services/ui-ux-design'
+    | '/services/voice-ai'
+    | '/services/web-development'
+    | '/services/workflow-automation'
     | '/team/ai'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -184,9 +426,33 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/services/$serviceId'
+    | '/services/aeo-geo'
     | '/services/ai'
+    | '/services/ai-agents'
+    | '/services/ai-chatbots'
+    | '/services/ai-consulting'
+    | '/services/backend-api'
+    | '/services/cloud-devops'
+    | '/services/computer-vision'
+    | '/services/content-marketing'
+    | '/services/cro-analytics'
     | '/services/development'
+    | '/services/ecommerce'
+    | '/services/email-marketing'
+    | '/services/generative-ai-llm'
+    | '/services/meta-ads'
+    | '/services/mobile-apps'
+    | '/services/modernization'
+    | '/services/ppc-google-ads'
+    | '/services/predictive-ml'
+    | '/services/saas-engineering'
     | '/services/seo'
+    | '/services/social-media'
+    | '/services/technical-seo'
+    | '/services/ui-ux-design'
+    | '/services/voice-ai'
+    | '/services/web-development'
+    | '/services/workflow-automation'
     | '/team/ai'
   id:
     | '__root__'
@@ -201,9 +467,33 @@ export interface FileRouteTypes {
     | '/services'
     | '/team'
     | '/services/$serviceId'
+    | '/services/aeo-geo'
     | '/services/ai'
+    | '/services/ai-agents'
+    | '/services/ai-chatbots'
+    | '/services/ai-consulting'
+    | '/services/backend-api'
+    | '/services/cloud-devops'
+    | '/services/computer-vision'
+    | '/services/content-marketing'
+    | '/services/cro-analytics'
     | '/services/development'
+    | '/services/ecommerce'
+    | '/services/email-marketing'
+    | '/services/generative-ai-llm'
+    | '/services/meta-ads'
+    | '/services/mobile-apps'
+    | '/services/modernization'
+    | '/services/ppc-google-ads'
+    | '/services/predictive-ml'
+    | '/services/saas-engineering'
     | '/services/seo'
+    | '/services/social-media'
+    | '/services/technical-seo'
+    | '/services/ui-ux-design'
+    | '/services/voice-ai'
+    | '/services/web-development'
+    | '/services/workflow-automation'
     | '/team/ai'
   fileRoutesById: FileRoutesById
 }
@@ -299,11 +589,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamAiRouteImport
       parentRoute: typeof TeamRoute
     }
+    '/services/workflow-automation': {
+      id: '/services/workflow-automation'
+      path: '/workflow-automation'
+      fullPath: '/services/workflow-automation'
+      preLoaderRoute: typeof ServicesWorkflowAutomationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/web-development': {
+      id: '/services/web-development'
+      path: '/web-development'
+      fullPath: '/services/web-development'
+      preLoaderRoute: typeof ServicesWebDevelopmentRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/voice-ai': {
+      id: '/services/voice-ai'
+      path: '/voice-ai'
+      fullPath: '/services/voice-ai'
+      preLoaderRoute: typeof ServicesVoiceAiRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ui-ux-design': {
+      id: '/services/ui-ux-design'
+      path: '/ui-ux-design'
+      fullPath: '/services/ui-ux-design'
+      preLoaderRoute: typeof ServicesUiUxDesignRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/technical-seo': {
+      id: '/services/technical-seo'
+      path: '/technical-seo'
+      fullPath: '/services/technical-seo'
+      preLoaderRoute: typeof ServicesTechnicalSeoRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/social-media': {
+      id: '/services/social-media'
+      path: '/social-media'
+      fullPath: '/services/social-media'
+      preLoaderRoute: typeof ServicesSocialMediaRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/seo': {
       id: '/services/seo'
       path: '/seo'
       fullPath: '/services/seo'
       preLoaderRoute: typeof ServicesSeoRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/saas-engineering': {
+      id: '/services/saas-engineering'
+      path: '/saas-engineering'
+      fullPath: '/services/saas-engineering'
+      preLoaderRoute: typeof ServicesSaasEngineeringRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/predictive-ml': {
+      id: '/services/predictive-ml'
+      path: '/predictive-ml'
+      fullPath: '/services/predictive-ml'
+      preLoaderRoute: typeof ServicesPredictiveMlRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ppc-google-ads': {
+      id: '/services/ppc-google-ads'
+      path: '/ppc-google-ads'
+      fullPath: '/services/ppc-google-ads'
+      preLoaderRoute: typeof ServicesPpcGoogleAdsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/modernization': {
+      id: '/services/modernization'
+      path: '/modernization'
+      fullPath: '/services/modernization'
+      preLoaderRoute: typeof ServicesModernizationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/mobile-apps': {
+      id: '/services/mobile-apps'
+      path: '/mobile-apps'
+      fullPath: '/services/mobile-apps'
+      preLoaderRoute: typeof ServicesMobileAppsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/meta-ads': {
+      id: '/services/meta-ads'
+      path: '/meta-ads'
+      fullPath: '/services/meta-ads'
+      preLoaderRoute: typeof ServicesMetaAdsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/generative-ai-llm': {
+      id: '/services/generative-ai-llm'
+      path: '/generative-ai-llm'
+      fullPath: '/services/generative-ai-llm'
+      preLoaderRoute: typeof ServicesGenerativeAiLlmRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/email-marketing': {
+      id: '/services/email-marketing'
+      path: '/email-marketing'
+      fullPath: '/services/email-marketing'
+      preLoaderRoute: typeof ServicesEmailMarketingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ecommerce': {
+      id: '/services/ecommerce'
+      path: '/ecommerce'
+      fullPath: '/services/ecommerce'
+      preLoaderRoute: typeof ServicesEcommerceRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/development': {
@@ -313,11 +708,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesDevelopmentRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/cro-analytics': {
+      id: '/services/cro-analytics'
+      path: '/cro-analytics'
+      fullPath: '/services/cro-analytics'
+      preLoaderRoute: typeof ServicesCroAnalyticsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/content-marketing': {
+      id: '/services/content-marketing'
+      path: '/content-marketing'
+      fullPath: '/services/content-marketing'
+      preLoaderRoute: typeof ServicesContentMarketingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/computer-vision': {
+      id: '/services/computer-vision'
+      path: '/computer-vision'
+      fullPath: '/services/computer-vision'
+      preLoaderRoute: typeof ServicesComputerVisionRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/cloud-devops': {
+      id: '/services/cloud-devops'
+      path: '/cloud-devops'
+      fullPath: '/services/cloud-devops'
+      preLoaderRoute: typeof ServicesCloudDevopsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/backend-api': {
+      id: '/services/backend-api'
+      path: '/backend-api'
+      fullPath: '/services/backend-api'
+      preLoaderRoute: typeof ServicesBackendApiRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ai-consulting': {
+      id: '/services/ai-consulting'
+      path: '/ai-consulting'
+      fullPath: '/services/ai-consulting'
+      preLoaderRoute: typeof ServicesAiConsultingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ai-chatbots': {
+      id: '/services/ai-chatbots'
+      path: '/ai-chatbots'
+      fullPath: '/services/ai-chatbots'
+      preLoaderRoute: typeof ServicesAiChatbotsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ai-agents': {
+      id: '/services/ai-agents'
+      path: '/ai-agents'
+      fullPath: '/services/ai-agents'
+      preLoaderRoute: typeof ServicesAiAgentsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/ai': {
       id: '/services/ai'
       path: '/ai'
       fullPath: '/services/ai'
       preLoaderRoute: typeof ServicesAiRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/aeo-geo': {
+      id: '/services/aeo-geo'
+      path: '/aeo-geo'
+      fullPath: '/services/aeo-geo'
+      preLoaderRoute: typeof ServicesAeoGeoRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/$serviceId': {
@@ -332,16 +790,64 @@ declare module '@tanstack/react-router' {
 
 interface ServicesRouteChildren {
   ServicesServiceIdRoute: typeof ServicesServiceIdRoute
+  ServicesAeoGeoRoute: typeof ServicesAeoGeoRoute
   ServicesAiRoute: typeof ServicesAiRoute
+  ServicesAiAgentsRoute: typeof ServicesAiAgentsRoute
+  ServicesAiChatbotsRoute: typeof ServicesAiChatbotsRoute
+  ServicesAiConsultingRoute: typeof ServicesAiConsultingRoute
+  ServicesBackendApiRoute: typeof ServicesBackendApiRoute
+  ServicesCloudDevopsRoute: typeof ServicesCloudDevopsRoute
+  ServicesComputerVisionRoute: typeof ServicesComputerVisionRoute
+  ServicesContentMarketingRoute: typeof ServicesContentMarketingRoute
+  ServicesCroAnalyticsRoute: typeof ServicesCroAnalyticsRoute
   ServicesDevelopmentRoute: typeof ServicesDevelopmentRoute
+  ServicesEcommerceRoute: typeof ServicesEcommerceRoute
+  ServicesEmailMarketingRoute: typeof ServicesEmailMarketingRoute
+  ServicesGenerativeAiLlmRoute: typeof ServicesGenerativeAiLlmRoute
+  ServicesMetaAdsRoute: typeof ServicesMetaAdsRoute
+  ServicesMobileAppsRoute: typeof ServicesMobileAppsRoute
+  ServicesModernizationRoute: typeof ServicesModernizationRoute
+  ServicesPpcGoogleAdsRoute: typeof ServicesPpcGoogleAdsRoute
+  ServicesPredictiveMlRoute: typeof ServicesPredictiveMlRoute
+  ServicesSaasEngineeringRoute: typeof ServicesSaasEngineeringRoute
   ServicesSeoRoute: typeof ServicesSeoRoute
+  ServicesSocialMediaRoute: typeof ServicesSocialMediaRoute
+  ServicesTechnicalSeoRoute: typeof ServicesTechnicalSeoRoute
+  ServicesUiUxDesignRoute: typeof ServicesUiUxDesignRoute
+  ServicesVoiceAiRoute: typeof ServicesVoiceAiRoute
+  ServicesWebDevelopmentRoute: typeof ServicesWebDevelopmentRoute
+  ServicesWorkflowAutomationRoute: typeof ServicesWorkflowAutomationRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesServiceIdRoute: ServicesServiceIdRoute,
+  ServicesAeoGeoRoute: ServicesAeoGeoRoute,
   ServicesAiRoute: ServicesAiRoute,
+  ServicesAiAgentsRoute: ServicesAiAgentsRoute,
+  ServicesAiChatbotsRoute: ServicesAiChatbotsRoute,
+  ServicesAiConsultingRoute: ServicesAiConsultingRoute,
+  ServicesBackendApiRoute: ServicesBackendApiRoute,
+  ServicesCloudDevopsRoute: ServicesCloudDevopsRoute,
+  ServicesComputerVisionRoute: ServicesComputerVisionRoute,
+  ServicesContentMarketingRoute: ServicesContentMarketingRoute,
+  ServicesCroAnalyticsRoute: ServicesCroAnalyticsRoute,
   ServicesDevelopmentRoute: ServicesDevelopmentRoute,
+  ServicesEcommerceRoute: ServicesEcommerceRoute,
+  ServicesEmailMarketingRoute: ServicesEmailMarketingRoute,
+  ServicesGenerativeAiLlmRoute: ServicesGenerativeAiLlmRoute,
+  ServicesMetaAdsRoute: ServicesMetaAdsRoute,
+  ServicesMobileAppsRoute: ServicesMobileAppsRoute,
+  ServicesModernizationRoute: ServicesModernizationRoute,
+  ServicesPpcGoogleAdsRoute: ServicesPpcGoogleAdsRoute,
+  ServicesPredictiveMlRoute: ServicesPredictiveMlRoute,
+  ServicesSaasEngineeringRoute: ServicesSaasEngineeringRoute,
   ServicesSeoRoute: ServicesSeoRoute,
+  ServicesSocialMediaRoute: ServicesSocialMediaRoute,
+  ServicesTechnicalSeoRoute: ServicesTechnicalSeoRoute,
+  ServicesUiUxDesignRoute: ServicesUiUxDesignRoute,
+  ServicesVoiceAiRoute: ServicesVoiceAiRoute,
+  ServicesWebDevelopmentRoute: ServicesWebDevelopmentRoute,
+  ServicesWorkflowAutomationRoute: ServicesWorkflowAutomationRoute,
 }
 
 const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
