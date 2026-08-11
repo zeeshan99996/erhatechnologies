@@ -12,9 +12,9 @@ import {
   Zap,
   Cpu,
   Layers,
-  Bot,
-  Code,
-  TrendingUp,
+  ShieldCheck,
+  Star,
+  Check,
 } from "lucide-react";
 
 export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
@@ -24,11 +24,11 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<"Starter" | "Professional" | "Enterprise">("Professional");
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
-    tier: "Professional",
     message: "",
   });
 
@@ -64,10 +64,10 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
 
   const categoryTitle =
     service.category === "ai"
-      ? "AI Services Hub"
+      ? "AI Services"
       : service.category === "dev"
-      ? "Development Services Hub"
-      : "SEO & Growth Hub";
+      ? "Development Services"
+      : "SEO & Growth Services";
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,12 +75,12 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
     try {
       const formData = {
         "Service Name": service.title,
-        "Selected Package": form.tier,
+        "Selected Package": selectedPackage,
         "Full Name": form.name,
         "Email Address": form.email,
         "Phone / WhatsApp": form.phone,
-        "Project Scope": form.message || "Not Specified",
-        _subject: `Direct Proposal Request: ${service.title} (${form.tier})`,
+        "Requirements": form.message || "Not Specified",
+        _subject: `Order Request: ${service.title} (${selectedPackage} Package)`,
       };
 
       await fetch("https://formsubmit.co/ajax/info@erhatechnologies.com", {
@@ -99,9 +99,17 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
     }
   };
 
+  const handleSelectPackage = (pkg: "Starter" | "Professional" | "Enterprise") => {
+    setSelectedPackage(pkg);
+    const formElement = document.getElementById("proposal-form");
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="px-4 sm:px-6 py-16 md:py-24 max-w-7xl mx-auto animate-fade-up">
-      {/* Top Breadcrumb & Category Bar */}
+      {/* Top Breadcrumb */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <Link
           to={categoryHubLink}
@@ -109,6 +117,9 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
         >
           <ChevronLeft size={14} /> Back to {categoryTitle}
         </Link>
+        <span className="text-xs font-mono text-cyan-400 font-bold px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30">
+          Official Service Page: {service.shortTitle}
+        </span>
       </div>
 
       {/* Category Services Switcher Bar */}
@@ -120,9 +131,9 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
             <Link
               key={s.id}
               to={`/services/${s.id}` as any}
-              className={`px-4 py-2 rounded-xl text-xs font-bold shrink-0 transition-all flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold shrink-0 transition-all flex items-center gap-2 ${
                 isActive
-                  ? "bg-cyan-500 text-slate-950 font-black shadow-lg"
+                  ? "bg-blue-600 text-white font-black shadow-lg shadow-blue-500/30 scale-102"
                   : "text-slate-300 hover:text-white hover:bg-slate-800/80"
               }`}
             >
@@ -137,7 +148,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
       <div className="grid lg:grid-cols-3 gap-8 items-center mb-16">
         <div className="lg:col-span-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-4">
-            <Sparkles size={14} /> {service.categoryLabel} — Dedicated Service Page
+            <Sparkles size={14} /> {service.categoryLabel}
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-5 leading-tight">
@@ -150,48 +161,228 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
 
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href="#proposal-form"
+              href="#pricing-packages"
               className="btn-neon py-3.5 px-6 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow-lg"
             >
-              Get Custom Proposal <ArrowRight size={16} />
+              View Service Pricing Packages <ArrowRight size={16} />
             </a>
             <a
-              href="#pricing-section"
+              href="#proposal-form"
               className="px-6 py-3.5 rounded-2xl bg-slate-900 border border-slate-700 text-xs sm:text-sm font-bold text-white hover:bg-slate-800 transition-all"
             >
-              View Service Pricing Packages
+              Get Custom Quote
             </a>
           </div>
         </div>
 
-        {/* Hero Service Badge Card */}
-        <div className="glass-strong rounded-3xl p-8 border border-slate-800 relative overflow-hidden shadow-2xl">
+        {/* Hero Service Details Highlight Card */}
+        <div className="glass-strong rounded-3xl p-8 border border-slate-800 relative overflow-hidden shadow-2xl bg-slate-950/80">
           <div className="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 w-fit mb-6">
             <IconComponent size={36} />
           </div>
           <h3 className="text-xl font-black text-white mb-2">{service.tagline}</h3>
           <p className="text-xs text-slate-300 leading-relaxed mb-6">{service.desc}</p>
-          <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-cyan-400">
-            <span>Starting Budget</span>
-            <span className="font-bold text-base text-white">{service.pricingTiers.starter.price}</span>
+          <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
+            <span className="text-slate-400">Starting Price Package:</span>
+            <span className="font-extrabold text-base text-cyan-300">{service.pricingTiers.starter.price}</span>
           </div>
         </div>
       </div>
 
       {/* ======================================================== */}
-      {/* ABOUT & OVERVIEW SECTION                                 */}
+      {/* SERVICE OVERVIEW & DESCRIPTION                           */}
       {/* ======================================================== */}
-      <div className="glass-strong rounded-3xl p-8 sm:p-10 border border-slate-800 mb-16">
-        <div className="max-w-3xl">
+      <div className="glass-strong rounded-3xl p-8 sm:p-10 border border-slate-800 mb-16 bg-slate-950/60">
+        <div className="max-w-4xl">
           <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-2">
-            About {service.title}
+            Detailed Overview
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-4">
-            Transforming Enterprise Operations with {service.shortTitle}
+            About {service.title}
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
-            {service.desc} Designed and deployed by senior engineers at Erha Technologies, our {service.title} solutions give your business a permanent competitive advantage in speed, accuracy, and operational efficiency.
+            {service.desc} Designed, developed, and deployed by specialized engineers at Erha Technologies, our {service.title} solutions give your business a permanent operational advantage.
           </p>
+          <div className="grid sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800/80">
+            <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+              <span className="text-[10px] font-mono text-slate-400 uppercase block mb-1">Architecture</span>
+              <span className="text-xs font-bold text-white">Enterprise Scalable</span>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+              <span className="text-[10px] font-mono text-slate-400 uppercase block mb-1">Security</span>
+              <span className="text-xs font-bold text-cyan-400">Encrypted & SOC2 Ready</span>
+            </div>
+            <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+              <span className="text-[10px] font-mono text-slate-400 uppercase block mb-1">Support</span>
+              <span className="text-xs font-bold text-emerald-400">Dedicated Engineering SLA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ======================================================== */}
+      {/* SERVICE-SPECIFIC PRICING PACKAGES (PROMINENT BANNER)     */}
+      {/* ======================================================== */}
+      <div id="pricing-packages" className="mb-20 scroll-mt-24">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600/20 border border-blue-500/50 text-blue-300 text-xs font-mono font-bold uppercase tracking-widest mb-3">
+            <Layers size={14} /> Service Pricing & Packages
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-black text-white">
+            Pricing Packages for <span className="text-cyan-400">{service.shortTitle}</span>
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 mt-2">
+            Select a package below to automatically pre-fill your order request form.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Starter Package */}
+          <div
+            onClick={() => setSelectedPackage("Starter")}
+            className={`glass-strong rounded-3xl p-8 border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+              selectedPackage === "Starter"
+                ? "border-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.3)] bg-slate-900/90"
+                : "border-slate-800 hover:border-slate-700 bg-slate-950/80"
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-mono text-slate-400 font-bold uppercase tracking-wider block">
+                  {service.pricingTiers.starter.name}
+                </span>
+                {selectedPackage === "Starter" && (
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-500 text-slate-950">
+                    Selected
+                  </span>
+                )}
+              </div>
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-3xl sm:text-4xl font-black text-white">{service.pricingTiers.starter.price}</span>
+                {service.pricingTiers.starter.priceNote && (
+                  <span className="text-xs text-slate-400 font-mono">/ {service.pricingTiers.starter.priceNote}</span>
+                )}
+              </div>
+              <p className="text-xs text-slate-300 mb-6">{service.pricingTiers.starter.description}</p>
+              <div className="space-y-2.5 mb-8">
+                {service.pricingTiers.starter.features.map((f) => (
+                  <div key={f} className="flex items-start gap-2 text-xs text-slate-300">
+                    <CheckCircle2 size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSelectPackage("Starter");
+              }}
+              className="w-full py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold text-center block transition-colors cursor-pointer"
+            >
+              Order Starter Package
+            </button>
+          </div>
+
+          {/* Professional Package (POPULAR) */}
+          <div
+            onClick={() => setSelectedPackage("Professional")}
+            className={`glass-strong rounded-3xl p-8 border transition-all duration-300 flex flex-col justify-between relative scale-[1.03] cursor-pointer ${
+              selectedPackage === "Professional"
+                ? "border-cyan-400 shadow-[0_0_40px_rgba(6,182,212,0.4)] bg-slate-900/95"
+                : "border-cyan-500/60 shadow-[0_10px_30px_rgba(6,182,212,0.15)] bg-slate-950/90"
+            }`}
+          >
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 text-[10px] font-black uppercase font-mono shadow-lg flex items-center gap-1">
+              <Star size={12} fill="currentColor" /> Most Popular
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-3 mt-1">
+                <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider block">
+                  {service.pricingTiers.professional.name}
+                </span>
+                {selectedPackage === "Professional" && (
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950">
+                    Selected
+                  </span>
+                )}
+              </div>
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-3xl sm:text-4xl font-black text-cyan-300">{service.pricingTiers.professional.price}</span>
+                {service.pricingTiers.professional.priceNote && (
+                  <span className="text-xs text-slate-400 font-mono">/ {service.pricingTiers.professional.priceNote}</span>
+                )}
+              </div>
+              <p className="text-xs text-slate-300 mb-6">{service.pricingTiers.professional.description}</p>
+              <div className="space-y-2.5 mb-8">
+                {service.pricingTiers.professional.features.map((f) => (
+                  <div key={f} className="flex items-start gap-2 text-xs text-slate-200">
+                    <CheckCircle2 size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSelectPackage("Professional");
+              }}
+              className="btn-neon w-full py-3.5 px-4 rounded-xl text-xs font-black text-center block shadow-lg cursor-pointer"
+            >
+              Order Professional Package
+            </button>
+          </div>
+
+          {/* Enterprise Package */}
+          <div
+            onClick={() => setSelectedPackage("Enterprise")}
+            className={`glass-strong rounded-3xl p-8 border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+              selectedPackage === "Enterprise"
+                ? "border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)] bg-slate-900/90"
+                : "border-amber-500/40 hover:border-amber-500/70 bg-slate-950/80"
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider block">
+                  {service.pricingTiers.enterprise.name}
+                </span>
+                {selectedPackage === "Enterprise" && (
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-amber-400 text-slate-950">
+                    Selected
+                  </span>
+                )}
+              </div>
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-3xl sm:text-4xl font-black text-amber-300">{service.pricingTiers.enterprise.price}</span>
+                {service.pricingTiers.enterprise.priceNote && (
+                  <span className="text-xs text-slate-400 font-mono">/ {service.pricingTiers.enterprise.priceNote}</span>
+                )}
+              </div>
+              <p className="text-xs text-slate-300 mb-6">{service.pricingTiers.enterprise.description}</p>
+              <div className="space-y-2.5 mb-8">
+                {service.pricingTiers.enterprise.features.map((f) => (
+                  <div key={f} className="flex items-start gap-2 text-xs text-slate-200">
+                    <CheckCircle2 size={14} className="text-amber-400 shrink-0 mt-0.5" />
+                    <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSelectPackage("Enterprise");
+              }}
+              className="w-full py-3.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black text-center block transition-colors cursor-pointer"
+            >
+              Order Enterprise Package
+            </button>
+          </div>
         </div>
       </div>
 
@@ -201,7 +392,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
       <div className="mb-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest mb-2">
-            Why Invest In This Service
+            Why Choose {service.shortTitle}
           </div>
           <h2 className="text-3xl font-extrabold text-white">Key Strategic Benefits</h2>
         </div>
@@ -234,7 +425,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
             <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
               <Zap size={20} />
             </div>
-            <h3 className="text-xl font-black text-white">Key Features & Capabilities</h3>
+            <h3 className="text-xl font-black text-white">Included Features & Capabilities</h3>
           </div>
           <div className="space-y-3">
             {service.features.map((f) => (
@@ -252,7 +443,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
             <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/30">
               <Cpu size={20} />
             </div>
-            <h3 className="text-xl font-black text-white">Technical Architecture Stack</h3>
+            <h3 className="text-xl font-black text-white">Technical Stack & Infrastructure</h3>
           </div>
           <div className="space-y-3">
             {service.architecturePoints.map((pt) => (
@@ -271,7 +462,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
       <div className="mb-20">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest mb-2">
-            Real-World Impact
+            Real-World Industry Deployment
           </div>
           <h2 className="text-3xl font-extrabold text-white">Proven Enterprise Use Cases</h2>
         </div>
@@ -290,134 +481,19 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
       </div>
 
       {/* ======================================================== */}
-      {/* DEDICATED SERVICE PRICING PACKAGES                       */}
-      {/* ======================================================== */}
-      <div id="pricing-section" className="mb-20 scroll-mt-24">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-mono font-bold uppercase tracking-widest mb-3">
-            <Layers size={14} /> Service Pricing Packages
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white">
-            Pricing & Packages for <span className="text-cyan-400">{service.shortTitle}</span>
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400 mt-2">
-            Tailored pricing tiers designed for startups, growing companies, and enterprise swarms.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Starter Package */}
-          <div className="glass-strong rounded-3xl p-8 border border-slate-800 flex flex-col justify-between">
-            <div>
-              <span className="text-xs font-mono text-slate-400 font-bold uppercase tracking-wider block mb-2">
-                {service.pricingTiers.starter.name}
-              </span>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-3xl font-black text-white">{service.pricingTiers.starter.price}</span>
-                {service.pricingTiers.starter.priceNote && (
-                  <span className="text-xs text-slate-400 font-mono">/ {service.pricingTiers.starter.priceNote}</span>
-                )}
-              </div>
-              <p className="text-xs text-slate-300 mb-6">{service.pricingTiers.starter.description}</p>
-              <div className="space-y-2.5 mb-8">
-                {service.pricingTiers.starter.features.map((f) => (
-                  <div key={f} className="flex items-start gap-2 text-xs text-slate-300">
-                    <CheckCircle2 size={14} className="text-cyan-400 shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <a
-              href="#proposal-form"
-              onClick={() => setForm((prev) => ({ ...prev, tier: "Starter" }))}
-              className="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold text-center block transition-colors"
-            >
-              Select Starter Package
-            </a>
-          </div>
-
-          {/* Professional Package */}
-          <div className="glass-strong rounded-3xl p-8 border border-cyan-500/60 shadow-[0_10px_40px_rgba(6,182,212,0.2)] flex flex-col justify-between relative scale-[1.02]">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-cyan-500 text-slate-950 text-[10px] font-black uppercase font-mono shadow-md">
-              Most Popular
-            </div>
-            <div>
-              <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider block mb-2">
-                {service.pricingTiers.professional.name}
-              </span>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-3xl font-black text-cyan-300">{service.pricingTiers.professional.price}</span>
-                {service.pricingTiers.professional.priceNote && (
-                  <span className="text-xs text-slate-400 font-mono">/ {service.pricingTiers.professional.priceNote}</span>
-                )}
-              </div>
-              <p className="text-xs text-slate-300 mb-6">{service.pricingTiers.professional.description}</p>
-              <div className="space-y-2.5 mb-8">
-                {service.pricingTiers.professional.features.map((f) => (
-                  <div key={f} className="flex items-start gap-2 text-xs text-slate-200">
-                    <CheckCircle2 size={14} className="text-cyan-400 shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <a
-              href="#proposal-form"
-              onClick={() => setForm((prev) => ({ ...prev, tier: "Professional" }))}
-              className="btn-neon w-full py-3.5 px-4 rounded-xl text-xs font-extrabold text-center block shadow-lg"
-            >
-              Choose Pro Package
-            </a>
-          </div>
-
-          {/* Enterprise Package */}
-          <div className="glass-strong rounded-3xl p-8 border border-amber-500/40 flex flex-col justify-between">
-            <div>
-              <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider block mb-2">
-                {service.pricingTiers.enterprise.name}
-              </span>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-3xl font-black text-amber-300">{service.pricingTiers.enterprise.price}</span>
-                {service.pricingTiers.enterprise.priceNote && (
-                  <span className="text-xs text-slate-400 font-mono">/ {service.pricingTiers.enterprise.priceNote}</span>
-                )}
-              </div>
-              <p className="text-xs text-slate-300 mb-6">{service.pricingTiers.enterprise.description}</p>
-              <div className="space-y-2.5 mb-8">
-                {service.pricingTiers.enterprise.features.map((f) => (
-                  <div key={f} className="flex items-start gap-2 text-xs text-slate-200">
-                    <CheckCircle2 size={14} className="text-amber-400 shrink-0 mt-0.5" />
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <a
-              href="#proposal-form"
-              onClick={() => setForm((prev) => ({ ...prev, tier: "Enterprise" }))}
-              className="w-full py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold text-center block transition-colors"
-            >
-              Request Enterprise Package
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* ======================================================== */}
       {/* DIRECT PROPOSAL FORM                                     */}
       {/* ======================================================== */}
       <div id="proposal-form" className="max-w-3xl mx-auto mb-20 scroll-mt-24">
-        <div className="glass-strong rounded-3xl p-8 sm:p-10 border border-slate-800 shadow-2xl">
+        <div className="glass-strong rounded-3xl p-8 sm:p-10 border border-cyan-500/40 shadow-2xl bg-slate-950/90">
           <div className="text-center mb-8">
             <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">
-              Service Proposal
+              Direct Order & Proposal
             </span>
             <h3 className="text-2xl sm:text-3xl font-black text-white mt-1">
-              Request a Proposal for {service.shortTitle}
+              Order {service.title} ({selectedPackage} Package)
             </h3>
-            <p className="text-xs text-slate-400 mt-1">
-              Our engineering team will review your project scope and respond with a customized proposal within 24 hours.
+            <p className="text-xs text-slate-300 mt-1">
+              Fill out the form below to receive a formal proposal and schedule an onboarding session with our engineering lead.
             </p>
           </div>
 
@@ -426,13 +502,21 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
               <div className="w-16 h-16 mx-auto rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4 text-cyan-400">
                 <CheckCircle2 size={32} />
               </div>
-              <h4 className="text-xl font-bold text-white mb-2">Proposal Request Received</h4>
+              <h4 className="text-xl font-bold text-white mb-2">Order Request Submitted</h4>
               <p className="text-xs text-slate-300 max-w-md mx-auto">
-                Thank you! We have received your request for <strong>{service.title} ({form.tier} Package)</strong>.
+                Thank you! We have received your order for <strong>{service.title} ({selectedPackage} Package)</strong>. Our lead engineer will contact you within 24 hours.
               </p>
             </div>
           ) : (
             <form onSubmit={handleFormSubmit} className="space-y-5">
+              {/* Selected Package Banner Indicator */}
+              <div className="p-3.5 rounded-xl bg-blue-600/20 border border-blue-500/50 flex items-center justify-between text-xs">
+                <span className="font-mono text-blue-200">Selected Package:</span>
+                <span className="font-extrabold text-cyan-300 text-sm">
+                  {selectedPackage} Tier ({selectedPackage === "Starter" ? service.pricingTiers.starter.price : selectedPackage === "Professional" ? service.pricingTiers.professional.price : service.pricingTiers.enterprise.price})
+                </span>
+              </div>
+
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs text-slate-300 font-semibold mb-1 block">Full Name *</label>
@@ -471,27 +555,27 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold mb-1 block">Selected Package</label>
+                  <label className="text-xs text-slate-300 font-semibold mb-1 block">Package Selection</label>
                   <select
-                    value={form.tier}
-                    onChange={(e) => setForm({ ...form, tier: e.target.value })}
+                    value={selectedPackage}
+                    onChange={(e) => setSelectedPackage(e.target.value as any)}
                     className="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-sm text-white focus:border-cyan-400 focus:outline-none"
                   >
-                    <option value="Starter">Starter Package ({service.pricingTiers.starter.price})</option>
-                    <option value="Professional">Professional Package ({service.pricingTiers.professional.price})</option>
-                    <option value="Enterprise">Enterprise Package ({service.pricingTiers.enterprise.price})</option>
+                    <option value="Starter">{service.pricingTiers.starter.name} ({service.pricingTiers.starter.price})</option>
+                    <option value="Professional">{service.pricingTiers.professional.name} ({service.pricingTiers.professional.price})</option>
+                    <option value="Enterprise">{service.pricingTiers.enterprise.name} ({service.pricingTiers.enterprise.price})</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="text-xs text-slate-300 font-semibold mb-1 block">Project Scope (Optional)</label>
+                <label className="text-xs text-slate-300 font-semibold mb-1 block">Project Requirements & Timeline (Optional)</label>
                 <textarea
                   rows={3}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-sm text-white focus:border-cyan-400 focus:outline-none resize-none"
-                  placeholder="Share details about your timeline, stack, or custom features needed..."
+                  placeholder="Share details about your project scope, current infrastructure, or target launch date..."
                 />
               </div>
 
@@ -500,7 +584,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
                 disabled={isSubmitting}
                 className="btn-neon w-full py-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
-                {isSubmitting ? "Submitting Proposal..." : "Submit Proposal Request"} <Send size={14} />
+                {isSubmitting ? "Submitting Request..." : `Submit Order Request (${selectedPackage} Package)`} <Send size={14} />
               </button>
             </form>
           )}
