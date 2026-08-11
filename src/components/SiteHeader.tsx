@@ -19,7 +19,6 @@ const links = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-
 const serviceMenu = [
   {
     id: "ai",
@@ -59,13 +58,56 @@ const serviceMenu = [
   },
 ];
 
+const pricingMenu = [
+  {
+    id: "ai",
+    category: "AI Pricing Packages",
+    icon: Bot,
+    tagline: "Basic, Pro & Enterprise",
+    description: "Pricing for autonomous AI agents, fine-tuned LLMs & vector RAG search",
+    accent: "text-cyan-400",
+    borderHover: "hover:border-cyan-500/60 hover:shadow-[0_0_25px_rgba(6,182,212,0.25)]",
+    bgHover: "hover:bg-cyan-500/10",
+    badgeBg: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
+    iconBg: "bg-cyan-500/15 border-cyan-500/30 text-cyan-400",
+  },
+  {
+    id: "dev",
+    category: "Development Pricing",
+    icon: Globe,
+    tagline: "Basic, Pro & Enterprise",
+    description: "Pricing for custom web apps, mobile apps, SaaS platforms & cloud DevOps",
+    accent: "text-indigo-400",
+    borderHover: "hover:border-indigo-500/60 hover:shadow-[0_0_25px_rgba(99,102,241,0.25)]",
+    bgHover: "hover:bg-indigo-500/10",
+    badgeBg: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
+    iconBg: "bg-indigo-500/15 border-indigo-500/30 text-indigo-400",
+  },
+  {
+    id: "growth",
+    category: "SEO & Growth Pricing",
+    icon: TrendingUp,
+    tagline: "Basic, Pro & Enterprise",
+    description: "Pricing for technical SEO, AI search AEO/GEO, Google Ads & paid social growth",
+    accent: "text-emerald-400",
+    borderHover: "hover:border-emerald-500/60 hover:shadow-[0_0_25px_rgba(16,185,129,0.25)]",
+    bgHover: "hover:bg-emerald-500/10",
+    badgeBg: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+    iconBg: "bg-emerald-500/15 border-emerald-500/30 text-emerald-400",
+  },
+];
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [pricingOpen, setPricingOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobilePricingOpen, setMobilePricingOpen] = useState(false);
+  
   const location = useLocation();
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const pricingDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -73,11 +115,14 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(e.target as Node)) {
         setServicesOpen(false);
+      }
+      if (pricingDropdownRef.current && !pricingDropdownRef.current.contains(e.target as Node)) {
+        setPricingOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
@@ -88,10 +133,13 @@ export function SiteHeader() {
   useEffect(() => {
     setOpen(false);
     setServicesOpen(false);
+    setPricingOpen(false);
     setMobileServicesOpen(false);
+    setMobilePricingOpen(false);
   }, [location.pathname]);
 
   const isServicesActive = location.pathname.startsWith("/services");
+  const isPricingActive = location.pathname.startsWith("/pricing");
 
   return (
     <>
@@ -115,89 +163,191 @@ export function SiteHeader() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
-            {links.map((l) =>
-              l.label === "Services" ? (
-                /* Services Dropdown Trigger */
-                <div key={l.to} className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setServicesOpen((v) => !v)}
-                    onMouseEnter={() => setServicesOpen(true)}
-                    className={`px-4 py-2 text-base font-extrabold rounded-xl transition-all inline-flex items-center gap-1.5 cursor-pointer shadow-md ${
-                      isServicesActive || servicesOpen
-                        ? "text-cyan-300 bg-cyan-500/20 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.35)] scale-105"
-                        : "text-slate-100 hover:text-cyan-300 hover:bg-slate-800/80 border border-slate-800/60 font-extrabold"
-                    }`}
-                  >
-                    Services
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-200 ${servicesOpen ? "rotate-180 text-cyan-400" : "text-slate-400"}`}
-                    />
-                  </button>
-
-                  {/* Main Services Category Dropdown */}
-                  {servicesOpen && (
-                    <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[720px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
-                      onMouseLeave={() => setServicesOpen(false)}
+            {links.map((l) => {
+              if (l.label === "Services") {
+                return (
+                  /* Services Dropdown Trigger */
+                  <div key={l.to} className="relative" ref={servicesDropdownRef}>
+                    <button
+                      onClick={() => {
+                        setServicesOpen((v) => !v);
+                        setPricingOpen(false);
+                      }}
+                      onMouseEnter={() => {
+                        setServicesOpen(true);
+                        setPricingOpen(false);
+                      }}
+                      className={`px-4 py-2 text-base font-extrabold rounded-xl transition-all inline-flex items-center gap-1.5 cursor-pointer shadow-md ${
+                        isServicesActive || servicesOpen
+                          ? "text-cyan-300 bg-cyan-500/20 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.35)] scale-105"
+                          : "text-slate-100 hover:text-cyan-300 hover:bg-slate-800/80 border border-slate-800/60 font-extrabold"
+                      }`}
                     >
-                      <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">
-                        Select a Service Category:
-                      </div>
+                      Services
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-200 ${servicesOpen ? "rotate-180 text-cyan-400" : "text-slate-400"}`}
+                      />
+                    </button>
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {serviceMenu.map((group) => {
-                          const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
-                          return (
-                            <Link
-                              key={group.id}
-                              to={routePath}
-                              onClick={() => setServicesOpen(false)}
-                              className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
-                            >
-                              <div>
-                                <div className="flex items-center justify-between mb-3">
-                                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
-                                    <group.icon size={20} />
+                    {/* Main Services Category Dropdown */}
+                    {servicesOpen && (
+                      <div
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[720px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
+                        onMouseLeave={() => setServicesOpen(false)}
+                      >
+                        <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">
+                          Select a Service Category:
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {serviceMenu.map((group) => {
+                            const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
+                            return (
+                              <Link
+                                key={group.id}
+                                to={routePath}
+                                onClick={() => setServicesOpen(false)}
+                                className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                              >
+                                <div>
+                                  <div className="flex items-center justify-between mb-3">
+                                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
+                                      <group.icon size={20} />
+                                    </div>
+                                    <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
+                                      {group.tagline}
+                                    </span>
                                   </div>
-                                  <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
-                                    {group.tagline}
-                                  </span>
+
+                                  <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
+                                    {group.category}
+                                  </h3>
+
+                                  <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
+                                    {group.description}
+                                  </p>
                                 </div>
 
-                                <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
-                                  {group.category}
-                                </h3>
+                                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
+                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
+                                    Open {group.category} <ArrowRight size={12} />
+                                  </span>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
 
-                                <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
-                                  {group.description}
-                                </p>
-                              </div>
-
-                              <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
-                                <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
-                                  Open {group.category} <ArrowRight size={12} />
-                                </span>
-                              </div>
-                            </Link>
-                          );
-                        })}
+                        <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
+                          <span>Looking for main services hub?</span>
+                          <Link
+                            to="/services"
+                            onClick={() => setServicesOpen(false)}
+                            className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
+                          >
+                            View Services Hub <ArrowRight size={12} />
+                          </Link>
+                        </div>
                       </div>
+                    )}
+                  </div>
+                );
+              }
 
-                      <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
-                        <span>Looking for main services hub?</span>
-                        <Link
-                          to="/services"
-                          onClick={() => setServicesOpen(false)}
-                          className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
-                        >
-                          View Services Hub <ArrowRight size={12} />
-                        </Link>
+              if (l.label === "Pricing") {
+                return (
+                  /* Pricing Dropdown Trigger */
+                  <div key={l.to} className="relative" ref={pricingDropdownRef}>
+                    <button
+                      onClick={() => {
+                        setPricingOpen((v) => !v);
+                        setServicesOpen(false);
+                      }}
+                      onMouseEnter={() => {
+                        setPricingOpen(true);
+                        setServicesOpen(false);
+                      }}
+                      className={`px-4 py-2 text-base font-extrabold rounded-xl transition-all inline-flex items-center gap-1.5 cursor-pointer shadow-md ${
+                        isPricingActive || pricingOpen
+                          ? "text-cyan-300 bg-cyan-500/20 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.35)] scale-105"
+                          : "text-slate-100 hover:text-cyan-300 hover:bg-slate-800/80 border border-slate-800/60 font-extrabold"
+                      }`}
+                    >
+                      Pricing
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-200 ${pricingOpen ? "rotate-180 text-cyan-400" : "text-slate-400"}`}
+                      />
+                    </button>
+
+                    {/* Main Pricing Category Dropdown */}
+                    {pricingOpen && (
+                      <div
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[720px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
+                        onMouseLeave={() => setPricingOpen(false)}
+                      >
+                        <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">
+                          Select a Pricing Package Category:
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {pricingMenu.map((group) => {
+                            return (
+                              <Link
+                                key={group.id}
+                                to="/pricing"
+                                search={{ cat: group.id }}
+                                onClick={() => setPricingOpen(false)}
+                                className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                              >
+                                <div>
+                                  <div className="flex items-center justify-between mb-3">
+                                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
+                                      <group.icon size={20} />
+                                    </div>
+                                    <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
+                                      {group.tagline}
+                                    </span>
+                                  </div>
+
+                                  <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
+                                    {group.category}
+                                  </h3>
+
+                                  <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
+                                    {group.description}
+                                  </p>
+                                </div>
+
+                                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
+                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
+                                    View {group.category} <ArrowRight size={12} />
+                                  </span>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+
+                        <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
+                          <span>Want to view all packages?</span>
+                          <Link
+                            to="/pricing"
+                            search={{ cat: "all" }}
+                            onClick={() => setPricingOpen(false)}
+                            className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
+                          >
+                            View All Pricing Tiers <ArrowRight size={12} />
+                          </Link>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
+                    )}
+                  </div>
+                );
+              }
+
+              return (
                 <Link
                   key={l.to}
                   to={l.to}
@@ -210,8 +360,8 @@ export function SiteHeader() {
                 >
                   {l.label}
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
@@ -246,32 +396,83 @@ export function SiteHeader() {
 
           {/* Drawer Panel */}
           <nav className="absolute top-16 left-3 right-3 bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl flex flex-col gap-1 max-h-[85vh] overflow-y-auto">
-            {links.map((l) =>
-              l.label === "Services" ? (
-                <div key={l.to}>
-                  <button
-                    onClick={() => setMobileServicesOpen((v) => !v)}
-                    className={`w-full text-left px-4 py-3 text-base font-semibold rounded-xl transition-colors inline-flex items-center justify-between ${
-                      isServicesActive
-                        ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/30"
-                        : "text-slate-200 hover:text-cyan-400 hover:bg-slate-800/60"
-                    }`}
-                  >
-                    Services Categories
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
+            {links.map((l) => {
+              if (l.label === "Services") {
+                return (
+                  <div key={l.to}>
+                    <button
+                      onClick={() => setMobileServicesOpen((v) => !v)}
+                      className={`w-full text-left px-4 py-3 text-base font-semibold rounded-xl transition-colors inline-flex items-center justify-between ${
+                        isServicesActive
+                          ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/30"
+                          : "text-slate-200 hover:text-cyan-400 hover:bg-slate-800/60"
+                      }`}
+                    >
+                      Services Categories
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
 
-                  {mobileServicesOpen && (
-                    <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-2">
-                      {serviceMenu.map((group) => {
-                        const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
-                        return (
+                    {mobileServicesOpen && (
+                      <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-2">
+                        {serviceMenu.map((group) => {
+                          const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
+                          return (
+                            <Link
+                              key={group.id}
+                              to={routePath}
+                              onClick={() => setOpen(false)}
+                              className={`flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono hover:border-slate-700 transition-all`}
+                            >
+                              <span className="flex items-center gap-2 text-sm font-extrabold">
+                                <group.icon size={16} />
+                                {group.category}
+                              </span>
+                              <ArrowRight size={14} />
+                            </Link>
+                          );
+                        })}
+                        <Link
+                          to="/services"
+                          onClick={() => setOpen(false)}
+                          className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-300 text-xs font-bold transition-all"
+                        >
+                          <span>✨ View Services Hub</span>
+                          <ArrowRight size={12} />
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              if (l.label === "Pricing") {
+                return (
+                  <div key={l.to}>
+                    <button
+                      onClick={() => setMobilePricingOpen((v) => !v)}
+                      className={`w-full text-left px-4 py-3 text-base font-semibold rounded-xl transition-colors inline-flex items-center justify-between ${
+                        isPricingActive
+                          ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/30"
+                          : "text-slate-200 hover:text-cyan-400 hover:bg-slate-800/60"
+                      }`}
+                    >
+                      Pricing Categories
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-200 ${mobilePricingOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+
+                    {mobilePricingOpen && (
+                      <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-2">
+                        {pricingMenu.map((group) => (
                           <Link
                             key={group.id}
-                            to={routePath}
+                            to="/pricing"
+                            search={{ cat: group.id }}
                             onClick={() => setOpen(false)}
                             className={`flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono hover:border-slate-700 transition-all`}
                           >
@@ -281,20 +482,23 @@ export function SiteHeader() {
                             </span>
                             <ArrowRight size={14} />
                           </Link>
-                        );
-                      })}
-                      <Link
-                        to="/services"
-                        onClick={() => setOpen(false)}
-                        className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-300 text-xs font-bold transition-all"
-                      >
-                        <span>✨ View Services Hub</span>
-                        <ArrowRight size={12} />
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              ) : (
+                        ))}
+                        <Link
+                          to="/pricing"
+                          search={{ cat: "all" }}
+                          onClick={() => setOpen(false)}
+                          className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-300 text-xs font-bold transition-all"
+                        >
+                          <span>✨ View All Pricing Tiers</span>
+                          <ArrowRight size={12} />
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
                 <Link
                   key={l.to}
                   to={l.to}
@@ -307,8 +511,8 @@ export function SiteHeader() {
                 >
                   {l.label}
                 </Link>
-              )
-            )}
+              );
+            })}
 
             <div className="pt-2 border-t border-slate-800 mt-1">
               <Link
