@@ -168,10 +168,10 @@ function DevelopmentServicesPage() {
                 </div>
 
                 <a
-                  href={`/services/${service.id}`}
-                  className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
+                  href="/pricing"
+                  className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-extrabold text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer uppercase tracking-wider"
                 >
-                  Explore Service & Tiers <ArrowRight size={14} />
+                  VIEW PRICING <ArrowRight size={14} />
                 </a>
               </div>
             );

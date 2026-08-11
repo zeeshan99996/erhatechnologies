@@ -168,10 +168,10 @@ function AIServicesPage() {
                 </div>
 
                 <a
-                  href={`/services/${service.id}`}
-                  className="btn-neon w-full py-3 px-4 rounded-xl text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                  href="/pricing"
+                  className="btn-neon w-full py-3 px-4 rounded-xl text-xs font-extrabold text-center flex items-center justify-center gap-2 shadow-md cursor-pointer uppercase tracking-wider"
                 >
-                  Explore Service & Tiers <ArrowRight size={14} />
+                  VIEW PRICING <ArrowRight size={14} />
                 </a>
               </div>
             );

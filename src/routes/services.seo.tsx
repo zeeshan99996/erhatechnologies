@@ -167,10 +167,10 @@ function SEOServicesPage() {
                 </div>
 
                 <a
-                  href={`/services/${service.id}`}
-                  className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer"
+                  href="/pricing"
+                  className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer uppercase tracking-wider"
                 >
-                  Explore Service & Retainers <ArrowRight size={14} />
+                  VIEW PRICING <ArrowRight size={14} />
                 </a>
               </div>
             );
