@@ -128,9 +128,9 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
           const isActive = s.id === service.id;
           const ServiceIcon = s.icon;
           return (
-            <Link
+            <a
               key={s.id}
-              to={`/services/${s.id}` as any}
+              href={`/services/${s.id}`}
               className={`px-4 py-2.5 rounded-xl text-xs font-bold shrink-0 transition-all flex items-center gap-2 ${
                 isActive
                   ? "bg-blue-600 text-white font-black shadow-lg shadow-blue-500/30 scale-102"
@@ -139,7 +139,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
             >
               <ServiceIcon size={14} />
               <span>{s.shortTitle}</span>
-            </Link>
+            </a>
           );
         })}
       </div>
@@ -637,9 +637,9 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
             {relatedServices.map((rel) => {
               const RelIcon = rel.icon;
               return (
-                <Link
+                <a
                   key={rel.id}
-                  to={`/services/${rel.id}` as any}
+                  href={`/services/${rel.id}`}
                   className="glass-strong rounded-2xl p-5 border border-slate-800 hover:border-cyan-500/40 transition-all group block"
                 >
                   <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-cyan-400 w-fit mb-3 group-hover:bg-cyan-500/10">
@@ -649,7 +649,7 @@ export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
                     {rel.shortTitle}
                   </h4>
                   <p className="text-xs text-slate-400 line-clamp-2">{rel.desc}</p>
-                </Link>
+                </a>
               );
             })}
           </div>
