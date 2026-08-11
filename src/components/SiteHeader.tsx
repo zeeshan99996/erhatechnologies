@@ -334,11 +334,10 @@ export function SiteHeader() {
                           <span>Want to view all packages?</span>
                           <Link
                             to="/pricing"
-                            search={{ cat: "all" }}
                             onClick={() => setPricingOpen(false)}
                             className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
                           >
-                            View All Pricing Tiers <ArrowRight size={12} />
+                            View Pricing Hub <ArrowRight size={12} />
                           </Link>
                         </div>
                       </div>
@@ -485,11 +484,10 @@ export function SiteHeader() {
                         ))}
                         <Link
                           to="/pricing"
-                          search={{ cat: "all" }}
                           onClick={() => setOpen(false)}
                           className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-300 text-xs font-bold transition-all"
                         >
-                          <span>✨ View All Pricing Tiers</span>
+                          <span>✨ View Pricing Hub</span>
                           <ArrowRight size={12} />
                         </Link>
                       </div>
