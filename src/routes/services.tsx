@@ -48,10 +48,10 @@ function ServicesPage() {
   const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
   const getValidCat = (param?: string): "all" | "ai" | "dev" | "seo" => {
-    const clean = (param || "").toLowerCase();
-    if (clean === "seo" || clean === "growth") return "seo";
-    if (clean === "dev") return "dev";
-    if (clean === "ai") return "ai";
+    const clean = (param || "").toLowerCase().trim();
+    if (clean === "seo" || clean === "growth" || clean === "search") return "seo";
+    if (clean === "dev" || clean === "development" || clean === "web") return "dev";
+    if (clean === "ai" || clean === "agent") return "ai";
     return "all";
   };
 
