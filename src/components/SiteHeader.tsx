@@ -202,11 +202,11 @@ export function SiteHeader() {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           {serviceMenu.map((group) => {
-                            const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
                             return (
                               <Link
                                 key={group.id}
-                                to={routePath}
+                                to="/services"
+                                search={{ cat: group.id }}
                                 onClick={() => setServicesOpen(false)}
                                 className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
                               >
@@ -416,23 +416,21 @@ export function SiteHeader() {
 
                     {mobileServicesOpen && (
                       <div className="mt-2 mb-2 ml-2 border-l-2 border-slate-800 pl-3 space-y-2">
-                        {serviceMenu.map((group) => {
-                          const routePath = group.id === "ai" ? "/services/ai" : group.id === "dev" ? "/services/development" : "/services/seo";
-                          return (
-                            <Link
-                              key={group.id}
-                              to={routePath}
-                              onClick={() => setOpen(false)}
-                              className={`flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono hover:border-slate-700 transition-all`}
-                            >
-                              <span className="flex items-center gap-2 text-sm font-extrabold">
-                                <group.icon size={16} />
-                                {group.category}
-                              </span>
-                              <ArrowRight size={14} />
-                            </Link>
-                          );
-                        })}
+                        {serviceMenu.map((group) => (
+                          <Link
+                            key={group.id}
+                            to="/services"
+                            search={{ cat: group.id }}
+                            onClick={() => setOpen(false)}
+                            className={`flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 ${group.accent} text-xs font-bold font-mono hover:border-slate-700 transition-all`}
+                          >
+                            <span className="flex items-center gap-2 text-sm font-extrabold">
+                              <group.icon size={16} />
+                              {group.category}
+                            </span>
+                            <ArrowRight size={14} />
+                          </Link>
+                        ))}
                         <Link
                           to="/services"
                           onClick={() => setOpen(false)}

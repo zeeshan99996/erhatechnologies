@@ -106,22 +106,22 @@ export function SiteFooter() {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Solutions</h4>
             <ul className="space-y-2.5 text-sm text-slate-300 font-medium">
               <li>
-                <Link to="/services/ai" className="hover:text-cyan-400 transition-colors">
+                <Link to="/services" search={{ cat: "ai" }} className="hover:text-cyan-400 transition-colors">
                   Agentic AI Systems
                 </Link>
               </li>
               <li>
-                <Link to="/services/development" className="hover:text-cyan-400 transition-colors">
+                <Link to="/services" search={{ cat: "dev" }} className="hover:text-cyan-400 transition-colors">
                   Enterprise Web &amp; Apps
                 </Link>
               </li>
               <li>
-                <Link to="/services/development" className="hover:text-cyan-400 transition-colors">
+                <Link to="/services" search={{ cat: "dev" }} className="hover:text-cyan-400 transition-colors">
                   Cloud &amp; Infrastructure
                 </Link>
               </li>
               <li>
-                <Link to="/services/seo" className="hover:text-cyan-400 transition-colors">
+                <Link to="/services" search={{ cat: "seo" }} className="hover:text-cyan-400 transition-colors">
                   SEO &amp; Search Growth
                 </Link>
               </li>

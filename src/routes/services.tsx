@@ -113,8 +113,8 @@ function ServicesPage() {
           >
             <Sparkles size={16} /> All 24 Services
           </button>
-          <Link
-            to="/services/ai"
+          <button
+            onClick={() => handleTabChange("ai")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === "ai"
                 ? "bg-cyan-500 text-slate-950 font-black shadow-lg"
@@ -122,9 +122,9 @@ function ServicesPage() {
             }`}
           >
             <Bot size={16} /> AI Services (8)
-          </Link>
-          <Link
-            to="/services/development"
+          </button>
+          <button
+            onClick={() => handleTabChange("dev")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === "dev"
                 ? "bg-indigo-600 text-white shadow-lg"
@@ -132,9 +132,9 @@ function ServicesPage() {
             }`}
           >
             <Code size={16} /> Development (8)
-          </Link>
-          <Link
-            to="/services/seo"
+          </button>
+          <button
+            onClick={() => handleTabChange("seo")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === "seo"
                 ? "bg-emerald-500 text-slate-950 font-black shadow-lg"
@@ -142,7 +142,7 @@ function ServicesPage() {
             }`}
           >
             <TrendingUp size={16} /> SEO & Growth (8)
-          </Link>
+          </button>
         </div>
 
         {/* Live Search Input */}
