@@ -34,7 +34,7 @@ const serviceMenu = [
   },
   {
     id: "dev",
-    category: "Development Services",
+    category: "Development",
     icon: Globe,
     tagline: "8 Capabilities",
     description: "Custom web apps, cross-platform mobile, SaaS platforms & cloud engineering",
@@ -61,7 +61,7 @@ const serviceMenu = [
 const pricingMenu = [
   {
     id: "ai",
-    category: "AI Pricing Packages",
+    category: "AI Pricing",
     icon: Bot,
     tagline: "Basic, Pro & Enterprise",
     description: "Pricing for autonomous AI agents, fine-tuned LLMs & vector RAG search",
@@ -73,7 +73,7 @@ const pricingMenu = [
   },
   {
     id: "dev",
-    category: "Development Pricing",
+    category: "Dev Pricing",
     icon: Globe,
     tagline: "Basic, Pro & Enterprise",
     description: "Pricing for custom web apps, mobile apps, SaaS platforms & cloud DevOps",
@@ -85,7 +85,7 @@ const pricingMenu = [
   },
   {
     id: "growth",
-    category: "SEO & Growth Pricing",
+    category: "SEO Pricing",
     icon: TrendingUp,
     tagline: "Basic, Pro & Enterprise",
     description: "Pricing for technical SEO, AI search AEO/GEO, Google Ads & paid social growth",
@@ -193,7 +193,7 @@ export function SiteHeader() {
                     {/* Main Services Category Dropdown */}
                     {servicesOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[520px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[600px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setServicesOpen(false)}
                       >
                         <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2 px-1 flex items-center gap-1.5">
@@ -214,7 +214,7 @@ export function SiteHeader() {
                                   <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform shrink-0`}>
                                     <group.icon size={16} />
                                   </div>
-                                  <h3 className={`text-xs font-black uppercase tracking-wider font-mono truncate ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className={`text-[11px] sm:text-xs font-black uppercase tracking-wide font-mono whitespace-nowrap ${group.accent} group-hover:text-white transition-colors`}>
                                     {group.category}
                                   </h3>
                                 </div>
@@ -269,7 +269,7 @@ export function SiteHeader() {
                     {/* Main Pricing Category Dropdown */}
                     {pricingOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[520px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[600px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setPricingOpen(false)}
                       >
                         <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2 px-1 flex items-center gap-1.5">
@@ -290,7 +290,7 @@ export function SiteHeader() {
                                   <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform shrink-0`}>
                                     <group.icon size={16} />
                                   </div>
-                                  <h3 className={`text-xs font-black uppercase tracking-wider font-mono truncate ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className={`text-[11px] sm:text-xs font-black uppercase tracking-wide font-mono whitespace-nowrap ${group.accent} group-hover:text-white transition-colors`}>
                                     {group.category}
                                   </h3>
                                 </div>
