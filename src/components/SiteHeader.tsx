@@ -214,7 +214,7 @@ export function SiteHeader() {
                                   <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform shrink-0`}>
                                     <group.icon size={16} />
                                   </div>
-                                  <h3 className={`text-[11px] sm:text-xs font-black uppercase tracking-wide font-mono whitespace-nowrap ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className="text-[11px] sm:text-xs font-black uppercase tracking-wide font-mono whitespace-nowrap text-white group-hover:text-[#00B8DB] transition-colors">
                                     {group.category}
                                   </h3>
                                 </div>
@@ -290,7 +290,7 @@ export function SiteHeader() {
                                   <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform shrink-0`}>
                                     <group.icon size={16} />
                                   </div>
-                                  <h3 className={`text-[11px] sm:text-xs font-black uppercase tracking-wide font-mono whitespace-nowrap ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className="text-[11px] sm:text-xs font-black uppercase tracking-wide font-mono whitespace-nowrap text-white group-hover:text-[#00B8DB] transition-colors">
                                     {group.category}
                                   </h3>
                                 </div>
