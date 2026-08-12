@@ -193,7 +193,7 @@ export function SiteHeader() {
                     {/* Main Services Category Dropdown */}
                     {servicesOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[600px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
+                        className="absolute top-full left-1/2 -translate-x-[30%] mt-2.5 w-[600px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setServicesOpen(false)}
                       >
                         <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2 px-1 flex items-center gap-1.5">
@@ -269,7 +269,7 @@ export function SiteHeader() {
                     {/* Main Pricing Category Dropdown */}
                     {pricingOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[600px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
+                        className="absolute top-full left-1/2 -translate-x-[40%] mt-2.5 w-[600px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setPricingOpen(false)}
                       >
                         <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2 px-1 flex items-center gap-1.5">
