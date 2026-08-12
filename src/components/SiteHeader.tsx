@@ -193,14 +193,14 @@ export function SiteHeader() {
                     {/* Main Services Category Dropdown */}
                     {servicesOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[620px] max-w-[90vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-[80] animate-fade-in backdrop-blur-2xl"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[520px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setServicesOpen(false)}
                       >
-                        <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2.5 px-1 flex items-center gap-1.5">
-                          <Sparkles size={12} /> Select a Service Category:
+                        <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2 px-1 flex items-center gap-1.5">
+                          <Sparkles size={12} /> Select Service Category:
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                           {serviceMenu.map((group) => {
                             return (
                               <Link
@@ -208,43 +208,28 @@ export function SiteHeader() {
                                 to="/services"
                                 search={{ cat: group.id }}
                                 onClick={() => setServicesOpen(false)}
-                                className={`group flex flex-col justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-900/90 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                                className={`group flex items-center justify-between p-3 rounded-xl border border-slate-800/90 bg-slate-900/90 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
                               >
-                                <div>
-                                  <div className="flex items-center justify-between mb-2.5">
-                                    <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
-                                      <group.icon size={16} />
-                                    </div>
-                                    <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
-                                      {group.tagline}
-                                    </span>
+                                <div className="flex items-center gap-2.5 min-w-0">
+                                  <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform shrink-0`}>
+                                    <group.icon size={16} />
                                   </div>
-
-                                  <h3 className={`text-xs font-black uppercase tracking-wide font-mono mb-1 ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className={`text-xs font-black uppercase tracking-wider font-mono truncate ${group.accent} group-hover:text-white transition-colors`}>
                                     {group.category}
                                   </h3>
-
-                                  <p className="text-[11px] text-slate-300 leading-snug min-h-[36px]">
-                                    {group.description}
-                                  </p>
                                 </div>
-
-                                <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs font-black">
-                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold`}>
-                                    Open {group.category} <ArrowRight size={12} />
-                                  </span>
-                                </div>
+                                <ArrowRight size={14} className={`${group.accent} group-hover:translate-x-1 transition-transform shrink-0 ml-1`} />
                               </Link>
                             );
                           })}
                         </div>
 
-                        <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
-                          <span>Looking for main services hub?</span>
+                        <div className="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                          <span>Looking for main hub?</span>
                           <Link
                             to="/services"
                             onClick={() => setServicesOpen(false)}
-                            className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
+                            className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1 text-[11px]"
                           >
                             View Services Hub <ArrowRight size={12} />
                           </Link>
@@ -284,14 +269,14 @@ export function SiteHeader() {
                     {/* Main Pricing Category Dropdown */}
                     {pricingOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[620px] max-w-[90vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-[80] animate-fade-in backdrop-blur-2xl"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[520px] max-w-[92vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setPricingOpen(false)}
                       >
-                        <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2.5 px-1 flex items-center gap-1.5">
-                          <Sparkles size={12} /> Select a Pricing Package Category:
+                        <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2 px-1 flex items-center gap-1.5">
+                          <Sparkles size={12} /> Select Pricing Category:
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                           {pricingMenu.map((group) => {
                             return (
                               <Link
@@ -299,43 +284,28 @@ export function SiteHeader() {
                                 to="/pricing"
                                 search={{ cat: group.id }}
                                 onClick={() => setPricingOpen(false)}
-                                className={`group flex flex-col justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-900/90 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                                className={`group flex items-center justify-between p-3 rounded-xl border border-slate-800/90 bg-slate-900/90 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
                               >
-                                <div>
-                                  <div className="flex items-center justify-between mb-2.5">
-                                    <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
-                                      <group.icon size={16} />
-                                    </div>
-                                    <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
-                                      {group.tagline}
-                                    </span>
+                                <div className="flex items-center gap-2.5 min-w-0">
+                                  <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform shrink-0`}>
+                                    <group.icon size={16} />
                                   </div>
-
-                                  <h3 className={`text-xs font-black uppercase tracking-wide font-mono mb-1 ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className={`text-xs font-black uppercase tracking-wider font-mono truncate ${group.accent} group-hover:text-white transition-colors`}>
                                     {group.category}
                                   </h3>
-
-                                  <p className="text-[11px] text-slate-300 leading-snug min-h-[36px]">
-                                    {group.description}
-                                  </p>
                                 </div>
-
-                                <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs font-black">
-                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold`}>
-                                    View {group.category} <ArrowRight size={12} />
-                                  </span>
-                                </div>
+                                <ArrowRight size={14} className={`${group.accent} group-hover:translate-x-1 transition-transform shrink-0 ml-1`} />
                               </Link>
                             );
                           })}
                         </div>
 
-                        <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
-                          <span>Want to view all packages?</span>
+                        <div className="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                          <span>Want all packages?</span>
                           <Link
                             to="/pricing"
                             onClick={() => setPricingOpen(false)}
-                            className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1"
+                            className="text-cyan-400 hover:text-cyan-300 font-bold inline-flex items-center gap-1 text-[11px]"
                           >
                             View Pricing Hub <ArrowRight size={12} />
                           </Link>
