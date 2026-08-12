@@ -106,7 +106,7 @@ function ServicesPage() {
             onClick={() => handleTabChange("ai")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === "ai"
-                ? "bg-cyan-500 text-slate-950 font-black shadow-lg"
+                ? "bg-[#00B8DB] text-slate-950 font-black shadow-lg shadow-cyan-500/20"
                 : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800"
             }`}
           >
@@ -116,8 +116,8 @@ function ServicesPage() {
             onClick={() => handleTabChange("dev")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === "dev"
-                ? "bg-indigo-600 text-white shadow-lg"
-                : "text-slate-300 hover:text-indigo-300 hover:bg-slate-800"
+                ? "bg-[#00B8DB] text-slate-950 font-black shadow-lg shadow-cyan-500/20"
+                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800"
             }`}
           >
             <Code size={16} /> Development (8)
@@ -126,8 +126,8 @@ function ServicesPage() {
             onClick={() => handleTabChange("seo")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === "seo"
-                ? "bg-emerald-500 text-slate-950 font-black shadow-lg"
-                : "text-slate-300 hover:text-emerald-300 hover:bg-slate-800"
+                ? "bg-[#00B8DB] text-slate-950 font-black shadow-lg shadow-cyan-500/20"
+                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800"
             }`}
           >
             <TrendingUp size={16} /> SEO & Growth (8)

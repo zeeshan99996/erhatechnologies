@@ -368,7 +368,7 @@ function PricingPage() {
             onClick={() => handleCategoryChange("ai")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "ai"
-                ? "bg-cyan-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
+                ? "bg-[#00B8DB] text-slate-950 font-extrabold shadow-[0_0_20px_rgba(0,184,219,0.4)] scale-105"
                 : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800/60"
             }`}
           >
@@ -378,8 +378,8 @@ function PricingPage() {
             onClick={() => handleCategoryChange("dev")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "dev"
-                ? "bg-indigo-500 text-white font-extrabold shadow-[0_0_20px_rgba(99,102,241,0.4)] scale-105"
-                : "text-slate-300 hover:text-indigo-300 hover:bg-slate-800/60"
+                ? "bg-[#00B8DB] text-slate-950 font-extrabold shadow-[0_0_20px_rgba(0,184,219,0.4)] scale-105"
+                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800/60"
             }`}
           >
             <Globe size={15} /> Web & Apps
@@ -388,8 +388,8 @@ function PricingPage() {
             onClick={() => handleCategoryChange("growth")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "growth"
-                ? "bg-emerald-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105"
-                : "text-slate-300 hover:text-emerald-300 hover:bg-slate-800/60"
+                ? "bg-[#00B8DB] text-slate-950 font-extrabold shadow-[0_0_20px_rgba(0,184,219,0.4)] scale-105"
+                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800/60"
             }`}
           >
             <TrendingUp size={15} /> Search & Growth
