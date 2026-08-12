@@ -135,11 +135,11 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Muhammad Salman Anwar",
-    role: "AI Engineer & Automation Lead",
+    role: "AI Engineer & Team Lead",
     initials: "MSA",
     image: salmanImg,
     category: "AI Engineer",
-    bio: "AI Engineer & Automation Specialist specializing in AI Agents, workflow automation, LLM applications, and scalable AI solutions. Leads the development team, manages AI projects, integrates AI models and APIs, and delivers reliable, production-ready solutions.",
+    bio: "AI Engineer & Team Lead specializing in AI Agents, workflow automation, LLM applications, and scalable AI solutions. Leads the development team, manages AI projects, integrates AI models and APIs, and delivers reliable, production-ready solutions.",
     skills: ["Technical Leadership", "System Reliability", "MLOps Pipelines", "AI Agents", "AI Automation", "LLM Applications", "RAG Chatbots", "API Integration"],
     tech: ["Agentic AI", "Python", "n8n", "LLM", "RAG Chatbots", "APIs"],
   },
