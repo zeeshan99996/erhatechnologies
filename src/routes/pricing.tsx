@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { z } from "zod";
 import {
@@ -316,6 +316,8 @@ const faqs = [
 
 function PricingPage() {
   const search = Route.useSearch();
+  const navigate = useNavigate({ from: Route.id });
+
   const getValidCat = (param?: string): "ai" | "dev" | "growth" => {
     const clean = (param || "").toLowerCase().trim();
     if (clean === "dev" || clean === "development") return "dev";
@@ -323,15 +325,23 @@ function PricingPage() {
     return "ai";
   };
 
-  const initialCategory = getValidCat(search.cat || search.category);
-  const [activeCategory, setActiveCategory] = useState<"ai" | "dev" | "growth">(initialCategory);
+  const [activeCategory, setActiveCategory] = useState<"ai" | "dev" | "growth">(() =>
+    getValidCat(search.cat || search.category)
+  );
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
-    if (search.cat || search.category) {
-      setActiveCategory(getValidCat(search.cat || search.category));
-    }
+    const validCat = getValidCat(search.cat || search.category);
+    setActiveCategory(validCat);
   }, [search.cat, search.category]);
+
+  const handleCategoryChange = (cat: "ai" | "dev" | "growth") => {
+    setActiveCategory(cat);
+    navigate({
+      search: (prev) => ({ ...prev, cat }),
+      replace: true,
+    });
+  };
 
   const filteredPackages = pricingPackages.filter(
     (pkg) => pkg.category === activeCategory
@@ -355,7 +365,7 @@ function PricingPage() {
         {/* Category Filter Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2 mt-8 p-1.5 bg-slate-900/90 rounded-2xl border border-slate-800/80 max-w-2xl mx-auto backdrop-blur-xl">
           <button
-            onClick={() => setActiveCategory("ai")}
+            onClick={() => handleCategoryChange("ai")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "ai"
                 ? "bg-cyan-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-105"
@@ -365,7 +375,7 @@ function PricingPage() {
             <Bot size={15} /> AI Solutions
           </button>
           <button
-            onClick={() => setActiveCategory("dev")}
+            onClick={() => handleCategoryChange("dev")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "dev"
                 ? "bg-indigo-500 text-white font-extrabold shadow-[0_0_20px_rgba(99,102,241,0.4)] scale-105"
@@ -375,7 +385,7 @@ function PricingPage() {
             <Globe size={15} /> Web & Apps
           </button>
           <button
-            onClick={() => setActiveCategory("growth")}
+            onClick={() => handleCategoryChange("growth")}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "growth"
                 ? "bg-emerald-500 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105"

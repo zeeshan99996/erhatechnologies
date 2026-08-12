@@ -117,7 +117,7 @@ export function ServiceModal({ serviceId, onClose }: ServiceModalProps) {
             </div>
             <h3 className="text-2xl sm:text-3xl font-black text-white mb-3">{service.tagline}</h3>
             <p className="text-slate-300 text-sm leading-relaxed mb-4">{service.desc}</p>
-            <p className="text-slate-400 text-xs leading-relaxed">{service.overview}</p>
+            <p className="text-slate-400 text-xs leading-relaxed">{service.heroSubheadline}</p>
           </div>
 
           <div className="glass-strong rounded-2xl p-6 border border-slate-800 bg-slate-900/60 flex flex-col justify-between">

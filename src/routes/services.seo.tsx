@@ -166,12 +166,13 @@ function SEOServicesPage() {
                   </div>
                 </div>
 
-                <a
-                  href="/pricing?cat=growth"
+                <Link
+                  to="/pricing"
+                  search={{ cat: "growth" }}
                   className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black text-center flex items-center justify-center gap-2 shadow-md transition-colors cursor-pointer uppercase tracking-wider"
                 >
                   VIEW PRICING <ArrowRight size={14} />
-                </a>
+                </Link>
               </div>
             );
           })}
