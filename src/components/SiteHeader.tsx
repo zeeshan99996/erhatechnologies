@@ -193,14 +193,14 @@ export function SiteHeader() {
                     {/* Main Services Category Dropdown */}
                     {servicesOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[720px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[620px] max-w-[90vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setServicesOpen(false)}
                       >
-                        <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">
-                          Select a Service Category:
+                        <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2.5 px-1 flex items-center gap-1.5">
+                          <Sparkles size={12} /> Select a Service Category:
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                           {serviceMenu.map((group) => {
                             return (
                               <Link
@@ -208,29 +208,29 @@ export function SiteHeader() {
                                 to="/services"
                                 search={{ cat: group.id }}
                                 onClick={() => setServicesOpen(false)}
-                                className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                                className={`group flex flex-col justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-900/90 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
                               >
                                 <div>
-                                  <div className="flex items-center justify-between mb-3">
-                                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
-                                      <group.icon size={20} />
+                                  <div className="flex items-center justify-between mb-2.5">
+                                    <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
+                                      <group.icon size={16} />
                                     </div>
-                                    <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
+                                    <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
                                       {group.tagline}
                                     </span>
                                   </div>
 
-                                  <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className={`text-xs font-black uppercase tracking-wide font-mono mb-1 ${group.accent} group-hover:text-white transition-colors`}>
                                     {group.category}
                                   </h3>
 
-                                  <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
+                                  <p className="text-[11px] text-slate-300 leading-snug min-h-[36px]">
                                     {group.description}
                                   </p>
                                 </div>
 
-                                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
-                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
+                                <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs font-black">
+                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold`}>
                                     Open {group.category} <ArrowRight size={12} />
                                   </span>
                                 </div>
@@ -239,7 +239,7 @@ export function SiteHeader() {
                           })}
                         </div>
 
-                        <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
                           <span>Looking for main services hub?</span>
                           <Link
                             to="/services"
@@ -284,14 +284,14 @@ export function SiteHeader() {
                     {/* Main Pricing Category Dropdown */}
                     {pricingOpen && (
                       <div
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[720px] max-w-[92vw] glass-strong border border-slate-700/80 rounded-2xl p-5 shadow-2xl z-[80] animate-fade-in"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[620px] max-w-[90vw] bg-slate-950/95 border border-slate-800/90 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-[80] animate-fade-in backdrop-blur-2xl"
                         onMouseLeave={() => setPricingOpen(false)}
                       >
-                        <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">
-                          Select a Pricing Package Category:
+                        <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-cyan-400 mb-2.5 px-1 flex items-center gap-1.5">
+                          <Sparkles size={12} /> Select a Pricing Package Category:
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                           {pricingMenu.map((group) => {
                             return (
                               <Link
@@ -299,29 +299,29 @@ export function SiteHeader() {
                                 to="/pricing"
                                 search={{ cat: group.id }}
                                 onClick={() => setPricingOpen(false)}
-                                className={`group flex flex-col justify-between p-4 rounded-xl border border-slate-800/90 bg-slate-950/80 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
+                                className={`group flex flex-col justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-900/90 ${group.bgHover} ${group.borderHover} transition-all duration-200 cursor-pointer`}
                               >
                                 <div>
-                                  <div className="flex items-center justify-between mb-3">
-                                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
-                                      <group.icon size={20} />
+                                  <div className="flex items-center justify-between mb-2.5">
+                                    <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${group.iconBg} group-hover:scale-110 transition-transform`}>
+                                      <group.icon size={16} />
                                     </div>
-                                    <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
+                                    <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${group.badgeBg}`}>
                                       {group.tagline}
                                     </span>
                                   </div>
 
-                                  <h3 className={`text-sm font-extrabold uppercase tracking-wide font-mono mb-1.5 ${group.accent} group-hover:text-white transition-colors`}>
+                                  <h3 className={`text-xs font-black uppercase tracking-wide font-mono mb-1 ${group.accent} group-hover:text-white transition-colors`}>
                                     {group.category}
                                   </h3>
 
-                                  <p className="text-[11px] text-slate-300 leading-relaxed min-h-[42px]">
+                                  <p className="text-[11px] text-slate-300 leading-snug min-h-[36px]">
                                     {group.description}
                                   </p>
                                 </div>
 
-                                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-extrabold">
-                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-0.5 transition-transform flex items-center gap-1`}>
+                                <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs font-black">
+                                  <span className={`text-[11px] ${group.accent} group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold`}>
                                     View {group.category} <ArrowRight size={12} />
                                   </span>
                                 </div>
@@ -330,7 +330,7 @@ export function SiteHeader() {
                           })}
                         </div>
 
-                        <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
                           <span>Want to view all packages?</span>
                           <Link
                             to="/pricing"
