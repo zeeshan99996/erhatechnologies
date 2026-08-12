@@ -47,16 +47,15 @@ function ServicesPage() {
   const navigate = useNavigate({ from: Route.id });
   const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
-  const getValidCat = (param?: string): "all" | "ai" | "dev" | "seo" => {
+  const getValidCat = (param?: string): "ai" | "dev" | "seo" => {
     const clean = (param || "").toLowerCase().trim();
     if (clean === "seo" || clean === "growth" || clean === "search") return "seo";
     if (clean === "dev" || clean === "development" || clean === "web") return "dev";
-    if (clean === "ai" || clean === "agent") return "ai";
-    return "all";
+    return "ai";
   };
 
   const initialCat = getValidCat(search.cat || search.category);
-  const [activeTab, setActiveTab] = useState<"all" | "ai" | "dev" | "seo">(initialCat);
+  const [activeTab, setActiveTab] = useState<"ai" | "dev" | "seo">(initialCat);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -64,7 +63,7 @@ function ServicesPage() {
     setActiveTab(cat);
   }, [search.cat, search.category]);
 
-  const handleTabChange = (tab: "all" | "ai" | "dev" | "seo") => {
+  const handleTabChange = (tab: "ai" | "dev" | "seo") => {
     setActiveTab(tab);
     navigate({
       search: (prev) => ({ ...prev, cat: tab }),
@@ -74,7 +73,7 @@ function ServicesPage() {
 
   const filteredServices = useMemo(() => {
     return servicesList.filter((s) => {
-      const matchesTab = activeTab === "all" || s.category === activeTab;
+      const matchesTab = s.category === activeTab;
       const matchesSearch =
         searchQuery.trim() === "" ||
         s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -102,17 +101,7 @@ function ServicesPage() {
         </p>
 
         {/* Category Navigation Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-3xl mx-auto mb-6">
-          <button
-            onClick={() => handleTabChange("all")}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              activeTab === "all"
-                ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black shadow-lg"
-                : "text-slate-300 hover:text-cyan-300 hover:bg-slate-800"
-            }`}
-          >
-            <Sparkles size={16} /> All 24 Services
-          </button>
+        <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 bg-slate-900/90 rounded-2xl border border-slate-800 backdrop-blur-xl max-w-2xl mx-auto mb-6">
           <button
             onClick={() => handleTabChange("ai")}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
@@ -152,7 +141,7 @@ function ServicesPage() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search all 24 services..."
+            placeholder="Search services by keyword..."
             className="w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-800 rounded-xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400"
           />
         </div>
@@ -166,7 +155,7 @@ function ServicesPage() {
           <p className="text-xs text-slate-400 mb-6">Try clearing your search query or switching categories.</p>
           <button
             onClick={() => {
-              setActiveTab("all");
+              handleTabChange("ai");
               setSearchQuery("");
             }}
             className="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 text-xs font-bold"
