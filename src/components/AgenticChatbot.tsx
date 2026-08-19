@@ -7,11 +7,10 @@ import {
   MicOff,
   Volume2,
   VolumeX,
-  Paperclip,
   Loader2,
-  CheckCircle2,
-  ImageIcon,
-  FileText,
+  Bot,
+  User,
+  Sparkles,
 } from "lucide-react";
 
 const API_BASE =
@@ -24,12 +23,11 @@ interface Message {
   id: string;
   text: string;
   sender: "user" | "bot";
-  file?: string;
 }
 
 interface ConvMessage {
   role: "user" | "assistant";
-  content: string | { type: string; [key: string]: unknown }[];
+  content: string;
 }
 
 declare global {
@@ -39,6 +37,130 @@ declare global {
   }
 }
 
+// Enhanced Markdown & Table Formatter Component for Chatbot Messages
+function FormattedMessage({ text }: { text: string }) {
+  // Pre-process text: replace <br>, <br/>, \r\n with \n
+  let cleanText = text.replace(/<br\s*\/?>/gi, "\n").replace(/\r\n/g, "\n");
+
+  // Parse markdown tables if any exist in the response
+  const lines = cleanText.split("\n");
+  const processedBlocks: { type: "heading" | "subheading" | "bullet" | "table_row" | "text" | "divider"; content: string }[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    // Table divider line |---|---|
+    if (/^\|[\s\-:|]+\|$/.test(line)) {
+      continue;
+    }
+
+    // Markdown Table Row e.g. | Package | Cost | Deliverables |
+    if (line.startsWith("|") && line.endsWith("|")) {
+      const cells = line.split("|").map((c) => c.trim()).filter((c) => c.length > 0);
+      if (cells.length >= 2) {
+        processedBlocks.push({
+          type: "table_row",
+          content: cells.join(" — "),
+        });
+        continue;
+      }
+    }
+
+    if (line.startsWith("### ")) {
+      processedBlocks.push({ type: "heading", content: line.replace(/^###\s+/, "") });
+    } else if (line.startsWith("## ") || line.startsWith("# ")) {
+      processedBlocks.push({ type: "subheading", content: line.replace(/^#{1,2}\s+/, "") });
+    } else if (/^[\bullet\-\*]\s+/.test(line) || /^\d+\.\s+/.test(line)) {
+      processedBlocks.push({ type: "bullet", content: line.replace(/^([\bullet\-\*]|\d+\.)\s+/, "") });
+    } else if (line === "---" || line === "***") {
+      processedBlocks.push({ type: "divider", content: "" });
+    } else {
+      processedBlocks.push({ type: "text", content: line });
+    }
+  }
+
+  return (
+    <div className="space-y-2 text-sm leading-relaxed">
+      {processedBlocks.map((block, idx) => {
+        if (block.type === "heading") {
+          return (
+            <h4 key={idx} className="font-bold text-cyan-300 text-xs uppercase tracking-wider mt-3 mb-1 flex items-center gap-1.5 border-b border-cyan-500/20 pb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              {renderFormattedText(block.content)}
+            </h4>
+          );
+        }
+
+        if (block.type === "subheading") {
+          return (
+            <h3 key={idx} className="font-bold text-cyan-400 text-sm mt-3 mb-1">
+              {renderFormattedText(block.content)}
+            </h3>
+          );
+        }
+
+        if (block.type === "table_row") {
+          return (
+            <div key={idx} className="bg-slate-950/80 border border-cyan-500/30 rounded-xl p-2.5 my-1 text-xs shadow-inner">
+              <div className="text-cyan-200 font-medium">{renderFormattedText(block.content)}</div>
+            </div>
+          );
+        }
+
+        if (block.type === "bullet") {
+          return (
+            <div key={idx} className="flex items-start gap-2 pl-1 my-0.5">
+              <span className="text-cyan-400 text-xs shrink-0 mt-0.5">▸</span>
+              <span className="flex-1 text-slate-200">{renderFormattedText(block.content)}</span>
+            </div>
+          );
+        }
+
+        if (block.type === "divider") {
+          return <div key={idx} className="my-2 border-t border-cyan-500/20" />;
+        }
+
+        return (
+          <p key={idx} className="text-slate-200">
+            {renderFormattedText(block.content)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+// Render bold **text**, italics *text*, and code `text`
+function renderFormattedText(str: string) {
+  // Split on bold **text**
+  const parts = str.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={i} className="font-bold text-cyan-200">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    // Handle inline code `code`
+    if (part.includes("`")) {
+      const codeParts = part.split(/(`.*?`)/g);
+      return codeParts.map((sub, j) => {
+        if (sub.startsWith("`") && sub.endsWith("`")) {
+          return (
+            <code key={j} className="bg-cyan-950 px-1.5 py-0.5 rounded text-cyan-300 font-mono text-[11px] border border-cyan-800">
+              {sub.slice(1, -1)}
+            </code>
+          );
+        }
+        return sub;
+      });
+    }
+    return part;
+  });
+}
+
 export function AgenticChatbot() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +168,7 @@ export function AgenticChatbot() {
     {
       id: "welcome",
       sender: "bot",
-      text: 'Salam! 👋 I\'m the Erha AI Agent. Ask me anything about our services, projects, or team — or give me a command like "Open contact page" or "Show AI projects". You can type or speak!',
+      text: 'Salam! 👋 Welcome to **Erha Technologies**.\n\nI am your AI Assistant. Ask me anything about our **Services**, **Pricing Packages**, **Projects**, or **Team** — or try commands like *"Show pricing"* or *"Open contact page"*!',
     },
   ]);
   const [input, setInput] = useState("");
@@ -54,11 +176,9 @@ export function AgenticChatbot() {
   const [isRecording, setIsRecording] = useState(false);
   const [ttsEnabled, setTtsEnabled] = useState(true);
   const [continuousVoice, setContinuousVoice] = useState(false);
-  const [attachment, setAttachment] = useState<File | null>(null);
   const [convHistory, setConvHistory] = useState<ConvMessage[]>([]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<any | null>(null);
   const finalTranscriptRef = useRef("");
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -223,71 +343,43 @@ export function AgenticChatbot() {
   const handleSend = useCallback(
     async (overrideText?: string) => {
       const text = (overrideText ?? input).trim();
-      if (!text && !attachment) return;
-      if (isLoading) return;
+      if (!text || isLoading) return;
 
-      // Stop any pending silence timer
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       finalTranscriptRef.current = "";
 
       const userMsg: Message = {
         id: Date.now().toString(),
         sender: "user",
-        text: text || "📎 File attached",
+        text: text,
       };
       setMessages((prev) => [...prev, userMsg]);
       setInput("");
       setIsLoading(true);
 
       try {
-        let userContent: ConvMessage["content"] = text || "📎 File attached";
-        let hasVision = false;
-
-        // Handle file attachment
-        if (attachment) {
-          const form = new FormData();
-          form.append("file", attachment);
-          const uploadRes = await fetch(`${API_BASE}/chat/upload`, { method: "POST", body: form });
-          const uploadData = await uploadRes.json();
-
-          if (uploadData.type === "docx") {
-            userContent = `${text}\n\n[Attached document content]:\n${uploadData.text}`;
-          } else if (uploadData.type === "image") {
-            hasVision = true;
-            userContent = [
-              { type: "text", text: text || "What do you see in this image?" },
-              {
-                type: "image_url",
-                image_url: { url: `data:${uploadData.mime};base64,${uploadData.base64}` },
-              },
-            ];
-          }
-          setAttachment(null);
-        }
-
-        const newHistory: ConvMessage[] = [...convHistory, { role: "user", content: userContent }];
+        const newHistory: ConvMessage[] = [...convHistory, { role: "user", content: text }];
         setConvHistory(newHistory);
 
         const res = await fetch(`${API_BASE}/chat/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: newHistory, has_vision: hasVision }),
+          body: JSON.stringify({ messages: newHistory, has_vision: false }),
         });
 
         const data = await res.json();
-        const reply: string = data.reply || "Sorry, I couldn't get a response.";
+        const reply: string = data.reply || "I apologize, I could not process your query at this moment.";
 
         const botMsg: Message = { id: Date.now().toString() + "bot", sender: "bot", text: reply };
         setMessages((prev) => [...prev, botMsg]);
 
         let historyReply = reply;
         if (data.action) {
-          historyReply = `[SYSTEM MEMORY: I have successfully executed the '${data.action.tool}' tool. Do not execute it again unless the user explicitly requests a new action.] ${reply}`;
+          historyReply = `[SYSTEM MEMORY: Executed '${data.action.tool}'] ${reply}`;
         }
         setConvHistory((prev) => [...prev, { role: "assistant", content: historyReply }]);
 
         speak(reply);
-
         if (data.action) handleAction(data.action);
       } catch (err) {
         console.error("[Erha AI] Error:", err);
@@ -301,7 +393,7 @@ export function AgenticChatbot() {
         setIsLoading(false);
       }
     },
-    [input, attachment, isLoading, convHistory, speak, handleAction],
+    [input, isLoading, convHistory, speak, handleAction],
   );
 
   // ── Speech Recognition ───────────────────────────────────────────
@@ -430,31 +522,25 @@ export function AgenticChatbot() {
         </svg>
       </a>
 
-      {/* Floating Button */}
+      {/* Main Chat Trigger Button */}
       <button
         id="erha-chatbot-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full flex items-center justify-center
-          bg-[#45DEFD] text-white shadow-[0_0_20px_#45DEFD] hover:shadow-[0_0_30px_#45DEFD] hover:scale-110 transition-all duration-300
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center
+          bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:shadow-[0_0_35px_rgba(6,182,212,0.8)] hover:scale-110 transition-all duration-300
           ${isOpen ? "scale-0 opacity-0 pointer-events-none" : "scale-100 opacity-100"}`}
         aria-label="Open Erha AI Agent"
       >
-        <svg
-          className="w-5.5 h-5.5 sm:w-6.5 sm:h-6.5 fill-current"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-        </svg>
+        <Sparkles className="w-6 h-6 text-cyan-100 animate-pulse" />
       </button>
 
-      {/* Chat Window */}
+      {/* Dark Futuristic Glassmorphism Chat Window */}
       <div
-        className={`fixed z-[80] flex flex-col bg-white
-          border border-slate-200 rounded-2xl overflow-hidden
-          shadow-2xl transition-all duration-300
-          left-1/2 -translate-x-1/2 bottom-4 w-[calc(100vw-2rem)] max-w-[380px] h-[75vh] max-h-[520px]
-          sm:left-auto sm:right-6 sm:bottom-6 sm:translate-x-0 sm:w-[390px] sm:h-[600px] sm:max-h-[calc(100vh-3rem)] sm:max-w-none
+        className={`fixed z-[80] flex flex-col bg-slate-950/95 backdrop-blur-xl
+          border border-cyan-500/30 rounded-2xl overflow-hidden
+          shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300
+          left-1/2 -translate-x-1/2 bottom-4 w-[calc(100vw-2rem)] max-w-[380px] h-[78vh] max-h-[560px]
+          sm:left-auto sm:right-6 sm:bottom-6 sm:translate-x-0 sm:w-[410px] sm:h-[620px] sm:max-h-[calc(100vh-3rem)] sm:max-w-none
           ${
             isOpen
               ? "translate-y-0 scale-100 opacity-100 pointer-events-auto"
@@ -462,16 +548,22 @@ export function AgenticChatbot() {
           }`}
       >
         {/* Header */}
-        <div className="p-4 bg-slate-900 text-white border-b border-slate-800 flex items-center justify-between shrink-0">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-sm font-bold text-xs">
-              AI
+        <div className="p-4 bg-slate-900/90 border-b border-cyan-500/20 flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-black text-sm shadow-[0_0_12px_rgba(6,182,212,0.6)]">
+              <Bot size={20} className="text-slate-950" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white leading-none">Ask Ai</div>
-              <div className="text-[11px] text-blue-400 font-medium mt-0.5">Autonomous Operations</div>
+              <div className="text-sm font-bold text-white leading-none flex items-center gap-1.5">
+                Erha AI Agent
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block" />
+              </div>
+              <div className="text-[11px] text-cyan-400 font-medium mt-1 tracking-wide">
+                Autonomous Digital Solutions
+              </div>
             </div>
           </div>
+
           <div className="flex items-center gap-1">
             <button
               onClick={() => {
@@ -479,137 +571,117 @@ export function AgenticChatbot() {
                 window.speechSynthesis.cancel();
               }}
               title={ttsEnabled ? "Mute voice output" : "Enable voice output"}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 text-slate-400 hover:text-cyan-400 transition-colors"
             >
               {ttsEnabled ? (
-                <Volume2 size={16} className="text-blue-400" />
+                <Volume2 size={17} className="text-cyan-400" />
               ) : (
-                <VolumeX size={16} className="text-slate-500" />
+                <VolumeX size={17} className="text-slate-500" />
               )}
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
             >
               <X size={18} />
             </button>
           </div>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50 custom-scrollbar">
+        {/* Message Container */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-950/60 custom-scrollbar">
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+              className={`flex gap-2.5 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
             >
+              {msg.sender === "bot" && (
+                <div className="w-7 h-7 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 mt-0.5">
+                  <Bot size={15} />
+                </div>
+              )}
+
               <div
-                className={`max-w-[84%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                className={`max-w-[82%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   msg.sender === "user"
-                    ? "bg-blue-600 text-white rounded-tr-xs font-medium shadow-xs"
-                    : "bg-white text-slate-800 border border-slate-200 rounded-tl-xs shadow-xs"
+                    ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-tr-xs font-medium shadow-md shadow-cyan-950/40"
+                    : "bg-slate-900/90 text-slate-100 border border-cyan-500/20 rounded-tl-xs shadow-md shadow-slate-950/80"
                 }`}
               >
-                {msg.text}
+                {msg.sender === "bot" ? <FormattedMessage text={msg.text} /> : msg.text}
               </div>
+
+              {msg.sender === "user" && (
+                <div className="w-7 h-7 rounded-full bg-blue-600/30 border border-blue-500/40 flex items-center justify-center text-blue-300 shrink-0 mt-0.5">
+                  <User size={15} />
+                </div>
+              )}
             </div>
           ))}
 
           {isLoading && (
-            <div className="flex justify-start">
-              <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-xs px-4 py-3 flex items-center gap-2 text-slate-500 text-sm shadow-xs">
-                <Loader2 size={14} className="animate-spin text-blue-600" />
-                Erha AI is thinking…
+            <div className="flex items-center gap-2.5 justify-start">
+              <div className="w-7 h-7 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                <Bot size={15} />
+              </div>
+              <div className="bg-slate-900/90 border border-cyan-500/20 rounded-2xl rounded-tl-xs px-4 py-3 flex items-center gap-2 text-cyan-300 text-xs shadow-md">
+                <Loader2 size={15} className="animate-spin text-cyan-400" />
+                Erha AI is retrieving site data…
               </div>
             </div>
           )}
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Attachment Preview */}
-        {attachment && (
-          <div className="px-4 py-2 bg-slate-100 border-t border-slate-200 flex items-center gap-2">
-            {attachment.type.startsWith("image/") ? (
-              <ImageIcon size={14} className="text-blue-600" />
-            ) : (
-              <FileText size={14} className="text-blue-600" />
-            )}
-            <span className="text-xs text-slate-600 truncate flex-1">{attachment.name}</span>
-            <button
-              onClick={() => setAttachment(null)}
-              className="text-xs text-slate-500 hover:text-slate-900"
-            >
-              ✕
-            </button>
-          </div>
-        )}
-
-        {/* Voice mode indicator */}
+        {/* Voice Listening Bar */}
         {isRecording && (
-          <div className="px-4 py-3 bg-red-50 border-y border-red-200 flex flex-col gap-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-[10px] font-bold text-red-600 uppercase tracking-wider">
-                  Listening…
-                </span>
-              </div>
-              <span className="text-[9px] text-red-500 uppercase">Auto-send after silence</span>
+          <div className="px-4 py-2.5 bg-cyan-950/60 border-y border-cyan-500/30 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+              <span className="text-xs font-semibold text-cyan-300 uppercase tracking-wider">
+                Listening… speak your query
+              </span>
             </div>
+            <span className="text-[10px] text-cyan-400/70">Auto-sends on pause</span>
           </div>
         )}
 
-        {/* Input Area */}
-        <div className="p-3 bg-white border-t border-slate-200 shrink-0">
+        {/* Bottom Input Controls */}
+        <div className="p-3 bg-slate-900/90 border-t border-cyan-500/20 shrink-0">
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="w-9 h-9 shrink-0 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors"
-              title="Attach file"
-            >
-              <Paperclip size={16} />
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".docx,.doc,image/*"
-              className="hidden"
-              onChange={(e) => setAttachment(e.target.files?.[0] ?? null)}
-            />
-
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
-              placeholder={isRecording ? "Speaking…" : "Type or speak…"}
-              className="flex-1 min-w-0 bg-slate-50 border border-slate-200 rounded-full px-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white transition-all"
+              placeholder={isRecording ? "Listening to your voice…" : "Ask about services, pricing, team…"}
+              className="flex-1 min-w-0 bg-slate-950 border border-slate-800 rounded-full px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
             />
 
             <button id="hidden-mic-restart" onClick={startRecording} className="hidden" />
 
             <button
               onClick={toggleMic}
-              title={isRecording ? "Stop recording" : "Start voice input"}
-              className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center transition-all ${
+              title={isRecording ? "Stop recording" : "Start voice recognition"}
+              className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center transition-all ${
                 isRecording
-                  ? "bg-red-500 text-white animate-pulse"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
+                  ? "bg-red-500 text-white animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.7)]"
+                  : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-cyan-400"
               }`}
             >
-              {isRecording ? <MicOff size={16} /> : <Mic size={16} />}
+              {isRecording ? <MicOff size={18} /> : <Mic size={18} />}
             </button>
 
             <button
               onClick={() => handleSend()}
-              disabled={(!input.trim() && !attachment) || isLoading}
-              className="w-9 h-9 shrink-0 rounded-full bg-[#45DDFD] hover:bg-[#38bdf8] text-slate-950 font-bold flex items-center justify-center disabled:opacity-40 transition-all shadow-sm"
+              disabled={!input.trim() || isLoading}
+              className="w-10 h-10 shrink-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold flex items-center justify-center disabled:opacity-30 transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)]"
             >
               {isLoading ? (
-                <Loader2 size={16} className="animate-spin" />
+                <Loader2 size={18} className="animate-spin text-slate-950" />
               ) : (
-                <Send size={16} />
+                <Send size={18} className="text-slate-950 ml-0.5" />
               )}
             </button>
           </div>
