@@ -35,6 +35,17 @@ export const Route = createFileRoute("/admin")({
 // Default Mock Data matching projects.tsx
 const defaultProjects = [
   {
+    title: "ERHA TRADE LINK INTERNATIONAL",
+    tag: "Ecommerce Store",
+    desc: "Premium e-commerce store & digital trade platform for tech accessories, power banks, and audio gear.",
+    url: "https://www.erhatradelinkinternational.com/",
+    color: "var(--neon-cyan)",
+    problem: "The client required an official, modern, high-converting e-commerce web platform to showcase premium tech accessories, manage multi-category inventories, and streamline online ordering in Pakistan.",
+    solution: "Engineered a high-performance e-commerce storefront featuring fast product catalog navigation, promotional deal banners, instant search, interactive cart & checkout workflows, and full mobile optimization.",
+    metrics: ["Catalog Speed: <150ms", "Mobile Conversion: +65%", "Uptime: 99.99%"],
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "E-Commerce", "REST API"]
+  },
+  {
     title: "Neural Insight",
     tag: "AI Platform",
     desc: "Real-time analytics powered by transformer models.",

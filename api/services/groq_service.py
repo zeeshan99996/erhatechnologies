@@ -34,6 +34,7 @@ ERHA_SYSTEM_PROMPT = """You are the official AI Agent of Erha Technologies — a
 6. **AI Integration & RAG**: Semantic search systems, vector database indexing, custom fine-tuned LLMs, and Retrieval-Augmented Generation (RAG).
 
 ### Featured Projects Portfolio:
+- **ERHA TRADE LINK INTERNATIONAL**: Premium e-commerce storefront and digital trade platform for tech accessories, power banks, and audio gear (https://www.erhatradelinkinternational.com/).
 - **Neural Insight**: Enterprise AI platform offering real-time predictive analytics powered by fine-tuned transformer models.
 - **Agent Forge**: Autonomous agentic AI orchestration framework to build and manage agent workflows.
 - **FinFlow**: Modern financial management web application featuring automated revenue forecasting.

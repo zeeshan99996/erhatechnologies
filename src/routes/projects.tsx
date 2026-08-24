@@ -14,6 +14,7 @@ import {
   Database,
   Layers,
   ChevronRight,
+  ShoppingBag,
 } from "lucide-react";
 import {
   Dialog,
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/projects")({
       { title: "Projects & Case Studies — Erha Technologies" },
       {
         name: "description",
-        content: "Explore enterprise AI platforms, agentic systems, and high-performance digital products engineered by Erha Technologies.",
+        content: "Explore enterprise AI platforms, agentic systems, e-commerce platforms, and high-performance digital products engineered by Erha Technologies.",
       },
       { property: "og:title", content: "Projects — Erha Technologies" },
       { property: "og:description", content: "A portfolio of AI systems and digital engineering." },
@@ -47,6 +48,13 @@ const serviceCategories = [
     icon: Layers,
     color: "#38bdf8",
     description: "Complete portfolio across all service lines",
+  },
+  {
+    id: "Ecommerce Store",
+    label: "Ecommerce Store",
+    icon: ShoppingBag,
+    color: "#ec4899",
+    description: "Online stores, shopping platforms & digital trade",
   },
   {
     id: "Full Stack",
@@ -102,6 +110,17 @@ const serviceCategories = [
 type ServiceId = (typeof serviceCategories)[number]["id"];
 
 const defaultProjects = [
+  {
+    title: "ERHA TRADE LINK INTERNATIONAL",
+    tag: "Ecommerce Store",
+    desc: "Premium e-commerce storefront specializing in high-performance tech accessories, power banks, ANC/ENC wireless earbuds, and electronics.",
+    url: "https://www.erhatradelinkinternational.com/",
+    color: "#ec4899",
+    problem: "The client needed an official, high-converting digital storefront to feature multi-category tech accessories, power banks, audio products, and offer direct online ordering.",
+    solution: "Designed and engineered a blazing-fast responsive e-commerce web platform featuring real-time product search, promotional deal banners, category filtering (High Capacity, MagSafe & Wireless, Laptop Power Banks, Ultra Compact), and streamlined cart & checkout workflows.",
+    metrics: ["Page Speed: 98/100", "Mobile Conversion: +65%", "Uptime: 99.99%"],
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "E-Commerce", "REST API"]
+  },
   {
     title: "Neural Insight",
     tag: "AI Platform",
@@ -174,9 +193,17 @@ function ProjectsPage() {
       const stored = localStorage.getItem("erha_projects");
       if (stored) {
         try {
-          setProjectList(JSON.parse(stored));
+          const parsed = JSON.parse(stored);
+          if (!parsed.some((p: any) => p.title?.toLowerCase().includes("erha trade link"))) {
+            const updated = [defaultProjects[0], ...parsed];
+            localStorage.setItem("erha_projects", JSON.stringify(updated));
+            setProjectList(updated);
+          } else {
+            setProjectList(parsed);
+          }
         } catch (e) {
           console.error("Failed to parse local projects cache", e);
+          setProjectList(defaultProjects);
         }
       } else {
         localStorage.setItem("erha_projects", JSON.stringify(defaultProjects));
@@ -367,9 +394,22 @@ function ProjectsPage() {
                   </div>
 
                   <div className="p-5">
-                    <h3 className="font-extrabold text-lg text-white mb-2 flex items-center justify-between">
-                      {p.title}
-                      <ExternalLink size={14} className="text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <h3 className="font-extrabold text-lg text-white mb-2 flex items-center justify-between gap-2">
+                      <span className="truncate">{p.title}</span>
+                      {p.url ? (
+                        <a
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-cyan-400 hover:text-cyan-300 transition-colors p-1 shrink-0"
+                          title="Visit Live Store"
+                        >
+                          <ExternalLink size={16} />
+                        </a>
+                      ) : (
+                        <ExternalLink size={14} className="text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity shrink-0" />
+                      )}
                     </h3>
                     <p className="text-sm text-slate-300 leading-relaxed">{p.desc}</p>
 
@@ -484,13 +524,25 @@ function ProjectsPage() {
                 <span className="text-[11px] font-mono text-slate-400">
                   Case ID: ERHA-{selectedProject.title.toUpperCase().replace(/\s+/g, "-")}
                 </span>
-                <Link
-                  to="/contact"
-                  onClick={() => setSelectedProject(null)}
-                  className="btn-neon px-5 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5"
-                >
-                  Discuss Similar Solution <ArrowRight size={14} />
-                </Link>
+                <div className="flex flex-wrap items-center gap-3">
+                  {selectedProject.url && (
+                    <a
+                      href={selectedProject.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-neon px-5 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-1.5"
+                    >
+                      Visit Live Store <ExternalLink size={14} />
+                    </a>
+                  )}
+                  <Link
+                    to="/contact"
+                    onClick={() => setSelectedProject(null)}
+                    className="px-5 py-2.5 rounded-full text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 inline-flex items-center gap-1.5 transition-colors"
+                  >
+                    Discuss Similar Solution <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
             </div>
           )}
