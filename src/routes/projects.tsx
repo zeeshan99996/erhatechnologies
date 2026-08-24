@@ -141,56 +141,6 @@ const defaultProjects = [
     metrics: ["EMR Access: <100ms", "Daily Intake: 500+ Patients", "Billing Accuracy: 100%"],
     stack: ["React.js", "TypeScript", "Tailwind CSS", "Web App", "Node.js", "PostgreSQL"]
   },
-  {
-    title: "Neural Insight",
-    tag: "AI Platform",
-    desc: "Real-time analytics powered by custom transformer models.",
-    color: "#38bdf8",
-    problem: "The client needed real-time telemetry anomaly detection processing on 100K+ concurrent data streams with <100ms processing latency.",
-    solution: "Implemented a custom transformer-based sequence processing pipeline with memory-mapped storage buffers and GPU inference optimization.",
-    metrics: ["Latency: <45ms", "Accuracy: 99.4%", "Throughput: 150K events/s"],
-    stack: ["PyTorch", "FastAPI", "Redis", "Docker", "CUDA"]
-  },
-  {
-    title: "Agent Forge",
-    tag: "Agentic AI",
-    desc: "Build, deploy, and orchestrate autonomous AI agents.",
-    color: "#818cf8",
-    problem: "Organizations struggled to orchestrate multi-agent autonomous tasks requiring recursive reasoning, tool execution, and self-correction loops.",
-    solution: "Designed a multi-agent orchestration framework utilizing semantic routing, hierarchical state machines, and dynamic context window compression.",
-    metrics: ["Task Success: 92.1%", "API Cost: -40%", "Exec Time: -65%"],
-    stack: ["CrewAI", "LangGraph", "LlamaIndex", "ChromaDB", "FastAPI"]
-  },
-  {
-    title: "Lumen Mobile",
-    tag: "Mobile App",
-    desc: "Cross-platform enterprise messaging with on-device AI.",
-    color: "#818cf8",
-    problem: "Providing secure, enterprise-grade instant messaging with high-quality intelligence without relying on cloud APIs or exposing data.",
-    solution: "Created a cross-platform mobile application integrating quantized on-device small language models (SLMs) running locally on device hardware.",
-    metrics: ["Generation: 25 tok/s", "RAM Footprint: <450MB", "Data Security: 100% Local"],
-    stack: ["Flutter", "Llama.cpp", "SQLite", "Rust", "Dart"]
-  },
-  {
-    title: "AutoPilot RPA",
-    tag: "Automation",
-    desc: "Workflow automation orchestrating across 200+ SaaS platforms.",
-    color: "#38bdf8",
-    problem: "Manual data migration and workflow execution across legacy ERP databases and modern SaaS APIs wasted thousands of engineering hours.",
-    solution: "Developed a distributed workflow automation system with self-healing selenium pipelines, fallback selectors, and webhook listener nodes.",
-    metrics: ["Effort Saved: 85%", "System Uptime: 99.98%", "Integrations: 200+ SaaS"],
-    stack: ["Node.js", "RabbitMQ", "Selenium", "GraphQL", "Docker"]
-  },
-  {
-    title: "OmniSearch RAG",
-    tag: "AI Search",
-    desc: "Cognitive search system powered by RAG and semantic routing.",
-    color: "#818cf8",
-    problem: "Retrieving relevant engineering standards across 5 million internal documentation files was slow and returned irrelevant search hits.",
-    solution: "Built a semantic cognitive search engine powered by dense-sparse hybrid vector indexing, metadata filtering, and LLM auto-rerank layers.",
-    metrics: ["Search Speed: <120ms", "MRR Score: 0.94", "User Adoption: 91%"],
-    stack: ["LlamaIndex", "Qdrant", "Elasticsearch", "FastAPI", "Python"]
-  },
 ];
 
 function ProjectsPage() {
@@ -200,13 +150,21 @@ function ProjectsPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Purge legacy cache key
+      // Purge legacy cache keys to wipe dummy projects from browser storage
       localStorage.removeItem("erha_projects");
-      const stored = localStorage.getItem("erha_projects_v2");
+      localStorage.removeItem("erha_projects_v2");
+
+      const stored = localStorage.getItem("erha_projects_v3");
       if (stored) {
         try {
           let parsed = JSON.parse(stored);
-          parsed = parsed.filter((p: any) => !p.title?.toLowerCase().includes("finflow"));
+
+          // Filter out dummy items if present in custom local storage
+          const dummyKeywords = ["neural", "agent forge", "finflow", "lumen", "autopilot", "omnisearch"];
+          parsed = parsed.filter(
+            (p: any) => !dummyKeywords.some((keyword) => p.title?.toLowerCase().includes(keyword))
+          );
+
           const idx1 = parsed.findIndex((p: any) => p.title?.toLowerCase().includes("erha trade link"));
           if (idx1 === -1) {
             parsed = [defaultProjects[0], ...parsed];
@@ -228,14 +186,14 @@ function ProjectsPage() {
             parsed[idx3] = { ...parsed[idx3], tag: "Web App", image: defaultProjects[2].image, url: defaultProjects[2].url };
           }
 
-          localStorage.setItem("erha_projects_v2", JSON.stringify(parsed));
+          localStorage.setItem("erha_projects_v3", JSON.stringify(parsed));
           setProjectList(parsed);
         } catch (e) {
           console.error("Failed to parse local projects cache", e);
           setProjectList(defaultProjects);
         }
       } else {
-        localStorage.setItem("erha_projects_v2", JSON.stringify(defaultProjects));
+        localStorage.setItem("erha_projects_v3", JSON.stringify(defaultProjects));
         setProjectList(defaultProjects);
       }
     }

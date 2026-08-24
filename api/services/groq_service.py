@@ -37,11 +37,6 @@ ERHA_SYSTEM_PROMPT = """You are the official AI Agent of Erha Technologies — a
 - **ERHA TRADE LINK INTERNATIONAL**: Premium e-commerce storefront and digital trade platform for tech accessories, power banks, and audio gear (https://www.erhatradelinkinternational.com/).
 - **Abu Arish Tow Services**: 24/7 emergency vehicle recovery & towing web application in Abu Arish & Jazan region with bilingual support (https://www.abuarishtowservices.com/).
 - **Hospital Management System**: Enterprise EMR & Hospital Management System (Dr. Talha Clinic) for OPD/IPD patient registration, token queues, pharmacy, lab tests, and billing (https://www.drtalhaclinic.com/).
-- **Neural Insight**: Enterprise AI platform offering real-time predictive analytics powered by fine-tuned transformer models.
-- **Agent Forge**: Autonomous agentic AI orchestration framework to build and manage agent workflows.
-- **Lumen Chat**: Secure cross-platform mobile messaging application with on-device local AI processing.
-- **AutoPilot RPA**: Intelligent robotic process automation platform connecting over 200+ business tools.
-- **OmniSearch**: High-speed cognitive search system powered by RAG and dynamic semantic query routing.
 
 ### Pricing & Packages (Basic, Standard, Premium):
 1. **AI & Agentic Solutions Packages**:

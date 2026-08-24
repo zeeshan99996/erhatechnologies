@@ -66,56 +66,7 @@ const defaultProjects = [
     solution: "Engineered a cloud-based EMR & Hospital Management System (HMS) featuring real-time clinical dashboards, OPD/IPD patient intake workflows, token queue automation, bed admissions management, lab tracking, pharmacy inventory stock alerts, and automated billing & invoicing.",
     metrics: ["EMR Access: <100ms", "Daily Intake: 500+ Patients", "Billing Accuracy: 100%"],
     stack: ["React.js", "TypeScript", "Tailwind CSS", "Web App", "Node.js", "PostgreSQL"]
-  },
-  {
-    title: "Neural Insight",
-    tag: "AI Platform",
-    desc: "Real-time analytics powered by transformer models.",
-    color: "var(--neon-cyan)",
-    problem: "The client needed real-time telemetry anomaly detection processing on 100K+ concurrent data streams with <100ms processing latency.",
-    solution: "Implemented a custom transformer-based sequence processing pipeline with memory-mapped storage buffers and GPU inference optimization.",
-    metrics: ["Latency: <45ms", "Accuracy: 99.4%", "Throughput: 150K events/s"],
-    stack: ["PyTorch", "FastAPI", "Redis", "Docker", "CUDA"]
-  },
-  {
-    title: "Agent Forge",
-    tag: "Agentic AI",
-    desc: "Build, deploy, and orchestrate autonomous AI agents.",
-    color: "var(--neon-purple)",
-    problem: "Organizations struggled to orchestrate multi-agent autonomous tasks that require recursive reasoning, tool execution, and self-correction loops.",
-    solution: "Designed a multi-agent orchestration framework utilizing semantic routing, hierarchical state machines, and dynamic context window compression.",
-    metrics: ["Task Success: 92.1%", "API Cost: -40%", "Exec Time: -65%"],
-    stack: ["CrewAI", "LangGraph", "LlamaIndex", "ChromaDB", "FastAPI"]
-  {
-    title: "Lumen Chat",
-    tag: "Mobile App",
-    desc: "Cross-platform messaging with on-device AI.",
-    color: "var(--neon-cyan)",
-    problem: "Providing secure, enterprise-grade instant messaging with high-quality intelligence without relying on cloud APIs or exposing messages.",
-    solution: "Created a cross-platform mobile application integrating quantized on-device small language models (SLMs) running locally on phone hardware.",
-    metrics: ["Generation: 25 tok/s", "RAM Footprint: <450MB", "Data Security: 100% Local"],
-    stack: ["Flutter", "Llama.cpp", "SQLite", "Rust", "Dart"]
-  },
-  {
-    title: "AutoPilot RPA",
-    tag: "Automation",
-    desc: "Workflow automation across 200+ SaaS tools.",
-    color: "var(--neon-purple)",
-    problem: "Manual data migration and workflow execution across legacy ERP databases and modern SaaS APIs wasted thousands of engineering hours.",
-    solution: "Developed a distributed workflow automation system with self-healing selenium pipelines, fallback selectors, and webhook listener nodes.",
-    metrics: ["Effort Saved: 85%", "System Uptime: 99.98%", "Integrations: 200+ SaaS"],
-    stack: ["Node.js", "RabbitMQ", "Selenium", "GraphQL", "Docker"]
-  },
-  {
-    title: "OmniSearch",
-    tag: "AI Search",
-    desc: "Cognitive search system powered by RAG and semantic routing.",
-    color: "var(--neon-blue)",
-    problem: "Retrieving relevant engineering standards across 5 million internal documentation files was slow and returned irrelevant search hits.",
-    solution: "Built a semantic cognitive search engine powered by dense-sparse hybrid vector indexing, metadata filtering, and LLM auto-rerank layers.",
-    metrics: ["Search Speed: <120ms", "MRR Score: 0.94", "User Adoption: 91%"],
-    stack: ["LlamaIndex", "Qdrant", "Elasticsearch", "FastAPI", "Python"]
-  },
+  }
 ];
 
 // Default Mock Data matching team.tsx
@@ -358,17 +309,21 @@ function AdminPage() {
 
       // Load Projects
       localStorage.removeItem("erha_projects");
-      const localProjects = localStorage.getItem("erha_projects_v2");
+      localStorage.removeItem("erha_projects_v2");
+      const localProjects = localStorage.getItem("erha_projects_v3");
       if (localProjects) {
         try {
-          const parsed = JSON.parse(localProjects).filter((p: any) => !p.title?.toLowerCase().includes("finflow"));
+          const dummyKeywords = ["neural", "agent forge", "finflow", "lumen", "autopilot", "omnisearch"];
+          const parsed = JSON.parse(localProjects).filter(
+            (p: any) => !dummyKeywords.some((keyword) => p.title?.toLowerCase().includes(keyword))
+          );
           setProjects(parsed);
         } catch {
           setProjects(defaultProjects);
         }
       } else {
         setProjects(defaultProjects);
-        localStorage.setItem("erha_projects_v2", JSON.stringify(defaultProjects));
+        localStorage.setItem("erha_projects_v3", JSON.stringify(defaultProjects));
       }
 
       // Load Team Members
@@ -539,7 +494,7 @@ function AdminPage() {
     }
 
     setProjects(updatedProjects);
-    localStorage.setItem("erha_projects_v2", JSON.stringify(updatedProjects));
+    localStorage.setItem("erha_projects_v3", JSON.stringify(updatedProjects));
     setProjectModal(null);
     setEditProjectIdx(null);
   };
@@ -649,7 +604,7 @@ function AdminPage() {
       const title = projects[index].title;
       const updated = projects.filter((_, i) => i !== index);
       setProjects(updated);
-      localStorage.setItem("erha_projects_v2", JSON.stringify(updated));
+      localStorage.setItem("erha_projects_v3", JSON.stringify(updated));
       showNotification(`Project "${title}" deleted.`);
     } else if (type === "team") {
       const name = teamMembers[index].name;
@@ -684,7 +639,7 @@ function AdminPage() {
 
       if (importType === "projects") {
         setProjects(parsed);
-        localStorage.setItem("erha_projects_v2", JSON.stringify(parsed));
+        localStorage.setItem("erha_projects_v3", JSON.stringify(parsed));
         showNotification("Projects array imported successfully.");
       } else {
         setTeamMembers(parsed);
@@ -700,7 +655,7 @@ function AdminPage() {
   const handleResetToDefaults = () => {
     if (confirm("Are you sure you want to reset ALL data to code defaults? This will erase local additions and edits.")) {
       setProjects(defaultProjects);
-      localStorage.setItem("erha_projects_v2", JSON.stringify(defaultProjects));
+      localStorage.setItem("erha_projects_v3", JSON.stringify(defaultProjects));
 
       setTeamMembers(defaultTeam as any);
       localStorage.setItem("erha_team_members", JSON.stringify(defaultTeam));
