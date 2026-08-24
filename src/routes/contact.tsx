@@ -495,7 +495,7 @@ function ContactPage() {
                 icon: MapPin,
                 label: "Headquarters",
                 value:
-                  "Pace & Pace Mall, near Chase Up, 2nd Floor, Office #02, Chungi #6, Multan, Pakistan",
+                  "71-A Model Town, near Pak Turk International School, Multan, Pakistan",
               },
             ].map((c) => (
               <div
