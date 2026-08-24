@@ -46,6 +46,17 @@ const defaultProjects = [
     stack: ["React.js", "TypeScript", "Tailwind CSS", "E-Commerce", "REST API"]
   },
   {
+    title: "Abu Arish Tow Services",
+    tag: "Full Stack",
+    desc: "24/7 emergency vehicle recovery & towing platform in Abu Arish & Jazan with bilingual support.",
+    url: "https://www.abuarishtowservices.com/",
+    color: "var(--neon-cyan)",
+    problem: "Stranded drivers in the Jazan region required immediate 24/7 emergency vehicle recovery with fast response dispatching, Arabic/English localized interface, and direct click-to-call/WhatsApp integration.",
+    solution: "Engineered a high-availability full-stack emergency web application featuring dual-language localization (Arabic/English), 1-click emergency phone call & WhatsApp dispatch, location-based coverage area mapping, and a 15-minute response guarantee tracking workflow.",
+    metrics: ["Avg Response: <15 Mins", "Dispatch Speed: Instant", "Bilingual UX: 100% Arabic & EN"],
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "Full Stack", "REST API", "i18n"]
+  },
+  {
     title: "Neural Insight",
     tag: "AI Platform",
     desc: "Real-time analytics powered by transformer models.",

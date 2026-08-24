@@ -22,6 +22,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import erhaTradeLinkImg from "@/assets/erha-tradelink-preview.png";
+import abuArishImg from "@/assets/abu-arish-preview.png";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -116,6 +117,18 @@ const defaultProjects = [
     stack: ["React.js", "TypeScript", "Tailwind CSS", "Full Stack", "REST API"]
   },
   {
+    title: "Abu Arish Tow Services",
+    tag: "Full Stack",
+    desc: "24/7 emergency vehicle recovery & car towing service platform in Abu Arish & Jazan region with bilingual support and instant dispatch routing.",
+    url: "https://www.abuarishtowservices.com/",
+    image: abuArishImg,
+    color: "#38bdf8",
+    problem: "Stranded drivers in the Jazan region required immediate 24/7 emergency vehicle recovery with fast response dispatching, Arabic/English localized interface, and direct click-to-call/WhatsApp integration.",
+    solution: "Engineered a high-availability full-stack emergency web application featuring dual-language localization (Arabic/English), 1-click emergency phone call & WhatsApp dispatch, location-based coverage area mapping, and a 15-minute response guarantee tracking workflow.",
+    metrics: ["Avg Response: <15 Mins", "Dispatch Speed: Instant", "Bilingual UX: 100% Arabic & EN"],
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "Full Stack", "REST API", "i18n"]
+  },
+  {
     title: "Neural Insight",
     tag: "AI Platform",
     desc: "Real-time analytics powered by custom transformer models.",
@@ -188,12 +201,20 @@ function ProjectsPage() {
       if (stored) {
         try {
           let parsed = JSON.parse(stored);
-          const idx = parsed.findIndex((p: any) => p.title?.toLowerCase().includes("erha trade link"));
-          if (idx === -1) {
+          const idx1 = parsed.findIndex((p: any) => p.title?.toLowerCase().includes("erha trade link"));
+          if (idx1 === -1) {
             parsed = [defaultProjects[0], ...parsed];
           } else {
-            parsed[idx] = { ...parsed[idx], tag: "Full Stack", image: defaultProjects[0].image, url: defaultProjects[0].url };
+            parsed[idx1] = { ...parsed[idx1], tag: "Full Stack", image: defaultProjects[0].image, url: defaultProjects[0].url };
           }
+
+          const idx2 = parsed.findIndex((p: any) => p.title?.toLowerCase().includes("abu arish"));
+          if (idx2 === -1) {
+            parsed.splice(1, 0, defaultProjects[1]);
+          } else {
+            parsed[idx2] = { ...parsed[idx2], tag: "Full Stack", image: defaultProjects[1].image, url: defaultProjects[1].url };
+          }
+
           localStorage.setItem("erha_projects", JSON.stringify(parsed));
           setProjectList(parsed);
         } catch (e) {
