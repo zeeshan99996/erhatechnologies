@@ -378,21 +378,36 @@ function ProjectsPage() {
                 onClick={() => setSelectedProject(p)}
               >
                 <div>
-                  {/* Header Visual */}
-                  <div className="h-44 bg-slate-950/80 border-b border-slate-800 relative flex items-center justify-center overflow-hidden">
-                    {p.image ? (
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        className="w-full h-full object-cover object-top opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
-                      />
-                    ) : (
-                      <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 shadow-xl flex items-center justify-center font-extrabold text-2xl text-cyan-400 group-hover:border-cyan-500/40 transition-all">
-                        {p.title.charAt(0)}
+                  {/* Header Visual — Browser Mockup Frame */}
+                  <div className="h-48 bg-slate-950/90 border-b border-slate-800 relative flex flex-col overflow-hidden group">
+                    {/* Browser Control Bar */}
+                    <div className="h-7 bg-slate-900/90 border-b border-slate-800/80 px-3 flex items-center justify-between shrink-0 z-10">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
                       </div>
-                    )}
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-cyan-500/30 text-cyan-400 text-[10px] font-bold font-mono">
-                      {p.tag}
+                      <span className="text-[10px] font-mono text-slate-400 truncate max-w-[140px] px-2 py-0.5 rounded bg-slate-950/60 border border-slate-800/60">
+                        {p.url ? p.url.replace(/^https?:\/\//, "").replace(/\/$/, "") : `${p.title.toLowerCase().replace(/\s+/g, "")}.com`}
+                      </span>
+                      <span className="text-[10px] font-mono font-bold text-cyan-400 px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30">
+                        {p.tag}
+                      </span>
+                    </div>
+
+                    {/* Viewport Area */}
+                    <div className="flex-1 relative overflow-hidden flex items-center justify-center bg-slate-950">
+                      {p.image ? (
+                        <img
+                          src={p.image}
+                          alt={p.title}
+                          className="w-full h-full object-cover object-top opacity-95 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-700 shadow-xl flex items-center justify-center font-extrabold text-xl text-cyan-400 group-hover:border-cyan-500/40 transition-all">
+                          {p.title.charAt(0)}
+                        </div>
+                      )}
                     </div>
                   </div>
 
