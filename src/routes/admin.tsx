@@ -86,17 +86,6 @@ const defaultProjects = [
     solution: "Designed a multi-agent orchestration framework utilizing semantic routing, hierarchical state machines, and dynamic context window compression.",
     metrics: ["Task Success: 92.1%", "API Cost: -40%", "Exec Time: -65%"],
     stack: ["CrewAI", "LangGraph", "LlamaIndex", "ChromaDB", "FastAPI"]
-  },
-  {
-    title: "FinFlow",
-    tag: "Web App",
-    desc: "Next-gen finance dashboard with predictive forecasting.",
-    color: "var(--neon-blue)",
-    problem: "The financial operations team required predictive forecasting visual tools to project complex treasury flows across 15 global accounts.",
-    solution: "Engineered a high-performance React dashboard featuring a WebAssembly charting engine and localized predictive auto-regressive forecasting models.",
-    metrics: ["Render Speed: 120 FPS", "Accuracy: 96.8% (30d)", "Initial Load: 1.2s"],
-    stack: ["React.js", "TypeScript", "Tailwind CSS", "WebAssembly", "Rust"]
-  },
   {
     title: "Lumen Chat",
     tag: "Mobile App",

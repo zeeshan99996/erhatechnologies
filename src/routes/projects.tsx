@@ -162,16 +162,6 @@ const defaultProjects = [
     stack: ["CrewAI", "LangGraph", "LlamaIndex", "ChromaDB", "FastAPI"]
   },
   {
-    title: "FinFlow Enterprise",
-    tag: "Web App",
-    desc: "Next-gen finance dashboard with predictive treasury forecasting.",
-    color: "#38bdf8",
-    problem: "The treasury operations team required predictive forecasting visual tools to project treasury flows across 15 global accounts.",
-    solution: "Engineered a high-performance React dashboard featuring a WebAssembly charting engine and localized predictive forecasting models.",
-    metrics: ["Render Speed: 120 FPS", "Accuracy: 96.8% (30d)", "Initial Load: 1.2s"],
-    stack: ["React.js", "TypeScript", "Tailwind CSS", "WebAssembly", "Rust"]
-  },
-  {
     title: "Lumen Mobile",
     tag: "Mobile App",
     desc: "Cross-platform enterprise messaging with on-device AI.",
@@ -214,6 +204,7 @@ function ProjectsPage() {
       if (stored) {
         try {
           let parsed = JSON.parse(stored);
+          parsed = parsed.filter((p: any) => !p.title?.toLowerCase().includes("finflow"));
           const idx1 = parsed.findIndex((p: any) => p.title?.toLowerCase().includes("erha trade link"));
           if (idx1 === -1) {
             parsed = [defaultProjects[0], ...parsed];
