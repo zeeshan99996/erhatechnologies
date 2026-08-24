@@ -357,16 +357,18 @@ function AdminPage() {
       }
 
       // Load Projects
-      const localProjects = localStorage.getItem("erha_projects");
+      localStorage.removeItem("erha_projects");
+      const localProjects = localStorage.getItem("erha_projects_v2");
       if (localProjects) {
         try {
-          setProjects(JSON.parse(localProjects));
+          const parsed = JSON.parse(localProjects).filter((p: any) => !p.title?.toLowerCase().includes("finflow"));
+          setProjects(parsed);
         } catch {
           setProjects(defaultProjects);
         }
       } else {
         setProjects(defaultProjects);
-        localStorage.setItem("erha_projects", JSON.stringify(defaultProjects));
+        localStorage.setItem("erha_projects_v2", JSON.stringify(defaultProjects));
       }
 
       // Load Team Members
@@ -537,7 +539,7 @@ function AdminPage() {
     }
 
     setProjects(updatedProjects);
-    localStorage.setItem("erha_projects", JSON.stringify(updatedProjects));
+    localStorage.setItem("erha_projects_v2", JSON.stringify(updatedProjects));
     setProjectModal(null);
     setEditProjectIdx(null);
   };
@@ -647,7 +649,7 @@ function AdminPage() {
       const title = projects[index].title;
       const updated = projects.filter((_, i) => i !== index);
       setProjects(updated);
-      localStorage.setItem("erha_projects", JSON.stringify(updated));
+      localStorage.setItem("erha_projects_v2", JSON.stringify(updated));
       showNotification(`Project "${title}" deleted.`);
     } else if (type === "team") {
       const name = teamMembers[index].name;
@@ -682,7 +684,7 @@ function AdminPage() {
 
       if (importType === "projects") {
         setProjects(parsed);
-        localStorage.setItem("erha_projects", JSON.stringify(parsed));
+        localStorage.setItem("erha_projects_v2", JSON.stringify(parsed));
         showNotification("Projects array imported successfully.");
       } else {
         setTeamMembers(parsed);
@@ -698,7 +700,7 @@ function AdminPage() {
   const handleResetToDefaults = () => {
     if (confirm("Are you sure you want to reset ALL data to code defaults? This will erase local additions and edits.")) {
       setProjects(defaultProjects);
-      localStorage.setItem("erha_projects", JSON.stringify(defaultProjects));
+      localStorage.setItem("erha_projects_v2", JSON.stringify(defaultProjects));
 
       setTeamMembers(defaultTeam as any);
       localStorage.setItem("erha_team_members", JSON.stringify(defaultTeam));

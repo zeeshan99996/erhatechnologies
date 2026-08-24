@@ -200,7 +200,9 @@ function ProjectsPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("erha_projects");
+      // Purge legacy cache key
+      localStorage.removeItem("erha_projects");
+      const stored = localStorage.getItem("erha_projects_v2");
       if (stored) {
         try {
           let parsed = JSON.parse(stored);
@@ -226,14 +228,15 @@ function ProjectsPage() {
             parsed[idx3] = { ...parsed[idx3], tag: "Web App", image: defaultProjects[2].image, url: defaultProjects[2].url };
           }
 
-          localStorage.setItem("erha_projects", JSON.stringify(parsed));
+          localStorage.setItem("erha_projects_v2", JSON.stringify(parsed));
           setProjectList(parsed);
         } catch (e) {
           console.error("Failed to parse local projects cache", e);
           setProjectList(defaultProjects);
         }
       } else {
-        localStorage.setItem("erha_projects", JSON.stringify(defaultProjects));
+        localStorage.setItem("erha_projects_v2", JSON.stringify(defaultProjects));
+        setProjectList(defaultProjects);
       }
     }
   }, []);
