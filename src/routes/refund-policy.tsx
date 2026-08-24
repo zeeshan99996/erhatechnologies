@@ -120,7 +120,7 @@ function RefundPolicyPage() {
           <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <span className="text-xs font-bold text-white block">Erha Technologies Billing &amp; Support Team</span>
-              <span className="text-xs text-emerald-400 font-mono">info@erhatechnologies.com • 0302 3333499</span>
+              <span className="text-xs text-emerald-400 font-mono">info@erhatechnologies.com • +92 302 3333499</span>
               <span className="text-[11px] text-slate-400 block mt-1">Approved refunds are credited to your original payment method within 5 to 10 business days.</span>
             </div>
             <Link

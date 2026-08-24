@@ -135,7 +135,7 @@ function PrivacyPolicyPage() {
           <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <span className="text-xs font-bold text-white block">Erha Technologies Privacy & Legal Department</span>
-              <span className="text-xs text-cyan-400 font-mono">info@erhatechnologies.com • 0302 3333499</span>
+              <span className="text-xs text-cyan-400 font-mono">info@erhatechnologies.com • +92 302 3333499</span>
             </div>
             <Link
               to="/contact"

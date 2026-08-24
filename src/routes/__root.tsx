@@ -84,7 +84,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
           "postalCode": "60000",
           "addressCountry": "PK"
         },
-        "telephone": "0302 3333499",
+        "telephone": "+92 302 3333499",
         "email": "info@erhatechnologies.com",
         "sameAs": [
           "https://www.linkedin.com/company/erha-technologies/",

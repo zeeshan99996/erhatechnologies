@@ -490,7 +490,7 @@ function ContactPage() {
                 value: "info@erhatechnologies.com",
                 href: "mailto:info@erhatechnologies.com",
               },
-              { icon: Phone, label: "Direct Phone", value: "0302 3333499", href: "tel:03023333499" },
+              { icon: Phone, label: "Direct Phone", value: "+92 302 3333499", href: "tel:+923023333499" },
               {
                 icon: MapPin,
                 label: "Headquarters",
