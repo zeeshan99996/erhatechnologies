@@ -14,7 +14,6 @@ import {
   Database,
   Layers,
   ChevronRight,
-  ShoppingBag,
 } from "lucide-react";
 import {
   Dialog,
@@ -22,6 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import erhaTradeLinkImg from "@/assets/erha-tradelink-preview.png";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -48,13 +48,6 @@ const serviceCategories = [
     icon: Layers,
     color: "#38bdf8",
     description: "Complete portfolio across all service lines",
-  },
-  {
-    id: "Ecommerce Store",
-    label: "Ecommerce Store",
-    icon: ShoppingBag,
-    color: "#ec4899",
-    description: "Online stores, shopping platforms & digital trade",
   },
   {
     id: "Full Stack",
@@ -112,14 +105,15 @@ type ServiceId = (typeof serviceCategories)[number]["id"];
 const defaultProjects = [
   {
     title: "ERHA TRADE LINK INTERNATIONAL",
-    tag: "Ecommerce Store",
-    desc: "Premium e-commerce storefront specializing in high-performance tech accessories, power banks, ANC/ENC wireless earbuds, and electronics.",
+    tag: "Full Stack",
+    desc: "Full-stack e-commerce store & digital trade platform for tech accessories, power banks, ANC/ENC wireless earbuds, and electronics.",
     url: "https://www.erhatradelinkinternational.com/",
-    color: "#ec4899",
-    problem: "The client needed an official, high-converting digital storefront to feature multi-category tech accessories, power banks, audio products, and offer direct online ordering.",
-    solution: "Designed and engineered a blazing-fast responsive e-commerce web platform featuring real-time product search, promotional deal banners, category filtering (High Capacity, MagSafe & Wireless, Laptop Power Banks, Ultra Compact), and streamlined cart & checkout workflows.",
+    image: erhaTradeLinkImg,
+    color: "#38bdf8",
+    problem: "The client needed an official, modern, high-converting e-commerce web platform to showcase premium tech accessories, manage multi-category inventories, and offer direct online ordering.",
+    solution: "Designed and engineered a blazing-fast responsive e-commerce web platform featuring real-time product search, promotional deal banners, category filtering (High Capacity, MagSafe & Wireless, Laptop Power Banks, Ultra Compact), interactive cart & checkout workflows, and full mobile optimization.",
     metrics: ["Page Speed: 98/100", "Mobile Conversion: +65%", "Uptime: 99.99%"],
-    stack: ["React.js", "TypeScript", "Tailwind CSS", "E-Commerce", "REST API"]
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "Full Stack", "REST API"]
   },
   {
     title: "Neural Insight",
@@ -193,14 +187,15 @@ function ProjectsPage() {
       const stored = localStorage.getItem("erha_projects");
       if (stored) {
         try {
-          const parsed = JSON.parse(stored);
-          if (!parsed.some((p: any) => p.title?.toLowerCase().includes("erha trade link"))) {
-            const updated = [defaultProjects[0], ...parsed];
-            localStorage.setItem("erha_projects", JSON.stringify(updated));
-            setProjectList(updated);
+          let parsed = JSON.parse(stored);
+          const idx = parsed.findIndex((p: any) => p.title?.toLowerCase().includes("erha trade link"));
+          if (idx === -1) {
+            parsed = [defaultProjects[0], ...parsed];
           } else {
-            setProjectList(parsed);
+            parsed[idx] = { ...parsed[idx], tag: "Full Stack", image: defaultProjects[0].image, url: defaultProjects[0].url };
           }
+          localStorage.setItem("erha_projects", JSON.stringify(parsed));
+          setProjectList(parsed);
         } catch (e) {
           console.error("Failed to parse local projects cache", e);
           setProjectList(defaultProjects);
@@ -384,11 +379,19 @@ function ProjectsPage() {
               >
                 <div>
                   {/* Header Visual */}
-                  <div className="h-40 bg-slate-950/80 border-b border-slate-800 relative flex items-center justify-center p-6">
-                    <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 shadow-xl flex items-center justify-center font-extrabold text-2xl text-cyan-400 group-hover:border-cyan-500/40 transition-all">
-                      {p.title.charAt(0)}
-                    </div>
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold font-mono">
+                  <div className="h-44 bg-slate-950/80 border-b border-slate-800 relative flex items-center justify-center overflow-hidden">
+                    {p.image ? (
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="w-full h-full object-cover object-top opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-300"
+                      />
+                    ) : (
+                      <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 shadow-xl flex items-center justify-center font-extrabold text-2xl text-cyan-400 group-hover:border-cyan-500/40 transition-all">
+                        {p.title.charAt(0)}
+                      </div>
+                    )}
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-cyan-500/30 text-cyan-400 text-[10px] font-bold font-mono">
                       {p.tag}
                     </div>
                   </div>
@@ -465,6 +468,12 @@ function ProjectsPage() {
                   </div>
                 </div>
               </DialogHeader>
+
+              {selectedProject.image && (
+                <div className="rounded-xl overflow-hidden border border-slate-800 max-h-56 shadow-lg">
+                  <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover object-top" />
+                </div>
+              )}
 
               <div className="grid md:grid-cols-2 gap-6 text-sm">
                 <div className="space-y-4">

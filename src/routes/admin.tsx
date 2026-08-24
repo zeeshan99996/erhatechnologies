@@ -36,8 +36,8 @@ export const Route = createFileRoute("/admin")({
 const defaultProjects = [
   {
     title: "ERHA TRADE LINK INTERNATIONAL",
-    tag: "Ecommerce Store",
-    desc: "Premium e-commerce store & digital trade platform for tech accessories, power banks, and audio gear.",
+    tag: "Full Stack",
+    desc: "Full-stack e-commerce store & digital trade platform for tech accessories, power banks, and audio gear.",
     url: "https://www.erhatradelinkinternational.com/",
     color: "var(--neon-cyan)",
     problem: "The client required an official, modern, high-converting e-commerce web platform to showcase premium tech accessories, manage multi-category inventories, and streamline online ordering in Pakistan.",
