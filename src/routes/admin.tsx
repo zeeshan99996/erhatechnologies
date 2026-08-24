@@ -57,6 +57,17 @@ const defaultProjects = [
     stack: ["React.js", "TypeScript", "Tailwind CSS", "Full Stack", "REST API", "i18n"]
   },
   {
+    title: "Hospital Management System",
+    tag: "Web App",
+    desc: "Enterprise EMR & Hospital Management System for patient registration, OPD/IPD, pharmacy, lab tests, and billing.",
+    url: "https://www.drtalhaclinic.com/",
+    color: "var(--neon-blue)",
+    problem: "Clinics & healthcare facilities struggled to unify patient EMR records, OPD/IPD admissions, pharmacy inventory alerts, lab requests, and daily revenue reporting under one centralized dashboard.",
+    solution: "Engineered a cloud-based EMR & Hospital Management System (HMS) featuring real-time clinical dashboards, OPD/IPD patient intake workflows, token queue automation, bed admissions management, lab tracking, pharmacy inventory stock alerts, and automated billing & invoicing.",
+    metrics: ["EMR Access: <100ms", "Daily Intake: 500+ Patients", "Billing Accuracy: 100%"],
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "Web App", "Node.js", "PostgreSQL"]
+  },
+  {
     title: "Neural Insight",
     tag: "AI Platform",
     desc: "Real-time analytics powered by transformer models.",

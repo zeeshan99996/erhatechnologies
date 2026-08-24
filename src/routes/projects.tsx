@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/dialog";
 import erhaTradeLinkImg from "@/assets/erha-tradelink-preview.png";
 import abuArishImg from "@/assets/abu-arish-preview.png";
+import drTalhaHmsImg from "@/assets/dr-talha-hms-preview.png";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -129,6 +130,18 @@ const defaultProjects = [
     stack: ["React.js", "TypeScript", "Tailwind CSS", "Full Stack", "REST API", "i18n"]
   },
   {
+    title: "Hospital Management System",
+    tag: "Web App",
+    desc: "Enterprise EMR & Hospital Management Web Application for OPD/IPD patient registration, token queues, pharmacy, lab tests, and billing.",
+    url: "https://www.drtalhaclinic.com/",
+    image: drTalhaHmsImg,
+    color: "#34d399",
+    problem: "Clinics & healthcare facilities struggled to unify patient EMR records, OPD/IPD admissions, pharmacy inventory alerts, lab requests, and daily revenue reporting under one centralized dashboard.",
+    solution: "Engineered a cloud-based EMR & Hospital Management System (HMS) featuring real-time clinical dashboards, OPD/IPD patient intake workflows, token queue automation, bed admissions management, lab tracking, pharmacy inventory stock alerts, and automated billing & invoicing.",
+    metrics: ["EMR Access: <100ms", "Daily Intake: 500+ Patients", "Billing Accuracy: 100%"],
+    stack: ["React.js", "TypeScript", "Tailwind CSS", "Web App", "Node.js", "PostgreSQL"]
+  },
+  {
     title: "Neural Insight",
     tag: "AI Platform",
     desc: "Real-time analytics powered by custom transformer models.",
@@ -213,6 +226,13 @@ function ProjectsPage() {
             parsed.splice(1, 0, defaultProjects[1]);
           } else {
             parsed[idx2] = { ...parsed[idx2], tag: "Full Stack", image: defaultProjects[1].image, url: defaultProjects[1].url };
+          }
+
+          const idx3 = parsed.findIndex((p: any) => p.title?.toLowerCase().includes("hospital management"));
+          if (idx3 === -1) {
+            parsed.splice(2, 0, defaultProjects[2]);
+          } else {
+            parsed[idx3] = { ...parsed[idx3], tag: "Web App", image: defaultProjects[2].image, url: defaultProjects[2].url };
           }
 
           localStorage.setItem("erha_projects", JSON.stringify(parsed));
