@@ -1,12 +1,12 @@
 export function FloatingSocialBar() {
   return (
-    <aside className="hidden lg:flex fixed left-4 xl:left-6 top-1/2 -translate-y-1/2 flex-col items-center gap-3.5 z-40">
+    <aside className="hidden lg:flex fixed left-4 xl:left-6 right-auto top-1/2 -translate-y-1/2 flex-col items-center gap-3.5 z-40">
       <div className="w-[1.5px] h-14 bg-gradient-to-b from-transparent via-cyan-500/40 to-slate-700/60 mb-1" />
       <a
         href="https://www.facebook.com/people/Erha-Technologies/61592220862497/"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-500/50 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+        className="w-10 h-10 rounded-full bg-[#45DDFD] hover:bg-[#38bdf8] text-slate-950 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(69,221,253,0.6)]"
         aria-label="Facebook"
       >
         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -17,7 +17,7 @@ export function FloatingSocialBar() {
         href="https://www.tiktok.com/@erhatechnologies"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-500/50 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+        className="w-10 h-10 rounded-full bg-white hover:bg-[#45DDFD] text-slate-950 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(69,221,253,0.6)]"
         aria-label="TikTok"
       >
         <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
@@ -28,7 +28,7 @@ export function FloatingSocialBar() {
         href="https://www.linkedin.com/company/erha-technologies/"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-500/50 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+        className="w-10 h-10 rounded-full bg-white hover:bg-[#45DDFD] text-slate-950 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(69,221,253,0.6)]"
         aria-label="LinkedIn"
       >
         <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ export function FloatingSocialBar() {
         href="https://www.instagram.com/erhatechnologies"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-10 h-10 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-500/50 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+        className="w-10 h-10 rounded-full bg-white hover:bg-[#45DDFD] text-slate-950 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(69,221,253,0.6)]"
         aria-label="Instagram"
       >
         <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
